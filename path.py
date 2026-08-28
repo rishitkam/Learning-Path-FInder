@@ -74,4 +74,4 @@ def build(g, gap, profile, catalog, known=(), relevance=lambda c: 0.5):
         week = end
 
     return {"phases": phases, "total_weeks": week,
-            "feasible": week <= profile.get("horizon_weeks", week)}
+            "feasible": week <= (profile.get("horizon_weeks") or week)}

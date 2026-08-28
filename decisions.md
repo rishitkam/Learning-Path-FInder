@@ -155,3 +155,39 @@ a missing milestone beats a fake one.
 Phases run straight into each other. Real learners are messier, but an invented buffer is an invented
 number. We give a clean estimate and a feasible flag, and let that flag start the conversation when the
 plan does not fit the deadline.
+
+## 23. We picked the model by testing, not by size
+
+Ran three Groq models on the same three conversations: a clear one, a vague one, and one where the
+learner corrects themselves.
+
+gpt-oss-20b was the only one that got the clear case fully right and the only one that returned nulls on
+"idk i just wanna get into AI stuff" instead of guessing. Qwen invented two skills there, which is the
+exact failure that poisons a whole path. The 120b model returned an invalid tool call on the clear case.
+
+So we run gpt-oss-20b. Bigger is not better for constrained extraction, and now we can say why.
+
+## 24. Official Groq SDK, not raw HTTP
+
+Our first test went through urllib and got blocked by Cloudflare, which reads the default Python user
+agent as a bot. We could have faked the header. Using the SDK is one dependency, removes the problem,
+and gives us retries and streaming when we need them.
+
+## 25. Bad values get dropped, never raised
+
+A free model occasionally returns a skill id that is nearly right. We filter those out, clamp hours to
+1 to 60 and level to 1 to 5, and fall back to balanced style. A slightly thinner profile is fine. An
+exception in front of judges is not.
+
+## 26. One retry, then move on
+
+If the call fails twice that is a model problem, not bad luck, and the learner is sitting there waiting.
+We keep the profile we already had and ask a plain question instead.
+
+## 27. Only two fields are actually required
+
+Goal and weekly hours. Level defaults to 2, style to balanced, and no deadline just turns the feasible
+flag off. Anything more and we are interrogating someone before showing them anything worth having.
+
+Which field is missing is decided by code, not the model, so there is no second API call and the model
+cannot skip a question we need.
