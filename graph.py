@@ -35,7 +35,7 @@ class SkillGraph:
         return self.skills[skill]["name"]
 
     def role_skills(self, role):
-        """Known role -> its target skills. Returns None so the caller can fall back to the LLM."""
+        """Target skills for a known role. Returns None so the caller can fall back to the LLM."""
         return self.roles.get(role)
 
     def closure(self, known):

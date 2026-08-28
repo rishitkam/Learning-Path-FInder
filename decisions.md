@@ -1,122 +1,157 @@
 # Decisions
 
-A running record of every choice we made, what else we could have done, and why we went the way we did.
-Newest entries go at the bottom. 
+Every choice we made, what else we could have done, and why we went this way.
+Newest at the bottom.
 
----
+## 1. The AI does not write the curriculum
 
-## 1. The core idea: the AI does not write the curriculum
+The obvious build is to ask an LLM for a roadmap and print it. It invents courses that do not exist,
+answers differently every time, and cannot promise linear algebra comes before backpropagation.
+Prompting does not fix any of that.
 
-The obvious build is "send the goal to an LLM, print whatever roadmap it writes back". We did not do that.
+So the path comes from a skill graph plus a real catalog. The LLM only reads the learner in and writes
+the explanation out. It never picks or orders content.
 
-The problem with it: the model invents course names that do not exist, gives a different answer every
-time you ask, and cannot promise that linear algebra comes before backpropagation. None of that is
-fixable with better prompting.
-
-What we do instead: the learning path comes out of a skill graph plus a real course catalog. The LLM
-sits only at the edges. It reads the human in (turning what they typed into a structured profile) and
-it writes the explanation out. It never picks or orders the content.
-
-Trade off: we have to build and maintain a skill graph, which is real work. What we get is a system that
-gives the same answer twice, cannot invent a course, and can prove its ordering is correct.
+Trade off: we have to build the graph. What we get is reproducible, cannot invent a course, and can
+prove its ordering.
 
 ## 2. Python, not JavaScript
 
-We first sketched this in JavaScript because the deliverables are mostly a web app. We switched to Python.
+We sketched it in JavaScript first. Switched because the team writes Python and cannot defend a language
+it does not know on pitch day, and because every library we want is here: networkx, sentence
+transformers, scikit learn if we later fit the ranking weights.
 
-Two reasons. The honest one is that the team writes Python and cannot defend a language it does not know
-on pitch day. The technical one is that this is a retrieval and graph problem, and every library we want
-lives in Python: networkx for the graph, sentence transformers for embeddings, scikit learn if we later
-want to learn the ranking weights instead of hard coding them.
-
-Cost of the switch: the interface will be Streamlit, which looks plainer than a custom React app. User
-experience is 10 percent of the score so we accept the small hit and spend the time on the engine.
+Cost: Streamlit looks plainer than a custom React app. Interface is 10 percent of the score, so we take
+the hit and spend the time on the engine.
 
 ## 3. Streamlit for the interface
 
-Alternatives were FastAPI with a React frontend (two services, two deploys, and JavaScript again) or
-FastAPI with plain HTML templates (more control, more work).
+Alternatives were FastAPI plus React (two deploys, JavaScript again) or FastAPI plus HTML templates
+(more control, more work). Streamlit gives chat, charts and a dashboard in one Python file and deploys
+free, which covers the application access deliverable in minutes.
 
-Streamlit gives us chat, charts and a dashboard in one Python file and deploys free, which covers the
-"application access" deliverable in minutes instead of hours. If it ever becomes the bottleneck we can
-move to FastAPI with HTML templates without touching any of the logic, because none of the logic knows
-the interface exists.
+None of our logic knows the interface exists, so moving off it later touches nothing.
 
 ## 4. Groq for the model, embeddings run locally
 
-We are on the Groq free tier. It is fast, which matters because we re read the learner profile on every
-chat turn, and its API follows the OpenAI shape so the code is standard.
+Groq free tier. Fast, which matters because we re read the profile every chat turn, and the API follows
+the OpenAI shape.
 
-Two things it changes. Groq has no embeddings endpoint, so we run a small embedding model locally with
-sentence transformers and bake the course vectors into a file ahead of time. That also means embeddings
-cost nothing and work offline. And the free tier limits requests per minute rather than total spend, so
-we cache what we can and keep a prepared profile ready in case the demo hits a limit on stage.
+It has no embeddings endpoint, so we embed locally with sentence transformers and bake course vectors
+into a file. That also makes embeddings free and offline. The free tier limits requests per minute, so
+we cache and keep a prepared profile ready in case the demo hits a limit on stage.
 
-## 5. Skills and courses are two separate things
+## 5. Skills and courses are separate
 
-A skill is a unit of knowledge. A course is one way to get that skill. We keep them in separate files.
+A skill is knowledge. A course is one way to get it. Separate files means swapping a boring or hard
+course never reshapes the path. Merged, every swap would rebuild the plan.
 
-Why it matters: when a learner says a course is too hard or boring, we swap the course and the shape of
-the path does not move. If we had merged the two, every swap would rebuild the whole plan.
+## 6. Prerequisites sit on the skill, not the course
 
-## 6. Prerequisites live on the skill, not on the course
+Three courses can teach one skill. Separate prerequisite lists would drift apart and contradict each
+other. One list per skill, one source of truth.
 
-Three courses can teach the same skill. If each one carried its own prerequisite list they would drift
-apart and contradict each other. One list per skill means one source of truth.
+## 7. Depth is calculated, never typed in
 
-## 7. Depth is calculated, never typed in by hand
+Depth is the longest chain of prerequisites behind a skill, derived from the graph. Hand written level
+numbers always end up disagreeing with the real prerequisites once the file grows. A derived number
+cannot disagree with the edges it is made from.
 
-Each skill has a depth, meaning the longest chain of prerequisites sitting behind it. We work it out from
-the graph itself rather than writing a level number into the file.
+## 8. The graph checks itself at startup
 
-Hand written levels always end up disagreeing with the actual prerequisites once the file grows. A
-calculated depth cannot disagree with the edges, because it is made from them.
-
-## 8. The graph checks itself when the app starts
-
-On load we confirm every prerequisite points at a skill that actually exists and that there are no
-circular prerequisites. If either fails the app refuses to start.
-
-A single typo in a skill id would otherwise produce a quietly wrong path that still looks fine. Five
-lines of checking at startup is the cheapest reliability in the whole project.
+On load we confirm every prerequisite points at a real skill and there are no circular prerequisites,
+and refuse to start otherwise. One typo would otherwise produce a quietly wrong path that still looks
+fine. Five lines, cheapest reliability in the project.
 
 ## 9. Knowing a skill means knowing what it was built on
 
-If a learner says they know transformers, we do not also ask them to tick backpropagation, neural
-networks, supervised learning and Python. We walk the graph backwards and mark all of it as known.
-
-This is one line of code and it is the single biggest reason the tool feels like it understood you. It
-is also what makes two people with the same goal get genuinely different paths.
+Say you know transformers and we mark backpropagation, neural networks, supervised learning and Python
+known too. One line, and it is the main reason the tool feels like it understood you. It is also why two
+people with the same goal get different paths.
 
 ## 10. The order is deterministic, not just correct
 
-There are usually many valid orders for the same set of skills. A plain topological sort returns any one
-of them, which means the same learner could get a different looking path on a refresh.
+Many orders are valid for the same skills, and a plain topological sort returns any one of them, so a
+refresh could change the path. We break ties on depth then id. Same profile, same path, always.
 
-We break ties on depth first and then on the skill id, so the same profile always produces exactly the
-same path. Being able to say "this is reproducible" out loud is worth more than the two extra words it
-took to write.
+## 11. Phases come from the graph
 
-## 11. Phases come from the graph, not from a prompt
+Skills at the same depth have no prerequisite between them, so they can be learned in parallel. Group by
+depth and each group is a phase. That makes a phase a fact about the graph, not a heading someone made up.
 
-Skills that sit at the same depth have no prerequisite connecting them, which means by definition they
-can be learned in parallel. So we group by depth and call each group a phase. A phase is therefore a
-mathematical statement about the graph, not a cosmetic heading someone invented.
+## 12. Goals resolve through a role table first, model second
 
-Known issue we are leaving for later: on a deep narrow graph this makes a lot of phases with one skill
-each. Merging small phases is a scheduling concern, so it belongs to the path builder that knows how many
-hours a week the learner has, not to the graph.
+Learner types "I want to be a GenAI engineer". A small file maps common roles to target skills. Match
+means instant, free and always valid. No match and the model maps the goal, choosing only from our fixed
+skill list.
 
-## 12. Goals resolve through a role table first, the model second
+The table sits next to the graph so its ids get checked at startup. The routing sits outside, in the
+profile layer, so the graph only ever receives finished skill ids and stays testable without mocks.
 
-The learner types "I want to be a GenAI engineer". Something has to turn that into skill ids.
+## 13. Things we did not build
 
-We keep a small file mapping common roles to their target skills. If the goal matches a known role we use
-it: instant, free, and always valid. If it does not match, the model maps the goal onto skill ids instead,
-picking only from our fixed list.
+No vector database. A few hundred courses is a list and a dot product.
+No LangChain. It would hide the exact part a judge should be able to read, our own pipeline.
+No database for the graph. Twenty nine skills fit in memory and every operation takes microseconds.
 
-The lookup table lives next to the graph so its ids get checked at startup like everything else, but the
-choice of which route to take sits outside the graph, in the profile layer. The graph only ever receives
-finished skill ids, which keeps it a pure function we can test without mocking anything.
+## 14. Depth is universal, phase boundaries are personal
 
+Depth never changes per learner. What changes is where we cut the line. A learner with 20 hours a week
+gets three fat phases, one with 4 hours gets eight small ones, from the identical skill order.
 
+Says it cleanly: the graph decides the sequence, the learner decides the pace. Prerequisites are never at
+risk because regrouping never reorders.
+
+## 15. A phase is about a month of the learner's time
+
+Grouping strictly by depth gave eleven phases for nineteen skills, most holding one skill. Correct and
+useless in a roadmap.
+
+So we fill a phase until it holds roughly four weeks of their hours, then cut. We only cut at depth
+boundaries and never split a depth level, so parallel skills stay together and nothing gets reordered.
+We overshoot rather than undershoot, so no phase is a stray half hour.
+
+## 16. Fake catalog first, real one later
+
+The path builder needs a catalog and ours does not exist yet. Options were to build the real one first
+(slow, blocks everything), stub the ranking, or hand write a small honest one.
+
+We hand wrote 41 items covering all 29 skills. The file shape is final, so when the real catalog lands it
+drops in and nothing gets rewritten.
+
+## 17. Four ranking signals, weights visible
+
+A course is scored on fit to the goal, level match, learning style and whether it fits their week.
+Weights are 40, 25, 20 and 15 percent, hard coded in one dict.
+
+We keep all four numbers on the module, not just the total, so the explanation is built from the actual
+arithmetic instead of the model inventing a reason afterwards. Learning the weights needs feedback data
+we do not have yet, and when we do it is a one line swap.
+
+## 18. Relevance is pluggable and currently flat
+
+Fit to the goal needs embeddings, which arrive with the real catalog. Until then it is a function passed
+in that returns a constant, so ranking runs on the other three signals. No stub to rip out later, just a
+different function.
+
+## 19. A skill with no course stays in the path
+
+If nothing in the catalog teaches a skill we keep it with nothing attached. Dropping it would break the
+chain and hiding it would be a lie. On stage it also proves we are reading a real catalog.
+
+## 20. Greedy pick, not a search over whole paths
+
+We take the top scoring resource per skill. Searching whole path combinations is smarter and we are not
+building it yet. There are rarely more than a handful of candidates per skill anyway.
+
+## 21. Milestones and assessments come from the catalog too
+
+Each phase gets a project and a check pulled under the same rule as courses: everything it assumes must
+already be covered. Nothing invented. Nothing reused twice. If nothing fits, the phase has none, because
+a missing milestone beats a fake one.
+
+## 22. Weeks are back to back with no buffer
+
+Phases run straight into each other. Real learners are messier, but an invented buffer is an invented
+number. We give a clean estimate and a feasible flag, and let that flag start the conversation when the
+plan does not fit the deadline.
