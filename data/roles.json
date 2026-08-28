@@ -1,0 +1,9 @@
+{
+  "data-analyst":            ["data.sql", "data.viz", "math.stats"],
+  "data-scientist":          ["ml.evaluation", "ml.unsupervised", "data.viz"],
+  "machine-learning-engineer": ["ml.evaluation", "dl.backprop", "ops.deploy"],
+  "deep-learning-engineer":  ["dl.cnn", "dl.transformers"],
+  "nlp-engineer":            ["nlp.llm", "nlp.embeddings"],
+  "genai-engineer":          ["nlp.rag", "nlp.finetune"],
+  "mlops-engineer":          ["ops.monitor", "ml.evaluation"]
+}
