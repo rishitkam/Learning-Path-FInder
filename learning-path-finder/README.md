@@ -2,7 +2,24 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+Start the Python API from the repository root. The current `py --list` output only exposes a broken Python 3.9 launcher, while this project requires Python 3.10+; install Python 3.12 first if `py -3.12 --version` fails.
+
+```bash
+py -3.12 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python -m uvicorn main:app --reload --port 8000
+```
+
+Verify the backend before opening the frontend:
+
+```powershell
+Invoke-RestMethod http://localhost:8000/health
+```
+
+It should return `ok : True`, plus the number of skills and catalog resources. The LLM key stays in the repository-root `.env` file as `GROQ_API_KEY`; do not put it in a Next.js `.env.local` file.
+
+Then, in a second terminal, run the frontend:
 
 ```bash
 npm run dev
@@ -15,6 +32,8 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+The frontend expects the API at `http://localhost:8000`. For another API location, add `NEXT_PUBLIC_API_URL` to `learning-path-finder/.env.local`.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
