@@ -24,12 +24,13 @@ def _tool(g):
     return {"type": "function", "function": {
         "name": "set_profile", "description": "Record what the conversation says about the learner.",
         "parameters": {"type": "object", "properties": {
+            "goal_text": nullable("string", description="What they want, in their own words, verbatim."),
             "role": nullable("string", enum=roles + [None]),
             "goal_skills": {"type": "array", "items": {"type": "string", "enum": ids}},
             "known_skills": {"type": "array", "items": {"type": "string", "enum": ids}},
             "weekly_hours": nullable("number"), "horizon_weeks": nullable("number"),
             "level": nullable("integer"), "style": nullable("string", enum=STYLES + [None])},
-            "required": ["role", "goal_skills", "known_skills", "weekly_hours",
+            "required": ["goal_text", "role", "goal_skills", "known_skills", "weekly_hours",
                          "horizon_weeks", "level", "style"]}}}
 
 
