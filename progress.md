@@ -63,6 +63,21 @@ of them rather than just the one course.
 Progress for the dashboard is read off the state and the path every time, never stored, so it cannot
 drift when the plan changes underneath it.
 
+**Commit 8, the catalog pipeline.** `scripts/fetch.py`, `normalise.py`, `label.py`. Pulls 6645 real
+Coursera courses with no login, parses their real durations and difficulty, filters to our domain and
+keeps the 400 most enrolled, then labels each one with what it teaches and what it assumes.
+
+The taxonomy grows while labelling. Each batch sees every skill named so far, so the model reuses ids
+rather than coining synonyms, and only invents a skill when nothing fits. 29 seed skills became 63.
+350 of 400 courses labelled, the other 50 dropped as off topic.
+
+This one took several attempts and the failures are worth knowing. Our first run reported healthy
+numbers while 13 percent of courses both taught and assumed the same skill, which would have been a
+cycle. We filtered off topic courses with embedding anchors twice before accepting the model should
+make that call instead. And we went through three models: 120b runs out of free tier budget, 20b never
+proposes a new skill so it crams everything into the seed ids and mislabels most of it, qwen does the
+job properly. All of it is in decisions.md.
+
 ## Roughly where we stand
 
 Engine done, nothing to look at yet.
@@ -76,14 +91,19 @@ Engine done, nothing to look at yet.
 | Explanations and learner questions | done |
 | Interface and dashboard | not started |
 | Progress tracking and feedback | done |
-| Real catalog with embeddings | not started |
+| Real catalog with embeddings | pipeline done, graph build next |
 
-Six of eight. The whole engine works end to end in the terminal, including adapting to feedback.
+Six and a half of eight. The engine works end to end in the terminal and we now have 350 real courses
+labelled against a 63 skill taxonomy.
 
 ## Next
 
-The real catalog, which also switches relevance scoring on. The interface waits until the whole team is
-on it, since that is the part we should build together.
+Build the real prerequisite graph from those labels: dedupe the taxonomy, draw the edges, break any
+cycles, and switch relevance scoring on. The dedupe produces a short review list for us to check before
+anything overwrites the current graph.
+
+Then the interface, which waits until the whole team is on it since that is the part we should build
+together. HANDOFF.md has the full detail.
 
 ## Known gaps we are carrying on purpose
 

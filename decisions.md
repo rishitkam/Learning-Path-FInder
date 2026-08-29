@@ -279,3 +279,61 @@ it eight times does not, and the clamp is where we stop listening.
 Someone struggling probably needs more time as well as an easier course. We leave the hours alone,
 because weekly hours is something they told us and we should not quietly overwrite it. Better for the
 assistant to spot the pattern and ask.
+
+## 39. Real catalog: Coursera, pulled as a plain CSV
+
+azrai99/coursera-course-dataset on Hugging Face. 6645 courses, no login needed, and it carries titles,
+descriptions, skill tags, difficulty, real durations like "3 months at 5 hours a week", and URLs.
+
+We download the CSV straight from the repo. The rows API rate limited us at 67 paged calls, and the
+parquet route needs a library we do not have. One file, one request.
+
+## 40. Course ids are a hash of the title
+
+Not a row number. Refiltering the dataset then never invalidates labels we already paid for.
+
+## 41. model2vec for embeddings, not sentence transformers
+
+Static 256 dimension embeddings, no torch. We embed the learner's goal at runtime, and Streamlit gives
+us 1GB of memory which torch would mostly eat.
+
+Real tradeoff: static embeddings are weaker. Worth revisiting if relevance looks bad once wired in.
+
+## 42. The domain filter is the model, not embeddings
+
+We tried twice to filter off topic courses with embedding anchors. Both times about a tenth leaked, and
+each fix only revealed the next hole: first languages and physics, then video, CAD and economics.
+
+Static embeddings are the wrong tool for that judgement. The labeller already reads every course, so it
+now returns a relevant flag and off topic courses are dropped before a skill is ever invented for them.
+
+Lesson we should have taken one round earlier: when a patch reveals the same class of hole twice, the
+approach is wrong, not the parameters.
+
+## 43. Labelling runs on qwen, and here is why not the others
+
+gpt-oss-120b gives the best labels but runs out of free tier budget long before 400 courses, asking for
+waits of thirteen minutes. Unusable for anything bulk.
+
+gpt-oss-20b never proposes a new skill. It crammed every course into our seed 29 and produced garbage:
+MongoDB as data.sql, Java as prog.python, image processing as convolutional networks. It also threw away
+Unix and C++ as irrelevant, because with no way to name a skill its only options are wrong or discard.
+
+qwen3.8-27b names new skills readily. Back when we chose the profile extractor that same eagerness was
+its flaw, because there we wanted nulls. Same trait, opposite job, opposite verdict.
+
+## 44. Free tier limits are 8000 tokens a minute
+
+A labelling batch costs about 1800 tokens, so four a minute is the ceiling. We pace at 16 seconds between
+batches rather than firing fast and leaning on retries.
+
+We lost time here by misdiagnosing twice. First we shrank prompts, when the limit was throughput not
+size. Then we fixed pacing, by which point the daily budget on 120b was already the real blocker.
+
+The mistake that actually cost us was a retry that slept without logging. A stalled run looked identical
+to a working one for thirteen minutes. Every wait now prints.
+
+## 45. Bulk work and conversation need different models
+
+120b is fine for the explainer, which makes a handful of calls per session, and unusable for a fifty call
+pipeline. Worth remembering before we add any other batch step.
