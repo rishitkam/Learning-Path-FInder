@@ -1,0 +1,3 @@
+"use client";
+import { Search, Bell, Command, Plus } from "lucide-react";
+export default function Header() { const today = new Date().toLocaleDateString("en-US",{weekday:"long",month:"short",day:"numeric"}); return <header className="topbar"><div className="date-chip"><Command size={14}/><span>{today}</span></div><div className="topbar-right"><button className="new-button"><Plus size={15}/> New focus</button><button className="icon-button"><Search size={18}/></button><button className="icon-button notification"><Bell size={18}/><i/></button><button className="profile-button"><span className="avatar">RM</span><span><b>Rhythima</b><small>Pro member</small></span></button></div></header>; }
