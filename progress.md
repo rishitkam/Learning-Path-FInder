@@ -52,6 +52,17 @@ enters through one door.
 This one runs on gpt-oss-120b, the opposite of the extractor. Strict schemas suit the small model,
 prose and judgement suit the big one. Both decided by testing.
 
+**Commit 7, feedback handling.** `state.py`. Five buttons: already knew this, finished it, too hard,
+too easy, not interested. Each one changes the learner state and the path rebuilds from it. Nothing
+edits a path in place.
+
+Rejecting a course blocks that course and we pick the next best thing for the same skill, so feedback
+can never break the prerequisite chain. Too hard also drops their level, which changes everything ahead
+of them rather than just the one course.
+
+Progress for the dashboard is read off the state and the path every time, never stored, so it cannot
+drift when the plan changes underneath it.
+
 ## Roughly where we stand
 
 Engine done, nothing to look at yet.
@@ -64,16 +75,15 @@ Engine done, nothing to look at yet.
 | Scheduling into phases | done |
 | Explanations and learner questions | done |
 | Interface and dashboard | not started |
-| Progress tracking and feedback | not started |
+| Progress tracking and feedback | done |
 | Real catalog with embeddings | not started |
 
-Five of eight. The whole engine works end to end in the terminal. What is left is mostly wiring and
-presentation.
+Six of eight. The whole engine works end to end in the terminal, including adapting to feedback.
 
 ## Next
 
-Progress and feedback handling, which is small but is what makes the demo land. Then the real catalog.
-The interface waits until the whole team is on it, since that is the part we should build together.
+The real catalog, which also switches relevance scoring on. The interface waits until the whole team is
+on it, since that is the part we should build together.
 
 ## Known gaps we are carrying on purpose
 

@@ -242,3 +242,40 @@ instead of sending them. Our own phrase about fitting the weekly hours sat next 
 reworded it. Only the last bit needed a prompt rule, telling it not to give study advice.
 
 Worth remembering. When a model invents something, check what we handed it before blaming it.
+
+## 34. Feedback changes the state, never the path
+
+A click updates one dict and the path gets rebuilt from it. Nothing edits a path in place. That is only
+possible because building is already a pure function, and it means the plan on screen can never drift
+away from the profile behind it.
+
+The state is plain JSON, so saving a learner later is one column in SQLite.
+
+## 35. Already knowing something and finishing it are different clicks
+
+Already knowing a skill removes it from the plan, because it was never needed. Finishing one leaves it
+in the roadmap and ticks it, because they did the work and should be able to see it.
+
+So the gap is computed from known skills only, and completed is a display and progress concern.
+
+## 36. Rejecting a course never removes a skill
+
+The block list holds resource ids, not skills. Say a course is too hard or boring and the skill stays
+while we pick the next best thing for it. If nothing else teaches it, the module simply shows no
+resource, same as a skill the catalog does not cover.
+
+This is the one guarantee we will not trade. Feedback can never break the prerequisite chain.
+
+## 37. Too hard does two things
+
+Blocking that one course alone would hand them another course at the same level. So we also drop their
+level by one, which changes the ranking for everything ahead of them. One without the other is theatre.
+
+Level moves by one and clamps between 1 and 5. Clicking too hard twice tells us something real. Clicking
+it eight times does not, and the clamp is where we stop listening.
+
+## 38. Too hard does not stretch the schedule
+
+Someone struggling probably needs more time as well as an easier course. We leave the hours alone,
+because weekly hours is something they told us and we should not quietly overwrite it. Better for the
+assistant to spot the pattern and ask.

@@ -33,15 +33,15 @@ def _best(cands, p, relevance):
     return max(cands, key=lambda c: _score(c, p, relevance), default=None)
 
 
-def build(g, gap, profile, catalog, known=(), relevance=lambda c: 0.5):
+def build(g, gap, profile, catalog, known=(), blocked=(), relevance=lambda c: 0.5):
     ordered = g.order(gap)
 
     # One resource per skill. A skill with no match stays in the path with nothing attached,
     # because dropping it would break the chain and hiding it would be a lie.
     mods = {}
     for s in ordered:
-        best = _best([c for c in catalog if s in c["teaches"] and c["kind"] != "assessment"],
-                     profile, relevance)
+        best = _best([c for c in catalog if s in c["teaches"] and c["kind"] != "assessment"
+                      and c["id"] not in blocked], profile, relevance)
         mods[s] = {"skill": s, "name": g.name(s), "resource": best,
                    "why": _terms(best, profile, relevance) if best else None}
 
@@ -62,7 +62,7 @@ def build(g, gap, profile, catalog, known=(), relevance=lambda c: 0.5):
         used |= {mods[s]["resource"]["id"] for s in skills if mods[s]["resource"]}
         end = week + ceil(hrs / profile["weekly_hours"])
         extra = lambda kind: _best(
-            [c for c in catalog if c["kind"] == kind and c["id"] not in used
+            [c for c in catalog if c["kind"] == kind and c["id"] not in used | set(blocked)
              and set(c["assumes"]) <= covered and set(c["teaches"]) & set(skills)],
             profile, relevance)
         milestone, assessment = extra("project"), extra("assessment")
