@@ -13,7 +13,7 @@ QUESTIONS = {"goal_skills": "What do you want to be able to do at the end? A rol
 
 
 @lru_cache(maxsize=1)
-def _client():
+def client():
     load_dotenv()
     return Groq()
 
@@ -59,7 +59,7 @@ def extract(g, transcript, prior=None):
 
     for _ in range(2):  # one retry, then give up and let the caller ask a plain question
         try:
-            r = _client().chat.completions.create(
+            r = client().chat.completions.create(
                 model=MODEL, temperature=0, tools=[_tool(g)],
                 tool_choice={"type": "function", "function": {"name": "set_profile"}},
                 messages=[{"role": "system", "content": system}, {"role": "user", "content": user}])

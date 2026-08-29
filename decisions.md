@@ -191,3 +191,54 @@ flag off. Anything more and we are interrogating someone before showing them any
 
 Which field is missing is decided by code, not the model, so there is no second API call and the model
 cannot skip a question we need.
+
+## 28. The explainer never sources a reason, it only phrases one
+
+Why a skill sits where it does comes from the graph edges. Why a resource won comes from the score
+breakdown we already store on every module. The model receives those facts and turns them into a
+sentence.
+
+So an explanation cannot contradict the plan, because it is built from the same numbers that made the
+plan. And if Groq is down we still show the facts as plain text instead of showing nothing.
+
+## 29. Explanations are cached on the facts, not on the profile
+
+Streamlit reruns the whole script on every click. Without a cache we would burn the rate limit just
+scrolling. The key is the facts themselves, so an explanation is reused until something in the plan
+actually changes.
+
+## 30. Questions come back with a change flag
+
+The model answers with two fields: the answer, and whether the learner was asking about the plan or
+trying to change it. A change request gets handed to the profile extractor, which updates the profile
+and rebuilds. Feedback goes through one door, so the explainer can never quietly alter a plan.
+
+## 31. Big model for prose, small model for schemas
+
+Same test as before, three explanations and four questions on both. gpt-oss-120b was clearly better:
+real reasons instead of restating the score, and it correctly caught "can i skip the RNN part" as a
+change request where 20b treated it as a question.
+
+So extraction runs on 20b and explanation runs on 120b. Opposite jobs, opposite answers, and both
+decided by running them rather than guessing.
+
+## 32. Reasoning tokens count against the output limit
+
+Our first explanations came back empty. These models spend tokens thinking before writing, and that
+thinking counts against max_tokens, so a tight cap leaves nothing for the answer. Worse, the amount
+varies run to run, so at 500 tokens it was still failing one time in three.
+
+Setting reasoning effort to low fixed it, 3 out of 3 on both models. Worth remembering for every call we
+add later.
+
+## 33. Most hallucination here was our wording, not the model
+
+The explainer kept inventing things. It told the learner to spend two of their ten weekly hours on the
+first video chapter, none of which we had given it.
+
+Three of the four causes were ours. A field called hours got read as hours per week, so we renamed it
+total_hours. An empty list for prerequisites made the model narrate the absence, so we drop empty fields
+instead of sending them. Our own phrase about fitting the weekly hours sat next to a total, so we
+reworded it. Only the last bit needed a prompt rule, telling it not to give study advice.
+
+Worth remembering. When a model invents something, check what we handed it before blaming it.
