@@ -78,8 +78,9 @@ def run(courses, taxonomy):
 
 def clean(teaches, assumes, taxonomy):
     """The model puts a skill in both lists about one course in eight, which would be a self loop
-    and therefore a cycle. A course listing a skill in both is usually gating on it rather than
-    being the place to learn it, unless it is the only thing it claims to teach."""
+    and therefore a cycle. A course listing a skill in both is usually gating on it rather than being
+    the place to learn it, so it comes out of teaches. When every skill it teaches is also assumed we
+    take it out of assumes instead, since an empty teaches list would drop the course entirely."""
     t = [s for s in dict.fromkeys(teaches) if s in taxonomy]
     a = [s for s in dict.fromkeys(assumes) if s in taxonomy]
     both = set(t) & set(a)

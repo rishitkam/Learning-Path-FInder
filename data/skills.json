@@ -1,31 +1,398 @@
 {
-  "prog.python":      { "name": "Python Programming",          "prereqs": [] },
-  "prog.oop":         { "name": "Object Oriented Programming",  "prereqs": ["prog.python"] },
-  "math.linalg":      { "name": "Linear Algebra",               "prereqs": [] },
-  "math.stats":       { "name": "Probability and Statistics",   "prereqs": [] },
-  "math.calculus":    { "name": "Calculus",                     "prereqs": [] },
-  "data.sql":         { "name": "SQL and Databases",            "prereqs": [] },
-  "data.pandas":      { "name": "Data Wrangling with Pandas",   "prereqs": ["prog.python"] },
-  "data.viz":         { "name": "Data Visualization",           "prereqs": ["data.pandas"] },
-  "ml.concepts":      { "name": "Machine Learning Foundations", "prereqs": ["math.stats", "data.pandas"] },
-  "ml.supervised":    { "name": "Supervised Learning",          "prereqs": ["ml.concepts", "math.linalg"] },
-  "ml.unsupervised":  { "name": "Unsupervised Learning",        "prereqs": ["ml.concepts"] },
-  "ml.featureeng":    { "name": "Feature Engineering",          "prereqs": ["ml.concepts", "data.pandas"] },
-  "ml.evaluation":    { "name": "Model Evaluation and Tuning",  "prereqs": ["ml.supervised", "ml.featureeng"] },
-  "dl.neuralnets":    { "name": "Neural Networks",              "prereqs": ["ml.supervised", "math.calculus"] },
-  "dl.backprop":      { "name": "Backpropagation and Training", "prereqs": ["dl.neuralnets"] },
-  "dl.cnn":           { "name": "Convolutional Networks",       "prereqs": ["dl.backprop"] },
-  "dl.rnn":           { "name": "Recurrent Networks",           "prereqs": ["dl.backprop"] },
-  "dl.transformers":  { "name": "Transformers and Attention",   "prereqs": ["dl.rnn", "nlp.embeddings"] },
-  "nlp.text":         { "name": "Text Processing",              "prereqs": ["prog.python"] },
-  "nlp.embeddings":   { "name": "Word and Sentence Embeddings", "prereqs": ["nlp.text", "ml.concepts"] },
-  "nlp.llm":          { "name": "Large Language Models",        "prereqs": ["dl.transformers"] },
-  "nlp.prompting":    { "name": "Prompt Engineering",           "prereqs": ["nlp.llm"] },
-  "nlp.rag":          { "name": "Retrieval Augmented Generation","prereqs": ["nlp.prompting", "nlp.embeddings"] },
-  "nlp.finetune":     { "name": "Fine Tuning and Adaptation",   "prereqs": ["nlp.llm", "ml.evaluation"] },
-  "eng.git":          { "name": "Version Control with Git",     "prereqs": [] },
-  "eng.api":          { "name": "Building APIs",                "prereqs": ["prog.oop"] },
-  "ops.docker":       { "name": "Containers and Docker",        "prereqs": ["eng.git"] },
-  "ops.deploy":       { "name": "Model Deployment",             "prereqs": ["ops.docker", "eng.api", "ml.evaluation"] },
-  "ops.monitor":      { "name": "Monitoring and Retraining",    "prereqs": ["ops.deploy"] }
+ "blockchain.fundamentals": {
+  "name": "Blockchain Fundamentals",
+  "prereqs": []
+ },
+ "blockchain.smartcontracts": {
+  "name": "Smart Contracts & Solidity",
+  "prereqs": []
+ },
+ "cs.algorithms": {
+  "name": "Algorithms & Data Structures",
+  "prereqs": [
+   "prog.fundamentals"
+  ]
+ },
+ "cv.imageprocessing": {
+  "name": "Image Processing",
+  "prereqs": [
+   "ml.concepts",
+   "prog.matlab"
+  ]
+ },
+ "data.etl": {
+  "name": "ETL and Data Warehousing",
+  "prereqs": [
+   "ops.cloud"
+  ]
+ },
+ "data.pandas": {
+  "name": "Data Wrangling with Pandas",
+  "prereqs": [
+   "prog.python"
+  ]
+ },
+ "data.spark": {
+  "name": "Apache Spark & Big Data Processing",
+  "prereqs": [
+   "ops.cloud"
+  ]
+ },
+ "data.sql": {
+  "name": "SQL and Databases",
+  "prereqs": []
+ },
+ "data.viz": {
+  "name": "Data Visualization",
+  "prereqs": [
+   "data.pandas"
+  ]
+ },
+ "db.nosql": {
+  "name": "NoSQL Databases",
+  "prereqs": [
+   "data.sql",
+   "prog.fundamentals",
+   "prog.python"
+  ]
+ },
+ "dl.backprop": {
+  "name": "Backpropagation and Training",
+  "prereqs": [
+   "dl.neuralnets"
+  ]
+ },
+ "dl.cnn": {
+  "name": "Convolutional Networks",
+  "prereqs": [
+   "dl.backprop"
+  ]
+ },
+ "dl.neuralnets": {
+  "name": "Neural Networks",
+  "prereqs": [
+   "math.calculus",
+   "ml.supervised"
+  ]
+ },
+ "dl.rnn": {
+  "name": "Recurrent Networks",
+  "prereqs": [
+   "dl.backprop"
+  ]
+ },
+ "dl.transformers": {
+  "name": "Transformers and Attention",
+  "prereqs": [
+   "dl.rnn",
+   "nlp.embeddings"
+  ]
+ },
+ "dsp.filters": {
+  "name": "Digital Filter Design and Signal Processing",
+  "prereqs": []
+ },
+ "dsp.fourier": {
+  "name": "Fourier Analysis and Spectral Methods",
+  "prereqs": []
+ },
+ "eng.agile": {
+  "name": "Agile & Software Process Management",
+  "prereqs": [
+   "prog.fundamentals"
+  ]
+ },
+ "eng.api": {
+  "name": "Building APIs",
+  "prereqs": [
+   "prog.oop"
+  ]
+ },
+ "eng.design": {
+  "name": "Software Design & Architecture",
+  "prereqs": [
+   "prog.fundamentals"
+  ]
+ },
+ "eng.git": {
+  "name": "Version Control with Git",
+  "prereqs": []
+ },
+ "eng.requirements": {
+  "name": "Requirements Engineering",
+  "prereqs": [
+   "prog.fundamentals",
+   "prog.oop"
+  ]
+ },
+ "eng.testing": {
+  "name": "Software Testing & Verification",
+  "prereqs": [
+   "prog.oop"
+  ]
+ },
+ "game.development": {
+  "name": "Game Development",
+  "prereqs": [
+   "prog.csharp"
+  ]
+ },
+ "iot.embedded": {
+  "name": "IoT & Embedded Systems",
+  "prereqs": [
+   "os.concepts",
+   "prog.c",
+   "prog.python"
+  ]
+ },
+ "it.mainframe": {
+  "name": "Mainframe Systems (z/OS, Linux on Z)",
+  "prereqs": []
+ },
+ "it.support": {
+  "name": "IT Support & Troubleshooting",
+  "prereqs": []
+ },
+ "math.calculus": {
+  "name": "Calculus",
+  "prereqs": []
+ },
+ "math.linalg": {
+  "name": "Linear Algebra",
+  "prereqs": []
+ },
+ "math.optimization": {
+  "name": "Mathematical Optimization",
+  "prereqs": [
+   "math.calculus",
+   "math.stats"
+  ]
+ },
+ "math.stats": {
+  "name": "Probability and Statistics",
+  "prereqs": []
+ },
+ "ml.concepts": {
+  "name": "Machine Learning Foundations",
+  "prereqs": [
+   "data.pandas",
+   "math.stats"
+  ]
+ },
+ "ml.evaluation": {
+  "name": "Model Evaluation and Tuning",
+  "prereqs": [
+   "ml.featureeng",
+   "ml.supervised"
+  ]
+ },
+ "ml.featureeng": {
+  "name": "Feature Engineering",
+  "prereqs": [
+   "ml.concepts"
+  ]
+ },
+ "ml.reinforcement": {
+  "name": "Reinforcement Learning",
+  "prereqs": [
+   "ml.concepts"
+  ]
+ },
+ "ml.supervised": {
+  "name": "Supervised Learning",
+  "prereqs": [
+   "math.linalg",
+   "ml.concepts"
+  ]
+ },
+ "ml.unsupervised": {
+  "name": "Unsupervised Learning",
+  "prereqs": [
+   "ml.concepts"
+  ]
+ },
+ "net.fundamentals": {
+  "name": "Network Fundamentals",
+  "prereqs": [
+   "os.concepts"
+  ]
+ },
+ "nlp.embeddings": {
+  "name": "Word and Sentence Embeddings",
+  "prereqs": [
+   "ml.concepts",
+   "nlp.text"
+  ]
+ },
+ "nlp.finetune": {
+  "name": "Fine Tuning and Adaptation",
+  "prereqs": [
+   "ml.evaluation",
+   "nlp.llm"
+  ]
+ },
+ "nlp.llm": {
+  "name": "Large Language Models",
+  "prereqs": [
+   "dl.transformers"
+  ]
+ },
+ "nlp.prompting": {
+  "name": "Prompt Engineering",
+  "prereqs": [
+   "nlp.llm"
+  ]
+ },
+ "nlp.rag": {
+  "name": "Retrieval Augmented Generation",
+  "prereqs": [
+   "nlp.prompting"
+  ]
+ },
+ "nlp.text": {
+  "name": "Text Processing",
+  "prereqs": [
+   "prog.python"
+  ]
+ },
+ "ops.cloud": {
+  "name": "Cloud Infrastructure & Services",
+  "prereqs": [
+   "data.sql",
+   "ml.concepts",
+   "net.fundamentals",
+   "ops.docker",
+   "prog.fundamentals"
+  ]
+ },
+ "ops.deploy": {
+  "name": "Model Deployment",
+  "prereqs": [
+   "eng.api",
+   "ml.evaluation",
+   "ops.docker"
+  ]
+ },
+ "ops.docker": {
+  "name": "Containers and Docker",
+  "prereqs": [
+   "eng.git"
+  ]
+ },
+ "ops.monitor": {
+  "name": "Monitoring and Retraining",
+  "prereqs": [
+   "ops.deploy"
+  ]
+ },
+ "os.concepts": {
+  "name": "Operating System Concepts",
+  "prereqs": []
+ },
+ "prog.c": {
+  "name": "C Programming",
+  "prereqs": []
+ },
+ "prog.concurrency": {
+  "name": "Concurrent and Parallel Programming",
+  "prereqs": []
+ },
+ "prog.cpp": {
+  "name": "C++ Programming",
+  "prereqs": []
+ },
+ "prog.csharp": {
+  "name": "C# Programming",
+  "prereqs": [
+   "prog.oop"
+  ]
+ },
+ "prog.distributed": {
+  "name": "Distributed Programming",
+  "prereqs": []
+ },
+ "prog.functional": {
+  "name": "Functional Programming",
+  "prereqs": []
+ },
+ "prog.fundamentals": {
+  "name": "Programming Fundamentals",
+  "prereqs": []
+ },
+ "prog.hdl": {
+  "name": "Hardware Description Languages (VHDL/Verilog)",
+  "prereqs": []
+ },
+ "prog.java": {
+  "name": "Java Programming",
+  "prereqs": [
+   "prog.fundamentals",
+   "prog.oop"
+  ]
+ },
+ "prog.javascript": {
+  "name": "JavaScript Programming",
+  "prereqs": []
+ },
+ "prog.matlab": {
+  "name": "MATLAB Programming",
+  "prereqs": []
+ },
+ "prog.oop": {
+  "name": "Object Oriented Programming",
+  "prereqs": [
+   "prog.python"
+  ]
+ },
+ "prog.php": {
+  "name": "PHP Programming",
+  "prereqs": []
+ },
+ "prog.python": {
+  "name": "Python Programming",
+  "prereqs": []
+ },
+ "prog.r": {
+  "name": "R Programming",
+  "prereqs": [
+   "math.calculus",
+   "math.stats"
+  ]
+ },
+ "prog.rust": {
+  "name": "Rust Programming",
+  "prereqs": []
+ },
+ "prog.shell": {
+  "name": "Unix Shell / Bash Scripting",
+  "prereqs": []
+ },
+ "prog.swift": {
+  "name": "Swift Programming",
+  "prereqs": []
+ },
+ "sec.architecture": {
+  "name": "Security Architecture & Design",
+  "prereqs": []
+ },
+ "sec.cryptography": {
+  "name": "Applied Cryptography",
+  "prereqs": []
+ },
+ "sec.forensics": {
+  "name": "Digital/Computer Forensics",
+  "prereqs": []
+ },
+ "sec.fundamentals": {
+  "name": "Security Fundamentals",
+  "prereqs": [
+   "ops.cloud"
+  ]
+ },
+ "web.frontend": {
+  "name": "Web Frontend (HTML/CSS)",
+  "prereqs": [
+   "prog.java"
+  ]
+ }
 }

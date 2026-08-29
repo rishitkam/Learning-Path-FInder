@@ -46,7 +46,11 @@ course can be invented, and the prerequisite order is provably correct rather th
 | `state.py` | Learner state and what feedback does to it. Path is rebuilt, never edited. |
 | `data/skills.json` | Skill ids, names, prerequisites. The spine. |
 | `data/roles.json` | Common career roles to their target skills. |
-| `data/catalog.json` | Courses, projects, assessments. Currently 41 hand written seed items. |
+| `data/catalog.json` | 358 real Coursera courses plus 12 hand written projects and assessments. |
+| `data/seed_skills.json` | Frozen copy of the 29 hand written skills. The graph build reads this, never its own output. |
+| `data/vectors.npy` | Frozen course embeddings, same order as catalog.json. |
+| `embed.py` | Goal text to course relevance, normalised across the candidates for one skill. |
+| `scripts/build_graph.py` | Labels to the real graph. Report by default, `--apply` to write. |
 | `scripts/fetch.py` | Downloads the Coursera CSV from Hugging Face. |
 | `scripts/normalise.py` | Cleans, parses hours and level, filters to our domain, keeps 400. |
 | `scripts/label.py` | Labels each course with teaches and assumes, growing the taxonomy. |
@@ -82,7 +86,14 @@ point in labelling.
 empty, and the amount varies run to run so a generous cap is not a fix.
 
 **Check the data, not the summary counts.** Our first labelling run reported healthy totals while 13
-percent of courses taught and assumed the same skill, which would have been a cycle.
+percent of courses taught and assumed the same skill, which would have been a cycle. Later, three review
+agents found sixteen bugs, none of which showed up in anything we print. Course hours were wrong for
+half the catalog for the same reason: the number looked plausible, and nobody compared it to the source
+string it came from.
+
+**data/seed_skills.json must stay in git.** The graph build reads it as the hand written truth. If it is
+missing, the build freezes whatever is in skills.json instead, which after one `--apply` is the derived
+graph, and corpus noise becomes permanently unbreakable.
 
 **When a patch reveals the same class of hole twice, the approach is wrong.** We patched embedding
 anchors twice before accepting that embeddings cannot make that judgement.
@@ -96,37 +107,35 @@ Commits are small and describe the reasoning, not the diff.
 
 ## 7. Where we are
 
-Done: skill graph, path builder, profile extractor, explainer, feedback handling, catalog pipeline
-through labelling. 350 courses labelled, taxonomy grown from 29 to 63 skills.
+Done: everything except the interface. Skill graph, path builder, profile extractor, explainer, feedback
+handling, the full catalog pipeline, the real graph, and semantic relevance.
 
-Not done: the graph build from those labels, the interface, and wiring relevance scoring on.
+72 skills, 65 edges, 370 catalog items. Runs end to end in the terminal.
+
+Not done: the interface.
 
 ## 8. Next step, in detail
 
-**Build the real graph from the labels.** `scripts/build_graph.py`, output reviewed by the human before
-anything overwrites `data/skills.json`.
+**The Streamlit interface.** Deliberately last, because the whole team wants to build it together and
+because everything under it already works from the terminal.
 
-1. Dedupe the taxonomy, three filters cheapest first.
-   Structural blocks: never merge two skills if one course teaches both, or if one appears in the
-   other's assumes. That kills the dangerous pairs, supervised against unsupervised, for free.
-   Context embeddings: embed the descriptions of courses that teach a skill, not the skill's name.
-   Names put opposites two characters apart.
-   Model judge on whatever survives, with the courses and prerequisites as evidence.
-   The human sees only what the judge is unsure about, probably two or three pairs.
-2. Edges from the labels. Every id in assumes points to every id in teaches. Count how many courses
-   support each edge.
-3. Break cycles by dropping the least supported edge, and report every break.
-4. Contract skills that are assumed but never taught, so paths do not contain steps with no resource.
-5. Embed courses and freeze. Vectors go in a separate `.npy`, not inside the JSON, so the catalog stays
-   readable.
-6. Wire relevance into `path.build`, which already takes it as a function.
+One file, `app.py`, three regions.
+Left, the chat. Each turn calls `profile.extract` then `profile.next_question`. Once the profile has a
+goal and weekly hours, the path builds automatically. The profile card fills in live as they talk.
+Middle, the roadmap. Phases as blocks, each with weeks, modules, milestone and check. A module can show
+the four ranking bars behind its pick, and `explain.explain_module` for the sentence.
+Right, the dashboard. Skills done against remaining, weeks left, the feasible flag, next action.
 
-Then the interface, which is deliberately last because the whole team wants to build that part together.
+Rules that keep it simple. Graph, catalog and embedding model behind `@st.cache_resource`, since
+Streamlit reruns the whole script on every interaction. Only the transcript and the learner state live
+in `st.session_state`. The path is never stored, it is rebuilt from state on every run, which costs
+microseconds and guarantees what is on screen matches the profile. Feedback buttons call `state.apply`
+and the page reruns.
 
 ## 9. Known gaps we are carrying on purpose
 
 Relevance scoring is flat until step 6, so ranking runs on three signals instead of four.
 Ranking weights are hard coded because we have no feedback data yet.
-`dl.backprop` and `nlp.finetune` have no course in the real catalog, so paths through them show a gap.
+Every skill now has at least one resource, so the "no resource" case is unreached but still handled.
 Some new skills, game development and blockchain among them, sit outside what our roles target. They
 are harmless and widen what the tool can answer.

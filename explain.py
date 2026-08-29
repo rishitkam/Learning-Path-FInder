@@ -6,8 +6,8 @@ from path import W
 from profile import client
 
 MODEL = "openai/gpt-oss-120b"
-# Relevance is flat until embeddings land, so we do not claim a course matches their goal yet.
-TERMS = {"level": "sits at about their level",
+TERMS = {"relevance": "is the closest match to what they said they want",
+         "level": "sits at about their level",
          "style": "matches how they like to learn",
          "effort": "is short enough to finish in a couple of weeks at their pace"}
 _CACHE = {}
@@ -20,10 +20,14 @@ def why_order(g, skill, in_path):
 
 def why_resource(mod):
     """The two signals that contributed most to this resource winning."""
-    if not mod["why"]:
+    why = mod["why"]
+    if not why:
         return []
-    ranked = sorted(TERMS, key=lambda k: -W[k] * mod["why"][k])
-    return [TERMS[k] for k in ranked[:2]]
+    if why.get("only_option"):
+        return ["is the only course we have for this skill"]   # nothing won, so claim nothing
+    terms = {k: v for k, v in TERMS.items() if not (k == "relevance" and why.get("flat_relevance"))}
+    ranked = sorted(terms, key=lambda k: -W[k] * why.get(k, 0))
+    return [terms[k] for k in ranked[:2]]
 
 
 def _facts(g, mod, in_path):
@@ -46,9 +50,13 @@ def _say(system, payload, cap=300):
 
 
 def _cached(key, make):
-    """Facts change only when the plan changes, so this is keyed on the facts themselves."""
-    if key not in _CACHE:
-        _CACHE[key] = make()
+    """Facts change only when the plan changes, so this is keyed on the facts themselves.
+    Only a real answer is stored. Caching a fallback would make one bad minute permanent."""
+    if not _CACHE.get(key):
+        got = make()
+        if got:
+            _CACHE[key] = got
+        return got
     return _CACHE[key]
 
 
@@ -61,10 +69,13 @@ SYS_MODULE = ("Say what this step of the plan is and why it was chosen. You did 
 def explain_module(g, mod, in_path):
     f = _facts(g, mod, in_path)
     after, because = f.get("comes_after"), f.get("chosen_because")
+    if not f.get("resource"):
+        return f"We have no course for {f['skill']} in the catalog yet."
     plain = (f"{f['resource']} covers {f['skill']}"
              + (f", which follows {' and '.join(after)}" if after else "")
              + (f". Picked because it {' and '.join(because)}." if because else "."))
-    return _cached(json.dumps(f), lambda: _say(SYS_MODULE, f) or plain)
+    said = _cached(json.dumps(f), lambda: _say(SYS_MODULE, f))
+    return said or plain          # the fallback is never cached, so a bad minute is not permanent
 
 
 def summary(g, path, profile):

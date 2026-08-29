@@ -1,45 +1,5757 @@
 [
-{"id":"c.py.intro","title":"Python for Everybody","provider":"Coursera","hours":20,"level":1,"kind":"course","teaches":["prog.python"],"assumes":[]},
-{"id":"c.py.oop","title":"Object Oriented Python","provider":"Udemy","hours":12,"level":2,"kind":"course","teaches":["prog.oop"],"assumes":["prog.python"]},
-{"id":"c.linalg","title":"Essence of Linear Algebra","provider":"3Blue1Brown","hours":10,"level":2,"kind":"course","teaches":["math.linalg"],"assumes":[]},
-{"id":"c.stats","title":"Statistics and Probability","provider":"Khan Academy","hours":25,"level":1,"kind":"course","teaches":["math.stats"],"assumes":[]},
-{"id":"c.calc","title":"Calculus for Machine Learning","provider":"DeepLearning.AI","hours":15,"level":2,"kind":"course","teaches":["math.calculus"],"assumes":[]},
-{"id":"c.sql","title":"SQL for Data Analysis","provider":"Mode","hours":15,"level":1,"kind":"course","teaches":["data.sql"],"assumes":[]},
-{"id":"c.pandas","title":"Data Analysis with Pandas","provider":"Kaggle","hours":14,"level":2,"kind":"course","teaches":["data.pandas"],"assumes":["prog.python"]},
-{"id":"c.viz","title":"Data Visualization with Matplotlib and Seaborn","provider":"Kaggle","hours":10,"level":2,"kind":"course","teaches":["data.viz"],"assumes":["data.pandas"]},
-{"id":"c.mlfound","title":"Machine Learning Foundations","provider":"Coursera","hours":30,"level":2,"kind":"course","teaches":["ml.concepts"],"assumes":["math.stats","data.pandas"]},
-{"id":"c.supervised","title":"Supervised Learning with scikit learn","provider":"DataCamp","hours":18,"level":3,"kind":"course","teaches":["ml.supervised"],"assumes":["ml.concepts"]},
-{"id":"c.unsup","title":"Unsupervised Learning and Clustering","provider":"DataCamp","hours":14,"level":3,"kind":"course","teaches":["ml.unsupervised"],"assumes":["ml.concepts"]},
-{"id":"c.featureeng","title":"Feature Engineering","provider":"Kaggle","hours":8,"level":3,"kind":"course","teaches":["ml.featureeng"],"assumes":["data.pandas"]},
-{"id":"c.eval","title":"Model Evaluation and Hyperparameter Tuning","provider":"Udacity","hours":12,"level":3,"kind":"course","teaches":["ml.evaluation"],"assumes":["ml.supervised"]},
-{"id":"c.nn","title":"Neural Networks and Deep Learning","provider":"DeepLearning.AI","hours":24,"level":3,"kind":"course","teaches":["dl.neuralnets"],"assumes":["ml.supervised","math.calculus"]},
-{"id":"c.backprop","title":"Improving Deep Neural Networks","provider":"DeepLearning.AI","hours":20,"level":4,"kind":"course","teaches":["dl.backprop"],"assumes":["dl.neuralnets"]},
-{"id":"c.cnn","title":"Convolutional Neural Networks","provider":"DeepLearning.AI","hours":22,"level":4,"kind":"course","teaches":["dl.cnn"],"assumes":["dl.backprop"]},
-{"id":"c.rnn","title":"Sequence Models","provider":"DeepLearning.AI","hours":20,"level":4,"kind":"course","teaches":["dl.rnn"],"assumes":["dl.backprop"]},
-{"id":"c.transformers","title":"Transformers from Scratch","provider":"Hugging Face","hours":16,"level":4,"kind":"course","teaches":["dl.transformers"],"assumes":["dl.rnn","nlp.embeddings"]},
-{"id":"c.text","title":"Natural Language Processing with Python","provider":"NLTK","hours":18,"level":2,"kind":"course","teaches":["nlp.text"],"assumes":["prog.python"]},
-{"id":"c.embed","title":"Word and Sentence Embeddings","provider":"Hugging Face","hours":10,"level":3,"kind":"course","teaches":["nlp.embeddings"],"assumes":["nlp.text"]},
-{"id":"c.llm","title":"Large Language Models Explained","provider":"DeepLearning.AI","hours":12,"level":4,"kind":"course","teaches":["nlp.llm"],"assumes":["dl.transformers"]},
-{"id":"c.prompt","title":"Prompt Engineering for Developers","provider":"DeepLearning.AI","hours":6,"level":3,"kind":"course","teaches":["nlp.prompting"],"assumes":["nlp.llm"]},
-{"id":"c.rag","title":"Building RAG Applications","provider":"LlamaIndex","hours":14,"level":4,"kind":"course","teaches":["nlp.rag"],"assumes":["nlp.prompting","nlp.embeddings"]},
-{"id":"c.finetune","title":"Fine Tuning LLMs with LoRA","provider":"Hugging Face","hours":16,"level":5,"kind":"course","teaches":["nlp.finetune"],"assumes":["nlp.llm"]},
-{"id":"c.git","title":"Git and GitHub Essentials","provider":"freeCodeCamp","hours":8,"level":1,"kind":"course","teaches":["eng.git"],"assumes":[]},
-{"id":"c.api","title":"Building APIs with FastAPI","provider":"TestDriven","hours":14,"level":3,"kind":"course","teaches":["eng.api"],"assumes":["prog.oop"]},
-{"id":"c.docker","title":"Docker for Developers","provider":"Docker","hours":12,"level":3,"kind":"course","teaches":["ops.docker"],"assumes":["eng.git"]},
-{"id":"c.deploy","title":"Deploying Machine Learning Models","provider":"Coursera","hours":18,"level":4,"kind":"course","teaches":["ops.deploy"],"assumes":["ops.docker","eng.api"]},
-{"id":"c.monitor","title":"ML Monitoring and Retraining","provider":"Evidently AI","hours":10,"level":4,"kind":"course","teaches":["ops.monitor"],"assumes":["ops.deploy"]},
-
-{"id":"p.pandas","title":"Exploratory Analysis of a Public Dataset","provider":"Self guided","hours":10,"level":2,"kind":"project","teaches":["data.pandas","data.viz"],"assumes":["prog.python"]},
-{"id":"p.supervised","title":"Build a Churn Prediction Model","provider":"Self guided","hours":12,"level":3,"kind":"project","teaches":["ml.supervised","ml.evaluation"],"assumes":["ml.concepts"]},
-{"id":"p.cnn","title":"Image Classifier from Scratch","provider":"Self guided","hours":14,"level":4,"kind":"project","teaches":["dl.cnn"],"assumes":["dl.backprop"]},
-{"id":"p.rag","title":"Build a Document Question Answering Assistant","provider":"Self guided","hours":16,"level":4,"kind":"project","teaches":["nlp.rag"],"assumes":["nlp.prompting","nlp.embeddings"]},
-{"id":"p.deploy","title":"Ship a Model as an API","provider":"Self guided","hours":12,"level":4,"kind":"project","teaches":["ops.deploy","eng.api"],"assumes":["ops.docker"]},
-{"id":"p.finetune","title":"Fine Tune a Small Model on Your Own Data","provider":"Self guided","hours":14,"level":5,"kind":"project","teaches":["nlp.finetune"],"assumes":["nlp.llm"]},
-
-{"id":"a.python","title":"Python Fundamentals Check","provider":"Internal","hours":2,"level":1,"kind":"assessment","teaches":["prog.python","prog.oop"],"assumes":[]},
-{"id":"a.data","title":"Data Handling Quiz","provider":"Internal","hours":2,"level":2,"kind":"assessment","teaches":["data.pandas","data.viz","data.sql"],"assumes":[]},
-{"id":"a.ml","title":"Machine Learning Foundations Quiz","provider":"Internal","hours":2,"level":2,"kind":"assessment","teaches":["ml.concepts","ml.supervised","ml.evaluation"],"assumes":[]},
-{"id":"a.dl","title":"Deep Learning Concepts Test","provider":"Internal","hours":2,"level":4,"kind":"assessment","teaches":["dl.neuralnets","dl.backprop","dl.cnn","dl.rnn","dl.transformers"],"assumes":[]},
-{"id":"a.llm","title":"LLM Systems Assessment","provider":"Internal","hours":2,"level":4,"kind":"assessment","teaches":["nlp.llm","nlp.rag","nlp.finetune","nlp.prompting"],"assumes":[]},
-{"id":"a.ops","title":"Deployment Readiness Check","provider":"Internal","hours":2,"level":4,"kind":"assessment","teaches":["ops.deploy","ops.monitor"],"assumes":[]}
+ {
+  "id": "cs.ede21bf5",
+  "title": "Python for Everybody Specialization",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/specializations/python",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.python",
+   "prog.fundamentals"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.d46c3523",
+  "title": "Machine Learning Specialization",
+  "provider": "Stanford University",
+  "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.supervised",
+   "ml.concepts",
+   "dl.neuralnets"
+  ],
+  "assumes": [
+   "prog.python",
+   "math.linalg"
+  ]
+ },
+ {
+  "id": "cs.ae71ea68",
+  "title": "Applied Data Science with Python Specialization",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/specializations/data-science-python",
+  "hours": 173,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.pandas",
+   "data.viz",
+   "nlp.text"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.d7fd00d7",
+  "title": "Web Design for Everybody: Basics of Web Development & Coding Specialization",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/specializations/web-design",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "web.frontend",
+   "prog.javascript"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.3c40f07c",
+  "title": "Learn SQL Basics for Data Science Specialization",
+  "provider": "University of California, Davis",
+  "url": "https://www.coursera.org/specializations/learn-sql-basics-data-science",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "data.spark"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.0239ecf6",
+  "title": "Python 3 Programming Specialization",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/specializations/python-3-programming",
+  "hours": 130,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.python",
+   "prog.fundamentals"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.b4121185",
+  "title": "AWS Fundamentals Specialization",
+  "provider": "Amazon Web Services",
+  "url": "https://www.coursera.org/specializations/aws-fundamentals",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "data.viz"
+  ],
+  "assumes": [
+   "it.support"
+  ]
+ },
+ {
+  "id": "cs.3de30668",
+  "title": "Excel to MySQL: Analytic Techniques for Business Specialization",
+  "provider": "Duke University",
+  "url": "https://www.coursera.org/specializations/excel-mysql",
+  "hours": 130,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "data.viz"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.ae8f53f4",
+  "title": "Mathematics for Machine Learning Specialization",
+  "provider": "Imperial College London",
+  "url": "https://www.coursera.org/specializations/mathematics-machine-learning",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "math.linalg",
+   "math.calculus",
+   "math.optimization"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.7b4727a0",
+  "title": "DeepLearning.AI TensorFlow Developer Professional Certificate",
+  "provider": "DeepLearning.AI",
+  "url": "https://www.coursera.org/professional-certificates/tensorflow-in-practice",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "dl.cnn",
+   "dl.neuralnets",
+   "ml.supervised"
+  ],
+  "assumes": [
+   "ml.concepts",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.b42de138",
+  "title": "Business Analytics Specialization",
+  "provider": "University of Pennsylvania",
+  "url": "https://www.coursera.org/specializations/business-analytics",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.viz",
+   "prog.r"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.60298e48",
+  "title": "Architecting with Google Compute Engine Specialization",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/specializations/gcp-architecture",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "ops.deploy"
+  ],
+  "assumes": [
+   "net.fundamentals",
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.74f1cc3c",
+  "title": "An Introduction to Programming the Internet of Things (IOT) Specialization",
+  "provider": "University of California, Irvine",
+  "url": "https://www.coursera.org/specializations/iot",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "iot.embedded"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.9f846dc3",
+  "title": "Data Visualization with Tableau Specialization",
+  "provider": "University of California, Davis",
+  "url": "https://www.coursera.org/specializations/data-visualization",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.viz"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.6ac2f47c",
+  "title": "Data Analysis and Presentation Skills: the PwC Approach Specialization",
+  "provider": "PwC",
+  "url": "https://www.coursera.org/specializations/pwc-analytics",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.viz"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.62220a32",
+  "title": "Data Analysis with R Specialization",
+  "provider": "Duke University",
+  "url": "https://www.coursera.org/specializations/statistics",
+  "hours": 173,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.r",
+   "data.viz",
+   "math.stats",
+   "ml.supervised"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.4edf5f06",
+  "title": "Natural Language Processing Specialization",
+  "provider": "DeepLearning.AI",
+  "url": "https://www.coursera.org/specializations/natural-language-processing",
+  "hours": 130,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "nlp.text",
+   "nlp.embeddings",
+   "dl.transformers"
+  ],
+  "assumes": [
+   "prog.python",
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "cs.1ed94bdc",
+  "title": "Big Data Specialization",
+  "provider": "University of California San Diego",
+  "url": "https://www.coursera.org/specializations/big-data",
+  "hours": 130,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.spark",
+   "db.nosql"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.69ddeae4",
+  "title": "Coding for Everyone: C and C++ Specialization",
+  "provider": "University of California, Santa Cruz",
+  "url": "https://www.coursera.org/specializations/coding-for-everyone",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.cpp",
+   "prog.oop"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.b54f2307",
+  "title": "Web Applications for Everybody Specialization",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/specializations/web-applications",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "eng.api",
+   "prog.php"
+  ],
+  "assumes": [
+   "web.frontend"
+  ]
+ },
+ {
+  "id": "cs.d40bfb41",
+  "title": "Algorithms Specialization",
+  "provider": "Stanford University",
+  "url": "https://www.coursera.org/specializations/algorithms",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "cs.algorithms"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.0ba09e1c",
+  "title": "Data Engineering, Big Data, and Machine Learning on GCP Specialization",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/specializations/gcp-data-machine-learning",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.etl",
+   "data.spark",
+   "ml.concepts"
+  ],
+  "assumes": [
+   "ops.cloud",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.f9305d00",
+  "title": "Preparing for Google Cloud Certification: Cloud Architect Professional Certificate",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/professional-certificates/gcp-cloud-architect",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "ops.deploy"
+  ],
+  "assumes": [
+   "net.fundamentals",
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.d12d3de5",
+  "title": "Blockchain Specialization",
+  "provider": "University at Buffalo",
+  "url": "https://www.coursera.org/specializations/blockchain",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "blockchain.fundamentals",
+   "blockchain.smartcontracts"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.67adb6e8",
+  "title": "Data Science: Foundations using R Specialization",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/specializations/data-science-foundations-r",
+  "hours": 173,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.r",
+   "ml.concepts",
+   "data.etl",
+   "eng.git"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.4b4f0067",
+  "title": "Preparing for Google Cloud Certification: Cloud Engineer Professional Certificate",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/professional-certificates/cloud-engineering-gcp",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "ops.deploy"
+  ],
+  "assumes": [
+   "net.fundamentals",
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.2f6d1afb",
+  "title": "Android App Development Specialization",
+  "provider": "Vanderbilt University",
+  "url": "https://www.coursera.org/specializations/android-app-development",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.java"
+  ],
+  "assumes": [
+   "prog.oop"
+  ]
+ },
+ {
+  "id": "cs.ae53dc4b",
+  "title": "Methods and Statistics in Social Sciences Specialization",
+  "provider": "University of Amsterdam",
+  "url": "https://www.coursera.org/specializations/social-science",
+  "hours": 130,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.r",
+   "math.stats"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.e7214335",
+  "title": "Preparing for Google Cloud Certification: Cloud Data Engineer Professional Certificate",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/professional-certificates/gcp-data-engineering",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.etl",
+   "ops.cloud"
+  ],
+  "assumes": [
+   "data.sql",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.ed53b172",
+  "title": "Machine Learning on Google Cloud Specialization",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/specializations/machine-learning-tensorflow-gcp",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.featureeng",
+   "ml.supervised",
+   "ops.deploy"
+  ],
+  "assumes": [
+   "ml.concepts",
+   "ops.cloud"
+  ]
+ },
+ {
+  "id": "cs.5b47ed59",
+  "title": "Business Statistics and Analysis Specialization",
+  "provider": "Rice University",
+  "url": "https://www.coursera.org/specializations/business-statistics-analysis",
+  "hours": 130,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "math.stats",
+   "ml.supervised"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.a48f5ab4",
+  "title": "Introduction to Data Science Specialization",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/specializations/introduction-data-science",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "data.sql",
+   "prog.python"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.4bfb60e6",
+  "title": "Excel Skills for Data Analytics and Visualization Specialization",
+  "provider": "Macquarie University",
+  "url": "https://www.coursera.org/specializations/excel-data-analytics-visualization",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.viz"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.43b7a529",
+  "title": "Microsoft Azure Fundamentals AZ-900 Exam Prep Specialization",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/specializations/microsoft-azure-fundamentals-az-900",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "sec.fundamentals"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.c18cad90",
+  "title": "MATLAB Programming for Engineers and Scientists Specialization",
+  "provider": "Vanderbilt University",
+  "url": "https://www.coursera.org/specializations/matlab-programming-engineers-scientists",
+  "hours": 130,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.matlab",
+   "prog.oop",
+   "cv.imageprocessing"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.096af5dd",
+  "title": "Mathematics for Machine Learning and Data Science Specialization",
+  "provider": "DeepLearning.AI",
+  "url": "https://www.coursera.org/specializations/mathematics-for-machine-learning-and-data-science",
+  "hours": 65,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "math.linalg",
+   "math.stats",
+   "math.calculus"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.6e6f155a",
+  "title": "Statistics with Python Specialization",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/specializations/statistics-with-python",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "math.stats",
+   "data.viz",
+   "prog.python"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.08b3506c",
+  "title": "Software Product Management Specialization",
+  "provider": "University of Alberta",
+  "url": "https://www.coursera.org/specializations/product-management",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "eng.agile",
+   "eng.requirements"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.ed1a9319",
+  "title": "Introduction to Discrete Mathematics for Computer Science Specialization",
+  "provider": "University of California San Diego",
+  "url": "https://www.coursera.org/specializations/discrete-mathematics",
+  "hours": 130,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "cs.algorithms",
+   "math.stats"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.037150a2",
+  "title": "Django for Everybody Specialization",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/specializations/django",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "eng.api",
+   "web.frontend"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.50a2c63c",
+  "title": "Developing Applications with Google Cloud Specialization",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/specializations/developing-apps-gcp",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "eng.api",
+   "ops.cloud",
+   "ops.deploy"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.5c92afbc",
+  "title": "Software Design and Architecture Specialization",
+  "provider": "University of Alberta",
+  "url": "https://www.coursera.org/specializations/software-design-architecture",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.oop",
+   "prog.java",
+   "eng.design"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.9df56add",
+  "title": "Object Oriented Java Programming: Data Structures and Beyond Specialization",
+  "provider": "University of California San Diego",
+  "url": "https://www.coursera.org/specializations/java-object-oriented",
+  "hours": 173,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.oop"
+  ],
+  "assumes": [
+   "prog.java",
+   "cs.algorithms"
+  ]
+ },
+ {
+  "id": "cs.d76faac2",
+  "title": "Responsive Website Development and Design Specialization",
+  "provider": "University of London",
+  "url": "https://www.coursera.org/specializations/website-development",
+  "hours": 130,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "web.frontend",
+   "eng.api",
+   "db.nosql"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.6b9f390f",
+  "title": "C# Programming for Unity Game Development Specialization",
+  "provider": "University of Colorado System",
+  "url": "https://www.coursera.org/specializations/programming-unity-game-development",
+  "hours": 130,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.csharp",
+   "game.development"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.9a872772",
+  "title": "Cloud Computing Specialization",
+  "provider": "University of Illinois Urbana-Champaign",
+  "url": "https://www.coursera.org/specializations/cloud-computing",
+  "hours": 130,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "net.fundamentals"
+  ],
+  "assumes": [
+   "os.concepts"
+  ]
+ },
+ {
+  "id": "cs.4353baf8",
+  "title": "Executive Data Science Specialization",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/specializations/executive-data-science",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "data.sql"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.afe8f504",
+  "title": "IBM Machine Learning Professional Certificate",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/professional-certificates/ibm-machine-learning",
+  "hours": 130,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.supervised",
+   "ml.featureeng",
+   "ml.concepts"
+  ],
+  "assumes": [
+   "math.stats",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.45f86f2b",
+  "title": "Software Development Lifecycle Specialization",
+  "provider": "University of Minnesota",
+  "url": "https://www.coursera.org/specializations/software-development-lifecycle",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "eng.requirements",
+   "eng.testing"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.9df9ce73",
+  "title": "Software Testing and Automation Specialization",
+  "provider": "University of Minnesota",
+  "url": "https://www.coursera.org/specializations/software-testing-automation",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "eng.testing"
+  ],
+  "assumes": [
+   "prog.python",
+   "prog.oop"
+  ]
+ },
+ {
+  "id": "cs.de3447e6",
+  "title": "Introduction to Cyber Security Specialization",
+  "provider": "New York University",
+  "url": "https://www.coursera.org/specializations/intro-cyber-security",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "sec.fundamentals"
+  ],
+  "assumes": [
+   "net.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.5a3d93e0",
+  "title": "Data Mining  Specialization",
+  "provider": "University of Illinois Urbana-Champaign",
+  "url": "https://www.coursera.org/specializations/data-mining",
+  "hours": 130,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.unsupervised",
+   "data.viz",
+   "nlp.text"
+  ],
+  "assumes": [
+   "data.sql",
+   "math.stats"
+  ]
+ },
+ {
+  "id": "cs.99d65e0f",
+  "title": "Fundamentals of Computing Specialization",
+  "provider": "Rice University",
+  "url": "https://www.coursera.org/specializations/computer-fundamentals",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.python",
+   "cs.algorithms"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.950f23e7",
+  "title": "Advanced Business Analytics Specialization",
+  "provider": "University of Colorado Boulder",
+  "url": "https://www.coursera.org/specializations/data-analytics-business",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.viz",
+   "math.optimization"
+  ],
+  "assumes": [
+   "data.sql",
+   "math.stats"
+  ]
+ },
+ {
+  "id": "cs.81fecf4d",
+  "title": "Advanced Machine Learning on Google Cloud Specialization",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/specializations/advanced-machine-learning-tensorflow-gcp",
+  "hours": 87,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "dl.cnn"
+  ],
+  "assumes": [
+   "ml.supervised",
+   "ops.cloud"
+  ]
+ },
+ {
+  "id": "cs.757a7fa5",
+  "title": "Meta Database Engineer Professional Certificate",
+  "provider": "Meta",
+  "url": "https://www.coursera.org/professional-certificates/meta-database-engineer",
+  "hours": 156,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "prog.python"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.8a0eb4ed",
+  "title": "Architecting with Google Kubernetes Engine Specialization",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/specializations/architecting-google-kubernetes-engine",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ops.deploy",
+   "ops.docker"
+  ],
+  "assumes": [
+   "ops.cloud"
+  ]
+ },
+ {
+  "id": "cs.15d8f2e3",
+  "title": "Computer Communications Specialization",
+  "provider": "University of Colorado System",
+  "url": "https://www.coursera.org/specializations/computer-communications",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "net.fundamentals"
+  ],
+  "assumes": [
+   "os.concepts"
+  ]
+ },
+ {
+  "id": "cs.1e9a93a3",
+  "title": "Prompt Engineering Specialization",
+  "provider": "Vanderbilt University",
+  "url": "https://www.coursera.org/specializations/prompt-engineering",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "nlp.prompting",
+   "nlp.llm"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.6f33d1d2",
+  "title": "Introduction to Programming with Python and Java Specialization",
+  "provider": "University of Pennsylvania",
+  "url": "https://www.coursera.org/specializations/programming-python-java",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.python",
+   "prog.java",
+   "prog.oop"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.665de35a",
+  "title": "Reinforcement Learning Specialization",
+  "provider": "University of Alberta",
+  "url": "https://www.coursera.org/specializations/reinforcement-learning",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.reinforcement"
+  ],
+  "assumes": [
+   "ml.concepts",
+   "math.stats",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.823e00e6",
+  "title": "Preparing for Google Cloud Certification: Machine Learning Engineer Professional Certificate",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/professional-certificates/preparing-for-google-cloud-machine-learning-engineer-professional-certificate",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "data.etl",
+   "ml.supervised"
+  ],
+  "assumes": [
+   "prog.python",
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "cs.af520fea",
+  "title": "Core Java Specialization",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/specializations/core-java",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.java",
+   "prog.oop"
+  ],
+  "assumes": [
+   "os.concepts"
+  ]
+ },
+ {
+  "id": "cs.ebb82f33",
+  "title": "From Data to Insights with Google Cloud Specialization",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/specializations/from-data-to-insights-google-cloud-platform",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.viz",
+   "ops.cloud"
+  ],
+  "assumes": [
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.16c84e99",
+  "title": "Introduction to Computer Science and Programming Specialization",
+  "provider": "University of London",
+  "url": "https://www.coursera.org/specializations/introduction-computer-science-programming",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.javascript",
+   "cs.algorithms"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.f8b0bc5f",
+  "title": "AI for Medicine Specialization",
+  "provider": "DeepLearning.AI",
+  "url": "https://www.coursera.org/specializations/ai-for-medicine",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "dl.cnn",
+   "cv.imageprocessing"
+  ],
+  "assumes": [
+   "ml.concepts",
+   "dl.neuralnets",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.058ea750",
+  "title": "Accelerated Computer Science Fundamentals Specialization",
+  "provider": "University of Illinois Urbana-Champaign",
+  "url": "https://www.coursera.org/specializations/cs-fundamentals",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "cs.algorithms",
+   "prog.oop"
+  ],
+  "assumes": [
+   "os.concepts"
+  ]
+ },
+ {
+  "id": "cs.b532633f",
+  "title": "Introduction to Scripting in Python Specialization",
+  "provider": "Rice University",
+  "url": "https://www.coursera.org/specializations/introduction-scripting-in-python",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.python",
+   "data.viz"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.578b3f60",
+  "title": "Investment Management with Python and Machine Learning Specialization",
+  "provider": "EDHEC Business School",
+  "url": "https://www.coursera.org/specializations/investment-management-python-machine-learning",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.python",
+   "ml.supervised"
+  ],
+  "assumes": [
+   "math.stats"
+  ]
+ },
+ {
+  "id": "cs.aac94db4",
+  "title": "Generative Adversarial Networks (GANs) Specialization",
+  "provider": "DeepLearning.AI",
+  "url": "https://www.coursera.org/specializations/generative-adversarial-networks-gans",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "dl.cnn"
+  ],
+  "assumes": [
+   "dl.neuralnets",
+   "math.linalg",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.c7449a87",
+  "title": "Security in Google Cloud Specialization",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/specializations/security-google-cloud-platform",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "sec.fundamentals",
+   "ops.cloud"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.79f4d08e",
+  "title": "Biostatistics in Public Health  Specialization",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/specializations/biostatistics-public-health",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "math.stats",
+   "ml.supervised"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.bffd2f42",
+  "title": "Microsoft Azure Data Engineering Associate (DP-203) Professional Certificate",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/professional-certificates/microsoft-azure-dp-203-data-engineering",
+  "hours": 130,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "data.etl",
+   "ops.monitor"
+  ],
+  "assumes": [
+   "data.sql",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.da7c9601",
+  "title": "Networking in Google Cloud Specialization",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/specializations/networking-google-cloud-platform",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "net.fundamentals",
+   "ops.cloud"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.e859bc01",
+  "title": "DevOps on AWS Specialization",
+  "provider": "Amazon Web Services",
+  "url": "https://www.coursera.org/specializations/aws-devops",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "ops.deploy",
+   "ops.monitor"
+  ],
+  "assumes": [
+   "ops.docker",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.348dbccd",
+  "title": "TensorFlow: Data and Deployment Specialization",
+  "provider": "DeepLearning.AI",
+  "url": "https://www.coursera.org/specializations/tensorflow-data-and-deployment",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "dl.neuralnets",
+   "ops.deploy"
+  ],
+  "assumes": [
+   "ml.concepts",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.d62893c1",
+  "title": "SQL for Data Science Capstone Project",
+  "provider": "University of California, Davis",
+  "url": "https://www.coursera.org/learn/sql-data-science-capstone",
+  "hours": 35,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "data.viz"
+  ],
+  "assumes": [
+   "data.pandas"
+  ]
+ },
+ {
+  "id": "cs.a10eb43e",
+  "title": "JavaScript for Beginners Specialization",
+  "provider": "University of California, Davis",
+  "url": "https://www.coursera.org/specializations/javascript-beginner",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.javascript",
+   "web.frontend"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.58136497",
+  "title": "Preparing for Google Cloud Certification: Cloud DevOps Engineer Professional Certificate",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/professional-certificates/sre-devops-engineer-google-cloud",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "ops.deploy"
+  ],
+  "assumes": [
+   "net.fundamentals",
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.e3214a1d",
+  "title": "Data Science: Statistics and Machine Learning Specialization",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/specializations/data-science-statistics-machine-learning",
+  "hours": 130,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.supervised",
+   "data.viz",
+   "ml.concepts"
+  ],
+  "assumes": [
+   "prog.r",
+   "math.stats"
+  ]
+ },
+ {
+  "id": "cs.d722929e",
+  "title": "Strategic Business Analytics Specialization",
+  "provider": "ESSEC Business School",
+  "url": "https://www.coursera.org/specializations/strategic-analytics",
+  "hours": 43,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "data.viz"
+  ],
+  "assumes": [
+   "math.stats",
+   "prog.r"
+  ]
+ },
+ {
+  "id": "cs.5e0e8764",
+  "title": "AI Product Management Specialization",
+  "provider": "Duke University",
+  "url": "https://www.coursera.org/specializations/ai-product-management-duke",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.supervised"
+  ],
+  "assumes": [
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "cs.0dd33242",
+  "title": "AI Foundations for Everyone Specialization",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/specializations/ai-foundations-for-everyone",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "nlp.llm"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.cc9815bc",
+  "title": "Statistical Analysis with R for Public Health Specialization",
+  "provider": "Imperial College London",
+  "url": "https://www.coursera.org/specializations/statistical-analysis-r-public-health",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "math.stats",
+   "prog.r"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.49115380",
+  "title": "Programming in C++: A Hands-on Introduction Specialization",
+  "provider": "Codio",
+  "url": "https://www.coursera.org/specializations/hands-on-cpp",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.cpp",
+   "prog.fundamentals",
+   "prog.oop"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.eb1b617e",
+  "title": "Data Analysis and Interpretation Specialization",
+  "provider": "Wesleyan University",
+  "url": "https://www.coursera.org/specializations/data-analysis",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.pandas",
+   "math.stats",
+   "ml.supervised"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.a95def59",
+  "title": "TensorFlow: Advanced Techniques Specialization",
+  "provider": "DeepLearning.AI",
+  "url": "https://www.coursera.org/specializations/tensorflow-advanced-techniques",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "dl.cnn",
+   "ml.evaluation"
+  ],
+  "assumes": [
+   "dl.neuralnets",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.3f61281b",
+  "title": "Machine Learning for Trading Specialization",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/specializations/machine-learning-trading",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.reinforcement",
+   "ml.evaluation"
+  ],
+  "assumes": [
+   "ml.concepts",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.e6b7bff2",
+  "title": "Exam Prep: AWS Certified Solutions Architect - Associate",
+  "provider": "Amazon Web Services",
+  "url": "https://www.coursera.org/learn/aws-certified-solutions-architect-associate",
+  "hours": 8,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "sec.fundamentals"
+  ],
+  "assumes": [
+   "net.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.b771f375",
+  "title": "AI For Business Specialization",
+  "provider": "University of Pennsylvania",
+  "url": "https://www.coursera.org/specializations/ai-for-business-wharton",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "ml.supervised"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.f011461b",
+  "title": "PostgreSQL for Everybody Specialization",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/specializations/postgresql-for-everybody",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "data.etl"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.048201b5",
+  "title": "Full Stack Application Development Capstone Project",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/ibm-cloud-native-full-stack-development-capstone",
+  "hours": 16,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "eng.api"
+  ],
+  "assumes": [
+   "prog.python",
+   "web.frontend",
+   "prog.javascript"
+  ]
+ },
+ {
+  "id": "cs.25f60759",
+  "title": "AI Infrastructure and Operations Fundamentals",
+  "provider": "NVIDIA",
+  "url": "https://www.coursera.org/learn/ai-infrastructure-operations-fundamentals",
+  "hours": 11,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "ops.deploy",
+   "ml.concepts"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.67f1e8ab",
+  "title": "Advanced Linear Models for Data Science 1: Least Squares",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/learn/linear-models",
+  "hours": 8,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "math.linalg",
+   "ml.supervised",
+   "prog.r"
+  ],
+  "assumes": [
+   "math.stats",
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "cs.a0f94e29",
+  "title": "Modern Big Data Analysis with SQL Specialization",
+  "provider": "Cloudera",
+  "url": "https://www.coursera.org/specializations/cloudera-big-data-analysis-sql",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "data.spark"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.2dac7529",
+  "title": "Developing APIs with Google Cloud's Apigee API Platform Specialization",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/specializations/apigee-api-gcp",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "eng.api",
+   "sec.fundamentals"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.a6053740",
+  "title": "Introduction to Machine Learning on AWS",
+  "provider": "Amazon Web Services",
+  "url": "https://www.coursera.org/learn/machine-learning-on-aws",
+  "hours": 6,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "ops.cloud"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.34f41a98",
+  "title": "Cybersecurity for Business Specialization",
+  "provider": "University of Colorado System",
+  "url": "https://www.coursera.org/specializations/cyber-security-business",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "sec.fundamentals"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.793b884a",
+  "title": "Practical Data Science with MATLAB Specialization",
+  "provider": "MathWorks",
+  "url": "https://www.coursera.org/specializations/practical-data-science-matlab",
+  "hours": 35,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.matlab",
+   "ml.featureeng",
+   "data.viz",
+   "ml.concepts"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.b1e02eb9",
+  "title": "Introduction to Medical Software",
+  "provider": "Yale University",
+  "url": "https://www.coursera.org/learn/introduction-to-medical-software",
+  "hours": 37,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "eng.requirements",
+   "eng.testing"
+  ],
+  "assumes": [
+   "prog.oop"
+  ]
+ },
+ {
+  "id": "cs.03c0d8e1",
+  "title": "Probabilistic Graphical Models  Specialization",
+  "provider": "Stanford University",
+  "url": "https://www.coursera.org/specializations/probabilistic-graphical-models",
+  "hours": 173,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "ml.unsupervised"
+  ],
+  "assumes": [
+   "math.stats",
+   "cs.algorithms"
+  ]
+ },
+ {
+  "id": "cs.f5211d6e",
+  "title": "Parallel, Concurrent, and Distributed Programming in Java Specialization",
+  "provider": "Rice University",
+  "url": "https://www.coursera.org/specializations/pcdp",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.concurrency",
+   "prog.distributed"
+  ],
+  "assumes": [
+   "prog.java"
+  ]
+ },
+ {
+  "id": "cs.5f94c04e",
+  "title": "Probabilistic Graphical Models 2: Inference",
+  "provider": "Stanford University",
+  "url": "https://www.coursera.org/learn/probabilistic-graphical-models-2-inference",
+  "hours": 38,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts"
+  ],
+  "assumes": [
+   "math.stats",
+   "math.linalg"
+  ]
+ },
+ {
+  "id": "cs.01f538fc",
+  "title": "Algorithmic Thinking (Part 2)",
+  "provider": "Rice University",
+  "url": "https://www.coursera.org/learn/algorithmic-thinking-2",
+  "hours": 11,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "cs.algorithms"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.93bc5213",
+  "title": "Computer Security and Systems Management Specialization",
+  "provider": "University of Colorado System",
+  "url": "https://www.coursera.org/specializations/computer-security-systems-management",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "sec.fundamentals",
+   "net.fundamentals",
+   "os.concepts"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.7b832106",
+  "title": "Fundamentals of Java Programming",
+  "provider": "Board Infinity",
+  "url": "https://www.coursera.org/learn/fundamentals-of-java-programming",
+  "hours": 17,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.java",
+   "prog.oop"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.44d28774",
+  "title": "FPGA Design for Embedded Systems Specialization",
+  "provider": "University of Colorado Boulder",
+  "url": "https://www.coursera.org/specializations/fpga-design",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "iot.embedded",
+   "prog.hdl"
+  ],
+  "assumes": [
+   "os.concepts",
+   "prog.c"
+  ]
+ },
+ {
+  "id": "cs.8b3337bc",
+  "title": "Spring MVC, Spring Boot  and Rest Controllers",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/spring-mvc-rest-controller",
+  "hours": 11,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "eng.api"
+  ],
+  "assumes": [
+   "prog.java"
+  ]
+ },
+ {
+  "id": "cs.86afca27",
+  "title": "Microsoft Azure Data Scientist Associate (DP-100) Exam Prep Professional Certificate",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/professional-certificates/azure-data-scientist",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.supervised",
+   "ops.cloud",
+   "ops.deploy"
+  ],
+  "assumes": [
+   "ml.concepts",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.6b8ebb9f",
+  "title": "Advanced Statistics for Data Science Specialization",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/specializations/advanced-statistics-data-science",
+  "hours": 43,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "math.stats",
+   "math.linalg",
+   "prog.r"
+  ],
+  "assumes": [
+   "math.calculus"
+  ]
+ },
+ {
+  "id": "cs.831bc8d1",
+  "title": "Mastering Software Development in R Specialization",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/specializations/r",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.r",
+   "data.viz",
+   "prog.oop"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.49d3c46d",
+  "title": "Intro to Operating Systems 1: Virtualization",
+  "provider": "Codio",
+  "url": "https://www.coursera.org/learn/codio-intro-to-operating-systems-1-virtualization",
+  "hours": 8,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "os.concepts",
+   "cs.algorithms"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.8560d262",
+  "title": "Software Engineering: Modeling Software Systems using UML",
+  "provider": "The Hong Kong University of Science and Technology",
+  "url": "https://www.coursera.org/learn/software-engineering-modeling-software-systems-using-uml",
+  "hours": 28,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "eng.requirements"
+  ],
+  "assumes": [
+   "prog.oop"
+  ]
+ },
+ {
+  "id": "cs.c7a87c96",
+  "title": "Generative AI Fundamentals Specialization",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/specializations/generative-ai-for-everyone",
+  "hours": 22,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "nlp.llm",
+   "nlp.prompting",
+   "ml.concepts"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.c19b38b2",
+  "title": "Exam Prep: AWS Certified Cloud Practitioner Foundations",
+  "provider": "Amazon Web Services",
+  "url": "https://www.coursera.org/learn/cloud-practitioner-exam-prep",
+  "hours": 9,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.98ec6674",
+  "title": "Spring Framework Specialization",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/specializations/spring-framework",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.java",
+   "eng.api",
+   "eng.design"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.0974367e",
+  "title": "Computer Vision with Embedded Machine Learning",
+  "provider": "Edge Impulse",
+  "url": "https://www.coursera.org/learn/computer-vision-with-embedded-machine-learning",
+  "hours": 30,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "cv.imageprocessing",
+   "iot.embedded",
+   "ml.supervised"
+  ],
+  "assumes": [
+   "prog.python",
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "cs.5dabc915",
+  "title": "Probabilistic Graphical Models 3: Learning",
+  "provider": "Stanford University",
+  "url": "https://www.coursera.org/learn/probabilistic-graphical-models-3-learning",
+  "hours": 66,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "ml.unsupervised"
+  ],
+  "assumes": [
+   "math.stats",
+   "cs.algorithms"
+  ]
+ },
+ {
+  "id": "cs.b021f990",
+  "title": "Microsoft Azure Data Fundamentals DP-900 Exam Prep Specialization",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/specializations/microsoft-azure-dp-900-data-fundamentals",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "db.nosql",
+   "ops.cloud"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.e29050ab",
+  "title": "Game Design and Development with Unity 2020 Specialization",
+  "provider": "Michigan State University",
+  "url": "https://www.coursera.org/specializations/game-design-and-development",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "game.development",
+   "prog.oop"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.aa2ee1ee",
+  "title": "Machine Learning and Reinforcement Learning in Finance Specialization",
+  "provider": "New York University",
+  "url": "https://www.coursera.org/specializations/machine-learning-reinforcement-finance",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.reinforcement",
+   "ml.supervised"
+  ],
+  "assumes": [
+   "ml.concepts",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.364da1e5",
+  "title": "Foundations of Sports Analytics: Data, Representation, and Models in Sports",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/learn/foundations-sports-analytics",
+  "hours": 49,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.pandas",
+   "ml.concepts"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.86593d80",
+  "title": "Achieving Advanced Insights with BigQuery",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/learn/gcp-advanced-insights-bigquery",
+  "hours": 7,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "data.viz"
+  ],
+  "assumes": [
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.a6a30348",
+  "title": "TensorFlow 2 for Deep Learning Specialization",
+  "provider": "Imperial College London",
+  "url": "https://www.coursera.org/specializations/tensorflow2-deeplearning",
+  "hours": 130,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "dl.neuralnets",
+   "dl.cnn",
+   "dl.rnn"
+  ],
+  "assumes": [
+   "ml.concepts",
+   "prog.python",
+   "math.linalg"
+  ]
+ },
+ {
+  "id": "cs.c342fa4f",
+  "title": "Mathematics for Engineers Specialization",
+  "provider": "The Hong Kong University of Science and Technology",
+  "url": "https://www.coursera.org/specializations/mathematics-engineers",
+  "hours": 130,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "math.linalg",
+   "math.optimization"
+  ],
+  "assumes": [
+   "math.calculus"
+  ]
+ },
+ {
+  "id": "cs.df23ce26",
+  "title": "IBM Front-End Developer Professional Certificate",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/professional-certificates/ibm-frontend-developer",
+  "hours": 173,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "web.frontend",
+   "prog.javascript"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.01437a54",
+  "title": "C++ Basic Structures: Vectors, Pointers, Strings, and Files",
+  "provider": "Codio",
+  "url": "https://www.coursera.org/learn/cpp-basic-structures-vectors-pointers-strings-and-files",
+  "hours": 9,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.cpp"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.0ea94a9c",
+  "title": "Microsoft Azure AI Fundamentals AI-900 Exam Prep Specialization",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/specializations/microsoft-azure-ai-900-ai-fundamentals",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "ops.cloud"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.4e8d0d71",
+  "title": "CompTIA Practice",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/comptia-practice",
+  "hours": 13,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "it.support"
+  ],
+  "assumes": [
+   "os.concepts"
+  ]
+ },
+ {
+  "id": "cs.236e4b36",
+  "title": "Black-box and White-box Testing",
+  "provider": "University of Minnesota",
+  "url": "https://www.coursera.org/learn/black-box-white-box-testing",
+  "hours": 26,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "eng.testing"
+  ],
+  "assumes": [
+   "prog.java",
+   "prog.oop"
+  ]
+ },
+ {
+  "id": "cs.0be09d44",
+  "title": "Survey Data Collection and Analytics Specialization",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/specializations/data-collection",
+  "hours": 130,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "math.stats",
+   "data.viz"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.b65fff50",
+  "title": "Microsoft Azure Databricks for Data Engineering",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/microsoft-azure-databricks-for-data-engineering",
+  "hours": 21,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.etl",
+   "data.spark",
+   "ops.cloud"
+  ],
+  "assumes": [
+   "data.sql",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.0288041e",
+  "title": "Key Technologies for Business Specialization",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/specializations/key-technologies-for-business",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "ml.concepts"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.52058562",
+  "title": "Applying Machine Learning to your Data with Google Cloud",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/learn/data-insights-gcp-apply-ml",
+  "hours": 7,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "ops.cloud"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.40a29f57",
+  "title": "Digital Signal Processing Specialization",
+  "provider": "\u00c9cole Polytechnique F\u00e9d\u00e9rale de Lausanne",
+  "url": "https://www.coursera.org/specializations/digital-signal-processing",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "dsp.filters",
+   "dsp.fourier"
+  ],
+  "assumes": [
+   "math.calculus",
+   "math.linalg"
+  ]
+ },
+ {
+  "id": "cs.6b2f255a",
+  "title": "Learning Linux for LFCA Certification Specialization",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/specializations/linux-for-lfca-certification",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.shell",
+   "it.support"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.e5641be7",
+  "title": "The Data Science of Health Informatics",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/learn/the-data-science-of-health-informatics",
+  "hours": 10,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "data.pandas",
+   "ml.concepts"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.6e4577e7",
+  "title": "Recommender Systems Specialization",
+  "provider": "University of Minnesota",
+  "url": "https://www.coursera.org/specializations/recommender-systems",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.evaluation",
+   "ml.unsupervised"
+  ],
+  "assumes": [
+   "ml.concepts",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.696df872",
+  "title": "IBM AI Foundations for Business Specialization",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/specializations/ibm-ai-foundations-for-business",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "data.viz"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.81e02b7b",
+  "title": "Data Science at Scale Specialization",
+  "provider": "University of Washington",
+  "url": "https://www.coursera.org/specializations/data-science",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.spark",
+   "data.sql",
+   "db.nosql"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.7311e3c6",
+  "title": "Introduction to Statistical Analysis:  Hypothesis Testing",
+  "provider": "SAS",
+  "url": "https://www.coursera.org/learn/statistical-analysis-hypothesis-testing-sas",
+  "hours": 10,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "math.stats"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.461ba5da",
+  "title": "Palo Alto Networks Cybersecurity Professional Certificate",
+  "provider": "Palo Alto Networks",
+  "url": "https://www.coursera.org/professional-certificates/palo-alto-networks-cybersecurity-fundamentals",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "sec.fundamentals",
+   "net.fundamentals"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.f11ae9b7",
+  "title": "Python for Cybersecurity Specialization",
+  "provider": "Infosec",
+  "url": "https://www.coursera.org/specializations/pythonforcybersecurity",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.python",
+   "sec.fundamentals"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.1f1c8946",
+  "title": "Create Serverless Applications",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/create-serverless-applications",
+  "hours": 17,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "eng.api"
+  ],
+  "assumes": [
+   "prog.javascript"
+  ]
+ },
+ {
+  "id": "cs.226cd3ae",
+  "title": "HPE Aruba Networking Basics",
+  "provider": "HPE Aruba Networking",
+  "url": "https://www.coursera.org/learn/aruba-networking-basics",
+  "hours": 13,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "net.fundamentals"
+  ],
+  "assumes": [
+   "os.concepts"
+  ]
+ },
+ {
+  "id": "cs.e5b82e24",
+  "title": "Reinforcement Learning for Trading Strategies",
+  "provider": "New York Institute of Finance",
+  "url": "https://www.coursera.org/learn/trading-strategies-reinforcement-learning",
+  "hours": 12,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "ml.evaluation"
+  ],
+  "assumes": [
+   "ml.supervised",
+   "math.stats"
+  ]
+ },
+ {
+  "id": "cs.cbac7a39",
+  "title": "Microsoft Azure SQL",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/microsoft-azure-sql",
+  "hours": 6,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "db.nosql",
+   "ops.cloud"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.01b2d221",
+  "title": "Generative AI for Leaders",
+  "provider": "Vanderbilt University",
+  "url": "https://www.coursera.org/learn/generative-ai-for-leaders",
+  "hours": 4,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "nlp.prompting",
+   "nlp.llm"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.9f4ed3d6",
+  "title": "Java FullStack Developer Specialization",
+  "provider": "Board Infinity",
+  "url": "https://www.coursera.org/specializations/java-fullstack",
+  "hours": 65,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.java",
+   "web.frontend",
+   "eng.api"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.2eb6135b",
+  "title": "Oracle SQL Databases Specialization",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/specializations/oracle-sql-databases",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "prog.fundamentals"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.5b1acf86",
+  "title": "Object-Oriented Hierarchies in Java",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/object-oriented-hierarchies-java",
+  "hours": 20,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.oop"
+  ],
+  "assumes": [
+   "prog.java"
+  ]
+ },
+ {
+  "id": "cs.4956d2b4",
+  "title": "Data Integration with Microsoft Azure Data Factory",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/azure-data-factory-data-integration",
+  "hours": 15,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.etl",
+   "ops.cloud"
+  ],
+  "assumes": [
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.16590f7a",
+  "title": "Introduction to Android graphics",
+  "provider": "Imperial College London",
+  "url": "https://www.coursera.org/learn/intro-android-graphics",
+  "hours": 20,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "cv.imageprocessing"
+  ],
+  "assumes": [
+   "prog.java"
+  ]
+ },
+ {
+  "id": "cs.c9b46108",
+  "title": "Python, Bash and SQL Essentials for Data Engineering Specialization",
+  "provider": "Duke University",
+  "url": "https://www.coursera.org/specializations/python-bash-sql-data-engineering-duke",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.python",
+   "prog.shell",
+   "data.sql"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.3008f796",
+  "title": "Java Class Library",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/java-class-library",
+  "hours": 29,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.java"
+  ],
+  "assumes": [
+   "prog.oop"
+  ]
+ },
+ {
+  "id": "cs.2df6afae",
+  "title": "Oracle Cloud Infrastructure Foundations",
+  "provider": "Oracle",
+  "url": "https://www.coursera.org/learn/oraclecloud-infrastructure-foundations",
+  "hours": 7,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "net.fundamentals"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.035ad6e5",
+  "title": "Python Programming Fundamentals",
+  "provider": "Duke University",
+  "url": "https://www.coursera.org/learn/python-programming-fundamentals",
+  "hours": 23,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.python",
+   "prog.fundamentals"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.f0d1fc0e",
+  "title": "Math behind Moneyball",
+  "provider": "University of Houston",
+  "url": "https://www.coursera.org/learn/mathematics-sport",
+  "hours": 64,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "math.stats"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.758e12b0",
+  "title": "Swift 5 iOS Application Developer Specialization",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/specializations/swift-5-ios-app-developer",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.swift",
+   "prog.oop"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.d672fdb1",
+  "title": "Azure Infrastructure Fundamentals",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/azure-infrastructure",
+  "hours": 30,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "net.fundamentals"
+  ],
+  "assumes": [
+   "os.concepts"
+  ]
+ },
+ {
+  "id": "cs.707bce43",
+  "title": "Microsoft IT Support Specialist Professional Certificate",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/professional-certificates/microsoft-it-support-specialist",
+  "hours": 130,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "it.support",
+   "net.fundamentals",
+   "ops.cloud"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.3c9f1a56",
+  "title": "Databases for Data Scientists Specialization",
+  "provider": "University of Colorado Boulder",
+  "url": "https://www.coursera.org/specializations/databases-for-data-scientists",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "db.nosql"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.247a500c",
+  "title": "Cloud Security Basics",
+  "provider": "University of Minnesota",
+  "url": "https://www.coursera.org/learn/cloud-security-basics",
+  "hours": 12,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "sec.fundamentals",
+   "ops.cloud",
+   "net.fundamentals"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.8cd51dbc",
+  "title": "Trustworthy Generative AI",
+  "provider": "Vanderbilt University",
+  "url": "https://www.coursera.org/learn/trustworthy-generative-ai",
+  "hours": 8,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "nlp.llm",
+   "nlp.prompting"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.621affef",
+  "title": "Microsoft Azure Developer Associate (AZ-204) Exam Prep Professional Certificate Professional Certificate",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/professional-certificates/azure-developer-associate",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "eng.api",
+   "ops.cloud"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.50efb52b",
+  "title": "Development of Secure Embedded Systems Specialization",
+  "provider": "EIT Digital",
+  "url": "https://www.coursera.org/specializations/embedded-systems-security",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "iot.embedded",
+   "sec.fundamentals"
+  ],
+  "assumes": [
+   "prog.c",
+   "os.concepts"
+  ]
+ },
+ {
+  "id": "cs.6792e636",
+  "title": "Operations Research (2): Optimization Algorithms",
+  "provider": "National Taiwan University",
+  "url": "https://www.coursera.org/learn/operations-research-algorithms",
+  "hours": 12,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "math.optimization",
+   "cs.algorithms"
+  ],
+  "assumes": [
+   "math.calculus",
+   "math.linalg"
+  ]
+ },
+ {
+  "id": "cs.161d53e1",
+  "title": "Artificial Intelligence Algorithms Models and Limitations",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/ai-algorithm-limitations",
+  "hours": 7,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "ml.evaluation"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.cdb68c6d",
+  "title": "Machine Learning: Algorithms in the Real World Specialization",
+  "provider": "Alberta Machine Intelligence Institute",
+  "url": "https://www.coursera.org/specializations/machine-learning-algorithms-real-world",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.supervised",
+   "ml.concepts"
+  ],
+  "assumes": [
+   "prog.python",
+   "math.stats"
+  ]
+ },
+ {
+  "id": "cs.91fa5cdb",
+  "title": "Database systems Specialization",
+  "provider": "Universidad Nacional Aut\u00f3noma de M\u00e9xico",
+  "url": "https://www.coursera.org/specializations/database-systems",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "db.nosql"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.a6280283",
+  "title": "Managing Machine Learning Projects",
+  "provider": "Duke University",
+  "url": "https://www.coursera.org/learn/managing-machine-learning-projects",
+  "hours": 18,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.db354fee",
+  "title": "Specialized Models: Time Series and Survival Analysis",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/time-series-survival-analysis",
+  "hours": 11,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.unsupervised",
+   "ml.supervised"
+  ],
+  "assumes": [
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "cs.c98f65b2",
+  "title": "Predictive Modeling and Machine Learning with MATLAB",
+  "provider": "MathWorks",
+  "url": "https://www.coursera.org/learn/predictive-modeling-machine-learning",
+  "hours": 18,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.supervised",
+   "ml.featureeng"
+  ],
+  "assumes": [
+   "prog.matlab"
+  ]
+ },
+ {
+  "id": "cs.33eec44d",
+  "title": "Preparing for Google Cloud Certification: Cloud Network Engineer Professional Certificate",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/professional-certificates/google-cloud-networking",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud"
+  ],
+  "assumes": [
+   "net.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.85efdce8",
+  "title": "DevOps, Cloud, and Agile Foundations Specialization",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/specializations/devops-cloud-and-agile-foundations",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "ops.deploy",
+   "eng.agile"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.a0b399ad",
+  "title": "Certified in Cybersecurity Specialization",
+  "provider": "ISC2",
+  "url": "https://www.coursera.org/specializations/certified-in-cybersecurity",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "sec.fundamentals",
+   "net.fundamentals"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.3b2d8c26",
+  "title": "Multiple Regression Analysis in Public Health",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/learn/multiple-regression-analysis-public-health",
+  "hours": 14,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "math.stats",
+   "ml.supervised"
+  ],
+  "assumes": [
+   "math.calculus"
+  ]
+ },
+ {
+  "id": "cs.fdcf0176",
+  "title": "Data Engineering Foundations Specialization",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/specializations/data-engineering-foundations",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.spark",
+   "ops.deploy"
+  ],
+  "assumes": [
+   "prog.python",
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.0fb30652",
+  "title": "Cybersecurity Operations Fundamentals Specialization",
+  "provider": "Cisco Learning and Certifications",
+  "url": "https://www.coursera.org/specializations/cbrops",
+  "hours": 26,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "sec.fundamentals",
+   "net.fundamentals",
+   "ops.monitor"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.310f30cb",
+  "title": "Object-Oriented C++: Inheritance and Encapsulation",
+  "provider": "Codio",
+  "url": "https://www.coursera.org/learn/object-oriented-cpp",
+  "hours": 9,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.oop"
+  ],
+  "assumes": [
+   "prog.cpp"
+  ]
+ },
+ {
+  "id": "cs.068c8e98",
+  "title": "Introduction to Image Processing",
+  "provider": "MathWorks",
+  "url": "https://www.coursera.org/learn/introduction-image-processing",
+  "hours": 10,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "cv.imageprocessing",
+   "prog.matlab"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.7ffa2040",
+  "title": "Sports Performance Analytics Specialization",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/specializations/sports-analytics",
+  "hours": 173,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.pandas",
+   "data.viz",
+   "ml.concepts"
+  ],
+  "assumes": [
+   "prog.python",
+   "math.stats"
+  ]
+ },
+ {
+  "id": "cs.ca6e0449",
+  "title": "Introduction to Automated Analysis",
+  "provider": "University of Minnesota",
+  "url": "https://www.coursera.org/learn/automated-analysis",
+  "hours": 19,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "eng.testing"
+  ],
+  "assumes": [
+   "cs.algorithms"
+  ]
+ },
+ {
+  "id": "cs.7daf248b",
+  "title": "C++ Object Basics: Functions, Recursion, and Objects",
+  "provider": "Codio",
+  "url": "https://www.coursera.org/learn/cpp-object-basics",
+  "hours": 8,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.cpp",
+   "prog.oop"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.eee630a2",
+  "title": "C# for .NET Developers",
+  "provider": "Board Infinity",
+  "url": "https://www.coursera.org/learn/c-sharp-for-dot-net",
+  "hours": 17,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.csharp",
+   "prog.oop"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.ee0e1bc5",
+  "title": "Building Cloud Computing Solutions at Scale Specialization",
+  "provider": "Duke University",
+  "url": "https://www.coursera.org/specializations/building-cloud-computing-solutions-at-scale",
+  "hours": 130,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.deploy",
+   "db.nosql"
+  ],
+  "assumes": [
+   "ops.cloud",
+   "eng.api"
+  ]
+ },
+ {
+  "id": "cs.c9f8ddf7",
+  "title": "Python Data Products for Predictive Analytics Specialization",
+  "provider": "University of California San Diego",
+  "url": "https://www.coursera.org/specializations/python-data-products-for-predictive-analytics",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.viz",
+   "ml.supervised",
+   "data.pandas"
+  ],
+  "assumes": [
+   "prog.python",
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "cs.bb05f8b4",
+  "title": "Introduction to MongoDB",
+  "provider": "MongoDB Inc.",
+  "url": "https://www.coursera.org/learn/introduction-to-mongodb",
+  "hours": 15,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "db.nosql",
+   "ops.cloud"
+  ],
+  "assumes": [
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.6772e705",
+  "title": "ChatGPT for Project Management: Execution, Tracking, Success",
+  "provider": "Vanderbilt University",
+  "url": "https://www.coursera.org/learn/chatgpt-project-management-execution",
+  "hours": 4,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "nlp.prompting"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.eb161f2b",
+  "title": "MLOps | Machine Learning Operations Specialization",
+  "provider": "Duke University",
+  "url": "https://www.coursera.org/specializations/mlops-machine-learning-duke",
+  "hours": 130,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "ops.deploy",
+   "ops.cloud",
+   "ops.docker"
+  ],
+  "assumes": [
+   "ml.supervised",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.d3a3c9f1",
+  "title": "SAS Statistical Business Analyst Professional Certificate",
+  "provider": "SAS",
+  "url": "https://www.coursera.org/professional-certificates/sas-statistical-business-analyst",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.supervised",
+   "math.stats"
+  ],
+  "assumes": [
+   "prog.fundamentals",
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "cs.b5b357b8",
+  "title": "Learn to code with AI",
+  "provider": "Scrimba",
+  "url": "https://www.coursera.org/learn/learn-to-code-with-ai",
+  "hours": 4,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "web.frontend",
+   "prog.javascript"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.f4e904ae",
+  "title": "Software Engineering: Software Design and Project Management",
+  "provider": "The Hong Kong University of Science and Technology",
+  "url": "https://www.coursera.org/learn/software-engineering-software-design-and-project-management",
+  "hours": 19,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "eng.requirements"
+  ],
+  "assumes": [
+   "prog.oop"
+  ]
+ },
+ {
+  "id": "cs.c39c817f",
+  "title": "Software Engineering Specialization",
+  "provider": "The Hong Kong University of Science and Technology",
+  "url": "https://www.coursera.org/specializations/software-engineering",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "eng.design",
+   "eng.testing",
+   "eng.agile"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.efad2c25",
+  "title": "Data Science with R - Capstone Project",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/data-science-with-r-capstone-project",
+  "hours": 24,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.supervised"
+  ],
+  "assumes": [
+   "prog.r",
+   "data.viz"
+  ]
+ },
+ {
+  "id": "cs.6a3d56d0",
+  "title": "Data Structures & Backend with Java",
+  "provider": "Board Infinity",
+  "url": "https://www.coursera.org/learn/data-structures--backend-with-java",
+  "hours": 19,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "prog.java",
+   "cs.algorithms",
+   "eng.api"
+  ],
+  "assumes": [
+   "prog.oop"
+  ]
+ },
+ {
+  "id": "cs.8d6fb13b",
+  "title": "Probabilistic Deep Learning with TensorFlow 2",
+  "provider": "Imperial College London",
+  "url": "https://www.coursera.org/learn/probabilistic-deep-learning-with-tensorflow2",
+  "hours": 52,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "math.stats"
+  ],
+  "assumes": [
+   "prog.python",
+   "dl.neuralnets"
+  ]
+ },
+ {
+  "id": "cs.326fdfe3",
+  "title": "Data Engineering Capstone Project",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/data-enginering-capstone-project",
+  "hours": 16,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "db.nosql"
+  ],
+  "assumes": [
+   "data.sql",
+   "prog.python",
+   "data.etl"
+  ]
+ },
+ {
+  "id": "cs.d0c96743",
+  "title": "Machine Learning Capstone",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/machine-learning-capstone",
+  "hours": 20,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "ml.supervised",
+   "ml.unsupervised",
+   "dl.neuralnets",
+   "data.pandas"
+  ],
+  "assumes": [
+   "prog.python",
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "cs.7c90f440",
+  "title": "Applied Cryptography Specialization",
+  "provider": "University of Colorado System",
+  "url": "https://www.coursera.org/specializations/applied-crypto",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "sec.cryptography",
+   "sec.fundamentals"
+  ],
+  "assumes": [
+   "prog.fundamentals",
+   "cs.algorithms"
+  ]
+ },
+ {
+  "id": "cs.3f6c7d5a",
+  "title": "Bayesian Statistics Specialization",
+  "provider": "University of California, Santa Cruz",
+  "url": "https://www.coursera.org/specializations/bayesian-statistics",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "math.stats",
+   "prog.r"
+  ],
+  "assumes": [
+   "math.calculus"
+  ]
+ },
+ {
+  "id": "cs.844d0451",
+  "title": "Business intelligence and data warehousing",
+  "provider": "Universidad Nacional Aut\u00f3noma de M\u00e9xico",
+  "url": "https://www.coursera.org/learn/business-intelligence-data-warehousing",
+  "hours": 10,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.viz"
+  ],
+  "assumes": [
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.ed5eaa47",
+  "title": "Linux and Private Cloud Administration on IBM Power Systems Specialization",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/specializations/linux-private-cloud-administration-power-systems",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "ops.deploy",
+   "prog.shell"
+  ],
+  "assumes": [
+   "os.concepts",
+   "net.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.ab271dac",
+  "title": "IBM Full-Stack JavaScript Developer Professional Certificate",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/professional-certificates/ibm-full-stack-javascript-developer",
+  "hours": 173,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.javascript",
+   "web.frontend",
+   "eng.api",
+   "ops.deploy"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.9d6cc55c",
+  "title": "Scripting with Python and SQL for Data Engineering",
+  "provider": "Duke University",
+  "url": "https://www.coursera.org/learn/scripting-with-python-sql-for-data-engineering-duke",
+  "hours": 23,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.etl"
+  ],
+  "assumes": [
+   "prog.python",
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.29ddd67b",
+  "title": "Generative AI: Foundation Models and Platforms",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/generative-ai-foundation-models-and-platforms",
+  "hours": 6,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "nlp.llm",
+   "dl.transformers"
+  ],
+  "assumes": [
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "cs.094b3a65",
+  "title": "The Power of Machine Learning: Boost Business, Accumulate Clicks, Fight Fraud, and Deny Deadbeats",
+  "provider": "SAS",
+  "url": "https://www.coursera.org/learn/the-power-of-machine-learning",
+  "hours": 14,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "ml.supervised"
+  ],
+  "assumes": [
+   "math.stats"
+  ]
+ },
+ {
+  "id": "cs.d9459d88",
+  "title": "Microsoft Azure Machine Learning for Data Scientists",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/microsoft-azure-machine-learning-for-data-scientist",
+  "hours": 11,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.supervised"
+  ],
+  "assumes": [
+   "ml.concepts",
+   "ops.cloud"
+  ]
+ },
+ {
+  "id": "cs.fbbd88e8",
+  "title": "WhatsApp Business Platform for Developers",
+  "provider": "Meta",
+  "url": "https://www.coursera.org/learn/whatsapp-business-platform-for-developers",
+  "hours": 16,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "eng.api"
+  ],
+  "assumes": [
+   "prog.javascript"
+  ]
+ },
+ {
+  "id": "cs.7ff6206c",
+  "title": "Generative AI for Software Development Skill Certificate",
+  "provider": "DeepLearning.AI",
+  "url": "https://www.coursera.org/professional-certificates/generative-ai-for-software-development",
+  "hours": 22,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "nlp.prompting",
+   "nlp.llm"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.d13d0f13",
+  "title": "NoSQL systems",
+  "provider": "Universidad Nacional Aut\u00f3noma de M\u00e9xico",
+  "url": "https://www.coursera.org/learn/nosql-databases",
+  "hours": 9,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "db.nosql"
+  ],
+  "assumes": [
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.6084f543",
+  "title": "Data Visualization & Dashboarding with R Specialization",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/specializations/jhu-data-visualization-dashboarding-with-r",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.viz",
+   "prog.r"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.a8921cbf",
+  "title": "Building Data Visualization Tools",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/learn/r-data-visualization",
+  "hours": 12,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.viz",
+   "prog.r"
+  ],
+  "assumes": [
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.2579ce9f",
+  "title": "Data Science Foundations: Statistical Inference Specialization",
+  "provider": "University of Colorado Boulder",
+  "url": "https://www.coursera.org/specializations/statistical-inference-for-data-science-applications",
+  "hours": 130,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "math.optimization"
+  ],
+  "assumes": [
+   "math.stats"
+  ]
+ },
+ {
+  "id": "cs.1bbc9db0",
+  "title": "IBM Introduction to Machine Learning Specialization",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/specializations/ibm-intro-machine-learning",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "ml.supervised",
+   "ml.unsupervised"
+  ],
+  "assumes": [
+   "prog.python",
+   "math.stats"
+  ]
+ },
+ {
+  "id": "cs.a0b88919",
+  "title": ".Net Full Stack Foundation",
+  "provider": "Board Infinity",
+  "url": "https://www.coursera.org/learn/dot-net-full-stack-foundation",
+  "hours": 17,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.csharp",
+   "eng.api"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.e0797dbb",
+  "title": "Information Technology (IT) and Cloud Fundamentals Specialization",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/specializations/it-cloud-fundamentals",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "it.support",
+   "ops.cloud",
+   "net.fundamentals",
+   "sec.fundamentals"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.48f97327",
+  "title": "C++ Programming for Unreal Game Development Specialization",
+  "provider": "University of Colorado System",
+  "url": "https://www.coursera.org/specializations/cplusplusunrealgamedevelopment",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "game.development",
+   "prog.cpp"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.fcca33dc",
+  "title": "Generative AI: Elevate Your Data Science Career",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/generative-ai-elevate-your-data-science-career",
+  "hours": 12,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "nlp.llm",
+   "nlp.prompting"
+  ],
+  "assumes": [
+   "data.sql",
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "cs.d92d2616",
+  "title": "Advanced Data Modeling",
+  "provider": "Meta",
+  "url": "https://www.coursera.org/learn/advanced-data-modeling",
+  "hours": 18,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.etl"
+  ],
+  "assumes": [
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.6b9a66ca",
+  "title": "Machine Learning with Apache Spark",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/machine-learning-with-apache-spark",
+  "hours": 15,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.supervised"
+  ],
+  "assumes": [
+   "ml.concepts",
+   "data.spark"
+  ]
+ },
+ {
+  "id": "cs.9f7aaf73",
+  "title": "Sampling People, Networks and Records",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/learn/sampling-methods",
+  "hours": 25,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "math.stats"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.1f976a66",
+  "title": "Python Data Analytics",
+  "provider": "Meta",
+  "url": "https://www.coursera.org/learn/python-data-analytics",
+  "hours": 21,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.python",
+   "data.pandas",
+   "data.viz"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.460d0226",
+  "title": "Software Engineering: Implementation and Testing",
+  "provider": "The Hong Kong University of Science and Technology",
+  "url": "https://www.coursera.org/learn/software-engineering-implementation-and-testing",
+  "hours": 19,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "eng.testing",
+   "eng.requirements"
+  ],
+  "assumes": [
+   "prog.oop"
+  ]
+ },
+ {
+  "id": "cs.a49ea9c1",
+  "title": "Modern Data Warehouse Analytics in Microsoft Azure",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/data-warehouse-analytics-microsoft-azure",
+  "hours": 4,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "data.viz",
+   "data.sql"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.0aa2b9bc",
+  "title": "Introduction to Concurrent Programming with GPUs",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/learn/introduction-to-concurrent-programming",
+  "hours": 19,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.concurrency"
+  ],
+  "assumes": [
+   "prog.cpp"
+  ]
+ },
+ {
+  "id": "cs.83967ad0",
+  "title": "Health Information Literacy for Data Analytics Specialization",
+  "provider": "University of California, Davis",
+  "url": "https://www.coursera.org/specializations/healthcare-information-literacy-data-analytics",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "data.etl"
+  ],
+  "assumes": [
+   "data.pandas",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.3eef23d2",
+  "title": "Introduction to Python Fundamentals",
+  "provider": "University of Colorado Boulder",
+  "url": "https://www.coursera.org/learn/introduction-python-fundamentals",
+  "hours": 20,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.python",
+   "prog.fundamentals"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.0b2b43c9",
+  "title": "IBM and ISC2 Cybersecurity Specialist Professional Certificate",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/professional-certificates/ibm-isc2-cybersecurity-specialist",
+  "hours": 130,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "sec.fundamentals",
+   "net.fundamentals"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.516e74f7",
+  "title": "Unilever Supply Chain Data Analyst Professional Certificate",
+  "provider": "Unilever",
+  "url": "https://www.coursera.org/professional-certificates/unilever-supply-chain-data-analyst",
+  "hours": 173,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "data.viz",
+   "data.pandas"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.5beb97bd",
+  "title": "DevOps Capstone Project",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/devops-capstone-project",
+  "hours": 18,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.deploy"
+  ],
+  "assumes": [
+   "ops.cloud",
+   "ops.docker"
+  ]
+ },
+ {
+  "id": "cs.c51f6f84",
+  "title": "Java Servlet Pages (JSPs)",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/java-servlet-pages",
+  "hours": 16,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "web.frontend"
+  ],
+  "assumes": [
+   "prog.java"
+  ]
+ },
+ {
+  "id": "cs.016c8a13",
+  "title": "Intro to Operating Systems 2: Memory Management",
+  "provider": "Codio",
+  "url": "https://www.coursera.org/learn/codio-intro-to-operating-systems-2-memory-management",
+  "hours": 9,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "os.concepts"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.5a351ad3",
+  "title": "Kali Linux",
+  "provider": "Board Infinity",
+  "url": "https://www.coursera.org/learn/kali-linux",
+  "hours": 4,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "net.fundamentals",
+   "sec.fundamentals"
+  ],
+  "assumes": [
+   "os.concepts",
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.c4ffc444",
+  "title": "Preparing for Google Cloud Certification: Cloud Developer Professional Certificate",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/professional-certificates/google-cloud-developer",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "ops.deploy",
+   "eng.testing"
+  ],
+  "assumes": [
+   "prog.python",
+   "ops.docker"
+  ]
+ },
+ {
+  "id": "cs.014b3f2f",
+  "title": "Advanced Django: Building a Blog",
+  "provider": "Codio",
+  "url": "https://www.coursera.org/learn/codio-advanced-django-building-blog",
+  "hours": 9,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "eng.api"
+  ],
+  "assumes": [
+   "prog.python",
+   "web.frontend"
+  ]
+ },
+ {
+  "id": "cs.218502f5",
+  "title": "Introduction to Microsoft Azure Synapse Analytics",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/introduction-to-microsoft-azure-synapse-analytics",
+  "hours": 8,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "data.etl"
+  ],
+  "assumes": [
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.4ca45e35",
+  "title": "Generative AI:\u00a0Elevate your Software Development Career",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/generative-ai-elevate-software-development-career",
+  "hours": 17,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "nlp.prompting",
+   "nlp.llm"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.2ed36017",
+  "title": "AI for Good Specialization",
+  "provider": "DeepLearning.AI",
+  "url": "https://www.coursera.org/specializations/ai-for-good",
+  "hours": 22,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "cv.imageprocessing",
+   "data.viz"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.8ca566e0",
+  "title": "Rust Fundamentals",
+  "provider": "Duke University",
+  "url": "https://www.coursera.org/learn/rust-fundamentals",
+  "hours": 40,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.rust"
+  ],
+  "assumes": [
+   "prog.oop"
+  ]
+ },
+ {
+  "id": "cs.ff817d91",
+  "title": "Expressway to Data Science: Essential Math Specialization",
+  "provider": "University of Colorado Boulder",
+  "url": "https://www.coursera.org/specializations/expressway-to-data-science-essential-math",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "math.linalg",
+   "math.calculus",
+   "math.stats"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.4549a947",
+  "title": "NoSQL, Big Data, and Spark Foundations Specialization",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/specializations/nosql-big-data-and-spark-foundations",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.spark",
+   "db.nosql"
+  ],
+  "assumes": [
+   "data.sql",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.59d21a68",
+  "title": "Frontend for Java Full Stack Development",
+  "provider": "Board Infinity",
+  "url": "https://www.coursera.org/learn/frontend-development-for-java-full-stack",
+  "hours": 24,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "web.frontend"
+  ],
+  "assumes": [
+   "prog.java",
+   "prog.javascript"
+  ]
+ },
+ {
+  "id": "cs.8197d582",
+  "title": "Introduction to Generative AI",
+  "provider": "Duke University",
+  "url": "https://www.coursera.org/learn/intro-gen-ai",
+  "hours": 37,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "nlp.llm",
+   "ml.concepts",
+   "prog.python"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.67a4b478",
+  "title": "Accounting Data Analytics Specialization",
+  "provider": "University of Illinois Urbana-Champaign",
+  "url": "https://www.coursera.org/specializations/accounting-data-analytics",
+  "hours": 130,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.pandas",
+   "data.viz",
+   "ml.supervised"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.a147a044",
+  "title": "Inheritance and Data Structures in Java",
+  "provider": "University of Pennsylvania",
+  "url": "https://www.coursera.org/learn/java-inheritance-data-structures",
+  "hours": 21,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.java",
+   "prog.oop",
+   "cs.algorithms"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.a9f8b341",
+  "title": "Database Architecture, Scale, and NoSQL with Elasticsearch",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/learn/database-architecture-scale-nosql-elasticsearch-postgresql",
+  "hours": 10,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "db.nosql",
+   "ops.deploy"
+  ],
+  "assumes": [
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.f27fab07",
+  "title": "Managing Cybersecurity Incidents and Disasters",
+  "provider": "Kennesaw State University",
+  "url": "https://www.coursera.org/learn/managing-cybersecurity-incidents-and-disasters",
+  "hours": 14,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "sec.fundamentals"
+  ],
+  "assumes": [
+   "net.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.8d661b42",
+  "title": "Machine Learning Rock Star \u2013 the End-to-End Practice\n Specialization",
+  "provider": "SAS",
+  "url": "https://www.coursera.org/specializations/machine-learning-for-everyone",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "ml.evaluation",
+   "ml.supervised"
+  ],
+  "assumes": [
+   "math.stats",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.4782da57",
+  "title": "DeepLearning.AI Data Engineering Professional Certificate",
+  "provider": "DeepLearning.AI",
+  "url": "https://www.coursera.org/professional-certificates/data-engineering",
+  "hours": 130,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.etl",
+   "data.spark",
+   "ops.cloud"
+  ],
+  "assumes": [
+   "prog.python",
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.beedb80f",
+  "title": "Machine Learning: Theory and Hands-on Practice with Python Specialization",
+  "provider": "University of Colorado Boulder",
+  "url": "https://www.coursera.org/specializations/machine-learnin-theory-and-hands-on-practice-with-pythong-cu",
+  "hours": 130,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.supervised",
+   "ml.unsupervised",
+   "dl.neuralnets"
+  ],
+  "assumes": [
+   "prog.python",
+   "math.linalg"
+  ]
+ },
+ {
+  "id": "cs.15887ba8",
+  "title": "Bayesian Statistics: Mixture Models",
+  "provider": "University of California, Santa Cruz",
+  "url": "https://www.coursera.org/learn/mixture-models",
+  "hours": 21,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.r"
+  ],
+  "assumes": [
+   "math.stats"
+  ]
+ },
+ {
+  "id": "cs.7206de77",
+  "title": "Basic System Programming on IBM Z",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/system-programming",
+  "hours": 18,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.sql"
+  ],
+  "assumes": [
+   "os.concepts"
+  ]
+ },
+ {
+  "id": "cs.db925584",
+  "title": "Implementing an SAP Solution",
+  "provider": "SAP",
+  "url": "https://www.coursera.org/learn/implementing-an-sap-solution",
+  "hours": 14,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "eng.testing",
+   "ops.deploy"
+  ],
+  "assumes": [
+   "eng.requirements"
+  ]
+ },
+ {
+  "id": "cs.65561879",
+  "title": ".NET FullStack Developer Specialization",
+  "provider": "Board Infinity",
+  "url": "https://www.coursera.org/specializations/dot-net-fullstack",
+  "hours": 65,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.csharp",
+   "web.frontend",
+   "eng.api"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.236fab9c",
+  "title": "C Programming with Linux Specialization",
+  "provider": "Institut Mines-T\u00e9l\u00e9com",
+  "url": "https://www.coursera.org/specializations/c-programming-linux",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.c",
+   "os.concepts",
+   "cs.algorithms"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.639abcf7",
+  "title": "Google Cloud Database Engineer Specialization",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/specializations/google-cloud-database-engineer",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.etl"
+  ],
+  "assumes": [
+   "data.sql",
+   "ops.cloud"
+  ]
+ },
+ {
+  "id": "cs.222f1cbb",
+  "title": "Visualization for Data Journalism",
+  "provider": "University of Illinois Urbana-Champaign",
+  "url": "https://www.coursera.org/learn/visualization-for-data-journalism",
+  "hours": 17,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.viz"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.fdbf8715",
+  "title": "Preparing for AI-900: Microsoft Azure AI Fundamentals exam",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/microsoft-ai-900-exam-prep",
+  "hours": 9,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "ops.cloud"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.8e7475a2",
+  "title": "JavaScript Programming Essentials",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/javascript-programming-essentials",
+  "hours": 16,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.javascript",
+   "web.frontend"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.e1cba3d5",
+  "title": "Linux and Bash for Data Engineering",
+  "provider": "Duke University",
+  "url": "https://www.coursera.org/learn/linux-and-bash-for-data-engineering-duke",
+  "hours": 65,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.shell",
+   "os.concepts"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.07b02c30",
+  "title": "Cloud Application Development Foundations Specialization",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/specializations/ibm-cloud-application-development-foundations",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "ops.deploy",
+   "eng.api"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.b7777c10",
+  "title": "Intro to Analytic Thinking, Data Science, and Data Mining",
+  "provider": "University of California, Irvine",
+  "url": "https://www.coursera.org/learn/intro-analyticthinking-datascience-datamining",
+  "hours": 7,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.pandas",
+   "ml.concepts"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.de2f0dad",
+  "title": "Improving Your Statistical Questions",
+  "provider": "Eindhoven University of Technology",
+  "url": "https://www.coursera.org/learn/improving-statistical-questions",
+  "hours": 17,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "math.stats"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.1ffd7b99",
+  "title": "BI Foundations with SQL, ETL and Data Warehousing Specialization",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/specializations/bi-foundations-sql-etl-data-warehouse",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "data.etl",
+   "data.viz"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.336a5620",
+  "title": "Data Storytelling with Power BI",
+  "provider": "Edureka",
+  "url": "https://www.coursera.org/learn/data-storytelling-with-power-bi",
+  "hours": 12,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.viz",
+   "data.etl"
+  ],
+  "assumes": [
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.2b2c0120",
+  "title": "Game Design and Development 2: 2D Platformer",
+  "provider": "Michigan State University",
+  "url": "https://www.coursera.org/learn/game-design-and-development-2",
+  "hours": 12,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "game.development",
+   "prog.oop"
+  ],
+  "assumes": [
+   "prog.csharp"
+  ]
+ },
+ {
+  "id": "cs.1d52e076",
+  "title": "Advanced System Security Design Specialization",
+  "provider": "University of Colorado System",
+  "url": "https://www.coursera.org/specializations/advanced-system-security-design",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "sec.architecture",
+   "ops.cloud"
+  ],
+  "assumes": [
+   "sec.fundamentals",
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.19c6ced6",
+  "title": "Precalculus through Data and Modelling Specialization",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/specializations/precalculus-data-modelling",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "math.linalg",
+   "math.stats"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.9bef4677",
+  "title": "Preparing for DP-900: Microsoft Azure Data Fundamentals Exam",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/microsoft-dp-900-exam-prep",
+  "hours": 5,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "data.sql",
+   "db.nosql"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.047a7fc0",
+  "title": "Building Generative AI-Powered Applications with Python",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/building-gen-ai-powered-applications",
+  "hours": 13,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "nlp.llm",
+   "nlp.prompting",
+   "eng.api"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.fd33a975",
+  "title": "Data Warehousing with Microsoft Azure Synapse Analytics",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/data-warehousing-with-microsoft-azure-synapse-analytics",
+  "hours": 14,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.etl",
+   "ops.cloud"
+  ],
+  "assumes": [
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.2cbecda5",
+  "title": "Intel\u00ae Network Academy - Network Transformation 102",
+  "provider": "Intel",
+  "url": "https://www.coursera.org/learn/network-transformation-102",
+  "hours": 9,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "net.fundamentals"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.75405986",
+  "title": "Data \u2013 What It Is, What We Can Do With It",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/learn/data-what-it-is-what-can-we-do-with-it",
+  "hours": 11,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "math.stats",
+   "data.viz"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.89282ae2",
+  "title": "Intro to Operating Systems 3: Concurrency",
+  "provider": "Codio",
+  "url": "https://www.coursera.org/learn/codio-intro-to-operating-systems-3-concurrency",
+  "hours": 7,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "prog.concurrency",
+   "os.concepts"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.e3e4231b",
+  "title": "AI Workflow: Business Priorities and Data Ingestion",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/ibm-ai-workflow-business-priorities-data-ingestion",
+  "hours": 7,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.etl",
+   "ml.concepts"
+  ],
+  "assumes": [
+   "data.sql",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.f1fbede4",
+  "title": "Linux System Administration with IBM Power Systems",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/linux-system-administration-ibm-power-systems",
+  "hours": 14,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "os.concepts",
+   "ops.cloud"
+  ],
+  "assumes": [
+   "net.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.10798b51",
+  "title": "Requirements Engineering: Secure Software  Specifications Specialization",
+  "provider": "University of Colorado System",
+  "url": "https://www.coursera.org/specializations/requirements-engineering-secure-software",
+  "hours": 87,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "eng.requirements",
+   "sec.fundamentals"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.ec44a0ff",
+  "title": "HTML, CSS, and Javascript for Web Developers Specialization",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/specializations/html-css-javascript-for-web-developers",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.javascript",
+   "web.frontend"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.b235a9bc",
+  "title": "JSON and Natural Language Processing in PostgreSQL",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/learn/json-natural-language-processing-postgresql",
+  "hours": 16,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "nlp.text"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.97377de6",
+  "title": "IBM z/OS Mainframe Practitioner Professional Certificate",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/professional-certificates/ibm-z-mainframe",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "it.mainframe",
+   "sec.fundamentals"
+  ],
+  "assumes": [
+   "os.concepts"
+  ]
+ },
+ {
+  "id": "cs.fc2fa84a",
+  "title": "Microsoft Azure Cosmos DB",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/microsoft-azure-cosmos-db",
+  "hours": 10,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "db.nosql",
+   "ops.cloud"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.24482d9d",
+  "title": "Solve Business Problems with AI and Machine Learning",
+  "provider": "CertNexus",
+  "url": "https://www.coursera.org/learn/solve-problems-ai-machine-learning",
+  "hours": 11,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "ml.supervised"
+  ],
+  "assumes": [
+   "prog.python",
+   "data.pandas"
+  ]
+ },
+ {
+  "id": "cs.67252743",
+  "title": "Spark, Hadoop, and Snowflake for Data Engineering",
+  "provider": "Duke University",
+  "url": "https://www.coursera.org/learn/spark-hadoop-snowflake-data-engineering",
+  "hours": 29,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "data.spark",
+   "data.etl",
+   "data.sql"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.0b653678",
+  "title": "Data for Machine Learning",
+  "provider": "Alberta Machine Intelligence Institute",
+  "url": "https://www.coursera.org/learn/data-machine-learning",
+  "hours": 11,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.pandas",
+   "ml.featureeng",
+   "data.etl"
+  ],
+  "assumes": [
+   "prog.python",
+   "math.stats"
+  ]
+ },
+ {
+  "id": "cs.353e9e93",
+  "title": "Object-Oriented Programming Concepts",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/concepts-of-object-oriented-programming",
+  "hours": 9,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.oop"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.a2a41536",
+  "title": "Mastering Laravel Framework and PHP",
+  "provider": "Board Infinity",
+  "url": "https://www.coursera.org/learn/laravel-framework-and-php",
+  "hours": 14,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "web.frontend",
+   "eng.api",
+   "prog.php"
+  ],
+  "assumes": [
+   "prog.oop"
+  ]
+ },
+ {
+  "id": "cs.42200164",
+  "title": "Computer Forensics Specialization",
+  "provider": "Infosec",
+  "url": "https://www.coursera.org/specializations/computerforensics",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "sec.forensics"
+  ],
+  "assumes": [
+   "os.concepts",
+   "sec.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.422a9870",
+  "title": "Introduction to Computer Vision",
+  "provider": "MathWorks",
+  "url": "https://www.coursera.org/learn/intro-computer-vision",
+  "hours": 8,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "cv.imageprocessing",
+   "dl.cnn"
+  ],
+  "assumes": [
+   "prog.matlab",
+   "math.linalg"
+  ]
+ },
+ {
+  "id": "cs.8dcfdc60",
+  "title": "Generative AI: Enhance your Data Analytics Career",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/generative-ai-enhance-your-data-analytics-career",
+  "hours": 14,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "nlp.llm",
+   "data.viz",
+   "data.etl"
+  ],
+  "assumes": [
+   "data.sql",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.cb2c7c7e",
+  "title": "Intro to Operating Systems 4: Persistence",
+  "provider": "Codio",
+  "url": "https://www.coursera.org/learn/codio-intro-to-operating-systems-4-persistence",
+  "hours": 10,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "os.concepts"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.5ff06a30",
+  "title": "Build and Operate Machine Learning Solutions with Azure",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/build-and-operate-machine-learning-solutions-with-azure",
+  "hours": 31,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "ops.deploy",
+   "ml.evaluation"
+  ],
+  "assumes": [
+   "ml.concepts",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.7b1ba10e",
+  "title": "Natural Language Processing in Microsoft Azure",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/nlp-microsoft-azure",
+  "hours": 7,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "nlp.text",
+   "ops.cloud"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.ec26831a",
+  "title": "Homeland Security and Cybersecurity Specialization",
+  "provider": "University of Colorado System",
+  "url": "https://www.coursera.org/specializations/homeland-security-cybersecurity",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "net.fundamentals",
+   "sec.fundamentals"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.e97d3295",
+  "title": "Working with Data in Android",
+  "provider": "Meta",
+  "url": "https://www.coursera.org/learn/working-with-data-in-android",
+  "hours": 27,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "db.nosql",
+   "eng.api"
+  ],
+  "assumes": [
+   "prog.java"
+  ]
+ },
+ {
+  "id": "cs.523d9e17",
+  "title": "Prepare for DP-203: Data Engineering on Microsoft Azure Exam",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/microsoft-dp-203-practice-exam",
+  "hours": 5,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.etl",
+   "ops.cloud"
+  ],
+  "assumes": [
+   "data.sql",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.7780f7f3",
+  "title": "Foundations of Computer Science",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/computer-science-foundations",
+  "hours": 15,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.fundamentals",
+   "prog.oop"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.28e5497c",
+  "title": "Secure Full Stack MEAN Developer",
+  "provider": "EC-Council",
+  "url": "https://www.coursera.org/learn/secure-full-stack-mean-developer",
+  "hours": 24,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "web.frontend",
+   "db.nosql",
+   "prog.javascript",
+   "sec.fundamentals"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.1ac423df",
+  "title": "Introduction to Data Analytics in Google Cloud",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/learn/introduction-to-data-analytics-in-google-cloud",
+  "hours": 15,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "data.etl"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.4f34ee6e",
+  "title": "Computer Vision in Microsoft Azure",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/computer-vision-microsoft-azure",
+  "hours": 8,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "cv.imageprocessing",
+   "ops.cloud"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.5d327ddb",
+  "title": "Perform data science with Azure Databricks",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/perform-data-science-with-azure-databricks",
+  "hours": 25,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.spark",
+   "ops.cloud"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.e617edfc",
+  "title": "GPU Programming Specialization",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/specializations/gpu-programming",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.distributed",
+   "cv.imageprocessing"
+  ],
+  "assumes": [
+   "prog.cpp",
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.a76a308c",
+  "title": "Python Basics: Selection and Iteration",
+  "provider": "Codio",
+  "url": "https://www.coursera.org/learn/codio-python-basics",
+  "hours": 9,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.python"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.e9271c84",
+  "title": "IBM Applied DevOps Engineering Professional Certificate",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/professional-certificates/ibm-applied-devops-engineering",
+  "hours": 130,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.deploy",
+   "ops.cloud",
+   "eng.testing"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.7f3c03ed",
+  "title": "Ethics in the Age of AI Specialization",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/specializations/ethics-in-ai",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ml.evaluation"
+  ],
+  "assumes": [
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "cs.4f961716",
+  "title": "MLOps Tools: MLflow and Hugging Face",
+  "provider": "Duke University",
+  "url": "https://www.coursera.org/learn/mlops-mlflow-huggingface-duke",
+  "hours": 25,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "ops.deploy",
+   "ops.cloud"
+  ],
+  "assumes": [
+   "ml.concepts",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.9e49b538",
+  "title": "Predictive Modeling with Logistic Regression using SAS",
+  "provider": "SAS",
+  "url": "https://www.coursera.org/learn/sas-predictive-modeling-using-logistic-regression",
+  "hours": 16,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.supervised",
+   "ml.featureeng"
+  ],
+  "assumes": [
+   "math.stats",
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "cs.bcbde476",
+  "title": "AI and Climate Change",
+  "provider": "DeepLearning.AI",
+  "url": "https://www.coursera.org/learn/ai-and-climate-change",
+  "hours": 14,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "cv.imageprocessing",
+   "ml.supervised"
+  ],
+  "assumes": [
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "cs.4f29f1ea",
+  "title": "Data Processing with Azure",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/data-processing-with-azure",
+  "hours": 12,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.etl",
+   "data.spark"
+  ],
+  "assumes": [
+   "ops.cloud"
+  ]
+ },
+ {
+  "id": "cs.eb72ccbf",
+  "title": "Functional Programming Principles in Scala (Scala 2 version)",
+  "provider": "\u00c9cole Polytechnique F\u00e9d\u00e9rale de Lausanne",
+  "url": "https://www.coursera.org/learn/scala2-functional-programming",
+  "hours": 44,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.functional",
+   "cs.algorithms"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.6a5ac651",
+  "title": "Regression Modeling Fundamentals",
+  "provider": "SAS",
+  "url": "https://www.coursera.org/learn/regression-modeling-sas",
+  "hours": 11,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.supervised"
+  ],
+  "assumes": [
+   "math.stats",
+   "prog.r"
+  ]
+ },
+ {
+  "id": "cs.ed98bbbb",
+  "title": "Monitoring and Observability for\u00a0Development and DevOps",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/monitoring-and-observability-for-development-and-devops",
+  "hours": 16,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.monitor"
+  ],
+  "assumes": [
+   "ops.deploy"
+  ]
+ },
+ {
+  "id": "cs.4984ec1c",
+  "title": "Data Engineering with MS Azure Synapse Apache Spark Pools",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/data-engineering-with-ms-azure-synapse-apache-spark-pools",
+  "hours": 7,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.spark",
+   "ops.cloud"
+  ],
+  "assumes": [
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.e42eec72",
+  "title": "Palo Alto Networks Cloud Security Fundamentals",
+  "provider": "Palo Alto Networks",
+  "url": "https://www.coursera.org/learn/palo-alto-networks-cloud-sec-fundamentals",
+  "hours": 9,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "sec.fundamentals"
+  ],
+  "assumes": [
+   "net.fundamentals",
+   "ops.cloud"
+  ]
+ },
+ {
+  "id": "cs.44c07868",
+  "title": "Akamai Network Engineering Professional Certificate",
+  "provider": "Akamai Technologies, Inc.",
+  "url": "https://www.coursera.org/professional-certificates/akamai-network-engineering",
+  "hours": 173,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "net.fundamentals",
+   "ops.deploy",
+   "data.sql"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.6d5c601e",
+  "title": "Spring Data Repositories",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/spring-repositories",
+  "hours": 9,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "eng.api"
+  ],
+  "assumes": [
+   "prog.java",
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.b6a30032",
+  "title": "Advanced Django: Mastering Django and Django Rest Framework Specialization",
+  "provider": "Codio",
+  "url": "https://www.coursera.org/specializations/codio-advanced-django-and-django-rest-framework",
+  "hours": 43,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "eng.api",
+   "web.frontend"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.8b2deb5f",
+  "title": "Object-Oriented Python: Inheritance and Encapsulation",
+  "provider": "Codio",
+  "url": "https://www.coursera.org/learn/object-oriented-python",
+  "hours": 9,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.oop"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.b88433ce",
+  "title": "Advanced Programming in Swift",
+  "provider": "Meta",
+  "url": "https://www.coursera.org/learn/advanced-programming-in-swift",
+  "hours": 19,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.swift"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.fe7ea1bc",
+  "title": "Secure Access with Azure Active Directory",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/secure-access-with-azure-active-directory",
+  "hours": 12,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "sec.fundamentals"
+  ],
+  "assumes": [
+   "ops.cloud"
+  ]
+ },
+ {
+  "id": "cs.82fd49bf",
+  "title": "Introduction to .NET Core",
+  "provider": "Board Infinity",
+  "url": "https://www.coursera.org/learn/intro-to-dotnet-core",
+  "hours": 13,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.csharp",
+   "eng.api"
+  ],
+  "assumes": [
+   "prog.oop"
+  ]
+ },
+ {
+  "id": "cs.38c0a848",
+  "title": "An Introduction to Programming using Python",
+  "provider": "University of Leeds",
+  "url": "https://www.coursera.org/learn/an-introduction-to-programming-using-python",
+  "hours": 9,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.python",
+   "prog.oop"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.6b0bbb88",
+  "title": "Fundamentals of Data Analytics in the Public Sector with R",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/learn/fundamentals-of-data-analytics-in-the-public-sector-with-r",
+  "hours": 14,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.viz",
+   "data.pandas"
+  ],
+  "assumes": [
+   "prog.r"
+  ]
+ },
+ {
+  "id": "cs.b0a5486a",
+  "title": "Database Engineer Capstone",
+  "provider": "Meta",
+  "url": "https://www.coursera.org/learn/database-engineer-capstone",
+  "hours": 18,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.sql",
+   "prog.python"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.f99803d1",
+  "title": "Game Design and Development 3: 3D Shooter",
+  "provider": "Michigan State University",
+  "url": "https://www.coursera.org/learn/game-design-and-development-3",
+  "hours": 13,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "game.development"
+  ],
+  "assumes": [
+   "prog.csharp",
+   "prog.oop"
+  ]
+ },
+ {
+  "id": "cs.7cce66f7",
+  "title": "Introduction to Microsoft 365 Copilot",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/introduction-to-microsoft-365-copilot",
+  "hours": 4,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "nlp.prompting"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.442b09c0",
+  "title": "Use Generative AI as Your Thought Partner",
+  "provider": "Coursera",
+  "url": "https://www.coursera.org/learn/use-generativeai-as-your-thought-partner",
+  "hours": 4,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "nlp.prompting",
+   "nlp.llm"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.a1bffead",
+  "title": "CertNexus Certified Artificial Intelligence Practitioner Professional Certificate",
+  "provider": "CertNexus",
+  "url": "https://www.coursera.org/professional-certificates/certified-artificial-intelligence-practitioner",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ml.concepts",
+   "ml.supervised",
+   "dl.neuralnets"
+  ],
+  "assumes": [
+   "prog.python",
+   "math.stats"
+  ]
+ },
+ {
+  "id": "cs.495a38f5",
+  "title": "Image Processing for Engineering and Science Specialization",
+  "provider": "MathWorks",
+  "url": "https://www.coursera.org/specializations/image-processing",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "cv.imageprocessing"
+  ],
+  "assumes": [
+   "prog.matlab"
+  ]
+ },
+ {
+  "id": "cs.9b7608ee",
+  "title": "Analytics for Decision Making Specialization",
+  "provider": "University of Minnesota",
+  "url": "https://www.coursera.org/specializations/analytics-for-decision-making",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "math.optimization"
+  ],
+  "assumes": [
+   "math.stats"
+  ]
+ },
+ {
+  "id": "cs.f0341e97",
+  "title": "Unix System Basics",
+  "provider": "Codio",
+  "url": "https://www.coursera.org/learn/codio-unix-system-basics",
+  "hours": 8,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.shell",
+   "os.concepts"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.fd563578",
+  "title": "ASP.NET for Experienced Developers Specialization",
+  "provider": "Board Infinity",
+  "url": "https://www.coursera.org/specializations/asp-dot-net-experience",
+  "hours": 65,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.csharp",
+   "ops.docker",
+   "eng.api"
+  ],
+  "assumes": [
+   "prog.oop"
+  ]
+ },
+ {
+  "id": "cs.efe74e69",
+  "title": "Azure Data Lake Storage Gen2 and Data Streaming Solution",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/azure-data-lake-storage-gen2-and-data-streaming-solution",
+  "hours": 9,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "data.spark",
+   "data.etl"
+  ],
+  "assumes": [
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.52d84fd6",
+  "title": "Linux Cloud and DevOps",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/linux-cloud-devops",
+  "hours": 12,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "ops.deploy",
+   "os.concepts"
+  ],
+  "assumes": [
+   "prog.shell"
+  ]
+ },
+ {
+  "id": "cs.9efe1be1",
+  "title": "Advanced Data Visualization with Tableau",
+  "provider": "Tableau Learning Partner",
+  "url": "https://www.coursera.org/learn/advanced-data-visualization-with-tableau-public",
+  "hours": 21,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.viz"
+  ],
+  "assumes": [
+   "data.sql"
+  ]
+ },
+ {
+  "id": "cs.d448573d",
+  "title": "Secure Software Design Specialization",
+  "provider": "University of Colorado System",
+  "url": "https://www.coursera.org/specializations/secure-software-design",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "sec.fundamentals",
+   "eng.design",
+   "data.sql"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.7220d22f",
+  "title": "Python Scripting for DevOps Specialization",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/specializations/python-scripting-devops",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.python",
+   "ops.deploy"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.ff82f757",
+  "title": "Foundations of Red Hat Cloud-native Development",
+  "provider": "Red Hat",
+  "url": "https://www.coursera.org/learn/foundations-of-red-hat-cloud-native-development",
+  "hours": 5,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.cloud",
+   "ops.docker"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.161663fd",
+  "title": "IBM AI Enterprise Workflow Specialization",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/specializations/ibm-ai-workflow",
+  "hours": 87,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "data.etl",
+   "ops.deploy"
+  ],
+  "assumes": [
+   "prog.python",
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "cs.7829ae01",
+  "title": "Working with Data",
+  "provider": "Meta",
+  "url": "https://www.coursera.org/learn/meta-working-with-data",
+  "hours": 20,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.etl",
+   "eng.api"
+  ],
+  "assumes": [
+   "prog.javascript",
+   "web.frontend"
+  ]
+ },
+ {
+  "id": "cs.add946eb",
+  "title": "Splunk Search Expert Specialization",
+  "provider": "Splunk Inc.",
+  "url": "https://www.coursera.org/specializations/splunk-search-expert",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.viz",
+   "ops.monitor"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.16ccfb93",
+  "title": "Execution, persistence, privilege escalation and evasion",
+  "provider": "Infosec",
+  "url": "https://www.coursera.org/learn/execution-persistence-privilege-escalation-and-evasion",
+  "hours": 4,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.shell",
+   "sec.fundamentals"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.5864287a",
+  "title": "Web of Data",
+  "provider": "EIT Digital",
+  "url": "https://www.coursera.org/learn/web-data",
+  "hours": 18,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "data.etl",
+   "data.sql"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.3a0a2d2d",
+  "title": "MLOps Platforms: Amazon SageMaker and Azure ML",
+  "provider": "Duke University",
+  "url": "https://www.coursera.org/learn/mlops-aws-azure-duke",
+  "hours": 30,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "ops.deploy",
+   "ops.cloud"
+  ],
+  "assumes": [
+   "ml.concepts",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.aff0e65b",
+  "title": "Object Tracking and Motion Detection with Computer Vision",
+  "provider": "MathWorks",
+  "url": "https://www.coursera.org/learn/object-tracking-and-motion-computer-vision",
+  "hours": 13,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "cv.imageprocessing"
+  ],
+  "assumes": [
+   "prog.python",
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "cs.835726ba",
+  "title": "Coding for Designers, Managers, and Entrepreneurs Specialization",
+  "provider": "University of Virginia",
+  "url": "https://www.coursera.org/specializations/coding-for-managers",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "web.frontend",
+   "prog.javascript"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.858f13b6",
+  "title": "Spring - Cloud Overview",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/spring-cloud-overview",
+  "hours": 9,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "ops.deploy",
+   "eng.api"
+  ],
+  "assumes": [
+   "prog.java",
+   "ops.cloud"
+  ]
+ },
+ {
+  "id": "cs.fb75bcbf",
+  "title": "Microsoft Azure Security Engineer Associate (AZ-500) Professional Certificate",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/professional-certificates/microsoft-azure-security-engineer-associate",
+  "hours": 130,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "sec.fundamentals"
+  ],
+  "assumes": [
+   "ops.cloud",
+   "net.fundamentals"
+  ]
+ },
+ {
+  "id": "cs.501201cb",
+  "title": "AI Workflow: Machine Learning, Visual Recognition and NLP",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/ibm-ai-workflow-machine-learning-vr-nlp",
+  "hours": 13,
+  "level": 5,
+  "kind": "course",
+  "teaches": [
+   "ml.supervised",
+   "cv.imageprocessing",
+   "nlp.text"
+  ],
+  "assumes": [
+   "ml.concepts",
+   "prog.python"
+  ]
+ },
+ {
+  "id": "cs.9d628361",
+  "title": "Expressway to Data Science: Python Programming Specialization",
+  "provider": "University of Colorado Boulder",
+  "url": "https://www.coursera.org/specializations/python-programming-data-science",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.python",
+   "data.pandas",
+   "data.viz"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.d703e465",
+  "title": "Android App Capstone",
+  "provider": "Meta",
+  "url": "https://www.coursera.org/learn/android-app-capstone",
+  "hours": 15,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "prog.java"
+  ],
+  "assumes": [
+   "prog.oop"
+  ]
+ },
+ {
+  "id": "cs.e382de82",
+  "title": "Data Ecosystem",
+  "provider": "Tableau Learning Partner",
+  "url": "https://www.coursera.org/learn/data-ecosystem",
+  "hours": 14,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.etl",
+   "data.sql"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.b49145da",
+  "title": "Basics of Cisco Networking",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/basics-of-cisco-networking",
+  "hours": 13,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "net.fundamentals"
+  ],
+  "assumes": [
+   "os.concepts"
+  ]
+ },
+ {
+  "id": "cs.1bdf3af9",
+  "title": "4G Network Fundamentals",
+  "provider": "Institut Mines-T\u00e9l\u00e9com",
+  "url": "https://www.coursera.org/learn/4g-network-fundamentals",
+  "hours": 16,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "net.fundamentals"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.4806f8ba",
+  "title": "Introduction to Computer Information Systems Specialization",
+  "provider": "University of California, Irvine",
+  "url": "https://www.coursera.org/specializations/introduction-computer-infosystems",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "os.concepts",
+   "net.fundamentals",
+   "it.support"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.5e4b27d6",
+  "title": "Data Analysis with Tableau",
+  "provider": "Tableau Learning Partner",
+  "url": "https://www.coursera.org/learn/data-analysis-with-tableau-public",
+  "hours": 26,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "data.viz",
+   "data.etl"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.2434c4be",
+  "title": "Population Health: Responsible Data Analysis",
+  "provider": "Universiteit Leiden",
+  "url": "https://www.coursera.org/learn/responsible-data-analysis",
+  "hours": 27,
+  "level": 1,
+  "kind": "course",
+  "teaches": [
+   "prog.r",
+   "math.stats"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "cs.143de15c",
+  "title": "Introduction to DevSecOps",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/learn/introduction-to-devsecops",
+  "hours": 21,
+  "level": 3,
+  "kind": "course",
+  "teaches": [
+   "sec.fundamentals",
+   "ops.deploy"
+  ],
+  "assumes": [
+   "prog.fundamentals"
+  ]
+ },
+ {
+  "id": "p.pandas",
+  "title": "Exploratory Analysis of a Public Dataset",
+  "provider": "Self guided",
+  "hours": 10,
+  "level": 2,
+  "kind": "project",
+  "teaches": [
+   "data.pandas",
+   "data.viz"
+  ],
+  "assumes": [
+   "prog.python"
+  ]
+ },
+ {
+  "id": "p.supervised",
+  "title": "Build a Churn Prediction Model",
+  "provider": "Self guided",
+  "hours": 12,
+  "level": 3,
+  "kind": "project",
+  "teaches": [
+   "ml.supervised",
+   "ml.evaluation"
+  ],
+  "assumes": [
+   "ml.concepts"
+  ]
+ },
+ {
+  "id": "p.cnn",
+  "title": "Image Classifier from Scratch",
+  "provider": "Self guided",
+  "hours": 14,
+  "level": 4,
+  "kind": "project",
+  "teaches": [
+   "dl.cnn"
+  ],
+  "assumes": [
+   "dl.backprop"
+  ]
+ },
+ {
+  "id": "p.rag",
+  "title": "Build a Document Question Answering Assistant",
+  "provider": "Self guided",
+  "hours": 16,
+  "level": 4,
+  "kind": "project",
+  "teaches": [
+   "nlp.rag"
+  ],
+  "assumes": [
+   "nlp.prompting",
+   "nlp.embeddings"
+  ]
+ },
+ {
+  "id": "p.deploy",
+  "title": "Ship a Model as an API",
+  "provider": "Self guided",
+  "hours": 12,
+  "level": 4,
+  "kind": "project",
+  "teaches": [
+   "ops.deploy",
+   "eng.api"
+  ],
+  "assumes": [
+   "ops.docker"
+  ]
+ },
+ {
+  "id": "p.finetune",
+  "title": "Fine Tune a Small Model on Your Own Data",
+  "provider": "Self guided",
+  "hours": 14,
+  "level": 5,
+  "kind": "project",
+  "teaches": [
+   "nlp.finetune"
+  ],
+  "assumes": [
+   "nlp.llm"
+  ]
+ },
+ {
+  "id": "a.python",
+  "title": "Python Fundamentals Check",
+  "provider": "Internal",
+  "hours": 2,
+  "level": 1,
+  "kind": "assessment",
+  "teaches": [
+   "prog.python",
+   "prog.oop"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "a.data",
+  "title": "Data Handling Quiz",
+  "provider": "Internal",
+  "hours": 2,
+  "level": 2,
+  "kind": "assessment",
+  "teaches": [
+   "data.pandas",
+   "data.viz",
+   "data.sql"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "a.ml",
+  "title": "Machine Learning Foundations Quiz",
+  "provider": "Internal",
+  "hours": 2,
+  "level": 2,
+  "kind": "assessment",
+  "teaches": [
+   "ml.concepts",
+   "ml.supervised",
+   "ml.evaluation"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "a.dl",
+  "title": "Deep Learning Concepts Test",
+  "provider": "Internal",
+  "hours": 2,
+  "level": 4,
+  "kind": "assessment",
+  "teaches": [
+   "dl.neuralnets",
+   "dl.backprop",
+   "dl.cnn",
+   "dl.rnn",
+   "dl.transformers"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "a.llm",
+  "title": "LLM Systems Assessment",
+  "provider": "Internal",
+  "hours": 2,
+  "level": 4,
+  "kind": "assessment",
+  "teaches": [
+   "nlp.llm",
+   "nlp.rag",
+   "nlp.finetune",
+   "nlp.prompting"
+  ],
+  "assumes": []
+ },
+ {
+  "id": "a.ops",
+  "title": "Deployment Readiness Check",
+  "provider": "Internal",
+  "hours": 2,
+  "level": 4,
+  "kind": "assessment",
+  "teaches": [
+   "ops.deploy",
+   "ops.monitor"
+  ],
+  "assumes": []
+ }
 ]

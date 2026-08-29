@@ -207,23 +207,6 @@
   "enrolled": 218905
  },
  {
-  "id": "cs.d46c3523",
-  "title": "Machine Learning Specialization",
-  "provider": "University of Washington",
-  "url": "https://www.coursera.org/specializations/machine-learning",
-  "hours": 87,
-  "level": 3,
-  "kind": "course",
-  "tags": [
-   "Classification Algorithms",
-   "Data Clustering Algorithms",
-   "Decision Tree",
-   "Machine Learning"
-  ],
-  "description": "This Specialization from leading researchers at the University of Washington introduces you to the exciting, high-demand field of Machine Learning. Through a series of practical case studies, you will gain applied experience in major areas of Machine Learning including Prediction, Classification, Clustering, and Information Retrieval. You will learn to analyze large and complex datasets, create systems that adapt and improve over time, and build intelligent applications that can make predictions from data. Applied Learning Project Learners will implement and apply predictive, classification, c",
-  "enrolled": 210728
- },
- {
   "id": "cs.7b4727a0",
   "title": "DeepLearning.AI TensorFlow Developer Professional Certificate",
   "provider": "DeepLearning.AI",
@@ -1498,7 +1481,7 @@
   "title": "SQL for Data Science Capstone Project",
   "provider": "University of California, Davis",
   "url": "https://www.coursera.org/learn/sql-data-science-capstone",
-  "hours": 33,
+  "hours": 35,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -1722,7 +1705,7 @@
   "title": "Exam Prep: AWS Certified Solutions Architect - Associate",
   "provider": "Amazon Web Services",
   "url": "https://www.coursera.org/learn/aws-certified-solutions-architect-associate",
-  "hours": 6,
+  "hours": 8,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -1773,7 +1756,7 @@
   "title": "Full Stack Application Development Capstone Project",
   "provider": "IBM",
   "url": "https://www.coursera.org/learn/ibm-cloud-native-full-stack-development-capstone",
-  "hours": 15,
+  "hours": 16,
   "level": 5,
   "kind": "course",
   "tags": [
@@ -1791,7 +1774,7 @@
   "title": "AI Infrastructure and Operations Fundamentals",
   "provider": "NVIDIA",
   "url": "https://www.coursera.org/learn/ai-infrastructure-operations-fundamentals",
-  "hours": 9,
+  "hours": 11,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -1810,7 +1793,7 @@
   "title": "Advanced Linear Models for Data Science 1: Least Squares",
   "provider": "Johns Hopkins University",
   "url": "https://www.coursera.org/learn/linear-models",
-  "hours": 6,
+  "hours": 8,
   "level": 5,
   "kind": "course",
   "tags": [
@@ -1936,7 +1919,7 @@
   "title": "Introduction to Medical Software",
   "provider": "Yale University",
   "url": "https://www.coursera.org/learn/introduction-to-medical-software",
-  "hours": 36,
+  "hours": 37,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -1988,7 +1971,7 @@
   "title": "Probabilistic Graphical Models 2: Inference",
   "provider": "Stanford University",
   "url": "https://www.coursera.org/learn/probabilistic-graphical-models-2-inference",
-  "hours": 36,
+  "hours": 38,
   "level": 5,
   "kind": "course",
   "tags": [
@@ -2005,7 +1988,7 @@
   "title": "Algorithmic Thinking (Part 2)",
   "provider": "Rice University",
   "url": "https://www.coursera.org/learn/algorithmic-thinking-2",
-  "hours": 9,
+  "hours": 11,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -2039,7 +2022,7 @@
   "title": "Fundamentals of Java Programming",
   "provider": "Board Infinity",
   "url": "https://www.coursera.org/learn/fundamentals-of-java-programming",
-  "hours": 15,
+  "hours": 17,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -2075,7 +2058,7 @@
   "title": "Spring MVC, Spring Boot  and Rest Controllers",
   "provider": "LearnQuest",
   "url": "https://www.coursera.org/learn/spring-mvc-rest-controller",
-  "hours": 9,
+  "hours": 11,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -2145,7 +2128,7 @@
   "title": "Intro to Operating Systems 1: Virtualization",
   "provider": "Codio",
   "url": "https://www.coursera.org/learn/codio-intro-to-operating-systems-1-virtualization",
-  "hours": 6,
+  "hours": 8,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -2161,7 +2144,7 @@
   "title": "Software Engineering: Modeling Software Systems using UML",
   "provider": "The Hong Kong University of Science and Technology",
   "url": "https://www.coursera.org/learn/software-engineering-modeling-software-systems-using-uml",
-  "hours": 27,
+  "hours": 28,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -2355,7 +2338,7 @@
   "title": "Foundations of Sports Analytics: Data, Representation, and Models in Sports",
   "provider": "University of Michigan",
   "url": "https://www.coursera.org/learn/foundations-sports-analytics",
-  "hours": 48,
+  "hours": 49,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -2371,7 +2354,7 @@
   "title": "Comparing Genes, Proteins, and Genomes (Bioinformatics III)",
   "provider": "University of California San Diego",
   "url": "https://www.coursera.org/learn/comparing-genomes",
-  "hours": 21,
+  "hours": 22,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -2388,7 +2371,7 @@
   "title": "Achieving Advanced Insights with BigQuery",
   "provider": "Google Cloud",
   "url": "https://www.coursera.org/learn/gcp-advanced-insights-bigquery",
-  "hours": 6,
+  "hours": 7,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -2488,7 +2471,7 @@
   "title": "CompTIA Practice",
   "provider": "LearnQuest",
   "url": "https://www.coursera.org/learn/comptia-practice",
-  "hours": 12,
+  "hours": 13,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -2506,7 +2489,7 @@
   "title": "Black-box and White-box Testing",
   "provider": "University of Minnesota",
   "url": "https://www.coursera.org/learn/black-box-white-box-testing",
-  "hours": 24,
+  "hours": 26,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -2597,7 +2580,7 @@
   "title": "Applying Machine Learning to your Data with Google Cloud",
   "provider": "Google Cloud",
   "url": "https://www.coursera.org/learn/data-insights-gcp-apply-ml",
-  "hours": 6,
+  "hours": 7,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -2668,7 +2651,7 @@
   "title": "The Data Science of Health Informatics",
   "provider": "Johns Hopkins University",
   "url": "https://www.coursera.org/learn/the-data-science-of-health-informatics",
-  "hours": 9,
+  "hours": 10,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -2739,7 +2722,7 @@
   "title": "Introduction to Statistical Analysis:  Hypothesis Testing",
   "provider": "SAS",
   "url": "https://www.coursera.org/learn/statistical-analysis-hypothesis-testing-sas",
-  "hours": 9,
+  "hours": 10,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -2790,7 +2773,7 @@
   "title": "Create Serverless Applications",
   "provider": "Microsoft",
   "url": "https://www.coursera.org/learn/create-serverless-applications",
-  "hours": 15,
+  "hours": 17,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -2806,7 +2789,7 @@
   "title": "HPE Aruba Networking Basics",
   "provider": "HPE Aruba Networking",
   "url": "https://www.coursera.org/learn/aruba-networking-basics",
-  "hours": 12,
+  "hours": 13,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -2854,22 +2837,20 @@
   "enrolled": 18018
  },
  {
-  "id": "cs.b42de138",
-  "title": "Business Analytics Specialization",
-  "provider": "University of Illinois Urbana-Champaign",
-  "url": "https://www.coursera.org/specializations/analytics",
-  "hours": 87,
+  "id": "cs.01b2d221",
+  "title": "Generative AI for Leaders",
+  "provider": "Vanderbilt University",
+  "url": "https://www.coursera.org/learn/generative-ai-for-leaders",
+  "hours": 4,
   "level": 1,
   "kind": "course",
   "tags": [
-   "Analytics",
-   "Data Analysis",
-   "Machine Learning",
-   "Rstudio",
-   "power bi"
+   "Generative AI",
+   "Prompt Engineering for Leaders",
+   "Using Generative AI in Leadership"
   ],
-  "description": "Our world has become increasingly digital, and business leaders need to make sense of the enormous amount of available data today. In order to make key strategic business decisions and leverage data as a competitive advantage, it is critical to understand how to draw key insights from this data. The Business Analytics specialization is targeted towards aspiring managers, senior managers, and business executives who wish to have a well-rounded knowledge of business analytics that integrates the areas of data science, analytics and business decision making. The courses in this Specialization wil",
-  "enrolled": 17951
+  "description": "Leaders are constantly seeking innovative tools to amplify their impact. Dive into the realm of Generative AI, a groundbreaking technology poised to redefine the leadership landscape more profoundly than the Internet itself. This course offers a comprehensive journey into understanding, applying, and mastering Generative AI as a robust tool to amplify leadership capabilities. You will gain hands-on experience that teaches you to use Generative AI for: - Agenda Architecting: Let Generative AI craft impeccable agendas for you. Say goodbye to oversight and hello to perfectly planned meetings. - P",
+  "enrolled": 17847
  },
  {
   "id": "cs.9f4ed3d6",
@@ -2916,7 +2897,7 @@
   "title": "Object-Oriented Hierarchies in Java",
   "provider": "LearnQuest",
   "url": "https://www.coursera.org/learn/object-oriented-hierarchies-java",
-  "hours": 18,
+  "hours": 20,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -2949,7 +2930,7 @@
   "title": "Introduction to Android graphics",
   "provider": "Imperial College London",
   "url": "https://www.coursera.org/learn/intro-android-graphics",
-  "hours": 18,
+  "hours": 20,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -2987,7 +2968,7 @@
   "title": "Java Class Library",
   "provider": "LearnQuest",
   "url": "https://www.coursera.org/learn/java-class-library",
-  "hours": 27,
+  "hours": 29,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -3004,7 +2985,7 @@
   "title": "Oracle Cloud Infrastructure Foundations",
   "provider": "Oracle",
   "url": "https://www.coursera.org/learn/oraclecloud-infrastructure-foundations",
-  "hours": 6,
+  "hours": 7,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -3021,7 +3002,7 @@
   "title": "Python Programming Fundamentals",
   "provider": "Duke University",
   "url": "https://www.coursera.org/learn/python-programming-fundamentals",
-  "hours": 21,
+  "hours": 23,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -3039,7 +3020,7 @@
   "title": "Math behind Moneyball",
   "provider": "University of Houston",
   "url": "https://www.coursera.org/learn/mathematics-sport",
-  "hours": 63,
+  "hours": 64,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -3146,7 +3127,7 @@
   "title": "Trustworthy Generative AI",
   "provider": "Vanderbilt University",
   "url": "https://www.coursera.org/learn/trustworthy-generative-ai",
-  "hours": 6,
+  "hours": 8,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -3212,7 +3193,7 @@
   "title": "Artificial Intelligence Algorithms Models and Limitations",
   "provider": "LearnQuest",
   "url": "https://www.coursera.org/learn/ai-algorithm-limitations",
-  "hours": 6,
+  "hours": 7,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -3279,7 +3260,7 @@
   "title": "Specialized Models: Time Series and Survival Analysis",
   "provider": "IBM",
   "url": "https://www.coursera.org/learn/time-series-survival-analysis",
-  "hours": 9,
+  "hours": 11,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -3372,7 +3353,7 @@
   "title": "Multiple Regression Analysis in Public Health",
   "provider": "Johns Hopkins University",
   "url": "https://www.coursera.org/learn/multiple-regression-analysis-public-health",
-  "hours": 12,
+  "hours": 14,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -3461,7 +3442,7 @@
   "title": "Introduction to Image Processing",
   "provider": "MathWorks",
   "url": "https://www.coursera.org/learn/introduction-image-processing",
-  "hours": 9,
+  "hours": 10,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -3493,7 +3474,7 @@
   "title": "Introduction to Automated Analysis",
   "provider": "University of Minnesota",
   "url": "https://www.coursera.org/learn/automated-analysis",
-  "hours": 18,
+  "hours": 19,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -3509,7 +3490,7 @@
   "title": "C++ Object Basics: Functions, Recursion, and Objects",
   "provider": "Codio",
   "url": "https://www.coursera.org/learn/cpp-object-basics",
-  "hours": 6,
+  "hours": 8,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -3527,7 +3508,7 @@
   "title": "C# for .NET Developers",
   "provider": "Board Infinity",
   "url": "https://www.coursera.org/learn/c-sharp-for-dot-net",
-  "hours": 15,
+  "hours": 17,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -3545,7 +3526,7 @@
   "title": "Simple Regression Analysis in Public Health",
   "provider": "Johns Hopkins University",
   "url": "https://www.coursera.org/learn/simple-regression-analysis-public-health",
-  "hours": 12,
+  "hours": 13,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -3612,6 +3593,24 @@
   "enrolled": 14354
  },
  {
+  "id": "cs.6772e705",
+  "title": "ChatGPT for Project Management: Execution, Tracking, Success",
+  "provider": "Vanderbilt University",
+  "url": "https://www.coursera.org/learn/chatgpt-project-management-execution",
+  "hours": 4,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "ChatGPT",
+   "Generative AI",
+   "Project Management",
+   "Prompt Engineering",
+   "Team Collaboration"
+  ],
+  "description": "In \"ChatGPT for Project Management: Execution, Tracking, Success,\" you\u2019ll learn how to harness the power of generative AI to streamline project management during the critical execution phase. This course focuses on using ChatGPT to synthesize information from various sources, such as emails and reports, into cohesive documents that accurately track project progress. You'll discover how AI can enhance scheduling, make meetings more engaging, and transform meeting transcripts into actionable work products. You\u2019ll also explore how multimodal prompting can facilitate real-time team collaboration, ",
+  "enrolled": 14329
+ },
+ {
   "id": "cs.eb161f2b",
   "title": "MLOps | Machine Learning Operations Specialization",
   "provider": "Duke University",
@@ -3652,11 +3651,29 @@
   "enrolled": 14175
  },
  {
+  "id": "cs.b5b357b8",
+  "title": "Learn to code with AI",
+  "provider": "Scrimba",
+  "url": "https://www.coursera.org/learn/learn-to-code-with-ai",
+  "hours": 4,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Cascading Style Sheets (CSS)",
+   "Computer Programming",
+   "HTML",
+   "JavaScript",
+   "Machine Learning"
+  ],
+  "description": "Imagine waking up tomorrow as a web developer. What would you want to build? With AI tools like ChatGPT, you're already a developer, regardless of your experience, if you know how to work with them. So in this course, you'll build functional, interactive front-end projects while learning how to write effective prompts and debug and refine your code with the help of AI. No coding experience needed! We'll focus on helping you prototype and build projects with AI's assistance, turning you from a non-coder into a capable problem solver. By the end of this course, you'll have a collection of mini-p",
+  "enrolled": 14136
+ },
+ {
   "id": "cs.f4e904ae",
   "title": "Software Engineering: Software Design and Project Management",
   "provider": "The Hong Kong University of Science and Technology",
   "url": "https://www.coursera.org/learn/software-engineering-software-design-and-project-management",
-  "hours": 18,
+  "hours": 19,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -3709,7 +3726,7 @@
   "title": "Data Structures & Backend with Java",
   "provider": "Board Infinity",
   "url": "https://www.coursera.org/learn/data-structures--backend-with-java",
-  "hours": 18,
+  "hours": 19,
   "level": 5,
   "kind": "course",
   "tags": [
@@ -3727,7 +3744,7 @@
   "title": "Probabilistic Deep Learning with TensorFlow 2",
   "provider": "Imperial College London",
   "url": "https://www.coursera.org/learn/probabilistic-deep-learning-with-tensorflow2",
-  "hours": 51,
+  "hours": 52,
   "level": 5,
   "kind": "course",
   "tags": [
@@ -3745,7 +3762,7 @@
   "title": "Data Engineering Capstone Project",
   "provider": "IBM",
   "url": "https://www.coursera.org/learn/data-enginering-capstone-project",
-  "hours": 15,
+  "hours": 16,
   "level": 5,
   "kind": "course",
   "tags": [
@@ -3763,7 +3780,7 @@
   "title": "Machine Learning Capstone",
   "provider": "IBM",
   "url": "https://www.coursera.org/learn/machine-learning-capstone",
-  "hours": 18,
+  "hours": 20,
   "level": 5,
   "kind": "course",
   "tags": [
@@ -3814,7 +3831,7 @@
   "title": "Business intelligence and data warehousing",
   "provider": "Universidad Nacional Aut\u00f3noma de M\u00e9xico",
   "url": "https://www.coursera.org/learn/business-intelligence-data-warehousing",
-  "hours": 9,
+  "hours": 10,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -3864,7 +3881,7 @@
   "title": "Automation Business Analysis - Concepts and Principles",
   "provider": "UiPath",
   "url": "https://www.coursera.org/learn/automation-business-analyst",
-  "hours": 12,
+  "hours": 14,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -3901,7 +3918,7 @@
   "title": "Scripting with Python and SQL for Data Engineering",
   "provider": "Duke University",
   "url": "https://www.coursera.org/learn/scripting-with-python-sql-for-data-engineering-duke",
-  "hours": 21,
+  "hours": 23,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -3937,7 +3954,7 @@
   "title": "The Power of Machine Learning: Boost Business, Accumulate Clicks, Fight Fraud, and Deny Deadbeats",
   "provider": "SAS",
   "url": "https://www.coursera.org/learn/the-power-of-machine-learning",
-  "hours": 12,
+  "hours": 14,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -3955,7 +3972,7 @@
   "title": "Microsoft Azure Machine Learning for Data Scientists",
   "provider": "Microsoft",
   "url": "https://www.coursera.org/learn/microsoft-azure-machine-learning-for-data-scientist",
-  "hours": 9,
+  "hours": 11,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -3991,7 +4008,7 @@
   "title": "WhatsApp Business Platform for Developers",
   "provider": "Meta",
   "url": "https://www.coursera.org/learn/whatsapp-business-platform-for-developers",
-  "hours": 15,
+  "hours": 16,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -4109,7 +4126,7 @@
   "title": "A Blueprint for Success \u2013 Your Video Pre-Production",
   "provider": "University of Colorado Boulder",
   "url": "https://www.coursera.org/learn/a-blueprint-for-success-your-video-pre-production",
-  "hours": 9,
+  "hours": 11,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -4126,7 +4143,7 @@
   "title": ".Net Full Stack Foundation",
   "provider": "Board Infinity",
   "url": "https://www.coursera.org/learn/dot-net-full-stack-foundation",
-  "hours": 15,
+  "hours": 17,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -4206,7 +4223,7 @@
   "title": "Being a researcher (in Information Science and Technology)",
   "provider": "Politecnico di Milano",
   "url": "https://www.coursera.org/learn/being-researcher",
-  "hours": 6,
+  "hours": 7,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -4276,7 +4293,7 @@
   "title": "Sampling People, Networks and Records",
   "provider": "University of Michigan",
   "url": "https://www.coursera.org/learn/sampling-methods",
-  "hours": 24,
+  "hours": 25,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -4332,7 +4349,7 @@
   "title": "Software Engineering: Implementation and Testing",
   "provider": "The Hong Kong University of Science and Technology",
   "url": "https://www.coursera.org/learn/software-engineering-implementation-and-testing",
-  "hours": 18,
+  "hours": 19,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -4344,11 +4361,29 @@
   "enrolled": 11486
  },
  {
+  "id": "cs.a49ea9c1",
+  "title": "Modern Data Warehouse Analytics in Microsoft Azure",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/data-warehouse-analytics-microsoft-azure",
+  "hours": 4,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Analytics",
+   "Data Visualization",
+   "Data Visualization Software",
+   "Data Warehousing",
+   "Microsoft Azure"
+  ],
+  "description": "In this course, you will learn the fundamentals of database concepts in a cloud environment, get basic skilling in cloud data services, and build your foundational knowledge of cloud data services within Microsoft Azure. You will explore the processing options available for building data analytics solutions in Azure. You will explore Azure Synapse Analytics, Azure Databricks, and Azure HDInsight. This is the fourth course in a program of five courses to help prepare you to take the Exam DP-900: Microsoft Azure Data Fundamentals. so that you can demonstrate that you have a foundational knowledg",
+  "enrolled": 11458
+ },
+ {
   "id": "cs.0aa2b9bc",
   "title": "Introduction to Concurrent Programming with GPUs",
   "provider": "Johns Hopkins University",
   "url": "https://www.coursera.org/learn/introduction-to-concurrent-programming",
-  "hours": 18,
+  "hours": 19,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -4381,7 +4416,7 @@
   "title": "Introduction to Python Fundamentals",
   "provider": "University of Colorado Boulder",
   "url": "https://www.coursera.org/learn/introduction-python-fundamentals",
-  "hours": 18,
+  "hours": 20,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -4437,6 +4472,23 @@
   ],
   "description": "With an expected growth rate of18%Opens in a new tab, there hasn\u2019t been a better time to enter the field of supply chain analytics. In this program, you\u2019ll learn in-demand skills like data analysis, demand forecasting, and cost analysis to get job-ready in less than 4 months, with no prior experience needed to get started. Supply chain analysts are essential in helping organizations achieve cost savings, reduce lead times, enhance customer satisfaction, and adapt to changing market conditions through data-driven insights and analytical approaches. This program is designed for entry-level profe",
   "enrolled": 11253
+ },
+ {
+  "id": "cs.4a02463f",
+  "title": "Surveillance Systems: The Building Blocks",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/learn/epidemiology-surveillance-systems",
+  "hours": 5,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Data Collection",
+   "Disease Surveillance",
+   "Epidemiology",
+   "surveillance"
+  ],
+  "description": "Epidemiology is often described as the cornerstone science and public health and public health surveillance is a cornerstone of epidemiology. This course will help you build your technical awareness and skills for working with a variety of surveillance systems. Along the way, we'll focus on system objectives, data reporting, the core surveillance attributes, and performance assessment. This course is designed for public health practitioners and anyone who wants to learn more about the basics of public health surveillance. If you develop or implement surveillance systems or aspire to do so or u",
+  "enrolled": 11129
  },
  {
   "id": "cs.1115346d",
@@ -4497,7 +4549,7 @@
   "title": "Java Servlet Pages (JSPs)",
   "provider": "LearnQuest",
   "url": "https://www.coursera.org/learn/java-servlet-pages",
-  "hours": 15,
+  "hours": 16,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -4524,6 +4576,23 @@
   ],
   "description": "Learn the inner workings of operating systems without installing anything! This course is designed for learners who are looking to maximize performance by understanding how operating systems work at a fundamental level. The modules in this course cover segmentation, paging, swapping, and virtual memory. To allow for a truly hands-on, self-paced learning experience, this course is video-free. Assignments contain short explanations with images and runnable code examples with suggested edits to explore code examples further, building a deeper understanding by doing. You\u2019ll benefit from instant fe",
   "enrolled": 10788
+ },
+ {
+  "id": "cs.5a351ad3",
+  "title": "Kali Linux",
+  "provider": "Board Infinity",
+  "url": "https://www.coursera.org/learn/kali-linux",
+  "hours": 4,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Cybersecurity and Ethical Hacking",
+   "Essential Tools in Kali Linux",
+   "Kali Linux",
+   "Network Monitoring and Management"
+  ],
+  "description": "\"Introduction to Kali Linux\" is a meticulously designed course to guide beginners through the essentials of Kali Linux, a powerful tool for cybersecurity. Spanning two modules, the course begins with a comprehensive introduction to Kali Linux, its installation, navigation, and essential tools. It then advances into practical applications, covering network monitoring, ethical hacking principles, penetration testing, and vulnerability assessment. This course is tailored to provide a solid foundation in Kali Linux, equipping learners with both theoretical knowledge and practical skills essential ",
+  "enrolled": 10724
  },
  {
   "id": "cs.c4ffc444",
@@ -4562,7 +4631,7 @@
   "title": "Earth Economics",
   "provider": "Erasmus University Rotterdam",
   "url": "https://www.coursera.org/learn/earth-economics",
-  "hours": 18,
+  "hours": 20,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -4579,7 +4648,7 @@
   "title": "Introduction to Microsoft Azure Synapse Analytics",
   "provider": "Microsoft",
   "url": "https://www.coursera.org/learn/introduction-to-microsoft-azure-synapse-analytics",
-  "hours": 6,
+  "hours": 8,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -4596,7 +4665,7 @@
   "title": "Generative AI:\u00a0Elevate your Software Development Career",
   "provider": "IBM",
   "url": "https://www.coursera.org/learn/generative-ai-elevate-software-development-career",
-  "hours": 15,
+  "hours": 17,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -4636,7 +4705,7 @@
   "title": "Rust Fundamentals",
   "provider": "Duke University",
   "url": "https://www.coursera.org/learn/rust-fundamentals",
-  "hours": 39,
+  "hours": 40,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -4715,7 +4784,7 @@
   "title": "Introduction to Generative AI",
   "provider": "Duke University",
   "url": "https://www.coursera.org/learn/intro-gen-ai",
-  "hours": 36,
+  "hours": 37,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -4774,7 +4843,7 @@
   "title": "Database Architecture, Scale, and NoSQL with Elasticsearch",
   "provider": "University of Michigan",
   "url": "https://www.coursera.org/learn/database-architecture-scale-nosql-elasticsearch-postgresql",
-  "hours": 9,
+  "hours": 10,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -4790,7 +4859,7 @@
   "title": "Designing an SAP Solution",
   "provider": "SAP",
   "url": "https://www.coursera.org/learn/designing-an-sap-solution",
-  "hours": 12,
+  "hours": 13,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -4808,7 +4877,7 @@
   "title": "Managing Cybersecurity Incidents and Disasters",
   "provider": "Kennesaw State University",
   "url": "https://www.coursera.org/learn/managing-cybersecurity-incidents-and-disasters",
-  "hours": 12,
+  "hours": 14,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -4936,7 +5005,7 @@
   "title": "Implementing an SAP Solution",
   "provider": "SAP",
   "url": "https://www.coursera.org/learn/implementing-an-sap-solution",
-  "hours": 12,
+  "hours": 14,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -4977,7 +5046,7 @@
   "title": "Financial Analysis of Scenarios and Decisions",
   "provider": "University of Illinois Urbana-Champaign",
   "url": "https://www.coursera.org/learn/financial-analysis-of-scenarios-and-decisions",
-  "hours": 15,
+  "hours": 17,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -5042,7 +5111,7 @@
   "title": "Visualization for Data Journalism",
   "provider": "University of Illinois Urbana-Champaign",
   "url": "https://www.coursera.org/learn/visualization-for-data-journalism",
-  "hours": 15,
+  "hours": 17,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -5078,7 +5147,7 @@
   "title": "JavaScript Programming Essentials",
   "provider": "IBM",
   "url": "https://www.coursera.org/learn/javascript-programming-essentials",
-  "hours": 15,
+  "hours": 16,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -5096,7 +5165,7 @@
   "title": "Linux and Bash for Data Engineering",
   "provider": "Duke University",
   "url": "https://www.coursera.org/learn/linux-and-bash-for-data-engineering-duke",
-  "hours": 63,
+  "hours": 65,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -5138,7 +5207,7 @@
   "title": "Intro to Analytic Thinking, Data Science, and Data Mining",
   "provider": "University of California, Irvine",
   "url": "https://www.coursera.org/learn/intro-analyticthinking-datascience-datamining",
-  "hours": 6,
+  "hours": 7,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -5155,7 +5224,7 @@
   "title": "Improving Your Statistical Questions",
   "provider": "Eindhoven University of Technology",
   "url": "https://www.coursera.org/learn/improving-statistical-questions",
-  "hours": 15,
+  "hours": 17,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -5280,6 +5349,21 @@
   "enrolled": 9088
  },
  {
+  "id": "cs.9bef4677",
+  "title": "Preparing for DP-900: Microsoft Azure Data Fundamentals Exam",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/microsoft-dp-900-exam-prep",
+  "hours": 5,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Microsoft Azure",
+   "Test Preparation"
+  ],
+  "description": "Microsoft certifications give you a professional advantage by providing globally recognized and industry-endorsed evidence of mastering skills in digital and cloud businesses.\u200b\u200b In this course, you will prepare to take the DP-900 Microsoft Azure Data Fundamentals certification exam. You will refresh your knowledge of the fundamentals of database concepts in a cloud environment, the basic skilling in cloud data services, and foundational knowledge of cloud data services within Microsoft Azure. You will recap on non-relational data offerings, provisioning and deploying non-relational databases, ",
+  "enrolled": 9084
+ },
+ {
   "id": "cs.73085d6b",
   "title": "SAP Technology Consultant Hands-on Project",
   "provider": "SAP",
@@ -5302,7 +5386,7 @@
   "title": "Building Generative AI-Powered Applications with Python",
   "provider": "IBM",
   "url": "https://www.coursera.org/learn/building-gen-ai-powered-applications",
-  "hours": 12,
+  "hours": 13,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -5318,7 +5402,7 @@
   "title": "Data Warehousing with Microsoft Azure Synapse Analytics",
   "provider": "Microsoft",
   "url": "https://www.coursera.org/learn/data-warehousing-with-microsoft-azure-synapse-analytics",
-  "hours": 12,
+  "hours": 14,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -5351,7 +5435,7 @@
   "title": "Data \u2013 What It Is, What We Can Do With It",
   "provider": "Johns Hopkins University",
   "url": "https://www.coursera.org/learn/data-what-it-is-what-can-we-do-with-it",
-  "hours": 9,
+  "hours": 11,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -5369,7 +5453,7 @@
   "title": "Intro to Operating Systems 3: Concurrency",
   "provider": "Codio",
   "url": "https://www.coursera.org/learn/codio-intro-to-operating-systems-3-concurrency",
-  "hours": 6,
+  "hours": 7,
   "level": 5,
   "kind": "course",
   "tags": [
@@ -5384,7 +5468,7 @@
   "title": "AI Workflow: Business Priorities and Data Ingestion",
   "provider": "IBM",
   "url": "https://www.coursera.org/learn/ibm-ai-workflow-business-priorities-data-ingestion",
-  "hours": 6,
+  "hours": 7,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -5402,7 +5486,7 @@
   "title": "Linux System Administration with IBM Power Systems",
   "provider": "IBM",
   "url": "https://www.coursera.org/learn/linux-system-administration-ibm-power-systems",
-  "hours": 12,
+  "hours": 14,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -5456,7 +5540,7 @@
   "title": "JSON and Natural Language Processing in PostgreSQL",
   "provider": "University of Michigan",
   "url": "https://www.coursera.org/learn/json-natural-language-processing-postgresql",
-  "hours": 15,
+  "hours": 16,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -5491,7 +5575,7 @@
   "title": "Microsoft Azure Cosmos DB",
   "provider": "Microsoft",
   "url": "https://www.coursera.org/learn/microsoft-azure-cosmos-db",
-  "hours": 9,
+  "hours": 10,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -5525,7 +5609,7 @@
   "title": "Solve Business Problems with AI and Machine Learning",
   "provider": "CertNexus",
   "url": "https://www.coursera.org/learn/solve-problems-ai-machine-learning",
-  "hours": 9,
+  "hours": 11,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -5543,7 +5627,7 @@
   "title": "Spark, Hadoop, and Snowflake for Data Engineering",
   "provider": "Duke University",
   "url": "https://www.coursera.org/learn/spark-hadoop-snowflake-data-engineering",
-  "hours": 27,
+  "hours": 29,
   "level": 5,
   "kind": "course",
   "tags": [
@@ -5561,7 +5645,7 @@
   "title": "Data for Machine Learning",
   "provider": "Alberta Machine Intelligence Institute",
   "url": "https://www.coursera.org/learn/data-machine-learning",
-  "hours": 9,
+  "hours": 11,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -5597,7 +5681,7 @@
   "title": "Mastering Laravel Framework and PHP",
   "provider": "Board Infinity",
   "url": "https://www.coursera.org/learn/laravel-framework-and-php",
-  "hours": 12,
+  "hours": 14,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -5632,7 +5716,7 @@
   "title": "Introduction to Computer Vision",
   "provider": "MathWorks",
   "url": "https://www.coursera.org/learn/intro-computer-vision",
-  "hours": 6,
+  "hours": 8,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -5650,7 +5734,7 @@
   "title": "Generative AI: Enhance your Data Analytics Career",
   "provider": "IBM",
   "url": "https://www.coursera.org/learn/generative-ai-enhance-your-data-analytics-career",
-  "hours": 12,
+  "hours": 14,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -5668,7 +5752,7 @@
   "title": "Intro to Operating Systems 4: Persistence",
   "provider": "Codio",
   "url": "https://www.coursera.org/learn/codio-intro-to-operating-systems-4-persistence",
-  "hours": 9,
+  "hours": 10,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -5684,7 +5768,7 @@
   "title": "Build and Operate Machine Learning Solutions with Azure",
   "provider": "Microsoft",
   "url": "https://www.coursera.org/learn/build-and-operate-machine-learning-solutions-with-azure",
-  "hours": 30,
+  "hours": 31,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -5701,7 +5785,7 @@
   "title": "Natural Language Processing in Microsoft Azure",
   "provider": "Microsoft",
   "url": "https://www.coursera.org/learn/nlp-microsoft-azure",
-  "hours": 6,
+  "hours": 7,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -5759,6 +5843,22 @@
   ],
   "description": "Learn how to work with web technologies and persistent data on Android applications even after you close or restart an app. There is a focus on web communication and developer tools and you will discover how Kotlin applications communicate over the web. You\u2019ll learn how data formats and web protocols work in relation to Kotlin apps. Furthermore, you will practice applying asynchronous programming techniques using Kotlin. Learn the core functionality and uses of the SQLite database management system (DBMS). Learn about web clients and databases by adding connections from your app to other langu",
   "enrolled": 8123
+ },
+ {
+  "id": "cs.523d9e17",
+  "title": "Prepare for DP-203: Data Engineering on Microsoft Azure Exam",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/microsoft-dp-203-practice-exam",
+  "hours": 5,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Information Engineering",
+   "Microsoft Azure",
+   "Test Preparation"
+  ],
+  "description": "Microsoft certifications give you a professional advantage by providing globally recognized and industry-endorsed evidence of mastering skills in digital and cloud businesses.\u200b\u200b In this course, you will prepare to take the DP-203 Microsoft Azure Data Fundamentals certification exam. You will refresh your knowledge of how to use various Azure data services and languages to store and produce cleansed and enhanced datasets for analysis. You will test your knowledge in a practice exam\u200b mapped to all the main topics covered in the DP-203 exam, ensuring you\u2019re well prepared for certification success",
+  "enrolled": 8122
  },
  {
   "id": "cs.cd32db94",
@@ -5886,7 +5986,7 @@
   "title": "Computer Vision in Microsoft Azure",
   "provider": "Microsoft",
   "url": "https://www.coursera.org/learn/computer-vision-microsoft-azure",
-  "hours": 6,
+  "hours": 8,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -5902,7 +6002,7 @@
   "title": "Perform data science with Azure Databricks",
   "provider": "Microsoft",
   "url": "https://www.coursera.org/learn/perform-data-science-with-azure-databricks",
-  "hours": 24,
+  "hours": 25,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -5937,7 +6037,7 @@
   "title": "Introduction to Model-Based Systems Engineering",
   "provider": "Siemens",
   "url": "https://www.coursera.org/learn/introduction-mbse",
-  "hours": 15,
+  "hours": 16,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -6013,7 +6113,7 @@
   "title": "MLOps Tools: MLflow and Hugging Face",
   "provider": "Duke University",
   "url": "https://www.coursera.org/learn/mlops-mlflow-huggingface-duke",
-  "hours": 24,
+  "hours": 25,
   "level": 5,
   "kind": "course",
   "tags": [
@@ -6031,7 +6131,7 @@
   "title": "Predictive Modeling with Logistic Regression using SAS",
   "provider": "SAS",
   "url": "https://www.coursera.org/learn/sas-predictive-modeling-using-logistic-regression",
-  "hours": 15,
+  "hours": 16,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -6048,7 +6148,7 @@
   "title": "AI and Climate Change",
   "provider": "DeepLearning.AI",
   "url": "https://www.coursera.org/learn/ai-and-climate-change",
-  "hours": 12,
+  "hours": 14,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -6084,7 +6184,7 @@
   "title": "Functional Programming Principles in Scala (Scala 2 version)",
   "provider": "\u00c9cole Polytechnique F\u00e9d\u00e9rale de Lausanne",
   "url": "https://www.coursera.org/learn/scala2-functional-programming",
-  "hours": 42,
+  "hours": 44,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -6102,7 +6202,7 @@
   "title": "Regression Modeling Fundamentals",
   "provider": "SAS",
   "url": "https://www.coursera.org/learn/regression-modeling-sas",
-  "hours": 9,
+  "hours": 11,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -6119,7 +6219,7 @@
   "title": "Monitoring and Observability for\u00a0Development and DevOps",
   "provider": "IBM",
   "url": "https://www.coursera.org/learn/monitoring-and-observability-for-development-and-devops",
-  "hours": 15,
+  "hours": 16,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -6137,7 +6237,7 @@
   "title": "Data Engineering with MS Azure Synapse Apache Spark Pools",
   "provider": "Microsoft",
   "url": "https://www.coursera.org/learn/data-engineering-with-ms-azure-synapse-apache-spark-pools",
-  "hours": 6,
+  "hours": 7,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -6260,7 +6360,7 @@
   "title": "Advanced Programming in Swift",
   "provider": "Meta",
   "url": "https://www.coursera.org/learn/advanced-programming-in-swift",
-  "hours": 18,
+  "hours": 19,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -6294,7 +6394,7 @@
   "title": "Introduction to .NET Core",
   "provider": "Board Infinity",
   "url": "https://www.coursera.org/learn/intro-to-dotnet-core",
-  "hours": 12,
+  "hours": 13,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -6343,7 +6443,7 @@
   "title": "Fundamentals of Data Analytics in the Public Sector with R",
   "provider": "University of Michigan",
   "url": "https://www.coursera.org/learn/fundamentals-of-data-analytics-in-the-public-sector-with-r",
-  "hours": 12,
+  "hours": 14,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -6379,7 +6479,7 @@
   "title": "Game Design and Development 3: 3D Shooter",
   "provider": "Michigan State University",
   "url": "https://www.coursera.org/learn/game-design-and-development-3",
-  "hours": 12,
+  "hours": 13,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -6391,6 +6491,39 @@
   ],
   "description": "If you love games and want to learn how to make them, then this course is your third step down that path. In this course you will learn the fundamentals of game design, including an understanding of level design, game balancing, prototyping, and playtesting, as well as game asset creation techniques. You will continue developing video games using industry standard game development tools, including the Unity 2020 game engine. At the end of the course you will have completed a 3D First-Person Shooter game, and will be able to leverage an array of game development techniques to create your own ba",
   "enrolled": 7027
+ },
+ {
+  "id": "cs.7cce66f7",
+  "title": "Introduction to Microsoft 365 Copilot",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/introduction-to-microsoft-365-copilot",
+  "hours": 4,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Effective Navigation and Configuration",
+   "Fundamental Understanding of Microsoft 365 Copilot",
+   "Integration with Microsoft 365 Suite",
+   "Prompt Engineering for Copilot"
+  ],
+  "description": "What if you could boost your efficiency by 40%, enhance your creativity by 70%, and significantly save time in your daily tasks? 'Introduction to O365 Copilot,' a beginner-level course expertly guided by Rob Rubin, Ph.D., can make this a reality for you. In 1.5 hours, unlock the potential of Microsoft 365 Copilot to revolutionize your work efficiency across the Microsoft 365 Suite. This course is your ticket to boosting productivity, transforming data management, and optimizing business processes through AI's power. By the end of the course, you will be able to: - Describe the fundamentals of ",
+  "enrolled": 7023
+ },
+ {
+  "id": "cs.442b09c0",
+  "title": "Use Generative AI as Your Thought Partner",
+  "provider": "Coursera",
+  "url": "https://www.coursera.org/learn/use-generativeai-as-your-thought-partner",
+  "hours": 4,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Generative AI enhanced productivity",
+   "LLM thought partnership",
+   "Prompt Engineering"
+  ],
+  "description": "This is a lesson from the comprehensive program, Navigating Generative AI for Leaders. In this lesson, you\u2019ll learn how Coursera CEO, Jeff Maggioncalda, leverages generative AI models to be a more effective CEO. Jeff will discuss how he uses AI covering everything from his set up and model choices, through hands-on prompting examples. He will introduce you to three prompting strategies: Basic Query mode, Context Enhanced mode and Thought Partner mode and provide examples of how he puts them to work in his day to day as Coursera\u2019s CEO. Jeff will explain the methods and guide you through hands-o",
+  "enrolled": 6994
  },
  {
   "id": "cs.a1bffead",
@@ -6456,7 +6589,7 @@
   "title": "Unix System Basics",
   "provider": "Codio",
   "url": "https://www.coursera.org/learn/codio-unix-system-basics",
-  "hours": 6,
+  "hours": 8,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -6543,6 +6676,24 @@
   "enrolled": 6667
  },
  {
+  "id": "cs.1cde890f",
+  "title": "Clinical Trials Analysis, Monitoring, and Presentation",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/learn/clinical-trials-analysis-presentation-statistical-monitoring",
+  "hours": 4,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Communication",
+   "Data Analysis",
+   "Monitoring",
+   "Research Methods",
+   "Sample Size Determination"
+  ],
+  "description": "In this course, you\u2019ll learn more advanced operational skills that you and your team need to run a successful clinical trial. You\u2019ll learn about the computation of sample size and how to develop a sample size calculation that\u2019s suitable for your trial design and outcome measures. You\u2019ll also learn to use statistical methods to monitor your trial for safety, integrity, and efficacy. Next, you\u2019ll learn how to report the results from your clinical trials through both journal articles and data monitoring reports. Finally, we\u2019ll discuss the role of the analyst throughout the trial process, plus a f",
+  "enrolled": 6641
+ },
+ {
   "id": "cs.d448573d",
   "title": "Secure Software Design Specialization",
   "provider": "University of Colorado System",
@@ -6579,6 +6730,23 @@
   "enrolled": 6601
  },
  {
+  "id": "cs.ff82f757",
+  "title": "Foundations of Red Hat Cloud-native Development",
+  "provider": "Red Hat",
+  "url": "https://www.coursera.org/learn/foundations-of-red-hat-cloud-native-development",
+  "hours": 5,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Cloud Applications",
+   "Cloud Computing",
+   "Cloud Platforms",
+   "Kubernetes"
+  ],
+  "description": "Foundations of Red Hat Cloud-native Development (DO100a) is designed for IT professionals without previous cloud application deployment experience to learn basic Kubernetes skills. This course is a part of a three-course specialization. In this specialization, you will run, deploy, and test containerized applications with zero-downtime releases. Describing containers and container orchestration with Kubernetes. 3 videos1 reading2 assignments Spin-up your first application in Kubernetes. 7 videos4 assignments",
+  "enrolled": 6578
+ },
+ {
   "id": "cs.161663fd",
   "title": "IBM AI Enterprise Workflow Specialization",
   "provider": "IBM",
@@ -6601,7 +6769,7 @@
   "title": "Working with Data",
   "provider": "Meta",
   "url": "https://www.coursera.org/learn/meta-working-with-data",
-  "hours": 18,
+  "hours": 20,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -6630,6 +6798,24 @@
   ],
   "description": "By completing Search Expert 101, 102 & 103, you will be able to write efficient searches, perform correlations, create visualizations, and leverage subsearches and lookups. This course will also show you how to get started using your machine data to provide actionable reports and dashboards for your organization. Investigate data using Splunk Search Processing Language (SPL) and create searches, reports, dashboards, and visualizations. Utilize temporary and persistent fields in searches and enrich data with fields from other data sources. Create, managed, and schedule reports and alerts to aut",
   "enrolled": 6549
+ },
+ {
+  "id": "cs.16ccfb93",
+  "title": "Execution, persistence, privilege escalation and evasion",
+  "provider": "Infosec",
+  "url": "https://www.coursera.org/learn/execution-persistence-privilege-escalation-and-evasion",
+  "hours": 4,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Cybersecurity",
+   "Execution",
+   "Persistence",
+   "Python Programming",
+   "privilege escalation and evasion"
+  ],
+  "description": "This course is a continuation of Python for Cybersecurity. The topics covered are execution, persistence, privilege escalation and evasion. A look at Python and Code execution. 5 videos1 assignment Explore the details of using Python for persistence 5 videos1 assignment Exploring privilege escalation with Python 5 videos1 assignment Explore the details of using Python for defense evasion. 5 videos1 assignment",
+  "enrolled": 6548
  },
  {
   "id": "cs.5864287a",
@@ -6689,7 +6875,7 @@
   "title": "Object Tracking and Motion Detection with Computer Vision",
   "provider": "MathWorks",
   "url": "https://www.coursera.org/learn/object-tracking-and-motion-computer-vision",
-  "hours": 12,
+  "hours": 13,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -6761,7 +6947,7 @@
   "title": "AI Workflow: Machine Learning, Visual Recognition and NLP",
   "provider": "IBM",
   "url": "https://www.coursera.org/learn/ibm-ai-workflow-machine-learning-vr-nlp",
-  "hours": 12,
+  "hours": 13,
   "level": 5,
   "kind": "course",
   "tags": [
@@ -6831,7 +7017,7 @@
   "title": "Data Ecosystem",
   "provider": "Tableau Learning Partner",
   "url": "https://www.coursera.org/learn/data-ecosystem",
-  "hours": 12,
+  "hours": 14,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -6844,28 +7030,11 @@
   "enrolled": 6410
  },
  {
-  "id": "cs.b25feef9",
-  "title": "Market Research Specialization",
-  "provider": "Queen Mary University of London",
-  "url": "https://www.coursera.org/specializations/market-research-market-research",
-  "hours": 87,
-  "level": 1,
-  "kind": "course",
-  "tags": [
-   "Analyse and interpret data",
-   "Develop a research proposal",
-   "Manage the development and use of different research instruments",
-   "Use qualitative and quantitative research methodologies"
-  ],
-  "description": "The Market Research Specialisation focuses on the essentials of research and the research process. This Specialisation will teach you how to use qualitative and quantitative research methods, how to develop and manage a questionnaire development strategy, how to develop measurements, how to collect data and how to analyze and present them. Once you have completed this Specialisation, you will have a good understanding of market research including: Essentials of market research Components of research proposal Research process Development of research instruments Sampling approaches Data analysis",
-  "enrolled": 6409
- },
- {
   "id": "cs.b49145da",
   "title": "Basics of Cisco Networking",
   "provider": "LearnQuest",
   "url": "https://www.coursera.org/learn/basics-of-cisco-networking",
-  "hours": 12,
+  "hours": 13,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -6883,7 +7052,7 @@
   "title": "Introduction to Solid Edge",
   "provider": "Siemens",
   "url": "https://www.coursera.org/learn/introduction-to-solid-edge",
-  "hours": 6,
+  "hours": 8,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -6897,7 +7066,7 @@
   "title": "4G Network Fundamentals",
   "provider": "Institut Mines-T\u00e9l\u00e9com",
   "url": "https://www.coursera.org/learn/4g-network-fundamentals",
-  "hours": 15,
+  "hours": 16,
   "level": 3,
   "kind": "course",
   "tags": [
@@ -6932,7 +7101,7 @@
   "title": "Data Analysis with Tableau",
   "provider": "Tableau Learning Partner",
   "url": "https://www.coursera.org/learn/data-analysis-with-tableau-public",
-  "hours": 24,
+  "hours": 26,
   "level": 1,
   "kind": "course",
   "tags": [
@@ -6975,185 +7144,5 @@
   ],
   "description": "DevSecOps has gained considerable momentum in recent years. It integrates software development (Dev), information security (Sec), and IT operations (Ops) so that businesses increase the value delivered by software. This course provides an overview of DevSecOps; introduces essential practices, such as continuous integration / continuous deployment (CI/CD), that shorten the cycle from implementing a feature to its availability to users; and describes how to start a DevSecOps transformation. This course is for anyone who develops or manages information technology (IT) systems and wants to break d",
   "enrolled": 6273
- },
- {
-  "id": "cs.c7890a68",
-  "title": "Introduction to Data Science and scikit-learn in Python",
-  "provider": "LearnQuest",
-  "url": "https://www.coursera.org/learn/data-science-and-scikit-learn-in-python",
-  "hours": 12,
-  "level": 1,
-  "kind": "course",
-  "tags": [
-   "Data Science",
-   "Machine Learning",
-   "Statistical Hypothesis Testing",
-   "medical data",
-   "regression"
-  ],
-  "description": "This course will teach you how to leverage the power of Python and artificial intelligence to create and test hypothesis. We'll start for the ground up, learning some basic Python for data science before diving into some of its richer applications to test our created hypothesis. We'll learn some of the most important libraries for exploratory data analysis (EDA) and machine learning such as Numpy, Pandas, and Sci-kit learn. After learning some of the theory (and math) behind linear regression, we'll go through and full pipeline of reading data, cleaning it, and applying a regression model to e",
-  "enrolled": 6267
- },
- {
-  "id": "cs.9b485b39",
-  "title": "Bring Your Story to Life \u2013 Video Post-Production",
-  "provider": "University of Colorado Boulder",
-  "url": "https://www.coursera.org/learn/bringing-your-story-to-life",
-  "hours": 9,
-  "level": 1,
-  "kind": "course",
-  "tags": [
-   "Editing",
-   "Video Editing",
-   "Video Post-Production",
-   "Video Production"
-  ],
-  "description": "In this course, we will explore the power and artistry of picture and sound editing. Although you\u2019re welcome to use the editing software of your choice, we\u2019ll be demonstrating non-linear editing using Adobe Premiere. We\u2019ll share with you our editing workflow for completing a visual story, from scripting and writing conversationally to the visuals, to recording voice overs, to building the rough cut, and polishing with the final cut. In this module, we plan to teach you how to use Adobe Premiere, which we\u2019ll use as an analog for common non-linear editing systems. Premiere uses many of the bells",
-  "enrolled": 6257
- },
- {
-  "id": "cs.50093739",
-  "title": "Object Oriented Programming Specialization",
-  "provider": "University of London",
-  "url": "https://www.coursera.org/specializations/object-oriented-programming-s12n",
-  "hours": 43,
-  "level": 3,
-  "kind": "course",
-  "tags": [
-   "C++",
-   "Computer Programming",
-   "Software Engineering"
-  ],
-  "description": "In this 5-course specialisation, you will develop various C++ programming skills. Rather than building many small programs as you will in other courses, we have taken a different approach: you will create a single, extensive program through the five courses. The program will be a simplified cryptocurrency exchange platform. We will cover the following learning objectives: Use control flow to build interactive, multi-branched, iterated programs Select appropriate data types to model the trading platform's information Convert algorithms from pseudo-code to C++ and test them Use classes to combin",
-  "enrolled": 6246
- },
- {
-  "id": "cs.e001a857",
-  "title": "Securing Linux Systems",
-  "provider": "LearnQuest",
-  "url": "https://www.coursera.org/learn/securing-linux-systems",
-  "hours": 12,
-  "level": 1,
-  "kind": "course",
-  "tags": [
-   "Cybersecurity",
-   "Information Technology",
-   "Linux"
-  ],
-  "description": "In this course, we look at security and the Linux operating system. The course material is a good for anyone preparing for the Linux Foundation Certified IT Associate (LFCA) exam or just interested in learning more about Linux. This course is the third course in a series that aims to prepare you for working as an information technology professional. In this course, you will be introduced to ownership, authentication, and authorization. We will drill into creating security through backups and redundancy. We concluded by looking at how to secure the perimeter of our network and systems. In this ",
-  "enrolled": 6200
- },
- {
-  "id": "cs.8cbb623c",
-  "title": "IBM Mainframe Developer Professional Certificate",
-  "provider": "IBM",
-  "url": "https://www.coursera.org/professional-certificates/ibm-mainframe-developer",
-  "hours": 130,
-  "level": 3,
-  "kind": "course",
-  "tags": [
-   "COBOL Structure",
-   "COBOL coding",
-   "Command-Line Interface",
-   "Computer Programming",
-   "Enterprise Software",
-   "Euler'S Totient Function",
-   "IBM Z",
-   "Interfaces",
-   "Intrinsic Function",
-   "Mainframe",
-   "Sorting",
-   "Symbols",
-   "security",
-   "z/OS"
-  ],
-  "description": "Gain the job-ready skills for an entry-level mainframe programming role. Mainframe computers continue to power many mission-critical, financial, banking, and government agency systems. There are 220 billion lines of COBOL in use today. 43% of banking systems are built on COBOL, and 95% percent of ATM swipes rely on COBOL code.\u00b9 COBOL is scalable, mature, and self-documenting. You'll learn about COBOL from its birth and through its evolution. You'll learn new features and aspects of the language, while also getting hands-on experience to increase your knowledge and abilities with COBOL as a who",
-  "enrolled": 6193
- },
- {
-  "id": "cs.2300814d",
-  "title": "Frontend Development using React",
-  "provider": "Board Infinity",
-  "url": "https://www.coursera.org/learn/frontend-development-using-react",
-  "hours": 21,
-  "level": 3,
-  "kind": "course",
-  "tags": [
-   "Cascading Style Sheets (CSS)",
-   "HTML",
-   "JavaScript",
-   "React (Web Framework)"
-  ],
-  "description": "Welcome to the Frontend Development using React course! In this program, you will learn the fundamentals of frontend development and how to build web applications using the React library. The course is best suitable for people with familiarity with web development. The first module, Introduction to HTML & CSS, will introduce you to the basics of HTML and CSS, which are the building blocks of web development. You will learn how to structure content with HTML and apply styles to your web pages with CSS. The second module, Introduction to JavaScript Programming, will teach you the fundamentals of",
-  "enrolled": 6181
- },
- {
-  "id": "cs.acc3457c",
-  "title": "Optimization for Decision Making",
-  "provider": "University of Minnesota",
-  "url": "https://www.coursera.org/learn/optimization-for-decision-making",
-  "hours": 12,
-  "level": 1,
-  "kind": "course",
-  "tags": [
-   "Analytics",
-   "Linear Programming (LP)",
-   "Mathematical Optimization"
-  ],
-  "description": "In this data-driven world, companies are often interested in knowing what is the \"best\" course of action, given the data. For example, manufacturers need to decide how many units of a product to produce given the estimated demand and raw material availability? Should they make all the products in-house or buy some from a third-party to meet the demand? Prescriptive Analytics is the branch of analytics that can provide answers to these questions. It is used for prescribing data-based decisions. The most important method in the prescriptive analytics toolbox is optimization. This course will int",
-  "enrolled": 6176
- },
- {
-  "id": "cs.ab967947",
-  "title": "Generative AI for Data Scientists Specialization",
-  "provider": "IBM",
-  "url": "https://www.coursera.org/specializations/generative-ai-for-data-scientists",
-  "hours": 43,
-  "level": 3,
-  "kind": "course",
-  "tags": [
-   "Artificial Intelligence (AI)",
-   "Data Science",
-   "Generative AI",
-   "Machine Learning",
-   "Prompt Engineering"
-  ],
-  "description": "Generative AI knowledge is now anessential data science skill. According to Gartner, \"By 2026, 20% of top data science teams will have rebranded as Cognitive Science or Science consultancies, increasing diversity in staff skills by 800%.\" With the industry trends in mind, IBM brings you this specialization to helpboost your career! Thisthree-course specializationis designed to help youkickstart your journeyinto applying generative AI in the field of data science. This includes existing and aspiring data professionals, such as data scientists, data analysts, data architects, and engineers, and ",
-  "enrolled": 6173
- },
- {
-  "id": "cs.f6ce077c",
-  "title": "Cybersecurity in the Cloud Specialization",
-  "provider": "University of Minnesota",
-  "url": "https://www.coursera.org/specializations/cybersecurity-cloud",
-  "hours": 43,
-  "level": 1,
-  "kind": "course",
-  "tags": [
-   "Access Control",
-   "Cross-Site Scripting",
-   "Cryptography",
-   "OWASP Top Ten Risks"
-  ],
-  "description": "This Specialization introduces cybersecurity to novice software developers. It presents essential security concepts and how they apply to cloud deployments. Learners develop proficiency at assessing cloud vulnerabilities and attack reports. They also dive into cloud provider documentation to apply available features to classic cybersecurity risks. Applied Learning Project Learners assess cloud vulnerabilities and attack reports in the context of US national documentation standards. They also become familiar with cloud provider documentation and how to apply available security measures to major",
-  "enrolled": 6167
- },
- {
-  "id": "cs.9fa2bbef",
-  "title": "Developing Applications in Python on AWS",
-  "provider": "Amazon Web Services",
-  "url": "https://www.coursera.org/learn/developing-applications-in-python-on-aws",
-  "hours": 9,
-  "level": 1,
-  "kind": "course",
-  "tags": [
-   "Automation",
-   "Cloud API",
-   "Python Programming",
-   "Software Architecture",
-   "Web Development"
-  ],
-  "description": "This course gives you a thorough introduction to the python programming language. You'll start by learning the definition of python, its history, semantics, and how it works. The first week concludes by writing a python script to solve a problem. In Week 2, you'll learn about Serverless Architectures and understand the differences between microservices, service-oriented and monolith architectures. You'll build a microservices architecture by learning how to use the following tools: AWS Lambda, Amazon API Gateway, and Cloud9. It's then time to go deep with AWS Databases. You'll see Amazon RDS a",
-  "enrolled": 6120
  }
 ]

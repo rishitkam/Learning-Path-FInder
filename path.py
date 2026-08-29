@@ -17,61 +17,81 @@ def load_catalog(g, data=DATA):
     return catalog
 
 
-def _terms(c, p, relevance):
+def _terms(c, p, rel):
     """The four ranking signals. Kept separately so the explainer can show its work."""
-    return {"relevance": relevance(c),
-            "level": 1 - abs(c["level"] - p["level"]) / 4,
+    return {"relevance": rel,
+            "level": 1 - abs(c["level"] - (p.get("level") or 2)) / 4,
             "style": 1.0 if c["kind"] == PREF.get(p.get("style")) else 0.5,
-            "effort": 1.0 if c["hours"] <= p["weekly_hours"] * 2 else 0.6}
-
-
-def _score(c, p, relevance):
-    return sum(W[k] * v for k, v in _terms(c, p, relevance).items())
+            "effort": 1.0 if c["hours"] <= (p.get("weekly_hours") or 1) * 2 else 0.6}
 
 
 def _best(cands, p, relevance):
-    return max(cands, key=lambda c: _score(c, p, relevance), default=None)
+    """Relevance is normalised across the candidates for one skill. Absolute cosine clusters too
+    tightly to matter, and every candidate here teaches the same skill, so only the ranking does.
+    Ties break on id, so regenerating the catalog cannot quietly reshuffle recommendations."""
+    if not cands:
+        return None, None
+    raw = [relevance(c) for c in cands]
+    lo, hi = min(raw), max(raw)
+    scored = [(_terms(c, p, (r - lo) / (hi - lo) if hi > lo else 0.5), c) for c, r in zip(cands, raw)]
+    why, best = max(scored, key=lambda x: (sum(W[k] * v for k, v in x[0].items()), x[1]["id"]))
+    if len(cands) == 1:
+        why["only_option"] = True      # nothing was chosen, so do not let the explainer claim it was
+    elif hi <= lo:
+        why["flat_relevance"] = True   # every candidate scored alike, so relevance decided nothing
+    return best, why
 
 
 def build(g, gap, profile, catalog, known=(), blocked=(), relevance=lambda c: 0.5):
-    ordered = g.order(gap)
+    blocked = set(blocked)
+    per_week = profile.get("weekly_hours") or 1
+    groups = g.phases(gap)                       # one topological sort, reused for the ordering below
 
-    # One resource per skill. A skill with no match stays in the path with nothing attached,
-    # because dropping it would break the chain and hiding it would be a lie.
+    # One resource per skill. A skill with no match keeps its slot with nothing attached, because
+    # dropping it would break the chain and hiding it would be a lie.
     mods = {}
-    for s in ordered:
-        best = _best([c for c in catalog if s in c["teaches"] and c["kind"] != "assessment"
-                      and c["id"] not in blocked], profile, relevance)
-        mods[s] = {"skill": s, "name": g.name(s), "resource": best,
-                   "why": _terms(best, profile, relevance) if best else None}
+    for s in (s for grp in groups for s in grp):
+        best, why = _best([c for c in catalog if s in c["teaches"] and c["kind"] != "assessment"
+                           and c["id"] not in blocked], profile, relevance)
+        mods[s] = {"skill": s, "name": g.name(s), "resource": best, "why": why}
+    module_ids = {m["resource"]["id"] for m in mods.values() if m["resource"]}
 
-    # Cut into phases at depth boundaries only, once a bucket holds about a month of their time.
-    target, buckets, bucket, hrs = profile["weekly_hours"] * 4, [], [], 0
-    for group in g.phases(gap):
-        bucket += group
-        hrs += sum(mods[s]["resource"]["hours"] if mods[s]["resource"] else 0 for s in group)
-        if hrs >= target:
-            buckets.append((bucket, hrs))
-            bucket, hrs = [], 0
-    if bucket:
-        buckets.append((bucket, hrs))
+    # One course can teach several skills in the path. It is the module for each of them, but its
+    # hours are real work only once, so we count a resource the first time we meet it.
+    counted, hours = set(), {}
+    for s in mods:
+        r = mods[s]["resource"]
+        hours[s] = 0 if not r or r["id"] in counted else r["hours"]
+        if r:
+            counted.add(r["id"])
 
     covered, used, week, phases = set(g.closure(known)), set(), 0, []
-    for skills, hrs in buckets:
+    bucket, target = [], per_week * 4            # a phase is about a month of this learner's time
+    for i, group in enumerate(groups):
+        bucket += group
+        if sum(hours[s] for s in bucket) < target and i < len(groups) - 1:
+            continue                             # keep filling, but never leave a tail unemitted
+
+        skills = bucket
+        bucket = []
         covered |= set(skills)
-        used |= {mods[s]["resource"]["id"] for s in skills if mods[s]["resource"]}
-        end = week + ceil(hrs / profile["weekly_hours"])
+        # A milestone must not be a course a later phase will present as a module, so we exclude
+        # every module id up front rather than only the ones seen so far.
         extra = lambda kind: _best(
-            [c for c in catalog if c["kind"] == kind and c["id"] not in used | set(blocked)
+            [c for c in catalog if c["kind"] == kind and c["id"] not in used | blocked | module_ids
              and set(c["assumes"]) <= covered and set(c["teaches"]) & set(skills)],
-            profile, relevance)
+            profile, relevance)[0]
         milestone, assessment = extra("project"), extra("assessment")
         used |= {x["id"] for x in (milestone, assessment) if x}
+
+        hrs = sum(hours[s] for s in skills) + sum(x["hours"] for x in (milestone, assessment) if x)
+        end = week + ceil(hrs / per_week)
         phases.append({"title": ", ".join(g.name(s) for s in skills[-2:]),
                        "skills": skills, "modules": [mods[s] for s in skills],
                        "weeks": (week, end), "hours": hrs,
                        "milestone": milestone, "assessment": assessment})
         week = end
 
+    horizon = profile.get("horizon_weeks")
     return {"phases": phases, "total_weeks": week,
-            "feasible": week <= (profile.get("horizon_weeks") or week)}
+            "feasible": week <= horizon if horizon is not None else True}

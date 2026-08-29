@@ -39,8 +39,10 @@ class SkillGraph:
         return self.roles.get(role)
 
     def closure(self, known):
-        """Knowing a skill implies knowing everything it was built on."""
-        return set(known) | {a for k in known for a in nx.ancestors(self.g, k)}
+        """Knowing a skill implies knowing everything it was built on. Ids we do not recognise are
+        ignored rather than fatal, since some arrive from a model or from stored learner state."""
+        known = {k for k in known if k in self.skills}
+        return known | {a for k in known for a in nx.ancestors(self.g, k)}
 
     def gap(self, goal, known=()):
         """Everything the goal depends on, minus everything the learner already has."""
@@ -49,7 +51,7 @@ class SkillGraph:
     def order(self, gap):
         """Teachable order. Tie broken on (depth, id) so the same profile always gives the same path."""
         return list(nx.lexicographical_topological_sort(
-            self.g.subgraph(gap), key=lambda s: (self.depth[s], s)))
+            self.g.subgraph(s for s in gap if s in self.skills), key=lambda s: (self.depth[s], s)))
 
     def phases(self, gap):
         """Group the ordered skills by depth. Same depth means no prerequisite ties them,

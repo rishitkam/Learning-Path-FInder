@@ -34,19 +34,32 @@ def _tool(g):
                          "horizon_weeks", "level", "style"]}}}
 
 
+def _num(v, lo, hi, default=None):
+    """The model sometimes hands back "10" or a list. Coerce or fall back, never raise."""
+    try:
+        return min(hi, max(lo, float(v)))
+    except (TypeError, ValueError):
+        return default
+
+
 def _clean(g, p):
     """Drop what the model got wrong instead of raising. A slightly thinner profile beats a crash."""
     for k in ("goal_skills", "known_skills"):
-        p[k] = [s for s in p.get(k) or [] if s in g.skills]
-    if p.get("role") not in g.roles:
+        v = p.get(k)
+        p[k] = [s for s in v if s in g.skills] if isinstance(v, list) else []
+    if not isinstance(p.get("role"), str) or p["role"] not in g.roles:
         p.pop("role", None)
-    else:
-        p["goal_skills"] = g.role_skills(p["role"])  # table wins: instant and always valid
-    if p.get("weekly_hours"):
-        p["weekly_hours"] = min(60, max(1, p["weekly_hours"]))
-    p["level"] = min(5, max(1, p.get("level") or 2))
+    elif not p["goal_skills"]:
+        # The table only fills a gap. If the conversation named skills, those are more current than
+        # a role we recorded several turns ago.
+        p["goal_skills"] = list(g.role_skills(p["role"]))
+    hours = _num(p.get("weekly_hours"), 1, 60)
+    p["weekly_hours"] = None if hours is None else (int(hours) if hours == int(hours) else round(hours, 1))
+    p["level"] = int(_num(p.get("level"), 1, 5, 2))
     if p.get("style") not in STYLES:
         p["style"] = "balanced"
+    if not isinstance(p.get("goal_text"), str) or not p["goal_text"].strip():
+        p.pop("goal_text", None)
     return p
 
 
@@ -65,8 +78,8 @@ def extract(g, transcript, prior=None):
                 tool_choice={"type": "function", "function": {"name": "set_profile"}},
                 messages=[{"role": "system", "content": system}, {"role": "user", "content": user}])
             new = json.loads(r.choices[0].message.tool_calls[0].function.arguments)
-            p.update({k: v for k, v in new.items() if v not in (None, [])})
-            return _clean(g, p)
+            # Merge into a copy. A failed attempt must not leave half its answer in the profile.
+            return _clean(g, {**p, **{k: v for k, v in new.items() if v not in (None, [])}})
         except Exception:
             continue
     return _clean(g, p)

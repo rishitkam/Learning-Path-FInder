@@ -337,3 +337,86 @@ to a working one for thirteen minutes. Every wait now prints.
 
 120b is fine for the explainer, which makes a handful of calls per session, and unusable for a fifty call
 pipeline. Worth remembering before we add any other batch step.
+
+## 46. The corpus cannot see fine grained prerequisites
+
+We built the graph from the labels and it lost 23 of our 34 hand written edges, including the whole deep
+learning spine: neural nets to backprop to CNN and RNN to transformers to large language models.
+
+The reason is that course descriptions are marketing copy. They say "assumes Python and basic machine
+learning". They never say "assumes backpropagation".
+
+So we union instead of replace. Our hand written edges stay exactly as they are, and the corpus connects
+the 34 skills it discovered. Hand written edges carry a support of 999 so a cycle break can never drop one.
+
+## 47. Corpus edges may not point at a hand written skill
+
+Even unioned, the first build produced a generative AI path containing JavaScript, Unix shell and Aruba
+networking. One bad edge did it: the corpus claimed cloud comes before supervised learning, and cloud
+carries JavaScript, shell, SQL and networking behind it.
+
+Course descriptions list topics that appear together, not prerequisites. Our 29 already have correct
+prerequisites, so the corpus is not allowed to add any to them. It only connects what it discovered.
+
+That took the path from 25 skills back to 18, and the chain behind supervised learning from 14 to 6.
+
+## 48. Nothing needed merging, because the design prevented duplicates
+
+Twelve pairs survived the structural blocks and all twelve are false positives sitting around 0.82: C++
+against C#, feature engineering against unsupervised learning.
+
+There is nothing to merge because every labelling batch saw the whole taxonomy, so the model reused ids
+instead of coining synonyms. We never built the model judge, since there was nothing for it to judge.
+The structural blocks and the similarity report stay as a cheap check for when the catalog grows.
+
+## 49. The build reads a frozen copy of the seed
+
+--apply overwrites skills.json, which was also the file the seed edges were read from. A second run
+would have read its own output back in as hand verified and baked corpus noise in permanently.
+
+The seed is now frozen once into seed_skills.json and read from there. The build is idempotent.
+
+## 50. Relevance is normalised across the candidates for one skill
+
+Wired in, it changed nothing. Raw cosine across the catalog spans 0.52 to 0.75, so within one skill the
+spread was 0.08 after weighting, while the style term alone swings 0.10.
+
+Absolute similarity is meaningless here because every candidate teaches the same skill. Only the ranking
+matters, so we normalise across the candidate set. Now the goal text visibly changes the picks: a data
+engineering goal pulls data engineering courses, an LLM goal pulls the cloud ML ones.
+
+## 51. What three review agents found
+
+We had three agents read every file and verify by running code. They found sixteen real bugs. The ones
+that mattered:
+
+Course hours were wrong for half the catalog. Most rows state the total outright, "7 hours to complete
+(3 weeks at 2 hours a week)", and we ignored it and multiplied 3 by 2. Coursera rounds the weekly figure
+down so it never round trips. 2256 of 4757 raw rows wrong, and it silently threw away 374 valid short
+courses that fell under our floor. Hours drive the effort score, the phase sizing and every week
+estimate, so this was poisoning every schedule we had shown anyone.
+
+The frozen seed was untracked while skills.json was modified. One commit would have published the
+derived graph with no freeze, and the next build would have read its own output back as hand verified.
+The exact corruption we wrote the freeze to prevent, sitting one command away.
+
+A course teaching two skills in one path was counted as work twice, inflating schedules by up to seven
+weeks. Milestone hours were left out of the schedule entirely, so a 300 hour capstone added no weeks at
+all. Resource picking had no tie break, so regenerating the catalog quietly reshuffled recommendations,
+which contradicts the reproducibility we claim.
+
+Three courses shared an id, because the hash used the title alone and two universities both publish a
+Machine Learning Specialization.
+
+Lesson: none of this was visible in any summary we printed. Every one was found by running the code
+against adversarial input or by checking a number against the raw source.
+
+## 52. The explainer may not claim a reason that did not exist
+
+Two cases where it was asserting things that were not true. A skill with one candidate has no winner,
+yet it still said the course was the closest match to their goal. And with no goal text the relevance
+signal is flat across every candidate, yet it outweighs the others and always ranked first, so it
+claimed a match on a signal that decided nothing.
+
+Both now say what actually happened, or say nothing. This matters more than it looks, because those
+strings are handed to the model as fact.

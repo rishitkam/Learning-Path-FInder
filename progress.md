@@ -78,6 +78,42 @@ make that call instead. And we went through three models: 120b runs out of free 
 proposes a new skill so it crams everything into the seed ids and mislabels most of it, qwen does the
 job properly. All of it is in decisions.md.
 
+**Commit 9, the real graph and relevance.** `scripts/build_graph.py` and `embed.py`. Turns 350 labelled
+courses into the actual prerequisite graph and switches semantic ranking on.
+
+Two problems we only found by looking at the paths it produced. Building purely from the corpus lost 23
+of our 34 hand written edges, because course descriptions say "assumes basic machine learning" and never
+"assumes backpropagation". And even after keeping ours, one bad corpus edge put cloud before supervised
+learning, which dragged JavaScript and Aruba networking into a generative AI path.
+
+So corpus edges are now additive only and may not point at a skill we wrote by hand. Path went from 25
+skills back to 18, and the chain behind supervised learning from 14 to 6.
+
+The taxonomy needed no merging at all. Every labelling batch saw the whole taxonomy, so the model reused
+ids rather than inventing synonyms, and the design prevented the duplicates instead of us cleaning up
+after them.
+
+63 skills, 59 edges, 362 catalog items, 350 of them real Coursera courses.
+
+**Commit 10, the review pass.** Three agents read every file and verified by running code. They found
+sixteen real bugs and we fixed all of them.
+
+The two that mattered most. Course hours were wrong for half the catalog, because most rows state the
+total outright and we ignored it and multiplied the span by the weekly rate instead. And the frozen seed
+file was untracked while skills.json was modified, so one commit would have published the derived graph
+with no freeze and the next build would have read its own output back as hand verified.
+
+Also fixed: a course teaching two skills was counted as work twice, milestone hours were left out of the
+schedule entirely, picking had no tie break so regenerating the catalog reshuffled recommendations,
+three courses shared an id, the explainer crashed on any path containing a skill with no course, and the
+profile cleaner raised on four shapes the model actually returns.
+
+None of it was visible in the numbers we print. All of it was found by running the code against
+adversarial input or checking a figure against the raw source.
+
+Rebuilt after the fixes: 72 skills, 65 edges, 370 catalog items. Verified end to end, all seven roles
+produce paths with no ordering violations.
+
 ## Roughly where we stand
 
 Engine done, nothing to look at yet.
@@ -91,18 +127,13 @@ Engine done, nothing to look at yet.
 | Explanations and learner questions | done |
 | Interface and dashboard | not started |
 | Progress tracking and feedback | done |
-| Real catalog with embeddings | pipeline done, graph build next |
+| Real catalog with embeddings | done |
 
-Six and a half of eight. The engine works end to end in the terminal and we now have 350 real courses
-labelled against a 63 skill taxonomy.
+Seven of eight. Everything except the interface is done and running on real data.
 
 ## Next
 
-Build the real prerequisite graph from those labels: dedupe the taxonomy, draw the edges, break any
-cycles, and switch relevance scoring on. The dedupe produces a short review list for us to check before
-anything overwrites the current graph.
-
-Then the interface, which waits until the whole team is on it since that is the part we should build
+The interface, which waits until the whole team is on it since that is the part we should build
 together. HANDOFF.md has the full detail.
 
 ## Known gaps we are carrying on purpose

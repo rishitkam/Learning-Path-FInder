@@ -1,68 +1,77 @@
 {
  "taxonomy": {
-  "prog.python": "Python Programming",
-  "prog.oop": "Object Oriented Programming",
-  "math.linalg": "Linear Algebra",
-  "math.stats": "Probability and Statistics",
-  "math.calculus": "Calculus",
-  "data.sql": "SQL and Databases",
+  "blockchain.fundamentals": "Blockchain Fundamentals",
+  "blockchain.smartcontracts": "Smart Contracts & Solidity",
+  "cs.algorithms": "Algorithms & Data Structures",
+  "cv.imageprocessing": "Image Processing",
+  "data.etl": "ETL and Data Warehousing",
   "data.pandas": "Data Wrangling with Pandas",
+  "data.spark": "Apache Spark & Big Data Processing",
+  "data.sql": "SQL and Databases",
   "data.viz": "Data Visualization",
-  "ml.concepts": "Machine Learning Foundations",
-  "ml.supervised": "Supervised Learning",
-  "ml.unsupervised": "Unsupervised Learning",
-  "ml.featureeng": "Feature Engineering",
-  "ml.evaluation": "Model Evaluation and Tuning",
-  "dl.neuralnets": "Neural Networks",
+  "db.nosql": "NoSQL Databases",
   "dl.backprop": "Backpropagation and Training",
   "dl.cnn": "Convolutional Networks",
+  "dl.neuralnets": "Neural Networks",
   "dl.rnn": "Recurrent Networks",
   "dl.transformers": "Transformers and Attention",
-  "nlp.text": "Text Processing",
+  "dsp.filters": "Digital Filter Design and Signal Processing",
+  "dsp.fourier": "Fourier Analysis and Spectral Methods",
+  "eng.api": "Building APIs",
+  "eng.git": "Version Control with Git",
+  "eng.requirements": "Requirements Engineering",
+  "eng.testing": "Software Testing & Verification",
+  "game.development": "Game Development",
+  "iot.embedded": "IoT & Embedded Systems",
+  "it.support": "IT Support & Troubleshooting",
+  "math.calculus": "Calculus",
+  "math.linalg": "Linear Algebra",
+  "math.optimization": "Mathematical Optimization",
+  "math.stats": "Probability and Statistics",
+  "ml.concepts": "Machine Learning Foundations",
+  "ml.evaluation": "Model Evaluation and Tuning",
+  "ml.featureeng": "Feature Engineering",
+  "ml.reinforcement": "Reinforcement Learning",
+  "ml.supervised": "Supervised Learning",
+  "ml.unsupervised": "Unsupervised Learning",
+  "net.fundamentals": "Network Fundamentals",
   "nlp.embeddings": "Word and Sentence Embeddings",
+  "nlp.finetune": "Fine Tuning and Adaptation",
   "nlp.llm": "Large Language Models",
   "nlp.prompting": "Prompt Engineering",
   "nlp.rag": "Retrieval Augmented Generation",
-  "nlp.finetune": "Fine Tuning and Adaptation",
-  "eng.git": "Version Control with Git",
-  "eng.api": "Building APIs",
-  "ops.docker": "Containers and Docker",
-  "ops.deploy": "Model Deployment",
-  "ops.monitor": "Monitoring and Retraining",
-  "prog.shell": "Unix Shell / Bash Scripting",
-  "prog.cpp": "C++ Programming",
-  "cv.imageprocessing": "Image Processing",
-  "prog.javascript": "JavaScript Programming",
-  "prog.concurrency": "Concurrent and Parallel Programming",
-  "prog.java": "Java Programming",
-  "prog.rust": "Rust Programming",
+  "nlp.text": "Text Processing",
   "ops.cloud": "Cloud Infrastructure & Services",
-  "net.fundamentals": "Network Fundamentals",
-  "it.support": "IT Support & Troubleshooting",
-  "sec.fundamentals": "Security Fundamentals",
-  "db.nosql": "NoSQL Databases",
-  "math.optimization": "Mathematical Optimization",
-  "prog.swift": "Swift Programming",
-  "data.spark": "Apache Spark & Big Data Processing",
-  "web.frontend": "Web Frontend (HTML/CSS)",
-  "iot.embedded": "IoT & Embedded Systems",
-  "cs.algorithms": "Algorithms & Data Structures",
-  "prog.r": "R Programming",
-  "game.development": "Game Development",
-  "data.etl": "ETL and Data Warehousing",
-  "eng.requirements": "Requirements Engineering",
-  "prog.matlab": "MATLAB Programming",
-  "prog.csharp": "C# Programming",
+  "ops.deploy": "Model Deployment",
+  "ops.docker": "Containers and Docker",
+  "ops.monitor": "Monitoring and Retraining",
   "os.concepts": "Operating System Concepts",
-  "prog.php": "PHP Programming",
-  "eng.testing": "Software Testing & Verification",
+  "prog.concurrency": "Concurrent and Parallel Programming",
+  "prog.cpp": "C++ Programming",
+  "prog.csharp": "C# Programming",
   "prog.functional": "Functional Programming",
-  "ml.reinforcement": "Reinforcement Learning",
-  "blockchain.fundamentals": "Blockchain Fundamentals",
-  "blockchain.smartcontracts": "Smart Contracts & Solidity",
   "prog.hdl": "Hardware Description Languages (VHDL/Verilog)",
-  "dsp.fourier": "Fourier Analysis and Spectral Methods",
-  "dsp.filters": "Digital Filter Design and Signal Processing"
+  "prog.java": "Java Programming",
+  "prog.javascript": "JavaScript Programming",
+  "prog.matlab": "MATLAB Programming",
+  "prog.oop": "Object Oriented Programming",
+  "prog.php": "PHP Programming",
+  "prog.python": "Python Programming",
+  "prog.r": "R Programming",
+  "prog.rust": "Rust Programming",
+  "prog.shell": "Unix Shell / Bash Scripting",
+  "prog.swift": "Swift Programming",
+  "sec.fundamentals": "Security Fundamentals",
+  "web.frontend": "Web Frontend (HTML/CSS)",
+  "prog.fundamentals": "Programming Fundamentals",
+  "eng.agile": "Agile & Software Process Management",
+  "eng.design": "Software Design & Architecture",
+  "prog.c": "C Programming",
+  "sec.architecture": "Security Architecture & Design",
+  "prog.distributed": "Distributed Programming",
+  "sec.cryptography": "Applied Cryptography",
+  "it.mainframe": "Mainframe Systems (z/OS, Linux on Z)",
+  "sec.forensics": "Digital/Computer Forensics"
  },
  "labels": {
   "cs.a6053740": {
@@ -74,10 +83,12 @@
   },
   "cs.86593d80": {
    "teaches": [
-    "data.sql",
-    "ops.cloud"
+    "ops.cloud",
+    "data.viz"
    ],
-   "assumes": []
+   "assumes": [
+    "data.sql"
+   ]
   },
   "cs.52058562": {
    "teaches": [
@@ -89,29 +100,33 @@
   "cs.cbac7a39": {
    "teaches": [
     "data.sql",
+    "db.nosql",
     "ops.cloud"
    ],
    "assumes": []
   },
   "cs.8cd51dbc": {
    "teaches": [
-    "nlp.prompting",
-    "nlp.llm"
+    "nlp.llm",
+    "nlp.prompting"
    ],
    "assumes": []
   },
   "cs.161d53e1": {
    "teaches": [
-    "ml.concepts"
+    "ml.concepts",
+    "ml.evaluation"
    ],
    "assumes": []
   },
   "cs.29ddd67b": {
    "teaches": [
     "nlp.llm",
-    "nlp.prompting"
+    "dl.transformers"
    ],
-   "assumes": []
+   "assumes": [
+    "ml.concepts"
+   ]
   },
   "cs.7b1ba10e": {
    "teaches": [
@@ -129,19 +144,18 @@
   },
   "cs.f0341e97": {
    "teaches": [
-    "prog.shell"
+    "prog.shell",
+    "os.concepts"
    ],
    "assumes": []
   },
   "cs.25f60759": {
    "teaches": [
     "ops.cloud",
-    "ml.concepts",
-    "ops.deploy"
+    "ops.deploy",
+    "ml.concepts"
    ],
-   "assumes": [
-    "prog.python"
-   ]
+   "assumes": []
   },
   "cs.c19b38b2": {
    "teaches": [
@@ -161,23 +175,19 @@
     "data.pandas",
     "ml.concepts"
    ],
-   "assumes": [
-    "prog.python"
-   ]
+   "assumes": []
   },
   "cs.068c8e98": {
    "teaches": [
-    "cv.imageprocessing"
+    "cv.imageprocessing",
+    "prog.matlab"
    ],
-   "assumes": [
-    "math.linalg"
-   ]
+   "assumes": []
   },
   "cs.fdbf8715": {
    "teaches": [
     "ml.concepts",
-    "ops.cloud",
-    "nlp.text"
+    "ops.cloud"
    ],
    "assumes": []
   },
@@ -190,7 +200,7 @@
   },
   "cs.fc2fa84a": {
    "teaches": [
-    "data.sql",
+    "db.nosql",
     "ops.cloud"
    ],
    "assumes": []
@@ -209,7 +219,8 @@
   },
   "cs.38c0a848": {
    "teaches": [
-    "prog.python"
+    "prog.python",
+    "prog.oop"
    ],
    "assumes": []
   },
@@ -232,9 +243,12 @@
   },
   "cs.db925584": {
    "teaches": [
+    "eng.testing",
     "ops.deploy"
    ],
-   "assumes": []
+   "assumes": [
+    "eng.requirements"
+   ]
   },
   "cs.bcbde476": {
    "teaches": [
@@ -242,12 +256,12 @@
     "ml.supervised"
    ],
    "assumes": [
-    "ml.concepts",
-    "prog.python"
+    "ml.concepts"
    ]
   },
   "cs.82fd49bf": {
    "teaches": [
+    "prog.csharp",
     "eng.api"
    ],
    "assumes": [
@@ -257,7 +271,8 @@
   "cs.52d84fd6": {
    "teaches": [
     "ops.cloud",
-    "ops.docker"
+    "ops.deploy",
+    "os.concepts"
    ],
    "assumes": [
     "prog.shell"
@@ -265,17 +280,17 @@
   },
   "cs.aff0e65b": {
    "teaches": [
-    "dl.cnn"
+    "cv.imageprocessing"
    ],
    "assumes": [
-    "cv.imageprocessing",
-    "prog.python"
+    "prog.python",
+    "ml.concepts"
    ]
   },
   "cs.e382de82": {
    "teaches": [
-    "data.sql",
-    "ml.concepts"
+    "data.etl",
+    "data.sql"
    ],
    "assumes": []
   },
@@ -298,21 +313,23 @@
   },
   "cs.bb05f8b4": {
    "teaches": [
-    "db.nosql"
+    "db.nosql",
+    "ops.cloud"
    ],
-   "assumes": []
+   "assumes": [
+    "data.sql"
+   ]
   },
   "cs.a0b88919": {
    "teaches": [
-    "prog.oop",
+    "prog.csharp",
     "eng.api"
    ],
    "assumes": []
   },
   "cs.222f1cbb": {
    "teaches": [
-    "data.viz",
-    "data.pandas"
+    "data.viz"
    ],
    "assumes": [
     "prog.python"
@@ -321,12 +338,13 @@
   "cs.8e7475a2": {
    "teaches": [
     "prog.javascript",
-    "eng.api"
+    "web.frontend"
    ],
    "assumes": []
   },
   "cs.7780f7f3": {
    "teaches": [
+    "prog.fundamentals",
     "prog.oop"
    ],
    "assumes": []
@@ -334,27 +352,25 @@
   "cs.1ac423df": {
    "teaches": [
     "ops.cloud",
-    "data.pandas",
-    "data.viz"
+    "data.etl"
    ],
    "assumes": []
   },
   "cs.a6280283": {
    "teaches": [
-    "ops.deploy"
+    "ml.concepts"
    ],
    "assumes": [
-    "ml.concepts"
+    "prog.python"
    ]
   },
   "cs.c98f65b2": {
    "teaches": [
     "ml.supervised",
-    "ml.evaluation"
+    "ml.featureeng"
    ],
    "assumes": [
-    "data.pandas",
-    "ml.featureeng"
+    "prog.matlab"
    ]
   },
   "cs.0aa2b9bc": {
@@ -362,44 +378,50 @@
     "prog.concurrency"
    ],
    "assumes": [
-    "prog.cpp",
-    "prog.python"
+    "prog.cpp"
    ]
   },
   "cs.3eef23d2": {
    "teaches": [
-    "prog.python"
+    "prog.python",
+    "prog.fundamentals"
    ],
    "assumes": []
   },
   "cs.035ad6e5": {
    "teaches": [
-    "prog.python"
+    "prog.python",
+    "prog.fundamentals"
    ],
    "assumes": []
   },
   "cs.1f976a66": {
    "teaches": [
+    "prog.python",
     "data.pandas",
     "data.viz"
    ],
    "assumes": [
-    "prog.python"
+    "prog.fundamentals"
    ]
   },
   "cs.a147a044": {
    "teaches": [
-    "prog.oop"
+    "prog.java",
+    "prog.oop",
+    "cs.algorithms"
    ],
    "assumes": [
-    "prog.java"
+    "prog.fundamentals"
    ]
   },
   "cs.9efe1be1": {
    "teaches": [
     "data.viz"
    ],
-   "assumes": []
+   "assumes": [
+    "data.sql"
+   ]
   },
   "cs.c7a87c96": {
    "teaches": [
@@ -411,18 +433,18 @@
   },
   "cs.7ff6206c": {
    "teaches": [
-    "nlp.llm",
-    "nlp.prompting"
+    "nlp.prompting",
+    "nlp.llm"
    ],
    "assumes": [
-    "prog.python"
+    "prog.fundamentals"
    ]
   },
   "cs.2ed36017": {
    "teaches": [
+    "ml.concepts",
     "cv.imageprocessing",
-    "data.viz",
-    "ml.concepts"
+    "data.viz"
    ],
    "assumes": [
     "prog.python"
@@ -436,57 +458,53 @@
   },
   "cs.28e5497c": {
    "teaches": [
-    "prog.javascript",
+    "web.frontend",
     "db.nosql",
-    "eng.api"
+    "prog.javascript",
+    "sec.fundamentals"
    ],
    "assumes": [
-    "prog.oop"
+    "prog.fundamentals"
    ]
   },
   "cs.5e4b27d6": {
    "teaches": [
-    "data.viz"
+    "data.viz",
+    "data.etl"
    ],
-   "assumes": [
-    "data.pandas"
-   ]
+   "assumes": []
   },
   "cs.0fb30652": {
    "teaches": [
-    "sec.fundamentals"
+    "sec.fundamentals",
+    "net.fundamentals",
+    "ops.monitor"
    ],
-   "assumes": [
-    "net.fundamentals"
-   ]
+   "assumes": []
   },
   "cs.2434c4be": {
    "teaches": [
-    "math.stats",
-    "data.viz",
-    "ml.supervised"
+    "prog.r",
+    "math.stats"
    ],
    "assumes": []
   },
   "cs.793b884a": {
    "teaches": [
-    "ml.concepts",
+    "prog.matlab",
+    "ml.featureeng",
     "data.viz",
-    "ml.featureeng"
+    "ml.concepts"
    ],
-   "assumes": [
-    "math.stats"
-   ]
+   "assumes": []
   },
   "cs.8197d582": {
    "teaches": [
     "nlp.llm",
     "ml.concepts",
-    "nlp.prompting"
-   ],
-   "assumes": [
     "prog.python"
-   ]
+   ],
+   "assumes": []
   },
   "cs.8ca566e0": {
    "teaches": [
@@ -522,7 +540,8 @@
   },
   "cs.2df6afae": {
    "teaches": [
-    "ops.cloud"
+    "ops.cloud",
+    "net.fundamentals"
    ],
    "assumes": []
   },
@@ -536,37 +555,41 @@
    "teaches": [
     "it.support"
    ],
-   "assumes": []
+   "assumes": [
+    "os.concepts"
+   ]
   },
   "cs.226cd3ae": {
    "teaches": [
     "net.fundamentals"
    ],
-   "assumes": []
+   "assumes": [
+    "os.concepts"
+   ]
   },
   "cs.247a500c": {
    "teaches": [
-    "sec.fundamentals"
+    "sec.fundamentals",
+    "ops.cloud",
+    "net.fundamentals"
    ],
-   "assumes": [
-    "ops.cloud"
-   ]
+   "assumes": []
   },
   "cs.f27fab07": {
    "teaches": [
-    "ops.monitor",
     "sec.fundamentals"
    ],
    "assumes": [
-    "it.support"
+    "net.fundamentals"
    ]
   },
   "cs.b49145da": {
    "teaches": [
-    "net.fundamentals",
-    "sec.fundamentals"
+    "net.fundamentals"
    ],
-   "assumes": []
+   "assumes": [
+    "os.concepts"
+   ]
   },
   "cs.e001a857": {
    "teaches": [
@@ -614,27 +637,30 @@
   "cs.6e6f155a": {
    "teaches": [
     "math.stats",
+    "data.viz",
     "prog.python"
    ],
-   "assumes": []
+   "assumes": [
+    "prog.fundamentals"
+   ]
   },
   "cs.5c92afbc": {
    "teaches": [
     "prog.oop",
-    "eng.api"
+    "prog.java",
+    "eng.design"
    ],
    "assumes": [
-    "prog.java"
+    "prog.fundamentals"
    ]
   },
   "cs.8a0eb4ed": {
    "teaches": [
-    "ops.cloud",
-    "ops.deploy"
+    "ops.deploy",
+    "ops.docker"
    ],
    "assumes": [
-    "net.fundamentals",
-    "prog.shell"
+    "ops.cloud"
    ]
   },
   "cs.1e9a93a3": {
@@ -646,16 +672,16 @@
   },
   "cs.ebb82f33": {
    "teaches": [
-    "data.sql",
     "data.viz",
     "ops.cloud"
    ],
-   "assumes": []
+   "assumes": [
+    "data.sql"
+   ]
   },
   "cs.b532633f": {
    "teaches": [
     "prog.python",
-    "data.pandas",
     "data.viz"
    ],
    "assumes": []
@@ -667,7 +693,7 @@
    ],
    "assumes": [
     "net.fundamentals",
-    "prog.shell"
+    "prog.fundamentals"
    ]
   },
   "cs.0dd33242": {
@@ -680,13 +706,14 @@
   "cs.cc9815bc": {
    "teaches": [
     "math.stats",
-    "ml.supervised"
+    "prog.r"
    ],
    "assumes": []
   },
   "cs.49115380": {
    "teaches": [
     "prog.cpp",
+    "prog.fundamentals",
     "prog.oop"
    ],
    "assumes": []
@@ -702,14 +729,14 @@
   "cs.b771f375": {
    "teaches": [
     "ml.concepts",
-    "data.viz"
+    "ml.supervised"
    ],
    "assumes": []
   },
   "cs.a0f94e29": {
    "teaches": [
     "data.sql",
-    "ops.cloud"
+    "data.spark"
    ],
    "assumes": []
   },
@@ -723,46 +750,46 @@
    "teaches": [
     "sec.fundamentals",
     "net.fundamentals",
-    "prog.shell"
+    "os.concepts"
    ],
    "assumes": []
   },
   "cs.98ec6674": {
    "teaches": [
     "prog.java",
-    "eng.api"
+    "eng.api",
+    "eng.design"
    ],
    "assumes": [
-    "prog.oop"
+    "prog.fundamentals"
    ]
   },
   "cs.b021f990": {
    "teaches": [
-    "ops.cloud",
     "data.sql",
-    "db.nosql"
+    "db.nosql",
+    "ops.cloud"
    ],
    "assumes": []
   },
   "cs.0ea94a9c": {
    "teaches": [
     "ml.concepts",
-    "ops.cloud",
-    "nlp.text"
+    "ops.cloud"
    ],
    "assumes": []
   },
   "cs.0288041e": {
    "teaches": [
-    "ml.concepts",
-    "ops.cloud"
+    "ops.cloud",
+    "ml.concepts"
    ],
    "assumes": []
   },
   "cs.696df872": {
    "teaches": [
     "ml.concepts",
-    "ops.cloud"
+    "data.viz"
    ],
    "assumes": []
   },
@@ -775,7 +802,8 @@
   },
   "cs.2eb6135b": {
    "teaches": [
-    "data.sql"
+    "data.sql",
+    "prog.fundamentals"
    ],
    "assumes": []
   },
@@ -784,17 +812,17 @@
     "prog.swift",
     "prog.oop"
    ],
-   "assumes": []
+   "assumes": [
+    "prog.fundamentals"
+   ]
   },
   "cs.85efdce8": {
    "teaches": [
     "ops.cloud",
     "ops.deploy",
-    "ops.docker"
+    "eng.agile"
    ],
-   "assumes": [
-    "prog.shell"
-   ]
+   "assumes": []
   },
   "cs.a0b399ad": {
    "teaches": [
@@ -805,8 +833,8 @@
   },
   "cs.4549a947": {
    "teaches": [
-    "db.nosql",
-    "data.spark"
+    "data.spark",
+    "db.nosql"
    ],
    "assumes": [
     "data.sql",
@@ -815,36 +843,35 @@
   },
   "cs.8d661b42": {
    "teaches": [
-    "ml.supervised",
+    "ml.concepts",
     "ml.evaluation",
-    "ml.featureeng"
+    "ml.supervised"
    ],
    "assumes": [
-    "data.pandas",
-    "ml.concepts"
+    "math.stats",
+    "prog.python"
    ]
   },
   "cs.19c6ced6": {
    "teaches": [
-    "math.stats",
-    "math.linalg"
+    "math.linalg",
+    "math.stats"
    ],
    "assumes": []
   },
   "cs.ec44a0ff": {
    "teaches": [
     "prog.javascript",
-    "prog.oop"
+    "web.frontend"
    ],
    "assumes": []
   },
   "cs.ec26831a": {
    "teaches": [
+    "net.fundamentals",
     "sec.fundamentals"
    ],
-   "assumes": [
-    "net.fundamentals"
-   ]
+   "assumes": []
   },
   "cs.7f3c03ed": {
    "teaches": [
@@ -856,43 +883,44 @@
   },
   "cs.495a38f5": {
    "teaches": [
-    "cv.imageprocessing",
-    "dl.cnn"
+    "cv.imageprocessing"
    ],
    "assumes": [
-    "prog.python"
+    "prog.matlab"
    ]
   },
   "cs.d448573d": {
    "teaches": [
     "sec.fundamentals",
-    "db.nosql"
+    "eng.design",
+    "data.sql"
    ],
    "assumes": [
-    "prog.oop"
+    "prog.fundamentals"
    ]
   },
   "cs.7220d22f": {
    "teaches": [
-    "ops.deploy",
-    "prog.shell"
+    "prog.python",
+    "ops.deploy"
    ],
    "assumes": [
-    "prog.python"
+    "prog.fundamentals"
    ]
   },
   "cs.add946eb": {
    "teaches": [
-    "data.viz"
+    "data.viz",
+    "ops.monitor"
    ],
    "assumes": [
-    "data.sql"
+    "prog.fundamentals"
    ]
   },
   "cs.835726ba": {
    "teaches": [
-    "prog.javascript",
-    "web.frontend"
+    "web.frontend",
+    "prog.javascript"
    ],
    "assumes": []
   },
@@ -906,8 +934,9 @@
   },
   "cs.4806f8ba": {
    "teaches": [
-    "it.support",
-    "net.fundamentals"
+    "os.concepts",
+    "net.fundamentals",
+    "it.support"
    ],
    "assumes": []
   },
@@ -927,19 +956,19 @@
   "cs.ede21bf5": {
    "teaches": [
     "prog.python",
-    "data.sql"
+    "prog.fundamentals"
    ],
    "assumes": []
   },
   "cs.d46c3523": {
    "teaches": [
-    "ml.concepts",
     "ml.supervised",
-    "ml.unsupervised"
+    "ml.concepts",
+    "dl.neuralnets"
    ],
    "assumes": [
-    "math.stats",
-    "prog.python"
+    "prog.python",
+    "math.linalg"
    ]
   },
   "cs.d7fd00d7": {
@@ -958,10 +987,11 @@
   },
   "cs.74f1cc3c": {
    "teaches": [
-    "prog.python",
     "iot.embedded"
    ],
-   "assumes": []
+   "assumes": [
+    "prog.python"
+   ]
   },
   "cs.6ac2f47c": {
    "teaches": [
@@ -1087,53 +1117,58 @@
   },
   "cs.6084f543": {
    "teaches": [
-    "data.viz"
+    "data.viz",
+    "prog.r"
    ],
    "assumes": [
-    "prog.r"
+    "prog.fundamentals"
    ]
   },
   "cs.e0797dbb": {
    "teaches": [
-    "net.fundamentals",
+    "it.support",
     "ops.cloud",
+    "net.fundamentals",
     "sec.fundamentals"
    ],
    "assumes": []
   },
   "cs.236fab9c": {
    "teaches": [
-    "prog.cpp",
-    "prog.shell",
+    "prog.c",
+    "os.concepts",
     "cs.algorithms"
    ],
-   "assumes": []
+   "assumes": [
+    "prog.fundamentals"
+   ]
   },
   "cs.07b02c30": {
    "teaches": [
     "ops.cloud",
     "ops.deploy",
-    "web.frontend"
+    "eng.api"
    ],
    "assumes": [
-    "prog.javascript"
+    "prog.fundamentals"
    ]
   },
   "cs.1ffd7b99": {
    "teaches": [
     "data.sql",
-    "data.viz",
-    "data.etl"
+    "data.etl",
+    "data.viz"
    ],
    "assumes": []
   },
   "cs.1d52e076": {
    "teaches": [
-    "sec.fundamentals",
-    "net.fundamentals"
+    "sec.architecture",
+    "ops.cloud"
    ],
    "assumes": [
-    "prog.python"
+    "sec.fundamentals",
+    "prog.fundamentals"
    ]
   },
   "cs.10798b51": {
@@ -1142,21 +1177,20 @@
     "sec.fundamentals"
    ],
    "assumes": [
-    "prog.oop"
+    "prog.fundamentals"
    ]
   },
   "cs.0239ecf6": {
    "teaches": [
     "prog.python",
-    "cs.algorithms"
+    "prog.fundamentals"
    ],
    "assumes": []
   },
   "cs.3de30668": {
    "teaches": [
     "data.sql",
-    "data.viz",
-    "data.etl"
+    "data.viz"
    ],
    "assumes": []
   },
@@ -1165,9 +1199,7 @@
     "data.spark",
     "db.nosql"
    ],
-   "assumes": [
-    "data.sql"
-   ]
+   "assumes": []
   },
   "cs.ae53dc4b": {
    "teaches": [
@@ -1179,7 +1211,7 @@
   "cs.5b47ed59": {
    "teaches": [
     "math.stats",
-    "data.viz"
+    "ml.supervised"
    ],
    "assumes": []
   },
@@ -1205,23 +1237,24 @@
     "db.nosql"
    ],
    "assumes": [
-    "prog.javascript"
+    "prog.fundamentals"
    ]
   },
   "cs.6b9f390f": {
    "teaches": [
-    "game.development",
-    "prog.csharp"
+    "prog.csharp",
+    "game.development"
    ],
    "assumes": []
   },
   "cs.c342fa4f": {
    "teaches": [
-    "math.calculus",
     "math.linalg",
     "math.optimization"
    ],
-   "assumes": []
+   "assumes": [
+    "math.calculus"
+   ]
   },
   "cs.0be09d44": {
    "teaches": [
@@ -1336,11 +1369,11 @@
   },
   "cs.b7777c10": {
    "teaches": [
-    "ml.concepts",
-    "ml.unsupervised"
+    "data.pandas",
+    "ml.concepts"
    ],
    "assumes": [
-    "math.stats"
+    "prog.python"
    ]
   },
   "cs.e3e4231b": {
@@ -1349,6 +1382,7 @@
     "ml.concepts"
    ],
    "assumes": [
+    "data.sql",
     "prog.python"
    ]
   },
@@ -1365,11 +1399,10 @@
   "cs.4984ec1c": {
    "teaches": [
     "data.spark",
-    "data.etl"
+    "ops.cloud"
    ],
    "assumes": [
-    "data.sql",
-    "ops.cloud"
+    "data.sql"
    ]
   },
   "cs.01f538fc": {
@@ -1881,28 +1914,28 @@
   },
   "cs.9d6cc55c": {
    "teaches": [
-    "data.sql",
-    "prog.python"
+    "data.etl"
    ],
    "assumes": [
-    "prog.shell"
+    "prog.python",
+    "data.sql"
    ]
   },
   "cs.15887ba8": {
    "teaches": [
-    "ml.unsupervised"
+    "prog.r"
    ],
    "assumes": [
-    "math.stats",
-    "prog.r"
+    "math.stats"
    ]
   },
   "cs.143de15c": {
    "teaches": [
-    "sec.fundamentals"
+    "sec.fundamentals",
+    "ops.deploy"
    ],
    "assumes": [
-    "ops.deploy"
+    "prog.fundamentals"
    ]
   },
   "cs.2300814d": {
@@ -1924,21 +1957,20 @@
   },
   "cs.efad2c25": {
    "teaches": [
-    "ml.supervised",
-    "data.viz"
+    "ml.supervised"
    ],
    "assumes": [
     "prog.r",
-    "ml.concepts"
+    "data.viz"
    ]
   },
   "cs.59d21a68": {
    "teaches": [
-    "web.frontend",
-    "prog.javascript"
+    "web.frontend"
    ],
    "assumes": [
-    "prog.java"
+    "prog.java",
+    "prog.javascript"
    ]
   },
   "cs.5d327ddb": {
@@ -1946,10 +1978,7 @@
     "data.spark",
     "ops.cloud"
    ],
-   "assumes": [
-    "ml.concepts",
-    "prog.python"
-   ]
+   "assumes": []
   },
   "cs.8560d262": {
    "teaches": [
@@ -2018,10 +2047,11 @@
   },
   "cs.eb72ccbf": {
    "teaches": [
-    "prog.functional"
+    "prog.functional",
+    "cs.algorithms"
    ],
    "assumes": [
-    "prog.oop"
+    "prog.fundamentals"
    ]
   },
   "cs.60298e48": {
@@ -2030,27 +2060,27 @@
     "ops.deploy"
    ],
    "assumes": [
-    "net.fundamentals"
+    "net.fundamentals",
+    "prog.fundamentals"
    ]
   },
   "cs.d40bfb41": {
    "teaches": [
-    "cs.algorithms",
-    "math.optimization"
+    "cs.algorithms"
    ],
    "assumes": [
-    "prog.python"
+    "prog.fundamentals"
    ]
   },
   "cs.0ba09e1c": {
    "teaches": [
-    "data.spark",
     "data.etl",
-    "ml.supervised"
+    "data.spark",
+    "ml.concepts"
    ],
    "assumes": [
-    "data.sql",
-    "ops.cloud"
+    "ops.cloud",
+    "prog.python"
    ]
   },
   "cs.f9305d00": {
@@ -2060,7 +2090,7 @@
    ],
    "assumes": [
     "net.fundamentals",
-    "os.concepts"
+    "prog.fundamentals"
    ]
   },
   "cs.4b4f0067": {
@@ -2070,7 +2100,7 @@
    ],
    "assumes": [
     "net.fundamentals",
-    "os.concepts"
+    "prog.fundamentals"
    ]
   },
   "cs.4bfb60e6": {
@@ -2081,11 +2111,12 @@
   },
   "cs.50a2c63c": {
    "teaches": [
+    "eng.api",
     "ops.cloud",
-    "eng.api"
+    "ops.deploy"
    ],
    "assumes": [
-    "prog.python"
+    "prog.fundamentals"
    ]
   },
   "cs.950f23e7": {
@@ -2161,7 +2192,8 @@
   },
   "cs.f5211d6e": {
    "teaches": [
-    "prog.concurrency"
+    "prog.concurrency",
+    "prog.distributed"
    ],
    "assumes": [
     "prog.java"
@@ -2169,9 +2201,9 @@
   },
   "cs.81e02b7b": {
    "teaches": [
+    "data.spark",
     "data.sql",
-    "db.nosql",
-    "data.spark"
+    "db.nosql"
    ],
    "assumes": [
     "prog.python"
@@ -2182,98 +2214,112 @@
     "prog.python",
     "sec.fundamentals"
    ],
-   "assumes": []
+   "assumes": [
+    "prog.fundamentals"
+   ]
   },
   "cs.cdb68c6d": {
    "teaches": [
     "ml.supervised",
-    "ml.evaluation",
-    "ml.featureeng"
+    "ml.concepts"
+   ],
+   "assumes": [
+    "prog.python",
+    "math.stats"
+   ]
+  },
+  "cs.91fa5cdb": {
+   "teaches": [
+    "data.sql",
+    "db.nosql"
+   ],
+   "assumes": [
+    "prog.fundamentals"
+   ]
+  },
+  "cs.33eec44d": {
+   "teaches": [
+    "ops.cloud"
+   ],
+   "assumes": [
+    "net.fundamentals"
+   ]
+  },
+  "cs.c9f8ddf7": {
+   "teaches": [
+    "data.viz",
+    "ml.supervised",
+    "data.pandas"
    ],
    "assumes": [
     "prog.python",
     "ml.concepts"
    ]
   },
-  "cs.91fa5cdb": {
-   "teaches": [
-    "data.sql",
-    "db.nosql",
-    "data.etl"
-   ],
-   "assumes": []
-  },
-  "cs.33eec44d": {
-   "teaches": [
-    "ops.cloud",
-    "net.fundamentals"
-   ],
-   "assumes": []
-  },
-  "cs.c9f8ddf7": {
-   "teaches": [
-    "ml.supervised",
-    "data.viz",
-    "data.pandas"
-   ],
-   "assumes": [
-    "prog.python"
-   ]
-  },
   "cs.d3a3c9f1": {
    "teaches": [
-    "ml.supervised"
+    "ml.supervised",
+    "math.stats"
    ],
    "assumes": [
-    "math.stats"
+    "prog.fundamentals",
+    "ml.concepts"
    ]
   },
   "cs.7c90f440": {
    "teaches": [
+    "sec.cryptography",
     "sec.fundamentals"
    ],
-   "assumes": []
+   "assumes": [
+    "prog.fundamentals",
+    "cs.algorithms"
+   ]
   },
   "cs.ed5eaa47": {
    "teaches": [
     "ops.cloud",
     "ops.deploy",
-    "os.concepts"
+    "prog.shell"
    ],
    "assumes": [
+    "os.concepts",
     "net.fundamentals"
    ]
   },
   "cs.c4ffc444": {
    "teaches": [
     "ops.cloud",
-    "ops.docker",
-    "eng.api"
+    "ops.deploy",
+    "eng.testing"
    ],
    "assumes": [
-    "prog.python"
+    "prog.python",
+    "ops.docker"
    ]
   },
   "cs.ff817d91": {
    "teaches": [
-    "math.calculus",
     "math.linalg",
-    "math.optimization"
+    "math.calculus",
+    "math.stats"
    ],
-   "assumes": []
+   "assumes": [
+    "prog.fundamentals"
+   ]
   },
   "cs.639abcf7": {
    "teaches": [
-    "ops.cloud",
-    "data.etl",
-    "db.nosql"
+    "data.etl"
    ],
    "assumes": [
-    "data.sql"
+    "data.sql",
+    "ops.cloud"
    ]
   },
   "cs.97377de6": {
    "teaches": [
+    "it.mainframe",
     "sec.fundamentals"
    ],
    "assumes": [
@@ -2282,11 +2328,11 @@
   },
   "cs.42200164": {
    "teaches": [
-    "sec.fundamentals"
+    "sec.forensics"
    ],
    "assumes": [
     "os.concepts",
-    "net.fundamentals"
+    "sec.fundamentals"
    ]
   },
   "cs.50093739": {
@@ -2310,7 +2356,6 @@
   "cs.364da1e5": {
    "teaches": [
     "data.pandas",
-    "data.viz",
     "ml.concepts"
    ],
    "assumes": [
@@ -2326,11 +2371,13 @@
   },
   "cs.096af5dd": {
    "teaches": [
-    "math.calculus",
     "math.linalg",
-    "math.stats"
+    "math.stats",
+    "math.calculus"
    ],
-   "assumes": []
+   "assumes": [
+    "prog.python"
+   ]
   },
   "cs.9f4ed3d6": {
    "teaches": [
@@ -2338,7 +2385,9 @@
     "web.frontend",
     "eng.api"
    ],
-   "assumes": []
+   "assumes": [
+    "prog.fundamentals"
+   ]
   },
   "cs.65561879": {
    "teaches": [
@@ -2346,7 +2395,9 @@
     "web.frontend",
     "eng.api"
    ],
-   "assumes": []
+   "assumes": [
+    "prog.fundamentals"
+   ]
   },
   "cs.fd563578": {
    "teaches": [
@@ -2493,34 +2544,33 @@
   },
   "cs.a95def59": {
    "teaches": [
-    "dl.neuralnets",
     "dl.cnn",
-    "ml.concepts"
+    "ml.evaluation"
    ],
    "assumes": [
-    "prog.python",
-    "ml.supervised"
+    "dl.neuralnets",
+    "prog.python"
    ]
   },
   "cs.44d28774": {
    "teaches": [
-    "prog.hdl",
-    "iot.embedded"
+    "iot.embedded",
+    "prog.hdl"
    ],
    "assumes": [
-    "prog.python",
-    "os.concepts"
+    "os.concepts",
+    "prog.c"
    ]
   },
   "cs.86afca27": {
    "teaches": [
+    "ml.supervised",
     "ops.cloud",
-    "ops.deploy",
-    "ml.evaluation"
+    "ops.deploy"
    ],
    "assumes": [
-    "prog.python",
-    "ml.supervised"
+    "ml.concepts",
+    "prog.python"
    ]
   },
   "cs.aa2ee1ee": {
@@ -2529,25 +2579,24 @@
     "ml.supervised"
    ],
    "assumes": [
-    "prog.python",
     "ml.concepts",
-    "math.stats"
+    "prog.python"
    ]
   },
   "cs.40a29f57": {
    "teaches": [
-    "dsp.fourier",
-    "dsp.filters"
+    "dsp.filters",
+    "dsp.fourier"
    ],
    "assumes": [
     "math.calculus",
-    "prog.python"
+    "math.linalg"
    ]
   },
   "cs.6e4577e7": {
    "teaches": [
-    "ml.unsupervised",
-    "ml.evaluation"
+    "ml.evaluation",
+    "ml.unsupervised"
    ],
    "assumes": [
     "ml.concepts",
@@ -2556,32 +2605,31 @@
   },
   "cs.621affef": {
    "teaches": [
-    "ops.cloud",
-    "ops.monitor"
+    "eng.api",
+    "ops.cloud"
    ],
    "assumes": [
-    "prog.python",
-    "eng.api"
+    "prog.python"
    ]
   },
   "cs.50efb52b": {
    "teaches": [
-    "sec.fundamentals",
-    "prog.concurrency"
+    "iot.embedded",
+    "sec.fundamentals"
    ],
    "assumes": [
-    "iot.embedded"
+    "prog.c",
+    "os.concepts"
    ]
   },
   "cs.c39c817f": {
    "teaches": [
-    "eng.requirements",
+    "eng.design",
     "eng.testing",
-    "eng.api"
+    "eng.agile"
    ],
    "assumes": [
-    "prog.oop",
-    "eng.git"
+    "prog.fundamentals"
    ]
   },
   "cs.3f6c7d5a": {
@@ -2606,22 +2654,21 @@
   },
   "cs.48f97327": {
    "teaches": [
-    "prog.cpp",
-    "game.development"
+    "game.development",
+    "prog.cpp"
    ],
    "assumes": [
-    "prog.oop"
+    "prog.fundamentals"
    ]
   },
   "cs.e617edfc": {
    "teaches": [
-    "prog.cpp",
-    "prog.concurrency",
+    "prog.distributed",
     "cv.imageprocessing"
    ],
    "assumes": [
-    "prog.oop",
-    "math.linalg"
+    "prog.cpp",
+    "prog.fundamentals"
    ]
   },
   "cs.a1bffead": {
@@ -3035,6 +3082,146 @@
    "assumes": [
     "math.stats",
     "cs.algorithms"
+   ]
+  },
+  "cs.01b2d221": {
+   "teaches": [
+    "nlp.prompting",
+    "nlp.llm"
+   ],
+   "assumes": []
+  },
+  "cs.6772e705": {
+   "teaches": [
+    "nlp.prompting"
+   ],
+   "assumes": []
+  },
+  "cs.b5b357b8": {
+   "teaches": [
+    "web.frontend",
+    "prog.javascript"
+   ],
+   "assumes": []
+  },
+  "cs.a49ea9c1": {
+   "teaches": [
+    "ops.cloud",
+    "data.viz",
+    "data.sql"
+   ],
+   "assumes": []
+  },
+  "cs.7cce66f7": {
+   "teaches": [
+    "nlp.prompting"
+   ],
+   "assumes": []
+  },
+  "cs.442b09c0": {
+   "teaches": [
+    "nlp.prompting",
+    "nlp.llm"
+   ],
+   "assumes": []
+  },
+  "cs.9bef4677": {
+   "teaches": [
+    "ops.cloud",
+    "data.sql",
+    "db.nosql"
+   ],
+   "assumes": []
+  },
+  "cs.3b2d8c26": {
+   "teaches": [
+    "math.stats",
+    "ml.supervised"
+   ],
+   "assumes": [
+    "math.calculus"
+   ]
+  },
+  "cs.08b3506c": {
+   "teaches": [
+    "eng.agile",
+    "eng.requirements"
+   ],
+   "assumes": [
+    "prog.fundamentals"
+   ]
+  },
+  "cs.4353baf8": {
+   "teaches": [
+    "ml.concepts",
+    "data.sql"
+   ],
+   "assumes": []
+  },
+  "cs.9b7608ee": {
+   "teaches": [
+    "math.optimization"
+   ],
+   "assumes": [
+    "math.stats"
+   ]
+  },
+  "cs.5a351ad3": {
+   "teaches": [
+    "net.fundamentals",
+    "sec.fundamentals"
+   ],
+   "assumes": [
+    "os.concepts",
+    "prog.fundamentals"
+   ]
+  },
+  "cs.16ccfb93": {
+   "teaches": [
+    "prog.shell",
+    "sec.fundamentals"
+   ],
+   "assumes": [
+    "prog.python"
+   ]
+  },
+  "cs.523d9e17": {
+   "teaches": [
+    "data.etl",
+    "ops.cloud"
+   ],
+   "assumes": [
+    "data.sql",
+    "prog.python"
+   ]
+  },
+  "cs.ff82f757": {
+   "teaches": [
+    "ops.cloud",
+    "ops.docker"
+   ],
+   "assumes": [
+    "prog.fundamentals"
+   ]
+  },
+  "cs.83967ad0": {
+   "teaches": [
+    "data.sql",
+    "data.etl"
+   ],
+   "assumes": [
+    "data.pandas",
+    "prog.python"
+   ]
+  },
+  "cs.aac94db4": {
+   "teaches": [
+    "dl.cnn"
+   ],
+   "assumes": [
+    "dl.neuralnets",
+    "math.linalg",
+    "prog.python"
    ]
   }
  }
