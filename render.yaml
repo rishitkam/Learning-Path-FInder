@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: learning-path-finder-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false        # You will paste the value manually in the Render dashboard
+      - key: FRONTEND_URL
+        sync: false        # You will paste your Vercel URL here after Phase 2
