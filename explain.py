@@ -3,7 +3,7 @@
 import json
 
 from path import W
-from profile import client
+from profile import call
 
 MODEL = "openai/gpt-oss-120b"
 TERMS = {"relevance": "is the closest match to what they said they want",
@@ -40,7 +40,7 @@ def _facts(g, mod, in_path):
 
 def _say(system, payload, cap=300):
     try:
-        r = client().chat.completions.create(
+        r = call(
             model=MODEL, temperature=0, max_tokens=cap, reasoning_effort="low",
             messages=[{"role": "system", "content": system},
                       {"role": "user", "content": json.dumps(payload)}])
@@ -106,7 +106,7 @@ SYS_ASK = ("Answer using ONLY the plan given. You did not build it, you cannot c
 def ask(g, question, path, profile):
     """Returns the answer plus a flag. A change request is handed back to the profile extractor."""
     try:
-        r = client().chat.completions.create(
+        r = call(
             model=MODEL, temperature=0, tools=[ANSWER_TOOL], reasoning_effort="low",
             tool_choice={"type": "function", "function": {"name": "answer"}},
             messages=[{"role": "system", "content": SYS_ASK},

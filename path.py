@@ -6,6 +6,11 @@ from pathlib import Path
 
 DATA = Path(__file__).resolve().parent / "data"
 W = {"relevance": 0.40, "level": 0.25, "style": 0.20, "effort": 0.15}
+# Set cover values coverage per hour, which swamped fit: the learner's own weights moved only 6 percent
+# of picks. Raising fit to a power widens its range against a ratio that varies far more. Swept 1 to 6
+# and measured: 4 takes personalisation to 22 percent at the same distance from optimal and slightly
+# fewer hours. Past 4 it stops helping.
+FIT_POWER = 4
 # A course longer than this many weeks of the learner's time is only offered when nothing shorter
 # teaches the skill. Ranking alone could not express it: a small semantic edge becomes the whole
 # relevance term once scores are normalised, which was enough to send someone into a 173 hour
@@ -86,7 +91,8 @@ def _cover(gap, catalog, p, relevance, weights, blocked):
         if not reachable:
             break
         best = max(_affordable(reachable, p),
-                   key=lambda c: (fit(c) * len(set(c["teaches"]) & uncovered) / max(c["hours"], 1), c["id"]))
+                   key=lambda c: (fit(c) ** FIT_POWER * len(set(c["teaches"]) & uncovered)
+                                  / max(c["hours"], 1), c["id"]))
         chosen.append(best)
         uncovered -= set(best["teaches"])
     return chosen, terms, fit

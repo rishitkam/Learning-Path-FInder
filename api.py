@@ -252,10 +252,24 @@ def chat(request: ChatRequest, learner_id: str | None = LearnerId):
     spoken = [*request.history[-12:], Turn(role="user", content=request.message)]
     transcript = "\n".join(f"{'learner' if turn.role == 'user' else 'assistant'}: {turn.content}"
                            for turn in spoken)
-    extracted = learner_profile.extract(learning_graph, transcript, prior)
+    try:
+        extracted = learner_profile.extract(learning_graph, transcript, prior)
+    except learner_profile.Unavailable:
+        # Say so rather than asking them the same thing again as though they had not answered.
+        return {"reply": "I could not reach the assistant just then. Say that again in a moment and "
+                         "nothing you have told me is lost.", "profile": prior}
+
+    said = [{"role": "user", "content": request.message}]
+    if extracted.pop("out_of_scope", False) and not extracted.get("goal_skills"):
+        # Say we cannot rather than asking the same question again. The taxonomy is software, data
+        # and AI, and pretending otherwise would be the one thing this whole design refuses to do.
+        reply = ("I can only plan software, data and AI: programming, machine learning, cloud, "
+                 "security, that sort of thing. That one is outside what I have courses for.")
+        db.save(learner_id, {**state.new(extracted), "completed": request.completed,
+                             "blocked": request.blocked}, said + [{"role": "assistant", "content": reply}])
+        return {"reply": reply, "profile": extracted}
 
     question = learner_profile.next_question(extracted)
-    said = [{"role": "user", "content": request.message}]
     if question:
         # Save the half finished profile too, so coming back resumes the conversation rather than
         # starting it again.

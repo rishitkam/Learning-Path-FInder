@@ -1,4 +1,8 @@
 {
+ "ai.ethics": {
+  "name": "AI Ethics and Responsible AI",
+  "prereqs": []
+ },
  "blockchain.fundamentals": {
   "name": "Blockchain Fundamentals",
   "prereqs": []
@@ -13,11 +17,16 @@
    "prog.fundamentals"
   ]
  },
+ "cs.architecture": {
+  "name": "Computer Architecture & Microprocessors",
+  "prereqs": []
+ },
  "cv.imageprocessing": {
   "name": "Image Processing",
   "prereqs": [
+   "math.linalg",
    "ml.concepts",
-   "prog.matlab"
+   "prog.fundamentals"
   ]
  },
  "data.etl": {
@@ -30,6 +39,12 @@
   "name": "Data Wrangling with Pandas",
   "prereqs": [
    "prog.python"
+  ]
+ },
+ "data.quality": {
+  "name": "Data Quality",
+  "prereqs": [
+   "data.sql"
   ]
  },
  "data.spark": {
@@ -51,9 +66,15 @@
  "db.nosql": {
   "name": "NoSQL Databases",
   "prereqs": [
-   "data.sql",
-   "prog.fundamentals",
+   "db.relational",
    "prog.python"
+  ]
+ },
+ "db.relational": {
+  "name": "Relational Database Design",
+  "prereqs": [
+   "data.sql",
+   "prog.fundamentals"
   ]
  },
  "dl.backprop": {
@@ -121,33 +142,35 @@
  "eng.requirements": {
   "name": "Requirements Engineering",
   "prereqs": [
-   "prog.fundamentals",
-   "prog.oop"
+   "prog.fundamentals"
   ]
  },
  "eng.testing": {
   "name": "Software Testing & Verification",
   "prereqs": [
-   "prog.oop"
+   "prog.fundamentals",
+   "prog.python"
   ]
  },
  "game.development": {
   "name": "Game Development",
   "prereqs": [
-   "prog.csharp"
+   "prog.csharp",
+   "prog.oop"
   ]
  },
  "iot.embedded": {
   "name": "IoT & Embedded Systems",
   "prereqs": [
    "os.concepts",
-   "prog.c",
-   "prog.python"
+   "prog.c"
   ]
  },
  "it.mainframe": {
   "name": "Mainframe Systems (z/OS, Linux on Z)",
-  "prereqs": []
+  "prereqs": [
+   "os.concepts"
+  ]
  },
  "it.support": {
   "name": "IT Support & Troubleshooting",
@@ -165,7 +188,9 @@
   "name": "Mathematical Optimization",
   "prereqs": [
    "math.calculus",
-   "math.stats"
+   "math.linalg",
+   "math.stats",
+   "prog.python"
   ]
  },
  "math.stats": {
@@ -259,10 +284,10 @@
   "name": "Cloud Infrastructure & Services",
   "prereqs": [
    "data.sql",
+   "eng.api",
    "ml.concepts",
    "net.fundamentals",
-   "ops.docker",
-   "prog.fundamentals"
+   "ops.docker"
   ]
  },
  "ops.deploy": {
@@ -285,27 +310,53 @@
    "ops.deploy"
   ]
  },
+ "ops.storage": {
+  "name": "Storage Administration",
+  "prereqs": []
+ },
  "os.concepts": {
   "name": "Operating System Concepts",
-  "prereqs": []
+  "prereqs": [
+   "prog.fundamentals"
+  ]
  },
  "prog.c": {
   "name": "C Programming",
-  "prereqs": []
+  "prereqs": [
+   "prog.fundamentals"
+  ]
+ },
+ "prog.cobol": {
+  "name": "COBOL Programming",
+  "prereqs": [
+   "prog.fundamentals"
+  ]
  },
  "prog.concurrency": {
   "name": "Concurrent and Parallel Programming",
-  "prereqs": []
+  "prereqs": [
+   "prog.fundamentals"
+  ]
  },
  "prog.cpp": {
   "name": "C++ Programming",
-  "prereqs": []
+  "prereqs": [
+   "prog.fundamentals"
+  ]
  },
  "prog.csharp": {
   "name": "C# Programming",
   "prereqs": [
-   "prog.oop"
+   "prog.fundamentals"
   ]
+ },
+ "prog.cuda": {
+  "name": "CUDA / GPU Programming",
+  "prereqs": []
+ },
+ "prog.dart": {
+  "name": "Dart Programming",
+  "prereqs": []
  },
  "prog.distributed": {
   "name": "Distributed Programming",
@@ -332,11 +383,15 @@
  },
  "prog.javascript": {
   "name": "JavaScript Programming",
-  "prereqs": []
+  "prereqs": [
+   "prog.fundamentals"
+  ]
  },
  "prog.matlab": {
   "name": "MATLAB Programming",
-  "prereqs": []
+  "prereqs": [
+   "prog.fundamentals"
+  ]
  },
  "prog.oop": {
   "name": "Object Oriented Programming",
@@ -355,44 +410,70 @@
  "prog.r": {
   "name": "R Programming",
   "prereqs": [
-   "math.calculus",
-   "math.stats"
+   "math.stats",
+   "prog.fundamentals"
   ]
+ },
+ "prog.react": {
+  "name": "React / React Native",
+  "prereqs": []
  },
  "prog.rust": {
   "name": "Rust Programming",
+  "prereqs": [
+   "prog.fundamentals"
+  ]
+ },
+ "prog.scala": {
+  "name": "Scala Programming",
   "prereqs": []
  },
  "prog.shell": {
   "name": "Unix Shell / Bash Scripting",
-  "prereqs": []
+  "prereqs": [
+   "prog.fundamentals"
+  ]
  },
  "prog.swift": {
   "name": "Swift Programming",
+  "prereqs": [
+   "prog.fundamentals"
+  ]
+ },
+ "research.methodology": {
+  "name": "Research Methodology",
   "prereqs": []
  },
  "sec.architecture": {
   "name": "Security Architecture & Design",
-  "prereqs": []
+  "prereqs": [
+   "sec.fundamentals"
+  ]
  },
  "sec.cryptography": {
   "name": "Applied Cryptography",
-  "prereqs": []
+  "prereqs": [
+   "prog.fundamentals"
+  ]
  },
  "sec.forensics": {
   "name": "Digital/Computer Forensics",
-  "prereqs": []
+  "prereqs": [
+   "os.concepts"
+  ]
  },
  "sec.fundamentals": {
   "name": "Security Fundamentals",
   "prereqs": [
-   "ops.cloud"
+   "net.fundamentals",
+   "prog.shell"
   ]
  },
  "web.frontend": {
   "name": "Web Frontend (HTML/CSS)",
   "prereqs": [
-   "prog.java"
+   "prog.fundamentals",
+   "prog.python"
   ]
  }
 }

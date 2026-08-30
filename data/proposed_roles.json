@@ -1,0 +1,16 @@
+{
+ "requirements-engineer": [
+  "eng.requirements",
+  "eng.design",
+  "eng.agile",
+  "eng.testing",
+  "eng.git"
+ ],
+ "iot-embedded-engineer": [
+  "iot.embedded",
+  "prog.c",
+  "prog.cpp",
+  "ops.docker",
+  "eng.agile"
+ ]
+}

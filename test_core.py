@@ -460,3 +460,23 @@ def test_the_embedding_model_loads_once_under_a_stampede():
         models = list(pool.map(lambda _: embed._model(), range(12)))
     assert all(model is models[0] for model in models)
     assert embed._load_model.cache_info().misses == 1
+
+
+def test_an_unreachable_model_is_reported_not_swallowed(monkeypatch):
+    """A rate limited extraction used to return an empty profile, so the assistant asked the same
+    question forever and nothing said why. It also scored in the evals as the model being wrong."""
+    import profile as pf
+    def refuse(**_):
+        raise RuntimeError("429 rate limit")
+    monkeypatch.setattr(pf, "call", refuse)
+    with pytest.raises(pf.Unavailable):
+        pf.extract(load(), "learner: i want to be a data analyst")
+
+
+def test_the_chat_says_so_when_the_model_is_unreachable(client, monkeypatch):
+    import api, profile as pf
+    monkeypatch.setattr(api.learner_profile, "extract",
+                        lambda *a, **k: (_ for _ in ()).throw(pf.Unavailable("429")))
+    reply = client.post("/chat", json={"message": "hi", "profile": None, "completed": [],
+                                       "blocked": [], "history": []}).json()["reply"]
+    assert "could not reach" in reply.lower()

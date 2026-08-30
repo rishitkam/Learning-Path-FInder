@@ -1,0 +1,1984 @@
+{
+ "dev": [
+  {
+   "said": "learner: 4 hrs per week bro",
+   "expect": {
+    "weekly_hours": 4
+   }
+  },
+  {
+   "said": "learner: i want to learn web development thanks!",
+   "expect": {
+    "goal_skills": [
+     "web.frontend"
+    ]
+   }
+  },
+  {
+   "said": "learner: i have experience with sql hey",
+   "expect": {
+    "known_skills": [
+     "data.sql"
+    ]
+   }
+  },
+  {
+   "said": "learner: comfortable with SQL umm",
+   "expect": {
+    "known_skills": [
+     "data.sql"
+    ]
+   }
+  },
+  {
+   "said": "learner: just looking around",
+   "expect": {
+    "goal_skills": [],
+    "known_skills": [],
+    "weekly_hours": null
+   }
+  },
+  {
+   "said": "learner: my goal is to be a ML engineer, ive done pandas before, maybe 4h a week thanks!",
+   "expect": {
+    "role": "machine-learning-engineer",
+    "known_skills": [
+     "data.pandas"
+    ],
+    "weekly_hours": 4
+   }
+  },
+  {
+   "said": "learner: i know data visualisation pretty well bro",
+   "expect": {
+    "known_skills": [
+     "data.viz"
+    ]
+   }
+  },
+  {
+   "said": "learner: i want to learn data visualisation :)",
+   "expect": {
+    "goal_skills": [
+     "data.viz"
+    ]
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a data scientist, comfortable with supervised learning, 10 hours a week",
+   "expect": {
+    "role": "data-scientist",
+    "known_skills": [
+     "ml.supervised"
+    ],
+    "weekly_hours": 10
+   }
+  },
+  {
+   "said": "learner: i want to be a security engineer",
+   "expect": {
+    "role": "security-engineer"
+   }
+  },
+  {
+   "said": "learner: frontend dev is the target, i know javascript pretty well, 10 hours a week hey",
+   "expect": {
+    "role": "frontend-developer",
+    "known_skills": [
+     "prog.javascript"
+    ],
+    "weekly_hours": 10
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a data scientist bro",
+   "expect": {
+    "role": "data-scientist"
+   }
+  },
+  {
+   "said": "learner: my goal is to be a data scientist",
+   "expect": {
+    "role": "data-scientist"
+   }
+  },
+  {
+   "said": "learner: deep learning pls hey",
+   "expect": {
+    "goal_skills": [
+     "dl.neuralnets"
+    ]
+   }
+  },
+  {
+   "said": "learner: trying to become a a data analyst",
+   "expect": {
+    "role": "data-analyst"
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a backend dev",
+   "expect": {
+    "role": "backend-developer"
+   }
+  },
+  {
+   "said": "learner: how does this work",
+   "expect": {
+    "goal_skills": [],
+    "known_skills": [],
+    "weekly_hours": null
+   }
+  },
+  {
+   "said": "learner: 12 hrs per week ok so",
+   "expect": {
+    "weekly_hours": 12
+   }
+  },
+  {
+   "said": "learner: sql pls hey",
+   "expect": {
+    "goal_skills": [
+     "data.sql"
+    ]
+   }
+  },
+  {
+   "said": "learner: data scientist is the target :)",
+   "expect": {
+    "role": "data-scientist"
+   }
+  },
+  {
+   "said": "learner: maybe 8h a week bro",
+   "expect": {
+    "weekly_hours": 8
+   }
+  },
+  {
+   "said": "learner: i can do 8 a week ok so",
+   "expect": {
+    "weekly_hours": 8
+   }
+  },
+  {
+   "said": "learner: trying to become a backend dev, i have experience with sql, i can do 20 a week",
+   "expect": {
+    "role": "backend-developer",
+    "known_skills": [
+     "data.sql"
+    ],
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: about 5 hours weekly",
+   "expect": {
+    "weekly_hours": 5
+   }
+  },
+  {
+   "said": "learner: i know git pretty well hey",
+   "expect": {
+    "known_skills": [
+     "eng.git"
+    ]
+   }
+  },
+  {
+   "said": "learner: i want to be a backend dev",
+   "expect": {
+    "role": "backend-developer"
+   }
+  },
+  {
+   "said": "learner: interested in sql pls help",
+   "expect": {
+    "goal_skills": [
+     "data.sql"
+    ]
+   }
+  },
+  {
+   "said": "learner: trying to become a data engineer ok so",
+   "expect": {
+    "role": "data-engineer"
+   }
+  },
+  {
+   "said": "learner: interested in docker umm",
+   "expect": {
+    "goal_skills": [
+     "ops.docker"
+    ]
+   }
+  },
+  {
+   "said": "learner: 15 hrs per week :)",
+   "expect": {
+    "weekly_hours": 15
+   }
+  },
+  {
+   "said": "learner: roughly 8 hours each week",
+   "expect": {
+    "weekly_hours": 8
+   }
+  },
+  {
+   "said": "learner: 25 hrs per week ok so",
+   "expect": {
+    "weekly_hours": 25
+   }
+  },
+  {
+   "said": "learner: ive done pandas before ok so",
+   "expect": {
+    "known_skills": [
+     "data.pandas"
+    ]
+   }
+  },
+  {
+   "said": "learner: maybe 20h a week",
+   "expect": {
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: looking to switch careers to data engineer umm",
+   "expect": {
+    "role": "data-engineer"
+   }
+  },
+  {
+   "said": "learner: trying to become a frontend dev thanks!",
+   "expect": {
+    "role": "frontend-developer"
+   }
+  },
+  {
+   "said": "learner: web development pls bro",
+   "expect": {
+    "goal_skills": [
+     "web.frontend"
+    ]
+   }
+  },
+  {
+   "said": "learner: data visualisation pls",
+   "expect": {
+    "goal_skills": [
+     "data.viz"
+    ]
+   }
+  },
+  {
+   "said": "learner: i have experience with object oriented programming bro",
+   "expect": {
+    "known_skills": [
+     "prog.oop"
+    ]
+   }
+  },
+  {
+   "said": "learner: comfortable with supervised learning thanks!",
+   "expect": {
+    "known_skills": [
+     "ml.supervised"
+    ]
+   }
+  },
+  {
+   "said": "learner: maybe 25h a week",
+   "expect": {
+    "weekly_hours": 25
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a a devops person, comfortable with sql, 4h/week",
+   "expect": {
+    "role": "devops-engineer",
+    "known_skills": [
+     "data.sql"
+    ],
+    "weekly_hours": 4
+   }
+  },
+  {
+   "said": "learner: comfortable with JS bro",
+   "expect": {
+    "known_skills": [
+     "prog.javascript"
+    ]
+   }
+  },
+  {
+   "said": "learner: looking to switch careers to backend developer :)",
+   "expect": {
+    "role": "backend-developer"
+   }
+  },
+  {
+   "said": "learner: about 4 hours weekly ok so",
+   "expect": {
+    "weekly_hours": 4
+   }
+  },
+  {
+   "said": "learner: comfortable with data visualisation :)",
+   "expect": {
+    "known_skills": [
+     "data.viz"
+    ]
+   }
+  },
+  {
+   "said": "learner: my goal is to be a data analyst pls help",
+   "expect": {
+    "role": "data-analyst"
+   }
+  },
+  {
+   "said": "learner: i already know SQL",
+   "expect": {
+    "known_skills": [
+     "data.sql"
+    ]
+   }
+  },
+  {
+   "said": "learner: ive done object oriented programming before bro",
+   "expect": {
+    "known_skills": [
+     "prog.oop"
+    ]
+   }
+  },
+  {
+   "said": "learner: i want to be a NLP engineer, ive done supervised learning before, 6h/week ok so",
+   "expect": {
+    "role": "nlp-engineer",
+    "known_skills": [
+     "ml.supervised"
+    ],
+    "weekly_hours": 6
+   }
+  },
+  {
+   "said": "learner: looking to switch careers to game developer, i know stats pretty well, 12 hours a week umm",
+   "expect": {
+    "role": "game-developer",
+    "known_skills": [
+     "math.stats"
+    ],
+    "weekly_hours": 12
+   }
+  },
+  {
+   "said": "learner: trying to become a a devops person",
+   "expect": {
+    "role": "devops-engineer"
+   }
+  },
+  {
+   "said": "learner: i can do 12 a week :)",
+   "expect": {
+    "weekly_hours": 12
+   }
+  },
+  {
+   "said": "learner: i want to be a data analyst thanks!",
+   "expect": {
+    "role": "data-analyst"
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a devops engineer thanks!",
+   "expect": {
+    "role": "devops-engineer"
+   }
+  },
+  {
+   "said": "learner: roughly 15 hours each week :)",
+   "expect": {
+    "weekly_hours": 15
+   }
+  },
+  {
+   "said": "learner: can you teach me machine learning ok so",
+   "expect": {
+    "goal_skills": [
+     "ml.concepts"
+    ]
+   }
+  },
+  {
+   "said": "learner: my goal is to be a game developer, i already know object oriented programming, 10 hrs per week :)",
+   "expect": {
+    "role": "game-developer",
+    "known_skills": [
+     "prog.oop"
+    ],
+    "weekly_hours": 10
+   }
+  },
+  {
+   "said": "learner: can you teach me data visualisation ok so",
+   "expect": {
+    "goal_skills": [
+     "data.viz"
+    ]
+   }
+  },
+  {
+   "said": "learner: my goal is to be a game developer",
+   "expect": {
+    "role": "game-developer"
+   }
+  },
+  {
+   "said": "learner: can you teach me cyber security",
+   "expect": {
+    "goal_skills": [
+     "sec.fundamentals"
+    ]
+   }
+  },
+  {
+   "said": "learner: already did statistics umm",
+   "expect": {
+    "known_skills": [
+     "math.stats"
+    ]
+   }
+  },
+  {
+   "said": "learner: 25 hours a week :)",
+   "expect": {
+    "weekly_hours": 25
+   }
+  },
+  {
+   "said": "learner: my goal is to be a backend dev, ive done data visualisation before, i can do 20 a week thanks!",
+   "expect": {
+    "role": "backend-developer",
+    "known_skills": [
+     "data.viz"
+    ],
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: docker pls :)",
+   "expect": {
+    "goal_skills": [
+     "ops.docker"
+    ]
+   }
+  },
+  {
+   "said": "learner: maybe 5h a week",
+   "expect": {
+    "weekly_hours": 5
+   }
+  },
+  {
+   "said": "learner: i want to be a security engineer, comfortable with sql, roughly 20 hours each week",
+   "expect": {
+    "role": "security-engineer",
+    "known_skills": [
+     "data.sql"
+    ],
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: idk",
+   "expect": {
+    "goal_skills": [],
+    "known_skills": [],
+    "weekly_hours": null
+   }
+  },
+  {
+   "said": "learner: 12 hours a week pls help",
+   "expect": {
+    "weekly_hours": 12
+   }
+  },
+  {
+   "said": "learner: my goal is to be a security engineer",
+   "expect": {
+    "role": "security-engineer"
+   }
+  },
+  {
+   "said": "learner: maybe 10h a week",
+   "expect": {
+    "weekly_hours": 10
+   }
+  },
+  {
+   "said": "learner: game dev is the target hey",
+   "expect": {
+    "role": "game-developer"
+   }
+  },
+  {
+   "said": "learner: backend developer is the target pls help",
+   "expect": {
+    "role": "backend-developer"
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a security engineer, ive done supervised learning before, 20 hours a week pls help",
+   "expect": {
+    "role": "security-engineer",
+    "known_skills": [
+     "ml.supervised"
+    ],
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: roughly 4 hours each week",
+   "expect": {
+    "weekly_hours": 4
+   }
+  },
+  {
+   "said": "learner: interested in cyber security umm",
+   "expect": {
+    "goal_skills": [
+     "sec.fundamentals"
+    ]
+   }
+  },
+  {
+   "said": "learner: can you help me",
+   "expect": {
+    "goal_skills": [],
+    "known_skills": [],
+    "weekly_hours": null
+   }
+  },
+  {
+   "said": "learner: web development bro",
+   "expect": {
+    "goal_skills": [
+     "web.frontend"
+    ]
+   }
+  },
+  {
+   "said": "learner: comfortable with git ok so",
+   "expect": {
+    "known_skills": [
+     "eng.git"
+    ]
+   }
+  },
+  {
+   "said": "learner: trying to become a game dev",
+   "expect": {
+    "role": "game-developer"
+   }
+  },
+  {
+   "said": "learner: 10 hours a week hey",
+   "expect": {
+    "weekly_hours": 10
+   }
+  },
+  {
+   "said": "learner: i already know supervised learning pls help",
+   "expect": {
+    "known_skills": [
+     "ml.supervised"
+    ]
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a NLP engineer hey",
+   "expect": {
+    "role": "nlp-engineer"
+   }
+  },
+  {
+   "said": "learner: 5 hours a week :)",
+   "expect": {
+    "weekly_hours": 5
+   }
+  },
+  {
+   "said": "learner: my goal is to be a machine learning engineer pls help",
+   "expect": {
+    "role": "machine-learning-engineer"
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a ML engineer, comfortable with OOP, i can do 20 a week :)",
+   "expect": {
+    "role": "machine-learning-engineer",
+    "known_skills": [
+     "prog.oop"
+    ],
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: my goal is to be a data scientist, comfortable with statistics, i can do 10 a week :)",
+   "expect": {
+    "role": "data-scientist",
+    "known_skills": [
+     "math.stats"
+    ],
+    "weekly_hours": 10
+   }
+  },
+  {
+   "said": "learner: about 25 hours weekly :)",
+   "expect": {
+    "weekly_hours": 25
+   }
+  },
+  {
+   "said": "learner: already did SQL",
+   "expect": {
+    "known_skills": [
+     "data.sql"
+    ]
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a a devops person, i know supervised learning pretty well, 20 hours a week :)",
+   "expect": {
+    "role": "devops-engineer",
+    "known_skills": [
+     "ml.supervised"
+    ],
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a an ml eng, comfortable with git, i can do 20 a week ok so",
+   "expect": {
+    "role": "machine-learning-engineer",
+    "known_skills": [
+     "eng.git"
+    ],
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: i want to be a game developer hey",
+   "expect": {
+    "role": "game-developer"
+   }
+  },
+  {
+   "said": "learner: roughly 10 hours each week",
+   "expect": {
+    "weekly_hours": 10
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a data engineer",
+   "expect": {
+    "role": "data-engineer"
+   }
+  },
+  {
+   "said": "learner: 4h/week umm",
+   "expect": {
+    "weekly_hours": 4
+   }
+  },
+  {
+   "said": "learner: i already know object oriented programming pls help",
+   "expect": {
+    "known_skills": [
+     "prog.oop"
+    ]
+   }
+  },
+  {
+   "said": "learner: about 12 hours weekly bro",
+   "expect": {
+    "weekly_hours": 12
+   }
+  },
+  {
+   "said": "learner: can you teach me docker bro",
+   "expect": {
+    "goal_skills": [
+     "ops.docker"
+    ]
+   }
+  },
+  {
+   "said": "assistant: How many hours a week can you realistically give this?\nlearner: 14",
+   "expect": {
+    "weekly_hours": 14
+   }
+  },
+  {
+   "said": "learner: i can do 15 a week umm",
+   "expect": {
+    "weekly_hours": 15
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a data engineer, already did supervised learning, 6 hours a week umm",
+   "expect": {
+    "role": "data-engineer",
+    "known_skills": [
+     "ml.supervised"
+    ],
+    "weekly_hours": 6
+   }
+  },
+  {
+   "said": "learner: roughly 20 hours each week hey",
+   "expect": {
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: i like building stuff rather than watching lectures",
+   "expect": {
+    "style": "project first"
+   }
+  },
+  {
+   "said": "learner: i know pandas pretty well umm",
+   "expect": {
+    "known_skills": [
+     "data.pandas"
+    ]
+   }
+  },
+  {
+   "said": "learner: machine learning pls hey",
+   "expect": {
+    "goal_skills": [
+     "ml.concepts"
+    ]
+   }
+  },
+  {
+   "said": "learner: comfortable with OOP ok so",
+   "expect": {
+    "known_skills": [
+     "prog.oop"
+    ]
+   }
+  },
+  {
+   "said": "learner: 20h/week hey",
+   "expect": {
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: interested in web development umm",
+   "expect": {
+    "goal_skills": [
+     "web.frontend"
+    ]
+   }
+  },
+  {
+   "said": "learner: deep learning umm",
+   "expect": {
+    "goal_skills": [
+     "dl.neuralnets"
+    ]
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a data scientist, i know git pretty well, 20 hours a week",
+   "expect": {
+    "role": "data-scientist",
+    "known_skills": [
+     "eng.git"
+    ],
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: i already know git :)",
+   "expect": {
+    "known_skills": [
+     "eng.git"
+    ]
+   }
+  },
+  {
+   "said": "learner: ive done stats before pls help",
+   "expect": {
+    "known_skills": [
+     "math.stats"
+    ]
+   }
+  },
+  {
+   "said": "learner: i already know Python thanks!",
+   "expect": {
+    "known_skills": [
+     "prog.python"
+    ]
+   }
+  },
+  {
+   "said": "learner: my goal is to be a frontend dev, already did statistics, 10h/week",
+   "expect": {
+    "role": "frontend-developer",
+    "known_skills": [
+     "math.stats"
+    ],
+    "weekly_hours": 10
+   }
+  },
+  {
+   "said": "learner: trying to become a backend dev, comfortable with git, i can do 20 a week ok so",
+   "expect": {
+    "role": "backend-developer",
+    "known_skills": [
+     "eng.git"
+    ],
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: looking to switch careers to security engineer, already did object oriented programming, 20h/week :)",
+   "expect": {
+    "role": "security-engineer",
+    "known_skills": [
+     "prog.oop"
+    ],
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: 15 hours a week ok so",
+   "expect": {
+    "weekly_hours": 15
+   }
+  },
+  {
+   "said": "learner: i have experience with supervised learning thanks!",
+   "expect": {
+    "known_skills": [
+     "ml.supervised"
+    ]
+   }
+  },
+  {
+   "said": "learner: i already know JS pls help",
+   "expect": {
+    "known_skills": [
+     "prog.javascript"
+    ]
+   }
+  },
+  {
+   "said": "learner: roughly 5 hours each week hey",
+   "expect": {
+    "weekly_hours": 5
+   }
+  },
+  {
+   "said": "learner: security engineer is the target, comfortable with pandas, 4 hrs per week hey",
+   "expect": {
+    "role": "security-engineer",
+    "known_skills": [
+     "data.pandas"
+    ],
+    "weekly_hours": 4
+   }
+  },
+  {
+   "said": "learner: can you teach me sql pls help",
+   "expect": {
+    "goal_skills": [
+     "data.sql"
+    ]
+   }
+  },
+  {
+   "said": "learner: test",
+   "expect": {
+    "goal_skills": [],
+    "known_skills": [],
+    "weekly_hours": null
+   }
+  },
+  {
+   "said": "learner: ive done git before ok so",
+   "expect": {
+    "known_skills": [
+     "eng.git"
+    ]
+   }
+  },
+  {
+   "said": "learner: ive done supervised learning before",
+   "expect": {
+    "known_skills": [
+     "ml.supervised"
+    ]
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a a data analyst pls help",
+   "expect": {
+    "role": "data-analyst"
+   }
+  },
+  {
+   "said": "learner: i know statistics pretty well ok so",
+   "expect": {
+    "known_skills": [
+     "math.stats"
+    ]
+   }
+  },
+  {
+   "said": "learner: data analyst is the target hey",
+   "expect": {
+    "role": "data-analyst"
+   }
+  },
+  {
+   "said": "learner: i can do 25 a week pls help",
+   "expect": {
+    "weekly_hours": 25
+   }
+  },
+  {
+   "said": "learner: trying to become a data scientist thanks!",
+   "expect": {
+    "role": "data-scientist"
+   }
+  },
+  {
+   "said": "learner: frontend dev is the target :)",
+   "expect": {
+    "role": "frontend-developer"
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a front end developer",
+   "expect": {
+    "role": "frontend-developer"
+   }
+  },
+  {
+   "said": "learner: i know sql pretty well ok so",
+   "expect": {
+    "known_skills": [
+     "data.sql"
+    ]
+   }
+  },
+  {
+   "said": "learner: cyber security hey",
+   "expect": {
+    "goal_skills": [
+     "sec.fundamentals"
+    ]
+   }
+  },
+  {
+   "said": "learner: an ml eng is the target, i have experience with JS, roughly 10 hours each week pls help",
+   "expect": {
+    "role": "machine-learning-engineer",
+    "known_skills": [
+     "prog.javascript"
+    ],
+    "weekly_hours": 10
+   }
+  }
+ ],
+ "test": [
+  {
+   "said": "learner: machine learning pls help",
+   "expect": {
+    "goal_skills": [
+     "ml.concepts"
+    ]
+   }
+  },
+  {
+   "said": "learner: security engineer is the target :)",
+   "expect": {
+    "role": "security-engineer"
+   }
+  },
+  {
+   "said": "learner: a devops person is the target",
+   "expect": {
+    "role": "devops-engineer"
+   }
+  },
+  {
+   "said": "learner: looking to switch careers to data engineer, already did pandas, maybe 12h a week ok so",
+   "expect": {
+    "role": "data-engineer",
+    "known_skills": [
+     "data.pandas"
+    ],
+    "weekly_hours": 12
+   }
+  },
+  {
+   "said": "learner: i want to be a frontend dev bro",
+   "expect": {
+    "role": "frontend-developer"
+   }
+  },
+  {
+   "said": "learner: roughly 12 hours each week bro",
+   "expect": {
+    "weekly_hours": 12
+   }
+  },
+  {
+   "said": "learner: trying to become a security engineer",
+   "expect": {
+    "role": "security-engineer"
+   }
+  },
+  {
+   "said": "learner: ive done sql before",
+   "expect": {
+    "known_skills": [
+     "data.sql"
+    ]
+   }
+  },
+  {
+   "said": "learner: 8 hours a week\nlearner: actually make it 12",
+   "expect": {
+    "weekly_hours": 12
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a game dev pls help",
+   "expect": {
+    "role": "game-developer"
+   }
+  },
+  {
+   "said": "learner: i want to be a front end developer, i have experience with statistics, maybe 20h a week ok so",
+   "expect": {
+    "role": "frontend-developer",
+    "known_skills": [
+     "math.stats"
+    ],
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a NLP engineer, ive done SQL before, about 6 hours weekly pls help",
+   "expect": {
+    "role": "nlp-engineer",
+    "known_skills": [
+     "data.sql"
+    ],
+    "weekly_hours": 6
+   }
+  },
+  {
+   "said": "learner: i want to learn deep learning bro",
+   "expect": {
+    "goal_skills": [
+     "dl.neuralnets"
+    ]
+   }
+  },
+  {
+   "said": "learner: i have experience with javascript pls help",
+   "expect": {
+    "known_skills": [
+     "prog.javascript"
+    ]
+   }
+  },
+  {
+   "said": "learner: i have experience with pandas bro",
+   "expect": {
+    "known_skills": [
+     "data.pandas"
+    ]
+   }
+  },
+  {
+   "said": "assistant: How many hours a week can you realistically give this?\nlearner: 6",
+   "expect": {
+    "weekly_hours": 6
+   }
+  },
+  {
+   "said": "learner: i want to learn machine learning pls help",
+   "expect": {
+    "goal_skills": [
+     "ml.concepts"
+    ]
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a security engineer",
+   "expect": {
+    "role": "security-engineer"
+   }
+  },
+  {
+   "said": "learner: 12h/week",
+   "expect": {
+    "weekly_hours": 12
+   }
+  },
+  {
+   "said": "learner: looking to switch careers to NLP engineer umm",
+   "expect": {
+    "role": "nlp-engineer"
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a security engineer, i know OOP pretty well, about 20 hours weekly pls help",
+   "expect": {
+    "role": "security-engineer",
+    "known_skills": [
+     "prog.oop"
+    ],
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a an ml eng :)",
+   "expect": {
+    "role": "machine-learning-engineer"
+   }
+  },
+  {
+   "said": "learner: i can do 10 a week umm",
+   "expect": {
+    "weekly_hours": 10
+   }
+  },
+  {
+   "said": "learner: looking to switch careers to security engineer, i already know sql, 6h/week bro",
+   "expect": {
+    "role": "security-engineer",
+    "known_skills": [
+     "data.sql"
+    ],
+    "weekly_hours": 6
+   }
+  },
+  {
+   "said": "learner: i know javascript pretty well thanks!",
+   "expect": {
+    "known_skills": [
+     "prog.javascript"
+    ]
+   }
+  },
+  {
+   "said": "learner: comfortable with python bro",
+   "expect": {
+    "known_skills": [
+     "prog.python"
+    ]
+   }
+  },
+  {
+   "said": "learner: 8 hours a week",
+   "expect": {
+    "weekly_hours": 8
+   }
+  },
+  {
+   "said": "learner: looking to switch careers to security engineer",
+   "expect": {
+    "role": "security-engineer"
+   }
+  },
+  {
+   "said": "learner: ok",
+   "expect": {
+    "goal_skills": [],
+    "known_skills": [],
+    "weekly_hours": null
+   }
+  },
+  {
+   "said": "learner: i have experience with statistics umm",
+   "expect": {
+    "known_skills": [
+     "math.stats"
+    ]
+   }
+  },
+  {
+   "said": "learner: i want to learn docker",
+   "expect": {
+    "goal_skills": [
+     "ops.docker"
+    ]
+   }
+  },
+  {
+   "said": "learner: looking to switch careers to ML engineer pls help",
+   "expect": {
+    "role": "machine-learning-engineer"
+   }
+  },
+  {
+   "said": "learner: about 15 hours weekly",
+   "expect": {
+    "weekly_hours": 15
+   }
+  },
+  {
+   "said": "learner: i have experience with git umm",
+   "expect": {
+    "known_skills": [
+     "eng.git"
+    ]
+   }
+  },
+  {
+   "said": "learner: about 8 hours weekly bro",
+   "expect": {
+    "weekly_hours": 8
+   }
+  },
+  {
+   "said": "learner: interested in deep learning bro",
+   "expect": {
+    "goal_skills": [
+     "dl.neuralnets"
+    ]
+   }
+  },
+  {
+   "said": "learner: i want to be a NLP engineer thanks!",
+   "expect": {
+    "role": "nlp-engineer"
+   }
+  },
+  {
+   "said": "learner: comfortable with statistics hey",
+   "expect": {
+    "known_skills": [
+     "math.stats"
+    ]
+   }
+  },
+  {
+   "said": "learner: machine learning engineer is the target",
+   "expect": {
+    "role": "machine-learning-engineer"
+   }
+  },
+  {
+   "said": "learner: looking to switch careers to frontend dev",
+   "expect": {
+    "role": "frontend-developer"
+   }
+  },
+  {
+   "said": "learner: data engineer is the target :)",
+   "expect": {
+    "role": "data-engineer"
+   }
+  },
+  {
+   "said": "learner: i want to understand the theory before coding umm",
+   "expect": {
+    "style": "theory first"
+   }
+  },
+  {
+   "said": "learner: docker ok so",
+   "expect": {
+    "goal_skills": [
+     "ops.docker"
+    ]
+   }
+  },
+  {
+   "said": "learner: trying to become a NLP engineer",
+   "expect": {
+    "role": "nlp-engineer"
+   }
+  },
+  {
+   "said": "learner: i want to learn sql hey",
+   "expect": {
+    "goal_skills": [
+     "data.sql"
+    ]
+   }
+  },
+  {
+   "said": "learner: ive done JS before pls help",
+   "expect": {
+    "known_skills": [
+     "prog.javascript"
+    ]
+   }
+  },
+  {
+   "said": "learner: 20 hours a week ok so",
+   "expect": {
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: maybe 15h a week ok so",
+   "expect": {
+    "weekly_hours": 15
+   }
+  },
+  {
+   "said": "learner: sql :)",
+   "expect": {
+    "goal_skills": [
+     "data.sql"
+    ]
+   }
+  },
+  {
+   "said": "learner: 20 hrs per week pls help",
+   "expect": {
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: i have experience with Python :)",
+   "expect": {
+    "known_skills": [
+     "prog.python"
+    ]
+   }
+  },
+  {
+   "said": "learner: i prefer hands on projects hey",
+   "expect": {
+    "style": "project first"
+   }
+  },
+  {
+   "said": "learner: 10h/week ok so",
+   "expect": {
+    "weekly_hours": 10
+   }
+  },
+  {
+   "said": "learner: 5h/week",
+   "expect": {
+    "weekly_hours": 5
+   }
+  },
+  {
+   "said": "learner: 20 hours a week\nlearner: actually make it 5",
+   "expect": {
+    "weekly_hours": 5
+   }
+  },
+  {
+   "said": "assistant: What do you want to be able to do at the end?\nlearner: devops engineer",
+   "expect": {
+    "role": "devops-engineer"
+   }
+  },
+  {
+   "said": "learner: already did pandas pls help",
+   "expect": {
+    "known_skills": [
+     "data.pandas"
+    ]
+   }
+  },
+  {
+   "said": "learner: my goal is to be a front end developer",
+   "expect": {
+    "role": "frontend-developer"
+   }
+  },
+  {
+   "said": "learner: NLP engineer is the target bro",
+   "expect": {
+    "role": "nlp-engineer"
+   }
+  },
+  {
+   "said": "learner: an ml eng is the target, ive done python before, 4 hours a week",
+   "expect": {
+    "role": "machine-learning-engineer",
+    "known_skills": [
+     "prog.python"
+    ],
+    "weekly_hours": 4
+   }
+  },
+  {
+   "said": "learner: what is this",
+   "expect": {
+    "goal_skills": [],
+    "known_skills": [],
+    "weekly_hours": null
+   }
+  },
+  {
+   "said": "learner: looking to switch careers to a devops person bro",
+   "expect": {
+    "role": "devops-engineer"
+   }
+  },
+  {
+   "said": "learner: i can do 4 a week hey",
+   "expect": {
+    "weekly_hours": 4
+   }
+  },
+  {
+   "said": "learner: i know OOP pretty well :)",
+   "expect": {
+    "known_skills": [
+     "prog.oop"
+    ]
+   }
+  },
+  {
+   "said": "learner: cyber security pls thanks!",
+   "expect": {
+    "goal_skills": [
+     "sec.fundamentals"
+    ]
+   }
+  },
+  {
+   "said": "learner: can you teach me web development hey",
+   "expect": {
+    "goal_skills": [
+     "web.frontend"
+    ]
+   }
+  },
+  {
+   "said": "learner: my goal is to be a data engineer bro",
+   "expect": {
+    "role": "data-engineer"
+   }
+  },
+  {
+   "said": "assistant: How many hours a week can you realistically give this?\nlearner: 18",
+   "expect": {
+    "weekly_hours": 18
+   }
+  },
+  {
+   "said": "learner: i like lectures and fundamentals",
+   "expect": {
+    "style": "theory first"
+   }
+  },
+  {
+   "said": "learner: data engineer is the target, ive done python before, about 12 hours weekly :)",
+   "expect": {
+    "role": "data-engineer",
+    "known_skills": [
+     "prog.python"
+    ],
+    "weekly_hours": 12
+   }
+  },
+  {
+   "said": "learner: trying to become a an ml eng pls help",
+   "expect": {
+    "role": "machine-learning-engineer"
+   }
+  },
+  {
+   "said": "learner: looking to switch careers to a data analyst",
+   "expect": {
+    "role": "data-analyst"
+   }
+  },
+  {
+   "said": "learner: i already know data visualisation",
+   "expect": {
+    "known_skills": [
+     "data.viz"
+    ]
+   }
+  },
+  {
+   "said": "learner: looking to switch careers to game developer, comfortable with supervised learning, 10h/week",
+   "expect": {
+    "role": "game-developer",
+    "known_skills": [
+     "ml.supervised"
+    ],
+    "weekly_hours": 10
+   }
+  },
+  {
+   "said": "learner: i already know stats",
+   "expect": {
+    "known_skills": [
+     "math.stats"
+    ]
+   }
+  },
+  {
+   "said": "learner: trying to become a data scientist, i already know SQL, i can do 20 a week :)",
+   "expect": {
+    "role": "data-scientist",
+    "known_skills": [
+     "data.sql"
+    ],
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: i want to learn cyber security",
+   "expect": {
+    "goal_skills": [
+     "sec.fundamentals"
+    ]
+   }
+  },
+  {
+   "said": "learner: thanks",
+   "expect": {
+    "goal_skills": [],
+    "known_skills": [],
+    "weekly_hours": null
+   }
+  },
+  {
+   "said": "learner: interested in machine learning",
+   "expect": {
+    "goal_skills": [
+     "ml.concepts"
+    ]
+   }
+  },
+  {
+   "said": "learner: my goal is to be a front end developer, already did pandas, maybe 20h a week bro",
+   "expect": {
+    "role": "frontend-developer",
+    "known_skills": [
+     "data.pandas"
+    ],
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: machine learning engineer is the target, ive done supervised learning before, 6 hours a week :)",
+   "expect": {
+    "role": "machine-learning-engineer",
+    "known_skills": [
+     "ml.supervised"
+    ],
+    "weekly_hours": 6
+   }
+  },
+  {
+   "said": "learner: my goal is to be a NLP engineer hey",
+   "expect": {
+    "role": "nlp-engineer"
+   }
+  },
+  {
+   "said": "learner: already did object oriented programming",
+   "expect": {
+    "known_skills": [
+     "prog.oop"
+    ]
+   }
+  },
+  {
+   "said": "learner: already did supervised learning :)",
+   "expect": {
+    "known_skills": [
+     "ml.supervised"
+    ]
+   }
+  },
+  {
+   "said": "learner: maybe 4h a week ok so",
+   "expect": {
+    "weekly_hours": 4
+   }
+  },
+  {
+   "said": "learner: 15h/week",
+   "expect": {
+    "weekly_hours": 15
+   }
+  },
+  {
+   "said": "learner: hi",
+   "expect": {
+    "goal_skills": [],
+    "known_skills": [],
+    "weekly_hours": null
+   }
+  },
+  {
+   "said": "learner: i want to be a devops engineer pls help",
+   "expect": {
+    "role": "devops-engineer"
+   }
+  },
+  {
+   "said": "learner: NLP engineer is the target, ive done data visualisation before, 20 hours a week ok so",
+   "expect": {
+    "role": "nlp-engineer",
+    "known_skills": [
+     "data.viz"
+    ],
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: already did Python",
+   "expect": {
+    "known_skills": [
+     "prog.python"
+    ]
+   }
+  },
+  {
+   "said": "learner: i can do 20 a week umm",
+   "expect": {
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: 8h/week :)",
+   "expect": {
+    "weekly_hours": 8
+   }
+  },
+  {
+   "said": "learner: maybe 12h a week pls help",
+   "expect": {
+    "weekly_hours": 12
+   }
+  },
+  {
+   "said": "learner: i already know pandas",
+   "expect": {
+    "known_skills": [
+     "data.pandas"
+    ]
+   }
+  },
+  {
+   "said": "learner: already did git bro",
+   "expect": {
+    "known_skills": [
+     "eng.git"
+    ]
+   }
+  },
+  {
+   "said": "learner: 5 hrs per week :)",
+   "expect": {
+    "weekly_hours": 5
+   }
+  },
+  {
+   "said": "learner: ive done data visualisation before thanks!",
+   "expect": {
+    "known_skills": [
+     "data.viz"
+    ]
+   }
+  },
+  {
+   "said": "learner: already did javascript bro",
+   "expect": {
+    "known_skills": [
+     "prog.javascript"
+    ]
+   }
+  },
+  {
+   "said": "learner: interested in data visualisation :)",
+   "expect": {
+    "goal_skills": [
+     "data.viz"
+    ]
+   }
+  },
+  {
+   "said": "learner: already did data visualisation",
+   "expect": {
+    "known_skills": [
+     "data.viz"
+    ]
+   }
+  },
+  {
+   "said": "learner: i want to be a an ml eng pls help",
+   "expect": {
+    "role": "machine-learning-engineer"
+   }
+  },
+  {
+   "said": "learner: looking to switch careers to data scientist",
+   "expect": {
+    "role": "data-scientist"
+   }
+  },
+  {
+   "said": "learner: i learn best by building things hey",
+   "expect": {
+    "style": "project first"
+   }
+  },
+  {
+   "said": "assistant: How many hours a week can you realistically give this?\nlearner: 9",
+   "expect": {
+    "weekly_hours": 9
+   }
+  },
+  {
+   "said": "learner: data visualisation hey",
+   "expect": {
+    "goal_skills": [
+     "data.viz"
+    ]
+   }
+  },
+  {
+   "said": "learner: looking to switch careers to NLP engineer, i know pandas pretty well, 10 hrs per week thanks!",
+   "expect": {
+    "role": "nlp-engineer",
+    "known_skills": [
+     "data.pandas"
+    ],
+    "weekly_hours": 10
+   }
+  },
+  {
+   "said": "learner: 4 hours a week ok so",
+   "expect": {
+    "weekly_hours": 4
+   }
+  },
+  {
+   "said": "learner: hello?",
+   "expect": {
+    "goal_skills": [],
+    "known_skills": [],
+    "weekly_hours": null
+   }
+  },
+  {
+   "said": "learner: i know Python pretty well umm",
+   "expect": {
+    "known_skills": [
+     "prog.python"
+    ]
+   }
+  },
+  {
+   "said": "learner: i want to be a data scientist",
+   "expect": {
+    "role": "data-scientist"
+   }
+  },
+  {
+   "said": "learner: trying to become a backend developer umm",
+   "expect": {
+    "role": "backend-developer"
+   }
+  },
+  {
+   "said": "learner: about 10 hours weekly",
+   "expect": {
+    "weekly_hours": 10
+   }
+  },
+  {
+   "said": "learner: i prefer theory first :)",
+   "expect": {
+    "style": "theory first"
+   }
+  },
+  {
+   "said": "learner: 25h/week ok so",
+   "expect": {
+    "weekly_hours": 25
+   }
+  },
+  {
+   "said": "learner: looking to switch careers to game developer ok so",
+   "expect": {
+    "role": "game-developer"
+   }
+  },
+  {
+   "said": "learner: 10 hrs per week",
+   "expect": {
+    "weekly_hours": 10
+   }
+  },
+  {
+   "said": "learner: my goal is to be a backend developer bro",
+   "expect": {
+    "role": "backend-developer"
+   }
+  },
+  {
+   "said": "learner: front end developer is the target, i already know statistics, 4h/week ok so",
+   "expect": {
+    "role": "frontend-developer",
+    "known_skills": [
+     "math.stats"
+    ],
+    "weekly_hours": 4
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a a devops person, comfortable with SQL, roughly 10 hours each week",
+   "expect": {
+    "role": "devops-engineer",
+    "known_skills": [
+     "data.sql"
+    ],
+    "weekly_hours": 10
+   }
+  },
+  {
+   "said": "learner: i know supervised learning pretty well umm",
+   "expect": {
+    "known_skills": [
+     "ml.supervised"
+    ]
+   }
+  },
+  {
+   "said": "learner: my goal is to be a data scientist, i already know object oriented programming, 6h/week bro",
+   "expect": {
+    "role": "data-scientist",
+    "known_skills": [
+     "prog.oop"
+    ],
+    "weekly_hours": 6
+   }
+  },
+  {
+   "said": "learner: roughly 25 hours each week",
+   "expect": {
+    "weekly_hours": 25
+   }
+  },
+  {
+   "said": "learner: i want to be a data scientist, comfortable with stats, 6 hrs per week ok so",
+   "expect": {
+    "role": "data-scientist",
+    "known_skills": [
+     "math.stats"
+    ],
+    "weekly_hours": 6
+   }
+  },
+  {
+   "said": "learner: i want to be a data engineer :)",
+   "expect": {
+    "role": "data-engineer"
+   }
+  },
+  {
+   "said": "learner: about 20 hours weekly pls help",
+   "expect": {
+    "weekly_hours": 20
+   }
+  },
+  {
+   "said": "learner: i have experience with data visualisation umm",
+   "expect": {
+    "known_skills": [
+     "data.viz"
+    ]
+   }
+  },
+  {
+   "said": "learner: i wanna get into being a game dev, i have experience with git, i can do 12 a week hey",
+   "expect": {
+    "role": "game-developer",
+    "known_skills": [
+     "eng.git"
+    ],
+    "weekly_hours": 12
+   }
+  },
+  {
+   "said": "learner: comfortable with pandas pls help",
+   "expect": {
+    "known_skills": [
+     "data.pandas"
+    ]
+   }
+  },
+  {
+   "said": "learner: 8 hrs per week bro",
+   "expect": {
+    "weekly_hours": 8
+   }
+  },
+  {
+   "said": "assistant: What do you want to be able to do at the end?\nlearner: data analyst",
+   "expect": {
+    "role": "data-analyst"
+   }
+  },
+  {
+   "said": "learner: 10 hours a week\nlearner: actually make it 30",
+   "expect": {
+    "weekly_hours": 30
+   }
+  },
+  {
+   "said": "learner: i can do 5 a week :)",
+   "expect": {
+    "weekly_hours": 5
+   }
+  },
+  {
+   "said": "learner: ive done python before ok so",
+   "expect": {
+    "known_skills": [
+     "prog.python"
+    ]
+   }
+  },
+  {
+   "said": "learner: my goal is to be a devops engineer",
+   "expect": {
+    "role": "devops-engineer"
+   }
+  },
+  {
+   "said": "learner: can you teach me deep learning",
+   "expect": {
+    "goal_skills": [
+     "dl.neuralnets"
+    ]
+   }
+  }
+ ]
+}

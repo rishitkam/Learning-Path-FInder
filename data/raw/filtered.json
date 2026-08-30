@@ -7144,5 +7144,896 @@
   ],
   "description": "DevSecOps has gained considerable momentum in recent years. It integrates software development (Dev), information security (Sec), and IT operations (Ops) so that businesses increase the value delivered by software. This course provides an overview of DevSecOps; introduces essential practices, such as continuous integration / continuous deployment (CI/CD), that shorten the cycle from implementing a feature to its availability to users; and describes how to start a DevSecOps transformation. This course is for anyone who develops or manages information technology (IT) systems and wants to break d",
   "enrolled": 6273
+ },
+ {
+  "id": "cs.c7890a68",
+  "title": "Introduction to Data Science and scikit-learn in Python",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/data-science-and-scikit-learn-in-python",
+  "hours": 13,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Data Science",
+   "Machine Learning",
+   "Statistical Hypothesis Testing",
+   "medical data",
+   "regression"
+  ],
+  "description": "This course will teach you how to leverage the power of Python and artificial intelligence to create and test hypothesis. We'll start for the ground up, learning some basic Python for data science before diving into some of its richer applications to test our created hypothesis. We'll learn some of the most important libraries for exploratory data analysis (EDA) and machine learning such as Numpy, Pandas, and Sci-kit learn. After learning some of the theory (and math) behind linear regression, we'll go through and full pipeline of reading data, cleaning it, and applying a regression model to e",
+  "enrolled": 6267
+ },
+ {
+  "id": "cs.9b485b39",
+  "title": "Bring Your Story to Life \u2013 Video Post-Production",
+  "provider": "University of Colorado Boulder",
+  "url": "https://www.coursera.org/learn/bringing-your-story-to-life",
+  "hours": 9,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Editing",
+   "Video Editing",
+   "Video Post-Production",
+   "Video Production"
+  ],
+  "description": "In this course, we will explore the power and artistry of picture and sound editing. Although you\u2019re welcome to use the editing software of your choice, we\u2019ll be demonstrating non-linear editing using Adobe Premiere. We\u2019ll share with you our editing workflow for completing a visual story, from scripting and writing conversationally to the visuals, to recording voice overs, to building the rough cut, and polishing with the final cut. In this module, we plan to teach you how to use Adobe Premiere, which we\u2019ll use as an analog for common non-linear editing systems. Premiere uses many of the bells",
+  "enrolled": 6257
+ },
+ {
+  "id": "cs.50093739",
+  "title": "Object Oriented Programming Specialization",
+  "provider": "University of London",
+  "url": "https://www.coursera.org/specializations/object-oriented-programming-s12n",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "C++",
+   "Computer Programming",
+   "Software Engineering"
+  ],
+  "description": "In this 5-course specialisation, you will develop various C++ programming skills. Rather than building many small programs as you will in other courses, we have taken a different approach: you will create a single, extensive program through the five courses. The program will be a simplified cryptocurrency exchange platform. We will cover the following learning objectives: Use control flow to build interactive, multi-branched, iterated programs Select appropriate data types to model the trading platform's information Convert algorithms from pseudo-code to C++ and test them Use classes to combin",
+  "enrolled": 6246
+ },
+ {
+  "id": "cs.e001a857",
+  "title": "Securing Linux Systems",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/securing-linux-systems",
+  "hours": 13,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Cybersecurity",
+   "Information Technology",
+   "Linux"
+  ],
+  "description": "In this course, we look at security and the Linux operating system. The course material is a good for anyone preparing for the Linux Foundation Certified IT Associate (LFCA) exam or just interested in learning more about Linux. This course is the third course in a series that aims to prepare you for working as an information technology professional. In this course, you will be introduced to ownership, authentication, and authorization. We will drill into creating security through backups and redundancy. We concluded by looking at how to secure the perimeter of our network and systems. In this ",
+  "enrolled": 6200
+ },
+ {
+  "id": "cs.8cbb623c",
+  "title": "IBM Mainframe Developer Professional Certificate",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/professional-certificates/ibm-mainframe-developer",
+  "hours": 130,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "COBOL Structure",
+   "COBOL coding",
+   "Command-Line Interface",
+   "Computer Programming",
+   "Enterprise Software",
+   "Euler'S Totient Function",
+   "IBM Z",
+   "Interfaces",
+   "Intrinsic Function",
+   "Mainframe",
+   "Sorting",
+   "Symbols",
+   "security",
+   "z/OS"
+  ],
+  "description": "Gain the job-ready skills for an entry-level mainframe programming role. Mainframe computers continue to power many mission-critical, financial, banking, and government agency systems. There are 220 billion lines of COBOL in use today. 43% of banking systems are built on COBOL, and 95% percent of ATM swipes rely on COBOL code.\u00b9 COBOL is scalable, mature, and self-documenting. You'll learn about COBOL from its birth and through its evolution. You'll learn new features and aspects of the language, while also getting hands-on experience to increase your knowledge and abilities with COBOL as a who",
+  "enrolled": 6193
+ },
+ {
+  "id": "cs.2300814d",
+  "title": "Frontend Development using React",
+  "provider": "Board Infinity",
+  "url": "https://www.coursera.org/learn/frontend-development-using-react",
+  "hours": 23,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Cascading Style Sheets (CSS)",
+   "HTML",
+   "JavaScript",
+   "React (Web Framework)"
+  ],
+  "description": "Welcome to the Frontend Development using React course! In this program, you will learn the fundamentals of frontend development and how to build web applications using the React library. The course is best suitable for people with familiarity with web development. The first module, Introduction to HTML & CSS, will introduce you to the basics of HTML and CSS, which are the building blocks of web development. You will learn how to structure content with HTML and apply styles to your web pages with CSS. The second module, Introduction to JavaScript Programming, will teach you the fundamentals of",
+  "enrolled": 6181
+ },
+ {
+  "id": "cs.445950f6",
+  "title": "Leveraging AI for Enhanced Content Creation",
+  "provider": "Coursera Instructor Network",
+  "url": "https://www.coursera.org/learn/leveraging-ai-for-enhanced-content-creation",
+  "hours": 4,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "AI Tools",
+   "AI assistance",
+   "AI-driven prompts",
+   "Content Creation",
+   "Techniques using AI."
+  ],
+  "description": "This course provides a foundation to assess, and apply, a series of Generative Artificial Intelligence (AI) tools, such as ChatGPT, Bing Chat, Google Bard, Midjourney, Runway, and Eleven Labs. This learning opportunity offers a hands-on experience through ideating, creating, and finalizing a mock advertising campaign using the combined strengths of these AI tools. Content creators, marketing professionals, business strategists, and anyone interested in leveraging the combined power of leading Generative AI tools for innovative content solutions. Basic understanding of AI concepts and a passion",
+  "enrolled": 6181
+ },
+ {
+  "id": "cs.acc3457c",
+  "title": "Optimization for Decision Making",
+  "provider": "University of Minnesota",
+  "url": "https://www.coursera.org/learn/optimization-for-decision-making",
+  "hours": 13,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Analytics",
+   "Linear Programming (LP)",
+   "Mathematical Optimization"
+  ],
+  "description": "In this data-driven world, companies are often interested in knowing what is the \"best\" course of action, given the data. For example, manufacturers need to decide how many units of a product to produce given the estimated demand and raw material availability? Should they make all the products in-house or buy some from a third-party to meet the demand? Prescriptive Analytics is the branch of analytics that can provide answers to these questions. It is used for prescribing data-based decisions. The most important method in the prescriptive analytics toolbox is optimization. This course will int",
+  "enrolled": 6176
+ },
+ {
+  "id": "cs.ab967947",
+  "title": "Generative AI for Data Scientists Specialization",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/specializations/generative-ai-for-data-scientists",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Artificial Intelligence (AI)",
+   "Data Science",
+   "Generative AI",
+   "Machine Learning",
+   "Prompt Engineering"
+  ],
+  "description": "Generative AI knowledge is now anessential data science skill. According to Gartner, \"By 2026, 20% of top data science teams will have rebranded as Cognitive Science or Science consultancies, increasing diversity in staff skills by 800%.\" With the industry trends in mind, IBM brings you this specialization to helpboost your career! Thisthree-course specializationis designed to help youkickstart your journeyinto applying generative AI in the field of data science. This includes existing and aspiring data professionals, such as data scientists, data analysts, data architects, and engineers, and ",
+  "enrolled": 6173
+ },
+ {
+  "id": "cs.f6ce077c",
+  "title": "Cybersecurity in the Cloud Specialization",
+  "provider": "University of Minnesota",
+  "url": "https://www.coursera.org/specializations/cybersecurity-cloud",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Access Control",
+   "Cross-Site Scripting",
+   "Cryptography",
+   "OWASP Top Ten Risks"
+  ],
+  "description": "This Specialization introduces cybersecurity to novice software developers. It presents essential security concepts and how they apply to cloud deployments. Learners develop proficiency at assessing cloud vulnerabilities and attack reports. They also dive into cloud provider documentation to apply available features to classic cybersecurity risks. Applied Learning Project Learners assess cloud vulnerabilities and attack reports in the context of US national documentation standards. They also become familiar with cloud provider documentation and how to apply available security measures to major",
+  "enrolled": 6167
+ },
+ {
+  "id": "cs.9fa2bbef",
+  "title": "Developing Applications in Python on AWS",
+  "provider": "Amazon Web Services",
+  "url": "https://www.coursera.org/learn/developing-applications-in-python-on-aws",
+  "hours": 9,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Automation",
+   "Cloud API",
+   "Python Programming",
+   "Software Architecture",
+   "Web Development"
+  ],
+  "description": "This course gives you a thorough introduction to the python programming language. You'll start by learning the definition of python, its history, semantics, and how it works. The first week concludes by writing a python script to solve a problem. In Week 2, you'll learn about Serverless Architectures and understand the differences between microservices, service-oriented and monolith architectures. You'll build a microservices architecture by learning how to use the following tools: AWS Lambda, Amazon API Gateway, and Cloud9. It's then time to go deep with AWS Databases. You'll see Amazon RDS a",
+  "enrolled": 6120
+ },
+ {
+  "id": "cs.f6c595af",
+  "title": "Introduction to Parallel Programming with CUDA",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/learn/introduction-to-parallel-programming-with-cuda",
+  "hours": 21,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Algorithms",
+   "C/C++",
+   "Cuda",
+   "GPU",
+   "Nvidia"
+  ],
+  "description": "This course will help prepare students for developing code that can process large amounts of data in parallel on Graphics Processing Units (GPUs). It will learn on how to implement software that can solve complex problems with the leading consumer to enterprise-grade GPUs available using Nvidia CUDA. They will focus on the hardware and software capabilities, including the use of 100s to 1000s of threads and various forms of memory. The purpose of this module is for students to understand how the course will be run, topics, how they will be assessed, and expectations. 3 videos4 readings1 progra",
+  "enrolled": 6103
+ },
+ {
+  "id": "cs.8ca9ec27",
+  "title": "Differential Calculus through Data and Modeling Specialization",
+  "provider": "Johns Hopkins University",
+  "url": "https://www.coursera.org/specializations/differential-calculus-data-modeling",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Data Analysis",
+   "Mathematical Optimization",
+   "Modelling",
+   "function analysis",
+   "vectors"
+  ],
+  "description": "This specialization provides an introduction to topics in single and multivariable calculus, and focuses on using calculus to address questions in the natural and social sciences. Students will learn to use the tools of calculus to process, analyze, and interpret data, and to communicate meaningful results, using scientific computing and mathematical modeling. Topics include functions as models of data, differential and integral calculus of functions of one and several variables, differential equations, and optimization and estimation techniques. Applied Learning Project In each module, learne",
+  "enrolled": 6100
+ },
+ {
+  "id": "cs.e3da88f4",
+  "title": "Capstone (React App)",
+  "provider": "Meta",
+  "url": "https://www.coursera.org/learn/capstone-react-app",
+  "hours": 13,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Figma",
+   "Github",
+   "React (Web Framework)",
+   "SQL",
+   "UX and UI"
+  ],
+  "description": "This course enables you to demonstrate multiple skills from this program by solving an authentic real-world problem. Each module includes a brief recap of, and links to, content that you have covered in previous courses in this program. The course Capstone project will test your knowledge and understanding in mobile development using React Native. To complete this course, you will need React Native experience. During this course, you will be guided through the process of building an app, combining all the skills and technologies you've learned throughout this program to solve the problem at ha",
+  "enrolled": 6059
+ },
+ {
+  "id": "cs.970c7c93",
+  "title": "Simulation Models for Decision Making",
+  "provider": "University of Minnesota",
+  "url": "https://www.coursera.org/learn/simulation-models-for-decision-making",
+  "hours": 17,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Counterfactual Analysis",
+   "Discrete Event Simulation",
+   "Goal Seeking",
+   "Monte Carlo Method",
+   "Queuing Analysis"
+  ],
+  "description": "This course is primarily aimed at third- and fourth-year undergraduate students or graduate students interested in learning simulation techniques to solve business problems. The course will introduce you to take everyday and complex business problems that have no one correct answer due to uncertainties that exist in business environments. Simulation modeling allows us to explore various outcomes and protect personal or business interests against unwanted outcomes. We can model uncertainties by using the concepts of probability and stepwise thinking. Stepwise thinking allows us to break down th",
+  "enrolled": 6054
+ },
+ {
+  "id": "cs.242a7219",
+  "title": "Get Started with Cloud Native, DevOps, Agile, and NoSQL",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/cloud-native-devops-agile-nosql",
+  "hours": 13,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Continuous Delivery",
+   "Continuous Integration",
+   "Devops",
+   "Mongodb",
+   "agile"
+  ],
+  "description": "Would you like to explore the complete process of developing cloud-native applications from inception to implementation? This course covers essential cloud concepts such as Cloud Native Applications and CNCF and their impact on cloud application developers. You'll delve into specific tools and techniques for building cloud-native apps. Next, you'll discover how to enhance your organization's culture through DevOps. You'll ensure consistent behavior and maintain high code quality by experimenting with various approaches, such as test-driven and behavior-driven development. Furthermore, you will",
+  "enrolled": 6049
+ },
+ {
+  "id": "cs.e99cd48e",
+  "title": "Exploring C",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/learn/exploring-c",
+  "hours": 11,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "C Data Types (C Programming Language)",
+   "C Syntax",
+   "History of Computing"
+  ],
+  "description": "The C programming language is heavily influential in the world of coding and helps run some of the most powerful computer programs in the world. In Exploring C, examine the historical context and impact of C on the development of programming over the past 50 years. In this course, you\u2019ll compare and contrast C with the programming language Python, review how to code in C and gain an understanding of the nuances of computer programming. 4 videos4 readings1 assignment 1 video2 readings6 app items 1 video1 reading4 app items 1 video1 reading1 assignment5 app items 1 video3 readings4 app items",
+  "enrolled": 5990
+ },
+ {
+  "id": "cs.b1a68a4d",
+  "title": "Advanced Models for Decision Making",
+  "provider": "University of Minnesota",
+  "url": "https://www.coursera.org/learn/advanced-models-for-decision-making",
+  "hours": 13,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Analytics",
+   "Linear Programming (LP)",
+   "Mathematical Optimization",
+   "Operations Management"
+  ],
+  "description": "Business analysts need to be able to prescribe optimal solution to problems. But analytics courses are often focused on training students in data analysis and visualization, not so much in helping them figure out how to take the available data and pair that with the right mathematical model to formulate a solution. This course is designed to connect data and models to real world decision-making scenarios in manufacturing, supply chain, finance, human resource management, etc. In particular, we understand how linear optimization - a prescriptive analytics method - can be used to formulate decis",
+  "enrolled": 5954
+ },
+ {
+  "id": "cs.46080eb4",
+  "title": "Operational Analytics with Microsoft Azure Synapse Analytics",
+  "provider": "Microsoft",
+  "url": "https://www.coursera.org/learn/operational-analytics-with-microsoft-azure-synapse-analytics",
+  "hours": 11,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Analytics",
+   "Apache Spark",
+   "Microsoft Azure"
+  ],
+  "description": "In this course, you will learn how to perform operational analytics against Azure Cosmos DB using the Azure Synapse Link feature within Azure Synapse Analytics. You will learn how hybrid transactional and analytical processing can help you perform operational analytics with Azure Synapse Analytics. You will also learn how to configure and enable Azure Synapse Link to interact with Azure Cosmos DB and how you can perform analytics against Azure Cosmos DB using Azure Synapse Link. This course is part of a Specialization intended for Data engineers and developers who want to demonstrate their exp",
+  "enrolled": 5820
+ },
+ {
+  "id": "cs.823afa2d",
+  "title": "Business Process Modelling",
+  "provider": "Starweaver",
+  "url": "https://www.coursera.org/learn/business-process-modelling",
+  "hours": 8,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "BPMN",
+   "Business Modeling",
+   "Business Operations",
+   "Notations",
+   "Sequencing"
+  ],
+  "description": "Learn to capture and optimize business processes using specialized diagrams. Convert insights from stakeholder interviews and document analysis into concise and precise models. Understand various notations and select the best one for your needs. This comprehensive course covers process identification, capturing, documenting, and adapting models for different audiences. Ideal for process analysts, business analysts, solution architects, service & UX designers, and anyone interested in business process modeling. No specific background is required. A basic understanding of business processes and ",
+  "enrolled": 5776
+ },
+ {
+  "id": "cs.a71a748d",
+  "title": "Rust Programming Specialization",
+  "provider": "Duke University",
+  "url": "https://www.coursera.org/specializations/rust-programming",
+  "hours": 173,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "AI pair programming",
+   "AWS Lambda",
+   "Cargo",
+   "Cloud Computing",
+   "Command-Line Interface",
+   "Computer Programming",
+   "Devops",
+   "Information Engineering",
+   "Natural Language Processing",
+   "Polars",
+   "Rust (Programming Language)"
+  ],
+  "description": "This comprehensive Rust Specialization from Coursera and Duke University, a top Data Science and AI program, provides software engineers, data scientists, and technical professionals with applied skills to leverage Rust\u2019s speed, safety, and versatility for robust systems programming. Over five courses spanning foundational syntax to advanced machine learning integrations, master Rust programming through hands-on lessons and 20+ coding projects, then tackle real-world challenges like building a database migration tool, optimizing an ML pipeline, or creating a Linux automation script. Upon compl",
+  "enrolled": 5764
+ },
+ {
+  "id": "cs.e9230285",
+  "title": "Data Analytics in the Public Sector with R Specialization",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/specializations/data-analytics-in-the-public-sector-with-r",
+  "hours": 87,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Data Analysis",
+   "Data Visualization",
+   "Ggplot2",
+   "Public Policy",
+   "Rstudio"
+  ],
+  "description": "Every government entity collects and stores millions of data points to perform administrative and legislative duties, allocate resources, and make decisions. Professionals in the public sector need the necessary skills to accurately interpret and inform administrators and policymakers about the meaning behind these data. This Specialization will equip you with fundamental technical skills using the R programming language to gather, manipulate, analyze, visualize, and interpret data to inform public policy and public administrative functions. Throughout four courses, you will gain new skills us",
+  "enrolled": 5751
+ },
+ {
+  "id": "cs.b2b60899",
+  "title": "Intro to Snowflake for Devs, Data Scientists, Data Engineers",
+  "provider": "Snowflake",
+  "url": "https://www.coursera.org/learn/snowflake-intro-app-developers-data-scientists-data-engineers",
+  "hours": 10,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Data Engineering",
+   "Data Science",
+   "Generative AI",
+   "Machine Learning",
+   "Snowflake"
+  ],
+  "description": "This course introduces learners to Snowflake as a platform for building applications, data pipelines, and AI models and workflows. It takes them from zero Snowflake knowledge all the way to creating user-defined functions, using a Snowflake Cortex LLM function, editing a Streamlit app, and more. The course unfolds in three parts: First, participants learn to use Snowflake\u2019s core objects such as virtual warehouses, stages, and databases. Then they learn about slightly more advanced objects and features such as time travel, cloning, user-defined functions, and stored procedures. Finally, they\u2019re",
+  "enrolled": 5749
+ },
+ {
+  "id": "cs.3c89e10c",
+  "title": "Prediction Models with Sports Data",
+  "provider": "University of Michigan",
+  "url": "https://www.coursera.org/learn/prediction-models-sports-data",
+  "hours": 33,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Data Analysis",
+   "Python Programming",
+   "sports analytics"
+  ],
+  "description": "In this course the learner will be shown how to generate forecasts of game results in professional sports using Python. The main emphasis of the course is on teaching the method of logistic regression as a way of modeling game results, using data on team expenditures. The learner is taken through the process of modeling past results, and then using the model to forecast the outcome games not yet played. The course will show the learner how to evaluate the reliability of a model using data on betting odds. The analysis is applied first to the English Premier League, then the NBA and NHL. The co",
+  "enrolled": 5706
+ },
+ {
+  "id": "cs.f07bf82e",
+  "title": "Structured Approach to Problem Solving",
+  "provider": "Fractal Analytics",
+  "url": "https://www.coursera.org/learn/structured-problem-solving",
+  "hours": 15,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Critical Thinking",
+   "Human Centric Design",
+   "Problem Solving",
+   "problem statement",
+   "structured thinking"
+  ],
+  "description": "This course is an introductory course that equips you with the concepts and tools of problem thinking. By the end of this course, you will be able to: 1. Explain the different stages of a data science project 2. Discuss some of the tools and techniques used in data science. 3. Apply structured thinking to solving problems and avoid the common traps while doing so 4. Apply human-centric design in problem-solving. This course also acts as the first stepping-stone for aspiring data scientists. This course is a part of the program titled Fractal Data Science Professional Certificate. This course i",
+  "enrolled": 5705
+ },
+ {
+  "id": "cs.9f893e8f",
+  "title": "Generative AI Automation Specialization",
+  "provider": "Vanderbilt University",
+  "url": "https://www.coursera.org/specializations/generative-ai-automation",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "ChatGPT",
+   "Generative AI",
+   "Large Language Models",
+   "Problem Formulation for Generative AI",
+   "Prompt Engineering",
+   "Visualize complex data trapped in PDFs",
+   "chain of thought prompting",
+   "prompt patterns"
+  ],
+  "description": "Step into the future of automation with our Generative AI Automation Specialization, a unique learning experience designed to make you adept at utilizing ChatGPT and other large language models to perform complex tasks with ease and innovation. Recognize the vast potential in your professional and personal life as you learn to apply AI capabilities that surpass the utility of your smartphone, from tutoring in math to writing sophisticated software. This program focuses on developing your ability to craft effective prompts\u2014an essential skill for eliciting the emergent intelligence and advanced ",
+  "enrolled": 5695
+ },
+ {
+  "id": "cs.e2788b1d",
+  "title": "IBM COBOL Basics",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/ibm-cobol-basics",
+  "hours": 13,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "COBOL Divisions",
+   "COBOL Structure",
+   "COBOL coding",
+   "Column Structure",
+   "Symbols"
+  ],
+  "description": "COBOL is a programming language that serves a wide range of businesses. Key aspects of COBOL are that it is scalable, mature, and self-documenting. In the Basics course you will learn about COBOL from its birth and through its evolution. You will have some basic lessons on handling numbers, symbols, editing, procedures, and the overall program structure. You'll even have the opportunity to create code of your own. Buckle up and join us on a ride through the world of COBOL, we can't wait to see you in class. Welcome to your first module in IBM COBOL Basics! This module will take the beginning s",
+  "enrolled": 5663
+ },
+ {
+  "id": "cs.f856d09d",
+  "title": "Introduction to Complexity Science",
+  "provider": "Nanyang Technological University, Singapore",
+  "url": "https://www.coursera.org/learn/complexity",
+  "hours": 16,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Agent-Based Model",
+   "Complexity Thinking",
+   "Critical Thinking",
+   "Mathematical Model",
+   "Network Science"
+  ],
+  "description": "This course explores the features of complexity science. Our world is connected by an abundance of complex systems. Across all levels of organizations from physical, biological world to the social world, we may think of the connectivity between individual elements and how they interact and influence each other. For example, how humans transmit pandemics within a group, how cars interact in the traffic system and how networks connect in governmental organizations. Although these systems are diverse and different, they have surprisingly huge features in common. In the past several decades, the s",
+  "enrolled": 5663
+ },
+ {
+  "id": "cs.925736f7",
+  "title": "Windows OS Forensics",
+  "provider": "Infosec",
+  "url": "https://www.coursera.org/learn/windows-os-forensics",
+  "hours": 7,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Data Recovery",
+   "forensics",
+   "windows os"
+  ],
+  "description": "The Windows OS Forensics course covers windows file systems, Fat32, ExFat, and NTFS. You will learn how these systems store data, what happens when a file gets written to disc, what happens when a file gets deleted from disc, and how to recover deleted files. You will also learn how to correctly interpret the information in the file system data structures, giving the student a better understanding of how these file systems work. This knowledge will enable you to validate the information from multiple forensic tools properly. This module explains the various numbering schemas used throughout co",
+  "enrolled": 5652
+ },
+ {
+  "id": "cs.e5753167",
+  "title": "Developing Websites and Front-Ends with Bootstrap",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/developing-websites-and-front-ends-with-bootstrap",
+  "hours": 8,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Bootstrap",
+   "Front-End Web Development",
+   "Grid system",
+   "Responsive",
+   "Web Development Framework"
+  ],
+  "description": "Building flexible, fast, and responsive websites and front-ends with a consistent look and feel has become a basic requirement. To accomplish this, the use of libraries and frameworks is trending. As a front-end developer, it is important that you know at least one front-end framework. Bootstrap is a CSS framework that provides an extensive set of templates that help with speeding up the website development process. According to W3Tech.com, Bootstrap is a popular CSS framework that is used by 18.7% of all the websites, that is a CSS framework market share of 78.6%. In this short course, which ",
+  "enrolled": 5645
+ },
+ {
+  "id": "cs.2e5c46f8",
+  "title": "Introduction to AutoSAR",
+  "provider": "EDUCBA",
+  "url": "https://www.coursera.org/learn/introduction-to-autosar",
+  "hours": 6,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "AUTomotive Open System Architecture (AUTOSAR)",
+   "Automotive Technologies"
+  ],
+  "description": "This course covers every aspect of automotive software development, including the principles of AutoSAR, more complex AutoSAR ideas, non-AutoSAR use cases, and in-depth ECU abstraction development. You will examine the foundational software of AutoSAR, comprehend the subtleties of runnable, and develop knowledge of interfaces, connectors, and composition. Additionally, you will learn about real-time environments (RTE), such as sender-receiver, client-server, and communication RTE, and gain practical experience in planning events inside the RTE framework. The course also covers non-AutoSAR appl",
+  "enrolled": 5639
+ },
+ {
+  "id": "cs.f1fcfc22",
+  "title": "Machine Learning for Computer Vision",
+  "provider": "MathWorks",
+  "url": "https://www.coursera.org/learn/ml-computer-vision",
+  "hours": 11,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Computer Vision",
+   "Machine Learning",
+   "Object Detection",
+   "Predictive Modelling",
+   "image classification"
+  ],
+  "description": "In the second course of the Computer Vision for Engineering and Science specialization, you will perform two of the most common computer vision tasks: classifying images and detecting objects. You will apply the entire machine learning workflow, from preparing your data to evaluating your results. By the end of this course, you\u2019ll train machine learning models to classify images of street signs and detect material defects. You will use MATLAB throughout this course. MATLAB is the go-to choice for millions of people working in engineering and science, and provides the capabilities you need to a",
+  "enrolled": 5600
+ },
+ {
+  "id": "cs.44366ded",
+  "title": "Office of the CISO Institute: Cybersecurity Essentials",
+  "provider": "Google",
+  "url": "https://www.coursera.org/learn/gcat-cybersecurity-essentials",
+  "hours": 9,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Controls",
+   "Cybersecurity Concepts",
+   "Cybersecurity Solutions",
+   "Threat and Risk Management",
+   "Threats and Risk Identification"
+  ],
+  "description": "In today\u2019s highly connected world, having an understanding of cybersecurity concepts is increasingly important. Business professionals interested in understanding the risk cybersecurity threats pose to their business, look no further! The Google Cybersecurity Action Team: Cybersecurity Essentials course provides an introduction to cybersecurity terminology, principles, and concepts. Throughout the course, you will cover six security domains, and business continuity and disaster response planning topics. The course includes a series of instructor-led demonstrations to provide real-life examples",
+  "enrolled": 5569
+ },
+ {
+  "id": "cs.6828f04d",
+  "title": "Manage Identities and Governance in Azure",
+  "provider": "Whizlabs",
+  "url": "https://www.coursera.org/learn/manage-identities-and-governance-in-azure",
+  "hours": 5,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Azure Active Directory(Azure AD)",
+   "Azure RBAC and AD Roles",
+   "Azure Resource Manager",
+   "Azure Subscriptions",
+   "Microsoft Entra"
+  ],
+  "description": "Manage Identities and Governance in Azure Course is the first course of the Exam Prep AZ-104: Microsoft Azure Administrator Associate Specialization. This course is designed to describe the basics of Azure Administrator related to using multiple Azure services. This course includes an overview of a basic Introduction to Azure services, Azure AD, Access Control Management, RBAC, Azure Subscriptions, and Governance. This course is basically divided into four modules and Lessons and Video Lectures further segment each module. This course facilitates learners with approximately 6:00-7:00 Hours of ",
+  "enrolled": 5534
+ },
+ {
+  "id": "cs.ab318113",
+  "title": "Generative AI for Software Developers Specialization",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/specializations/generative-ai-for-software-developers",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Artificial Intelligence (AI)",
+   "Generative AI",
+   "Prompt Engineering",
+   "Software Engineering",
+   "prompt patterns"
+  ],
+  "description": "With generative AI, a new technology era has begun. Software developers can leverage this revolutionary technology to write high-quality code with fewer bugs, which will increase their overall effectiveness and efficiency and. This is makinggenerative AI an essentialandmust-have skillfor software engineers. This IBM specialization offering is designed foranyone interestedin leveraging the power of generative AI in software development. This includes existing and aspiring web developers, mobile app developers, front-end developers, backend-end developers, full stack developers, DevOps professio",
+  "enrolled": 5504
+ },
+ {
+  "id": "cs.5e5e831f",
+  "title": "Data Manipulation in RPA",
+  "provider": "UiPath",
+  "url": "https://www.coursera.org/learn/data-manipulation-in-rpa",
+  "hours": 9,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Data Manipulation",
+   "Dictionary",
+   "List",
+   "Uipath",
+   "rpa"
+  ],
+  "description": "The Data Manipulation in RPA course will provide knowledge about Variables, Arguments, and Data Manipulation. It will also introduce you to Variables and Arguments, their types, and their application in automation projects. In the later part of the course, you will learn about data manipulation in Studio. You will also learn about the different methods and operations performed on different data types and their usage in automation projects. Building on each concept, there will be demonstration videos that will explain these operations and methods. The course has multiple practice exercises that",
+  "enrolled": 5504
+ },
+ {
+  "id": "cs.40322865",
+  "title": "Oracle Autonomous Database Professional Workshop",
+  "provider": "Oracle",
+  "url": "https://www.coursera.org/learn/oracle-autonomous-database-professional-workshop",
+  "hours": 7,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Creating an Autonomous Database",
+   "Deploying an Autonomous Database",
+   "Identify Migration Options and Considerations",
+   "Planning and implementing an Autonomous Database"
+  ],
+  "description": "Welcome to the course Oracle Autonomous Database Administration. This course helps DBAs to deploy and administer Autonomous databases, and prepares them for the Oracle Autonomous Database Cloud Specialist Certification. In this module we introduce you to the core concepts of Autonomous Database and the different ways to provision an ADB 22 videos4 assignments In this module we will show you how to manage and monitor an autonomous database. We will cover concepts of auto scaling, automatic indexing, and show how you can connect to an autonomous database from SQL developer. In this module you wi",
+  "enrolled": 5476
+ },
+ {
+  "id": "cs.1e60d404",
+  "title": "Artificial Intelligence: an Overview Specialization",
+  "provider": "Politecnico di Milano",
+  "url": "https://www.coursera.org/specializations/artificial-intelligence-overview",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Artificial Intelligence (AI)",
+   "Ethical issues of artificial intelligence",
+   "Legal issues of artificial intelligence",
+   "Machine Learning"
+  ],
+  "description": "This Specialization is intended for beginners seeking to enter the artificial intelligence world. Through five courses, you will cover artificial intelligence technical groundings (including machine learning and technologies), ethical and legal issues, which will give you a clear picture of what artificial intelligence is and what opportunities artificial intelligence will provide in the next future. Applied Learning Project No specific hands-on project is required but through this specialization, composed by 5 introductory courses. Learners will have all the necessary concept and tools to sta",
+  "enrolled": 5456
+ },
+ {
+  "id": "cs.558eba85",
+  "title": "Programming in Python: A Hands-on Introduction Specialization",
+  "provider": "Codio",
+  "url": "https://www.coursera.org/specializations/hands-on-python",
+  "hours": 43,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Computer Programming",
+   "Computer Science",
+   "Object-Oriented Programming (OOP)",
+   "Python Programming"
+  ],
+  "description": "This specialization is intended for people without programming experience who seek to develop python programming skills and learn about the underlying computer science concepts that will allow them to pick up other programming languages quickly. In these four courses, you will cover everything from fundamentals to object-oriented design. These topics will help prepare you to write anything from small programs to automate repetitive tasks to larger applications, giving you enough understanding of python to tackle more specialized topics such as Data Science and Artificial Intelligence. Applied ",
+  "enrolled": 5448
+ },
+ {
+  "id": "cs.b9091a8a",
+  "title": "Data Warehousing and Business Intelligence",
+  "provider": "University of California, Irvine",
+  "url": "https://www.coursera.org/learn/data-warehousing-business-intelligence",
+  "hours": 6,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Data Clustering Algorithms",
+   "Data Mining for Clustering and Association",
+   "Data Mining for Prediction and Explanation",
+   "Data Warehousing",
+   "Multidimensional Modeling"
+  ],
+  "description": "This course builds on \u201cThe Nature of Data and Relational Database Design\u201d to extend the process of capturing and manipulating data through data warehousing and data mining. Once the transactional data is processed through ETL (Extract, Transform, Load), it is then stored in a data warehouse for use in managerial decision making. Data mining is one of the key enablers in the process of converting data stored in a data warehouse into actionable insight for better and faster decision making. By the end of this course, students will be able to explain data warehousing and how it is used for busine",
+  "enrolled": 5387
+ },
+ {
+  "id": "cs.0113bbfc",
+  "title": "The Nature of Data and Relational Database Design",
+  "provider": "University of California, Irvine",
+  "url": "https://www.coursera.org/learn/nature-of-data-relational-database-design",
+  "hours": 6,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Basic Descriptive Statistics",
+   "Business Intelligence",
+   "Relational Database",
+   "SQL Overview",
+   "Statistical Analysis"
+  ],
+  "description": "This course provides a comprehensive overview of data, various data types, design of databases for storage of data, and creation and manipulation of data in databases using SQL. By the end of this course, students will be able to describe what business intelligence is and how it\u2019s different from business analytics and data science, conduct a basic descriptive statistical analysis and articulate the findings, and differentiate between types of statistics. They will also be able to define normalization and ETL, create an ERD that shows progression from conceptual to logical to physical design, d",
+  "enrolled": 5343
+ },
+ {
+  "id": "cs.3271e287",
+  "title": "Hands-On Labs in Google Cloud for Security Engineers",
+  "provider": "Google Cloud",
+  "url": "https://www.coursera.org/learn/hands-on-labs-google-cloud-security-engineer",
+  "hours": 5,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Create and configure network peering",
+   "Create and understand custom IAM roles",
+   "Secure a Kubernetes environment"
+  ],
+  "description": "Security is an uncompromising feature of Google Cloud services, and Google Cloud has developed specific tools for ensuring safety and identity across your projects. In this course you will get added hands-on practice understanding and securing resources with multiple Google Cloud services including Google Kubernetes Engine (GKE). This course is unlike other courses, in that it consists of one module of background videos, followed by a series of hands-on practice exercises on Google Cloud via Qwiklabs. The practice modules include no videos, lectures, or quizzes - just more practice on real Goo",
+  "enrolled": 5325
+ },
+ {
+  "id": "cs.c433a705",
+  "title": "AI and Disaster Management",
+  "provider": "DeepLearning.AI",
+  "url": "https://www.coursera.org/learn/ai-and-disaster-management",
+  "hours": 11,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "AI for Good project framework",
+   "Computer Vision",
+   "Damage Assessment",
+   "Natural Language Processing",
+   "Topic Model"
+  ],
+  "description": "In this course, you will be introduced to the four phases of the disaster management cycle; mitigation, preparation, response, and recovery. You\u2019ll work through two case studies in this course. In the first, you will use computer vision to analyze satellite imagery from Hurricane Harvey in 2017 to identify damage in affected areas. In the second, you will use natural language processing techniques to explore trends in aid requests in the aftermath of the 2010 earthquake in Haiti. 13 videos4 readings1 assignment 11 videos3 readings1 assignment3 ungraded labs 12 videos3 readings1 assignment3 ung",
+  "enrolled": 5315
+ },
+ {
+  "id": "cs.78e9c9cc",
+  "title": "Cloud-Native Development with OpenShift and Kubernetes Specialization",
+  "provider": "Red Hat",
+  "url": "https://www.coursera.org/specializations/cloud-native-development-openshift-kubernetes",
+  "hours": 43,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Cloud Computing",
+   "Containers",
+   "Kubernetes",
+   "Openshift",
+   "RHOCP"
+  ],
+  "description": "This specialization is intended for application developers, system administrators and architects seeking to develop their understanding of container technology. In this three-course specialization, you will explore a range of foundational concepts from various use cases for containerized technology to understanding the differences between Kubernetes and Red Hat OpenShift to learning how to scale deployed applications. Applied Learning Project These courses include detailed hands-on exercises (step-by-step guides) which teach a range of concepts from the foundation concepts of containerized app",
+  "enrolled": 5289
+ },
+ {
+  "id": "cs.f7380c38",
+  "title": "Game Design and Development 4: 3D Platformer",
+  "provider": "Michigan State University",
+  "url": "https://www.coursera.org/learn/game-design-and-development-4",
+  "hours": 12,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Game Design",
+   "Game Making",
+   "Unity",
+   "Video Game Development",
+   "technology"
+  ],
+  "description": "If you love games and want to learn how to make them, then this course is your fourth step down that path. In this course you will learn the fundamentals of game design, including an understanding of game idea generation, design documentation, the business side of games, and social issues in games. You will continue developing video games using industry standard game development tools, including the Unity 2020 game engine. At the end of the course you will have completed a 3D Platformer game, and will be able to leverage an array of game development techniques to create your own basic games. A",
+  "enrolled": 5242
+ },
+ {
+  "id": "cs.91663671",
+  "title": "Population Health: Predictive Analytics",
+  "provider": "Universiteit Leiden",
+  "url": "https://www.coursera.org/learn/population-health-predictive-analytics",
+  "hours": 22,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Predictive Analytics",
+   "R Programming",
+   "Regression Analysis",
+   "medical statistics"
+  ],
+  "description": "Predictive analytics has a longstanding tradition in medicine. Developing better prediction models is a critical step in the pursuit of improved health care: we need these tools to guide our decision-making on preventive measures, and individualized treatments. In order to effectively use and develop these models, we must understand them better. In this course, you will learn how to make accurate prediction tools, and how to assess their validity. First, we will discuss the role of predictive analytics for prevention, diagnosis, and effectiveness. Then, we look at key concepts such as study de",
+  "enrolled": 5226
+ },
+ {
+  "id": "cs.41051d25",
+  "title": "Introduction to Visual Basic Programming",
+  "provider": "LearnQuest",
+  "url": "https://www.coursera.org/learn/visual-basic-programming-introduction",
+  "hours": 28,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Coding",
+   "Computer Programming",
+   "Debugging",
+   "Software Development",
+   "Visual Basic (VB)"
+  ],
+  "description": "This course is the second course in a series that aims to prepare you for a role working as a programmer. In this course, you will be introduced to the five main concepts in procedural programming: user input, console output, variable declaration and assignment, decision branching and iteration. Labs will allow the students to apply the material in the lectures in simple computer programs designed to re-enforce the material in the lesson. Learners will need to have a local machine with any one of the following operating systems; Windows 7 SP1 or higher, macOS 10.1.13 or higher, or almost any v",
+  "enrolled": 5182
+ },
+ {
+  "id": "cs.48f91b80",
+  "title": "AI Workflow: Data Analysis and Hypothesis Testing",
+  "provider": "IBM",
+  "url": "https://www.coursera.org/learn/ibm-ai-workflow-data-analysis-hypothesis-testing",
+  "hours": 10,
+  "level": 5,
+  "kind": "course",
+  "tags": [
+   "Artificial Intelligence (AI)",
+   "Data Science",
+   "Information Engineering",
+   "Machine Learning",
+   "Python Programming"
+  ],
+  "description": "This is the second course in the IBM AI Enterprise Workflow Certification specialization. You are STRONGLY encouraged to complete these courses in order as they are not individual independent courses, but part of a workflow where each course builds on the previous ones. In this course you will begin your work for a hypothetical streaming media company by doing exploratory data analysis (EDA). Best practices for data visualization, handling missing data, and hypothesis testing will be introduced to you as part of your work. You will learn techniques of estimation with probability distributions ",
+  "enrolled": 5110
+ },
+ {
+  "id": "cs.6a7a00d3",
+  "title": "Frontend Development using Angular",
+  "provider": "Board Infinity",
+  "url": "https://www.coursera.org/learn/frontend-development-using-angular",
+  "hours": 24,
+  "level": 3,
+  "kind": "course",
+  "tags": [
+   "Angularjs",
+   "Cascading Style Sheets (CSS)",
+   "Front-End Web Development",
+   "HTML5",
+   "JavaScript"
+  ],
+  "description": "This course is tailored for those interested in web development, and it will equip you with the skills and knowledge needed to become proficient in Angular. In the first module, Introduction to HTML & CSS, you'll explore the foundational principles of HTML and CSS, vital for creating web pages. You'll learn how to structure an HTML document and use CSS to stylize your web page's layout. The second module, Introduction to JavaScript Programming, dives into JavaScript, a critical language for web development. You'll gain a comprehensive insight into variables, data types, control structures, fun",
+  "enrolled": 5103
+ },
+ {
+  "id": "cs.08b8e0cd",
+  "title": "Introduction to Bayesian Statistics",
+  "provider": "Databricks",
+  "url": "https://www.coursera.org/learn/compstatsintro",
+  "hours": 12,
+  "level": 1,
+  "kind": "course",
+  "tags": [
+   "Bayesian Inference",
+   "Python Programming",
+   "Scipy",
+   "Statistics",
+   "visualization"
+  ],
+  "description": "The objective of this course is to introduce Computational Statistics to aspiring or new data scientists. The attendees will start off by learning the basics of probability, Bayesian modeling and inference. This will be the first course in a specialization of three courses .Python and Jupyter notebooks will be used throughout this course to illustrate and perform Bayesian modeling. The course website is located at https://sjster.github.io/introduction_to_computational_statistics/docs/index.html. The course notebooks can be downloaded from this website by following the instructions on page http",
+  "enrolled": 5053
  }
 ]

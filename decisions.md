@@ -784,3 +784,85 @@ at once.
 
 Publishing a number that makes us look worse is the point of measuring. It is also the clearest argument
 for the cheapest improvement we have: more roles.
+
+## 94. Nine more roles, chosen from where the catalog actually is
+
+Seven roles reached 29 of 72 skills, leaving half the catalog's teaching capacity findable only by
+typing the right free text. ops.cloud alone had 64 courses and no role touching it.
+
+The new roles were picked by course count rather than by what sounded good: software engineer, backend,
+frontend, full stack, devops, security, data engineer, computer vision, game developer.
+
+Unreachable skills went 43 to 24, fragile single course skills 17 to 12, and catalog coverage 7 to 12
+percent. Coverage is still low, and the honest reason is that set cover deliberately concentrates on
+courses that cover several skills at once.
+
+## 95. Real courses for the skills backed by exactly one
+
+Five skills on the core AI path had a single course behind them, so one "not for me" left the learner
+with nothing. Added real named courses for backpropagation, sequence models, embeddings, fine tuning and
+retrieval augmented generation, flagged as ours so a rebuild keeps them.
+
+## 96. Fit raised to the fourth power, and we measured why
+
+Set cover values coverage per hour, and that ratio varies far more than a fit score between about 0.4
+and 0.9. The result was that the learner's own weights moved only 6 percent of picks, which makes the
+personalisation we show them close to decoration.
+
+Swept the exponent from 1 to 6 and measured all three things that matter at once:
+
+    k=1   weights move 6%    1.22x bound   91h median
+    k=4   weights move 22%   1.22x bound   80h median
+    k=6   weights move 21%   1.22x bound   80h median
+
+Four is the knee, and it is better on every axis at once rather than a trade. Past it, nothing improves.
+This is the whole reason to have built the evals first: the exponent was not guessed.
+
+## 97. A model we cannot reach is not a learner who said nothing
+
+Extraction swallowed its failures and returned an empty profile. When the daily token budget ran out,
+the assistant asked the same question forever and nothing on screen said why. The eval scored it as the
+model getting every field wrong, which sent us hunting a prompt problem that did not exist.
+
+It raises now, the chat says it could not reach the assistant and that nothing is lost, and the eval
+reports that it could not run rather than printing a score it did not measure.
+
+The lesson is the one we keep relearning: a silent failure is worse than a loud one, and it is worse
+again when it corrupts the numbers you use to make decisions.
+
+## 98. The real Groq limit is 200,000 tokens a day
+
+Not the per minute cap we had been pacing against. A full eval run with the model half costs about 30k
+and the labelling pipeline about 90k, so three eval runs and a rebuild will exhaust a day.
+
+Worth planning around before demo day: do not run the model evals on the morning of.
+
+## 99. Roles are proposed by the model and chosen by a person
+
+scripts/propose_roles.py finds skills no role reaches that the catalog backs with three or more courses,
+ranks them by course count, and asks for roles covering them. It prints each with how many unreachable
+skills it would open up, writes them to a file, and stops. You delete what you disagree with and rerun
+with --apply.
+
+The ranking is what makes the review quick. Of five proposals, two opened three skills each and three
+opened one, and those three were a language bolted onto a role we had, a job nobody is hired into, and
+one already mostly covered.
+
+We keep a person in this loop because a role is a claim about what a job requires. That is knowledge
+about the world, not about our catalog, and clustering our own data would only tell us what Coursera
+bundles together.
+
+## 100. The review step has to actually review
+
+The first version re-ran the proposal inside --apply, overwrote the file we had just edited, and applied
+its fresh five instead of our chosen two. A human in the loop that silently discards the human.
+
+--apply now reads the file and makes no model call at all.
+
+## 101. Extraction measured clean once we scored each field properly
+
+role 100 percent, weekly hours 100 percent, style 100 percent after telling the prompt how to infer it,
+known skills precision and recall both 1.00, goal skills recall 1.00, groundedness 100 percent.
+
+Style was 50 percent until we noticed we constrain skill ids and role names in the prompt and had never
+said anything about how to read how someone likes to learn.

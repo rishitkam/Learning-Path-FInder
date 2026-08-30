@@ -15,6 +15,11 @@ from model2vec import StaticModel
 ROOT = Path(__file__).resolve().parents[1]
 SIM = 0.80          # below this a pair is not even a merge candidate
 MIN_SUPPORT = 2     # courses that must claim an edge for it to stand
+# A course may not claim to teach more skills than its length supports. The dataset ships marketing
+# tags, so a four hour module arrives tagged with programming, HTML, machine learning and JavaScript,
+# and the labeller believes them. Set cover then loves it, because it divides coverage by hours.
+# Six hours is the bar our own hand picked entries meet, so it is the bar we hold the scrape to.
+HOURS_PER_SKILL = 6
 
 
 def load():
@@ -90,6 +95,22 @@ def acyclic(kept, log):
         g.remove_edge(*weakest)
 
 
+def trim(course, teaches, model, skill_names):
+    """Cut a course's claims down to what its hours support, keeping the ones its own text resembles.
+
+    Ranking by similarity rather than by list order means the skill we keep is the one the course
+    actually reads like, instead of whichever the labeller happened to mention first.
+    """
+    allowed = max(1, int(course["hours"] // HOURS_PER_SKILL))
+    if len(teaches) <= allowed:
+        return teaches
+    text = model.encode([course["title"] + ". " + course["description"][:300]])[0]
+    names = model.encode([skill_names[s] for s in teaches])
+    norm = lambda v: v / (np.linalg.norm(v, axis=-1, keepdims=True) + 1e-9)
+    like = norm(names) @ norm(text)
+    return [s for _, s in sorted(zip(like, teaches), key=lambda pair: -pair[0])][:allowed]
+
+
 def main(apply=False):
     tax, labels, courses = load()
     model = StaticModel.from_pretrained("minishlab/potion-base-8M")
@@ -145,8 +166,12 @@ def main(apply=False):
     handmade = [c for c in old if c.get("handmade")]
     catalog = [{"id": c["id"], "title": c["title"], "provider": c["provider"], "url": c["url"],
                 "hours": c["hours"], "level": c["level"], "kind": "course",
-                "teaches": labels[c["id"]]["teaches"], "assumes": labels[c["id"]]["assumes"]}
+                "teaches": trim(c, labels[c["id"]]["teaches"], model, names),
+                "assumes": labels[c["id"]]["assumes"]}
                for c in courses.values() if c["id"] in labels] + handmade
+    cut = sum(len(labels[c["id"]]["teaches"]) for c in courses.values() if c["id"] in labels) - \
+          sum(len(c["teaches"]) for c in catalog if not c.get("handmade"))
+    print(f"  trimmed {cut} claims a course was too short to support")
     (ROOT / "data/catalog.json").write_text(json.dumps(catalog, indent=1))
 
     text = [c["title"] + ". " + courses.get(c["id"], {}).get("description", "")[:300] for c in catalog]

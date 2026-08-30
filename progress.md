@@ -230,6 +230,29 @@ coverage still complete, and we sit a median 1.27 times the lower bound.
 They also surfaced two things we had not seen: 43 of 72 skills are unreachable from any role, and only
 26 of 366 courses are ever recommended. Both point at the same cheap fix, more roles.
 
+**Commit 21, acting on what the evals found.** Nine more roles chosen by where the catalog actually has
+depth rather than by what sounded good, real courses for the five skills backed by a single option, and
+a tuned fit exponent.
+
+The exponent is the one worth explaining. Set cover values coverage per hour, which swamped how well a
+course suits the learner, so their own weights moved only 6 percent of picks. Sweeping it from 1 to 6
+and measuring showed 4 gives 22 percent at the same distance from optimal and slightly fewer hours.
+Better on every axis rather than a trade, and not guessed.
+
+Unreachable skills 43 to 24. Fragile skills 17 to 12. Median study hours 180 to 80. Still zero
+prerequisite violations across all 48 plans.
+
+**Commit 22, roles proposed and reviewed.** `scripts/propose_roles.py` suggests roles for skills nothing
+reaches, ranked by how much each would open up, and writes them for a person to accept or delete. Took
+two of five. Skills no role can reach is now 19, down from 43 before any of this.
+
+Extraction measures clean: role, hours and style all 100 percent, known skills precision and recall both
+perfect, groundedness 100 percent. Style needed a line in the prompt telling it how to read the way
+someone describes learning, which we had simply never written.
+
+One bug worth remembering: --apply originally re-ran the proposal and overwrote the file we had just
+edited, applying its own five instead of our two. A review step that discards the review.
+
 ## Roughly where we stand
 
 Engine done, nothing to look at yet.

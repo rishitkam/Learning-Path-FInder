@@ -1,22 +1,51 @@
 """Turns a conversation into a learner profile. The only place free text enters the system."""
 
 import json
+import os
 from functools import lru_cache
+from itertools import cycle
 
 from dotenv import load_dotenv
-from groq import Groq
+from groq import BadRequestError, Groq, RateLimitError
 
 MODEL = "openai/gpt-oss-20b"
 STYLES = ["balanced", "project first", "theory first"]
+class Unavailable(RuntimeError):
+    """We could not read the learner because the model was unreachable, not because they said nothing.
+
+    This used to be swallowed: a rate limited extraction returned an empty profile, so the assistant
+    asked the same question forever and nothing on screen said why. An eval run that had exhausted the
+    daily token budget scored it as the model getting every field wrong.
+    """
+
+
 QUESTIONS = {"goal_skills": "What do you want to be able to do at the end? A role works, like data analyst "
                             "or machine learning engineer, or just the thing you want to build.",
              "weekly_hours": "How many hours a week can you realistically give this?"}
 
 
 @lru_cache(maxsize=1)
-def client():
+def _clients():
+    """Every GROQ_API_KEY in the environment, so a spent daily budget is a pause and not a wall.
+    The free tier is 200k tokens a day, which one full evaluation run can exhaust on its own."""
     load_dotenv()
-    return Groq()
+    keys = [v for k, v in sorted(os.environ.items()) if k.startswith("GROQ_API_KEY") and v]
+    return [Groq(api_key=key) for key in keys] or [Groq()]
+
+
+def client():
+    return _clients()[0]
+
+
+def call(**kwargs):
+    """One completion, trying each key in turn when a daily budget runs out."""
+    last = None
+    for groq in _clients():
+        try:
+            return groq.chat.completions.create(**kwargs)
+        except RateLimitError as spent:
+            last = spent
+    raise last
 
 
 def _tool(g):
@@ -26,13 +55,16 @@ def _tool(g):
         "name": "set_profile", "description": "Record what the conversation says about the learner.",
         "parameters": {"type": "object", "properties": {
             "goal_text": nullable("string", description="What they want, in their own words, verbatim."),
+            "out_of_scope": nullable("boolean", description=
+                "True only if they named a goal this taxonomy cannot express at all, like becoming a "
+                "chef, a nurse or learning a spoken language. Not for a vague message."),
             "role": nullable("string", enum=roles + [None]),
             "goal_skills": {"type": "array", "items": {"type": "string", "enum": ids}},
             "known_skills": {"type": "array", "items": {"type": "string", "enum": ids}},
             "weekly_hours": nullable("number"), "horizon_weeks": nullable("number"),
             "level": nullable("integer"), "style": nullable("string", enum=STYLES + [None])},
-            "required": ["goal_text", "role", "goal_skills", "known_skills", "weekly_hours",
-                         "horizon_weeks", "level", "style"]}}}
+            "required": ["goal_text", "out_of_scope", "role", "goal_skills", "known_skills",
+                         "weekly_hours", "horizon_weeks", "level", "style"]}}}
 
 
 def _num(v, lo, hi, default=None):
@@ -70,14 +102,19 @@ def extract(g, transcript, prior=None):
     p = dict(prior or {})
     system = (f"Extract the learner profile. Skill ids ONLY from: {', '.join(sorted(g.skills))}. "
               f"Roles ONLY from: {', '.join(sorted(g.roles))}. "
-              "Null any field the conversation does not state, and never guess what they already know. "
+              "Null any field the conversation does not state. Never invent a skill they did not "
+              "mention, but do record every one they did: having done, used, studied, worked with or "
+              "being comfortable with something all count, wherever in the sentence it appears. "
               "Goals are the exception: if they name any subject, field or role at all, even as a bare "
-              "phrase like 'machine learning', treat it as their goal and map it to the closest skills.")
+              "phrase like 'machine learning', treat it as their goal and map it to the closest skills. "
+              "Style follows from how they describe learning: building, projects or hands on means "
+              "project first, lectures, theory or fundamentals means theory first.")
     user = f"KNOWN SO FAR:\n{json.dumps(p)}\n\nCONVERSATION:\n{transcript}"
 
-    for _ in range(2):  # one retry, then give up and let the caller ask a plain question
+    problem = None
+    for _ in range(2):  # one retry, then say so rather than pretending they told us nothing
         try:
-            r = client().chat.completions.create(
+            r = call(
                 model=MODEL, temperature=0, tools=[_tool(g)],
                 tool_choice={"type": "function", "function": {"name": "set_profile"}},
                 messages=[{"role": "system", "content": system}, {"role": "user", "content": user}])
@@ -85,9 +122,15 @@ def extract(g, transcript, prior=None):
             # Merge into a copy. A failed attempt must not leave half its answer in the profile.
             return _clean(g, {**p, **{k: v for k, v in new.items() if v not in (None, [])}},
                           role_is_new=bool(new.get("role")))
-        except Exception:
-            continue
-    return _clean(g, p)
+        except BadRequestError as refused:
+            problem = refused
+        except Exception as failure:
+            problem = failure
+    if isinstance(problem, BadRequestError):
+        # It reached the model and the model produced nothing valid. On a short message like "hi"
+        # that is simply "they told us nothing new", not a service we could not reach.
+        return _clean(g, p)
+    raise Unavailable(str(problem))
 
 
 def next_question(p):

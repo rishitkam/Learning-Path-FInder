@@ -1,9 +1,93 @@
 {
-  "data-analyst":            ["data.sql", "data.viz", "math.stats"],
-  "data-scientist":          ["ml.evaluation", "ml.unsupervised", "data.viz"],
-  "machine-learning-engineer": ["ml.evaluation", "dl.backprop", "ops.deploy"],
-  "deep-learning-engineer":  ["dl.cnn", "dl.transformers"],
-  "nlp-engineer":            ["nlp.llm", "nlp.embeddings"],
-  "genai-engineer":          ["nlp.rag", "nlp.finetune"],
-  "mlops-engineer":          ["ops.monitor", "ml.evaluation"]
+ "data-analyst": [
+  "data.sql",
+  "data.viz",
+  "math.stats"
+ ],
+ "data-scientist": [
+  "ml.evaluation",
+  "ml.unsupervised",
+  "data.viz"
+ ],
+ "machine-learning-engineer": [
+  "ml.evaluation",
+  "dl.backprop",
+  "ops.deploy"
+ ],
+ "deep-learning-engineer": [
+  "dl.cnn",
+  "dl.transformers"
+ ],
+ "nlp-engineer": [
+  "nlp.llm",
+  "nlp.embeddings"
+ ],
+ "genai-engineer": [
+  "nlp.rag",
+  "nlp.finetune"
+ ],
+ "mlops-engineer": [
+  "ops.monitor",
+  "ml.evaluation"
+ ],
+ "software-engineer": [
+  "cs.algorithms",
+  "eng.testing",
+  "prog.oop",
+  "prog.fundamentals"
+ ],
+ "backend-developer": [
+  "eng.api",
+  "db.nosql",
+  "data.sql",
+  "ops.docker"
+ ],
+ "frontend-developer": [
+  "web.frontend",
+  "prog.javascript"
+ ],
+ "full-stack-developer": [
+  "web.frontend",
+  "eng.api",
+  "db.nosql"
+ ],
+ "devops-engineer": [
+  "ops.cloud",
+  "ops.deploy",
+  "prog.shell",
+  "net.fundamentals"
+ ],
+ "security-engineer": [
+  "sec.fundamentals",
+  "net.fundamentals",
+  "os.concepts"
+ ],
+ "data-engineer": [
+  "data.etl",
+  "data.spark",
+  "data.sql",
+  "ops.cloud"
+ ],
+ "computer-vision-engineer": [
+  "cv.imageprocessing",
+  "dl.cnn"
+ ],
+ "game-developer": [
+  "game.development",
+  "prog.cpp"
+ ],
+ "requirements-engineer": [
+  "eng.requirements",
+  "eng.design",
+  "eng.agile",
+  "eng.testing",
+  "eng.git"
+ ],
+ "iot-embedded-engineer": [
+  "iot.embedded",
+  "prog.c",
+  "prog.cpp",
+  "ops.docker",
+  "eng.agile"
+ ]
 }

@@ -8,7 +8,7 @@ import pandas as pd
 from model2vec import StaticModel
 
 ROOT = Path(__file__).resolve().parents[1]
-KEEP = 400
+KEEP = 450
 # A course is ours if it looks more like one of these than like one of those. A single mean anchor
 # was too blunt: it scored a spreadsheets course the same as a Python one.
 POS = ["python programming", "software engineering and code", "data analysis with statistics",

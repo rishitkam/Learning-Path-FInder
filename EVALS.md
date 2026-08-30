@@ -30,7 +30,7 @@ cheaper than the true integer optimum, so our hours divided by it is an honest u
 from optimal we are.
 
 ```
-approximation ratio     median 1.27x     mean 1.42x
+approximation ratio     median 1.22x     mean 1.28x
 ```
 
 The worst case, 4.00x, is a two skill plan where the bound is loose rather than the plan bad: a
@@ -39,14 +39,14 @@ relaxation is tight, we sit between 1.04x and 1.11x.
 
 For context, greedy set cover is provably within a log factor of optimal. We do not claim optimal.
 
-## Path quality, 7 roles by 3 learner profiles
+## Path quality, 16 roles by 3 learner profiles, 48 plans
 
 ```
 prerequisite violations        0 / 0 / 0        worst / median / best
 skills covered by a course     100% everywhere
-study hours                    467 / 180 / 16
-weeks                          41 / 17 / 2
-modules per distinct course    2.00 / 1.31 / 1.00
+study hours                    209 / 80 / 16
+weeks                          20 / 8 / 2
+modules per distinct course    2.00 / 1.40 / 1.00
 ```
 
 Prerequisite violations is a hard constraint, not a score. Any number other than zero is a bug, and it
@@ -55,10 +55,14 @@ is checked on all 21 plans on every run.
 ## Personalisation
 
 ```
-different people, same goal      38%    of picks differ
-weights changed the picks        12%
-three "too hard" clicks changed  55%
+different people, same goal      34%    of picks differ
+weights changed the picks        22%
+three "too hard" clicks changed  69%
 ```
+
+The weights figure was 6% until we measured it. Set cover values coverage per hour, a ratio that varies
+far more than a fit score, so the learner's own weights barely moved a pick. Sweeping the exponent on
+fit from 1 to 6 showed 4 raises it to 22% at the same distance from optimal and slightly fewer hours.
 
 One minus mean pairwise Jaccard similarity between recommendation lists, the usual recommender
 definition. Two people asking for the same job get materially different plans, and reacting to the plan
@@ -67,14 +71,15 @@ changes it.
 ## Reach and speed
 
 ```
-catalog coverage      7%   (26 of 366 courses ever recommended)
+catalog coverage      12%  (43 of 371 courses ever recommended)
 path build            1 ms p50 and p95
 ```
 
 Catalog coverage is deliberately reported even though it is bad. Across every role and profile we
 recommend 26 distinct courses, so the effective catalog is far smaller than the 372 we loaded. Two
-causes: only seven roles, and set cover concentrating on courses that cover several skills at once.
-More roles is the fix, and it is cheap.
+causes: a limited set of roles, and set cover deliberately concentrating on courses that cover several
+skills at once. Going from 7 roles to 16 moved it from 7% to 12%, and took skills no role can reach from
+43 down to 24.
 
 ## Determinism
 
@@ -83,6 +88,15 @@ identical across repeated runs and reversed catalog order    7 of 7 roles
 ```
 
 The same learner gets the same plan every time. This is why ranking ties break on course id.
+
+## A note on running these
+
+Groq's free tier allows 200,000 tokens a day. A full `--llm` run costs about 30k and rebuilding the
+catalog about 90k, so a few runs and a rebuild will exhaust a day.
+
+If the budget is gone the extraction section reports that it could not run, rather than printing zeros
+that look like a broken model. We learned that the hard way: an exhausted budget once scored as the
+extractor getting every field wrong, and we went looking for a prompt bug that was not there.
 
 ## Extraction, against golden utterances
 

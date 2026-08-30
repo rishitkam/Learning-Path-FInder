@@ -9,7 +9,7 @@ import json, re, sys, time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from profile import client
+from profile import call
 
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / "data/raw/labels.json"
@@ -17,12 +17,12 @@ CACHE = ROOT / "data/raw/labels.json"
 # 20b never proposes a new skill, so it crams every course into the seed 29 and mislabels most of them.
 # Qwen readily names new skills, which is the whole point of this pass.
 MODEL, BATCH = "qwen/qwen3.8-27b", 8
-# The free tier allows 8000 tokens a minute. The taxonomy grows as we go, so a fat prompt plus a
-# fat output reservation used to fill an entire minute and every later batch was refused.
+# The free tier allows 8000 tokens a minute per key. We rotate across keys on a refusal, so the pace
+# can be brisker than the 16 seconds a single key needed.
 MAX_OUT, DESC = 1500, 150
 # A batch costs about 1800 tokens, so four a minute is the most the budget allows. Pacing
 # deterministically is more reliable than firing fast and leaning on the retries.
-PACE = 16
+PACE = 6
 
 TOOL = {"type": "function", "function": {"name": "label", "parameters": {"type": "object", "properties": {
     "new_skills": {"type": "array", "description": "Skills you had to invent because none of the existing ids fit.",
@@ -61,7 +61,7 @@ def run(courses, taxonomy):
                        f"tags: {', '.join(c['tags'][:6])}\nabout: {c['description'][:DESC]}" for c in courses)
     for attempt in range(5):
         try:
-            r = client().chat.completions.create(
+            r = call(
                 model=MODEL, temperature=0, max_tokens=MAX_OUT, reasoning_effort="low", tools=[TOOL],
                 tool_choice={"type": "function", "function": {"name": "label"}},
                 messages=[{"role": "system", "content": SYS},
