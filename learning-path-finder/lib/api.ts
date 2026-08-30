@@ -19,10 +19,8 @@ async function post(endpoint: string, body: object) {
   return response.json();
 }
 const request = (endpoint: string, body: object): Promise<PathData> => post(endpoint, body);
-export const generatePath = (profile = defaultProfile, completed: string[] = [], blocked: string[] = []) => request("/path", { profile, completed, blocked });
 export type FeedbackEvent = "completed" | "already_know" | "too_hard" | "too_easy" | "not_interested";
 export const sendFeedback = (profile: Profile, completed: string[], blocked: string[], event: FeedbackEvent, skill?: string, resource_id?: string) => request("/path/feedback", { profile, completed, blocked, event, skill, resource_id });
-export const completeModule = (profile: Profile, completed: string[], blocked: string[], skill: string) => sendFeedback(profile, completed, blocked, "completed", skill);
 export const explainCurrent = (profile: Profile, completed: string[], blocked: string[]): Promise<{ reason: string }> => post("/explain", { profile, completed, blocked });
 export type ChatResponse = { reply: string; data?: PathData; profile?: Partial<Profile> };
 export type Turn = { role: "assistant" | "user"; content: string };
