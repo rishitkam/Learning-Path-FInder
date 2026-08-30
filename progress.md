@@ -141,3 +141,5 @@ together. HANDOFF.md has the full detail.
 Relevance scoring is flat until embeddings land, so ranking currently runs on three signals instead of
 four. Ranking weights are hard coded because we have no feedback data yet. The catalog is hand written,
 though the file shape is final so the real one drops straight in.
+
+**Commit 11, the UI layer.** Implemented the Next.js frontend. Replaced the initial Streamlit plan with a custom React architecture to achieve the "Cockpit" aesthetic. Built the three-column layout: navigation sidebar with daily streak tracking, a cinematic hero section, and a dynamic SVG-based roadmap graph. Integrated the industrial color palette (Iron Core, Aqua, Rust).

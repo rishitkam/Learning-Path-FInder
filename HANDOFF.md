@@ -112,12 +112,11 @@ handling, the full catalog pipeline, the real graph, and semantic relevance.
 
 72 skills, 65 edges, 370 catalog items. Runs end to end in the terminal.
 
-Not done: the interface.
+Done: the interface.
 
 ## 8. Next step, in detail
 
-**The Streamlit interface.** Deliberately last, because the whole team wants to build it together and
-because everything under it already works from the terminal.
+**Connecting the Python Engine to the Next.js Frontend.** The next task is wrapping the existing Python logic in a FastAPI/Flask wrapper so the React components can fetch real path data.
 
 One file, `app.py`, three regions.
 Left, the chat. Each turn calls `profile.extract` then `profile.next_question`. Once the profile has a

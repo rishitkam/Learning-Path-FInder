@@ -420,3 +420,7 @@ claimed a match on a signal that decided nothing.
 
 Both now say what actually happened, or say nothing. This matters more than it looks, because those
 strings are handed to the model as fact.
+
+## 53. Switched from Streamlit to Next.js for the frontend.
+
+Streamlit was sufficient for the engine but had a low aesthetic ceiling. To maximize the Innovation (15%) and UI/UX (10%) scores, we moved to Next.js. This allows for smooth Framer Motion animations, custom SVG path rendering for the roadmap, and a professional "habit-forming" interface that Streamlit cannot replicate.
