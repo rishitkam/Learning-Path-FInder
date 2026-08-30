@@ -1,7 +1,10 @@
 # How we measure this
 
+Install `pip install -r requirements-dev.txt` first. The eval suite needs scipy for the linear
+programming bound and the API does not, so it is not in the runtime requirements.
+
 Run `python3 evals.py` for the structural report, about a second and no model calls.
-Run `python3 evals.py --llm` to add the two that need Groq.
+Run `python3 evals.py --llm` to add the two that need Groq, which needs `GROQ_API_KEY` in `.env`.
 
 Every number below came out of that script. Nothing here is estimated.
 

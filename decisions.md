@@ -916,3 +916,24 @@ we deploy into. So we left the function in place unused with the evidence in its
 
 Now deleted, because decision 102 fixed the Git step at the source and the function has no reason left
 to exist. The evidence lives here instead, so nobody rediscovers it as a good idea.
+
+## 106. Render instead of Docker, and the one thing that came with it
+
+A teammate moved deployment from Hugging Face Spaces to Render and deleted the Dockerfile. Kept, since
+Render runs Python natively and a container we never built is not worth carrying.
+
+The Dockerfile was doing one thing render.yaml was not: pulling the embedding model at build time.
+Without it the first request after every cold start downloads 30MB and concurrent requests race inside
+the loader, which is the bug that once looked like a CORS error. Moved into the build command.
+
+Measured the footprint before trusting the free tier: 165MB resident after warm up and three path
+builds, against a 512MB limit. Fits.
+
+## 107. The evals did not run on a clean clone
+
+evals.py imports scipy at the top and scipy was never in requirements.txt. Anyone cloning this and
+running the one file we most want them to run got a missing module error.
+
+Split into requirements-dev.txt, which pulls pytest and scipy on top of the runtime set. They stay out
+of the deployed image because the API imports neither, and scipy is about 40MB of linear algebra we
+only need for the lower bound in the evals.

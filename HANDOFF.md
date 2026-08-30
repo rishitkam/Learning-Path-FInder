@@ -73,6 +73,15 @@ cd learning-path-finder && npm install && npm run dev   # interface on :3000
 
 The interface needs the API. If it says "Awaiting you" forever, the API is not running.
 
+To run the tests and the eval suite, install the dev extras instead. They pull pytest and scipy, which
+the API never imports and which we keep out of the deployed image:
+
+```
+pip install -r requirements-dev.txt
+python3 -m pytest -q      # 63 tests
+python3 evals.py          # full measurement report, about a second, no model calls
+```
+
 Rebuilding the catalog from scratch, which needs about half an hour of free tier calls:
 
 ```

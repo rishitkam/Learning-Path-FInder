@@ -1,0 +1,5 @@
+# Only needed to run the tests and the eval suite. The API itself does not import either of these,
+# so they stay out of requirements.txt and out of the deployed image.
+-r requirements.txt
+pytest>=8,<9
+scipy>=1.11,<2      # linprog, for the linear programming lower bound in evals.py

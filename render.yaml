@@ -2,7 +2,9 @@ services:
   - type: web
     name: learning-path-finder-api
     runtime: python
-    buildCommand: pip install -r requirements.txt
+    # Pull the embedding model at build time. Otherwise the first request after every cold start
+    # downloads 30MB, and several arriving together race inside the loader.
+    buildCommand: pip install -r requirements.txt && python -c "from model2vec import StaticModel; StaticModel.from_pretrained('minishlab/potion-base-8M')"
     startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT
     plan: free
     envVars:
@@ -10,3 +12,5 @@ services:
         sync: false        # You will paste the value manually in the Render dashboard
       - key: FRONTEND_URL
         sync: false        # You will paste your Vercel URL here after Phase 2
+      # Extra keys are optional. profile.py picks up GROQ_API_KEY2, GROQ_API_KEY3 and so on
+      # automatically and rotates to the next one when a key runs out of daily quota.
