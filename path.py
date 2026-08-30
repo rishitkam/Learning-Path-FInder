@@ -104,6 +104,10 @@ def build(g, gap, profile, catalog, known=(), blocked=(), relevance=lambda c: 0.
                        "milestone": milestone, "assessment": assessment})
         week = end
 
-    horizon = profile.get("horizon_weeks")
-    return {"phases": phases, "total_weeks": week,
-            "feasible": week <= horizon if horizon is not None else True}
+    # The deadline never shapes the plan. Trimming to hit a number means dropping skills or taking
+    # worse courses, and then the plan quietly stops being the plan. We build the honest route and
+    # say what it would take, which is decision 22 with the arithmetic it always needed.
+    horizon, hours = profile.get("horizon_weeks"), sum(phase["hours"] for phase in phases)
+    feasible = week <= horizon if horizon is not None else True
+    return {"phases": phases, "total_weeks": week, "total_hours": hours, "feasible": feasible,
+            "weekly_hours_needed": None if feasible or not horizon else ceil(hours / horizon)}

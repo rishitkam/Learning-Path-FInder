@@ -374,3 +374,39 @@ def test_weights_actually_change_which_course_wins(g, cat):
                        for ph in build(g, gap, PROFILE, cat, weights=w)["phases"] for m in ph["modules"]]
     lengthy = {"relevance": 0.05, "level": 0.05, "style": 0.05, "effort": 0.85}
     assert picks(None) != picks(lengthy)
+
+
+# --- the deadline ---------------------------------------------------------------------------------
+
+def test_the_deadline_never_changes_the_plan(g, cat):
+    """Trimming to hit a date means dropping skills or taking worse courses, and then the plan quietly
+    stops being the plan. We build the honest route and say what the date would cost."""
+    gap = g.gap(g.role_skills("machine-learning-engineer"))
+    picks = lambda horizon: [(m["skill"], (m["resource"] or {}).get("id"))
+                             for ph in build(g, gap, {**PROFILE, "horizon_weeks": horizon}, cat)["phases"]
+                             for m in ph["modules"]]
+    assert picks(None) == picks(4) == picks(200)
+
+
+def test_an_impossible_deadline_says_what_it_would_take(g, cat):
+    gap = g.gap(g.role_skills("machine-learning-engineer"))
+    tight = build(g, gap, {**PROFILE, "horizon_weeks": 4}, cat)
+    assert not tight["feasible"]
+    assert tight["weekly_hours_needed"] > PROFILE["weekly_hours"]
+    assert tight["weekly_hours_needed"] == -(-tight["total_hours"] // 4)      # ceil, no rounding down
+    roomy = build(g, gap, {**PROFILE, "horizon_weeks": 200}, cat)
+    assert roomy["feasible"] and roomy["weekly_hours_needed"] is None
+
+
+def test_more_hours_a_week_is_a_real_lever(g, cat):
+    gap = g.gap(g.role_skills("machine-learning-engineer"))
+    slow = build(g, gap, {**PROFILE, "weekly_hours": 8}, cat)["total_weeks"]
+    fast = build(g, gap, {**PROFILE, "weekly_hours": 40}, cat)["total_weeks"]
+    assert fast < slow
+
+
+def test_the_explainer_is_told_it_cannot_promise_changes():
+    """It once answered "shorten the path" with "we'll trim total hours", having trimmed nothing."""
+    import explain
+    for banned in ["never say or imply that you have", "we will", "promises a change"]:
+        assert banned in explain.SYS_ASK

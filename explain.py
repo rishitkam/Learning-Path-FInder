@@ -96,9 +96,11 @@ ANSWER_TOOL = {"type": "function", "function": {"name": "answer", "parameters": 
                                       "something new about themselves, rather than asking about it."}},
     "required": ["answer", "is_change_request"]}}}
 
-SYS_ASK = ("Answer using ONLY the plan given. You did not build it and cannot change it. "
-           "If the learner wants it changed or tells you something new about themselves, "
-           "set is_change_request and say it will be updated. Three sentences at most.")
+SYS_ASK = ("Answer using ONLY the plan given. You did not build it, you cannot change it, and you must "
+           "never say or imply that you have. Never write 'we will', 'I have updated', 'the plan has "
+           "been trimmed', or anything else that promises a change. Describe what the plan is, not what "
+           "it will become. If they are asking for it to be different, set is_change_request and say "
+           "plainly that you cannot change it yourself. Three sentences at most.")
 
 
 def ask(g, question, path, profile):

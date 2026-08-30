@@ -1,6 +1,6 @@
 export type Profile = { goal_text: string; role: string | null; goal_skills: string[]; known_skills: string[]; weekly_hours: number; horizon_weeks: number; level: number; style: "balanced" | "project first" | "theory first" };
 export type Module = { skill: string; name: string; resource: { id: string; title: string; provider: string; url: string; hours: number } | null };
-export type PathData = { profile: Profile; path: { total_weeks: number; feasible: boolean; phases: { title: string; modules: Module[]; weeks: [number, number]; hours: number }[] }; progress: { skills_done: number; skills_total: number; percent: number; hours_done: number; hours_total: number; weeks_left: number | null; current_phase: string | null; next_action: Module | null }; state: { completed: string[]; blocked: string[]; weights: Record<string, number> } };
+export type PathData = { profile: Profile; path: { total_weeks: number; total_hours: number; feasible: boolean; weekly_hours_needed: number | null; phases: { title: string; modules: Module[]; weeks: [number, number]; hours: number }[] }; progress: { skills_done: number; skills_total: number; percent: number; hours_done: number; hours_total: number; weeks_left: number | null; current_phase: string | null; next_action: Module | null }; state: { completed: string[]; blocked: string[]; weights: Record<string, number> } };
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 // Anonymous and minted on first visit. No signup between a judge and the product, and the server can

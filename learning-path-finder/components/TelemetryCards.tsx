@@ -79,8 +79,14 @@ export default function TelemetryCards({ data, loading, onFeedback }: { data: Pa
     <section className="nudge-card">
       <span className="nudge-star">✦</span>
       <div>
-        <p>{data?.path.feasible === false ? "This path needs more runway" : data ? "Your route is ready" : "Nothing planned yet"}</p>
-        <small>{data?.progress.current_phase ?? "Connect the engine to generate your plan."}</small>
+        {/* The gap is a number we already know, so say it rather than painting a label. */}
+        <p>{!data ? "Nothing planned yet"
+            : data.path.feasible ? "Your route fits"
+            : `${data.path.total_weeks} weeks against your ${data.profile.horizon_weeks} week deadline`}</p>
+        <small>{!data ? "Tell ALMA your goal to generate a plan."
+                : data.path.weekly_hours_needed
+                  ? `About ${data.path.weekly_hours_needed} hours a week would make it, rather than ${data.profile.weekly_hours}. Or tell the co-pilot what you already know.`
+                  : data.progress.current_phase}</small>
       </div>
     </section>
   </>;

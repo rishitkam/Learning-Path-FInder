@@ -192,6 +192,18 @@ and style signals and keeps what we learned about the person.
 The four bars are on the dashboard in plain words. Three too hard clicks move difficulty from 25 to 31
 percent in front of you.
 
+**Commit 18, it stopped lying about what it can do.** Asked to shorten a path, the assistant replied
+"we'll trim total hours and drop the least essential module" and trimmed nothing. A made up action rather
+than a made up course, which is harder to catch because the plan looks fine.
+
+Three causes. The explainer wrote in the first person about changes. We compute a change request flag and
+had stopped using it. And shortening had no lever behind it at all, since the deadline only ever set a
+flag and never touched the plan.
+
+Now the deadline gap is arithmetic instead of a label: "12 weeks against your 4 week deadline, about 58
+hours a week would make it, rather than 20." An impossible ask walks to a real answer, and the planner
+stays deadline blind on purpose.
+
 ## Roughly where we stand
 
 Engine done, nothing to look at yet.

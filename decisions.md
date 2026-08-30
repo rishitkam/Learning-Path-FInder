@@ -656,3 +656,49 @@ how you learn, course length. Three "too hard" clicks visibly move difficulty fr
 
 This is the best answer we have to "how does it personalise", and it would have been a shame to compute
 it and keep it to ourselves.
+
+## 79. The explainer may not promise a change
+
+Asked to shorten a path it replied "we'll trim total hours and drop the least essential module" and
+trimmed nothing. Not a made up course, a made up action, which is worse because you cannot catch it by
+looking at the plan.
+
+Its prompt now forbids the first person about changes and forbids describing what the plan will become.
+It describes what is. A test asserts those instructions are still in the prompt, because this is the
+sentence someone will soften later without realising what it was for.
+
+## 80. A change we cannot make is answered by us, not by the model
+
+explain.ask has always returned an is_change_request flag and we stopped using it when the chat endpoint
+was rewritten. Since we only reach the model when extraction changed nothing, a change request at that
+point is by definition one we have no lever for.
+
+So we answer those ourselves with arithmetic. No model call decides what to say about something we
+cannot do.
+
+## 81. The deadline gap is a sentence, not a label
+
+feasible was a boolean painting two words, Stretch and This path needs more runway. Twelve weeks against
+a four week deadline and thirteen against twelve both read the same, and we knew the exact gap the whole
+time.
+
+build now returns the total hours and how many hours a week the deadline would actually take. The card
+reads "12 weeks against your 4 week deadline. About 58 hours a week would make it, rather than 20."
+
+## 82. Our own replies have to be checkable too
+
+After fixing the model we found the same fault in a string we wrote: setting an impossible deadline
+answered "Updated your route from what you just told me", when the route had not changed at all and only
+the flag had moved.
+
+Replies now carry the numbers. "Updated: 2 steps over 4 weeks, 153 hours of study." If it did not change,
+we say what it is and what would change it.
+
+## 83. The levers are real, and the conversation now walks to them
+
+Shortening a path is more hours a week, skills they already have, or a narrower goal. We refuse to add a
+compress action, because hitting a date by dropping modules is fabricating a curriculum.
+
+End to end, an impossible ask now lands somewhere true: asked for four weeks, told it needs 58 hours a
+week, offered 40, route drops 12 weeks to 6, mentions knowing Python and statistics, and lands at 4 weeks
+and feasible. Every number in that exchange is checkable against the plan.

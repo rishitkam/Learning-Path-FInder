@@ -164,6 +164,22 @@ def apply_feedback(request: FeedbackRequest, learner_id: str | None = LearnerId)
         after["completed"], after["blocked"], after["weights"]))
 
 
+def _cannot_do_that(current):
+    """A change we have no lever for. The model used to answer these itself and would promise to trim
+    the plan, which is the one hallucination this whole design exists to prevent. So we answer with
+    arithmetic instead: what the route costs, what their deadline would cost, and what actually helps.
+    """
+    plan, profile = current["path"], current["profile"]
+    said = [f"Your route is {plan['total_weeks']} weeks, {plan['total_hours']} hours of study."]
+    if plan["weekly_hours_needed"]:
+        said.append(f"You asked for {profile['horizon_weeks']} weeks, which would take about "
+                    f"{plan['weekly_hours_needed']} hours a week rather than {profile['weekly_hours']}.")
+    said.append("I cannot cut steps out to make it shorter, because the prerequisites are what they are. "
+                "What does shorten it: more hours a week, telling me what you already know, or a "
+                "narrower goal.")
+    return " ".join(said)
+
+
 def _reply(learning_graph, prior, current):
     """On the first path, name the skills it starts with and ask whether they already have any.
 
@@ -178,7 +194,13 @@ def _reply(learning_graph, prior, current):
                                  or learning_graph.role_skills(prior.get("role") or "")))
     opening = [module["name"] for module in current["path"]["phases"][0]["modules"]][:3]
     if already_planning or not opening:
-        return "Updated your route from what you just told me."
+        plan = current["path"]
+        # Say what it is now, with the numbers, so they can check us. Setting a deadline we cannot
+        # meet is not an update to the route, and saying so would be the same lie in our own words.
+        if not plan["feasible"]:
+            return _cannot_do_that(current)
+        return (f"Updated: {current['progress']['skills_total']} steps over {plan['total_weeks']} "
+                f"weeks, {plan['total_hours']} hours of study.")
     return (f"Here is your route: {current['progress']['skills_total']} steps over "
             f"{current['path']['total_weeks']} weeks. It starts with {', '.join(opening)}. "
             "Do you already know any of those, or anything else on the way? I will drop what you have.")
@@ -230,7 +252,12 @@ def chat(request: ChatRequest, learner_id: str | None = LearnerId):
     current = build_response(extracted, request.completed, request.blocked, weights)
     told_us_something_new = prior is None or any(
         extracted.get(field) != prior.get(field) for field in PROFILE_KEYS)
-    reply = (_reply(learning_graph, prior, current) if told_us_something_new
-             else explain.ask(learning_graph, request.message, current["path"], current["profile"])["answer"])
+    if told_us_something_new:
+        reply = _reply(learning_graph, prior, current)
+    else:
+        # Nothing about them changed, so a change request here is one we have no lever for. We answer
+        # that ourselves rather than letting the model's prose stand as the answer.
+        answer = explain.ask(learning_graph, request.message, current["path"], current["profile"])
+        reply = _cannot_do_that(current) if answer["is_change_request"] else answer["answer"]
     remember(learner_id, current, said + [{"role": "assistant", "content": reply}])
     return {"reply": reply, "data": current}
