@@ -1,0 +1,30 @@
+# .dockerignore — prevents large/unnecessary files from being baked into the image.
+# The /app/data directory is a mounted volume on Fly.io, so the DB file is never in the image.
+
+.git
+.gitignore
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Development & test files
+test_core.py
+*.md
+
+# The frontend lives on Vercel, not in the backend image
+learning-path-finder/
+
+# Offline data pipeline scripts (never needed at runtime)
+scripts/
+
+# Raw pipeline intermediates (large, not needed at runtime)
+data/raw/
+
+# The SQLite DB is on the mounted volume, not in the image
+data/learners.db
+
+# Deployment config files (not needed inside the container)
+Dockerfile
+fly.toml

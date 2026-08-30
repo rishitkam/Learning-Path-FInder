@@ -1,5 +1,6 @@
 """HTTP adapter for the deterministic learning-path engine."""
 
+import os
 from functools import lru_cache
 from typing import Literal
 
@@ -15,11 +16,17 @@ import profile as learner_profile
 import explain
 from embed import relevance
 
+# In production, FRONTEND_URL is set as a Fly.io secret so the deployed
+# Vercel URL is whitelisted. Locally it falls back to the dev ports.
+_frontend = os.getenv("FRONTEND_URL", "")
+_origins = ["http://localhost:3000", "http://localhost:3001"]
+if _frontend:
+    _origins.append(_frontend.rstrip("/"))
 
 app = FastAPI(title="Learning Path Finder API", version="1.0.0")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:3001"],
+    allow_origins=_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
