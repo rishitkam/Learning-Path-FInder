@@ -5594,7 +5594,8 @@
   ],
   "assumes": [
    "prog.python"
-  ]
+  ],
+  "handmade": true
  },
  {
   "id": "p.supervised",
@@ -5609,7 +5610,8 @@
   ],
   "assumes": [
    "ml.concepts"
-  ]
+  ],
+  "handmade": true
  },
  {
   "id": "p.cnn",
@@ -5623,7 +5625,8 @@
   ],
   "assumes": [
    "dl.backprop"
-  ]
+  ],
+  "handmade": true
  },
  {
   "id": "p.rag",
@@ -5638,7 +5641,8 @@
   "assumes": [
    "nlp.prompting",
    "nlp.embeddings"
-  ]
+  ],
+  "handmade": true
  },
  {
   "id": "p.deploy",
@@ -5653,7 +5657,8 @@
   ],
   "assumes": [
    "ops.docker"
-  ]
+  ],
+  "handmade": true
  },
  {
   "id": "p.finetune",
@@ -5667,7 +5672,8 @@
   ],
   "assumes": [
    "nlp.llm"
-  ]
+  ],
+  "handmade": true
  },
  {
   "id": "a.python",
@@ -5680,7 +5686,8 @@
    "prog.python",
    "prog.oop"
   ],
-  "assumes": []
+  "assumes": [],
+  "handmade": true
  },
  {
   "id": "a.data",
@@ -5694,7 +5701,8 @@
    "data.viz",
    "data.sql"
   ],
-  "assumes": []
+  "assumes": [],
+  "handmade": true
  },
  {
   "id": "a.ml",
@@ -5708,7 +5716,8 @@
    "ml.supervised",
    "ml.evaluation"
   ],
-  "assumes": []
+  "assumes": [],
+  "handmade": true
  },
  {
   "id": "a.dl",
@@ -5724,7 +5733,8 @@
    "dl.rnn",
    "dl.transformers"
   ],
-  "assumes": []
+  "assumes": [],
+  "handmade": true
  },
  {
   "id": "a.llm",
@@ -5739,7 +5749,8 @@
    "nlp.finetune",
    "nlp.prompting"
   ],
-  "assumes": []
+  "assumes": [],
+  "handmade": true
  },
  {
   "id": "a.ops",
@@ -5752,6 +5763,37 @@
    "ops.deploy",
    "ops.monitor"
   ],
-  "assumes": []
+  "assumes": [],
+  "handmade": true
+ },
+ {
+  "id": "hm.git",
+  "title": "Version Control with Git",
+  "provider": "Atlassian",
+  "url": "https://www.coursera.org/learn/version-control-with-git",
+  "hours": 16,
+  "level": 2,
+  "kind": "course",
+  "teaches": [
+   "eng.git"
+  ],
+  "assumes": [],
+  "handmade": true
+ },
+ {
+  "id": "hm.backprop",
+  "title": "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization",
+  "provider": "DeepLearning.AI",
+  "url": "https://www.coursera.org/learn/deep-neural-network",
+  "hours": 23,
+  "level": 4,
+  "kind": "course",
+  "teaches": [
+   "dl.backprop"
+  ],
+  "assumes": [
+   "dl.neuralnets"
+  ],
+  "handmade": true
  }
 ]

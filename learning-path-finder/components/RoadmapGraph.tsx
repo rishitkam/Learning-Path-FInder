@@ -1,5 +1,70 @@
 "use client";
 import { Check, Lock, ArrowUpRight, LoaderCircle } from "lucide-react";
 import type { PathData } from "@/lib/api";
-type Node={id:string;name:string;sub:string;progress:number;x:string;y:string;active?:boolean;locked?:boolean};
-export default function RoadmapGraph({view,path,completed,loading}:{view:"roadmap"|"outline";path?:PathData["path"];completed:string[];loading:boolean}){const modules=path?.phases.flatMap(phase=>phase.modules)??[];const nodes:Node[]=modules.slice(0,5).map((module,index)=>({id:module.skill,name:module.name,sub:module.resource?.title??"Resource being selected",progress:completed.includes(module.skill)?100:index===completed.length?50:0,x:["14%","46%","25%","70%","48%"][index]??"80%",y:["21%","39%","72%","69%","88%"][index]??"50%",active:index===completed.length,locked:index>completed.length}));if(loading&&!path)return <div className="graph-loading"><LoaderCircle className="spin"/> Loading your real path…</div>;if(view==="outline")return <div className="milestone-list">{nodes.map((n,i)=><div className={`milestone-row ${n.active?"milestone-active":""}`} key={n.id}><span className="milestone-number">0{i+1}</span><div className="mini-ring" style={{"--progress":`${n.progress*3.6}deg`} as React.CSSProperties}>{n.progress===100?<Check size={14}/>:n.locked?<Lock size={13}/>:`${n.progress}%`}</div><div><b>{n.name}</b><small>{n.sub}</small></div><span className="milestone-status">{n.progress===100?"Complete":n.active?"In progress":n.locked?"Locked":"Up next"}</span><ArrowUpRight size={17}/></div>)}</div>;return <div className="graph-wrap"><div className="graph-glow"/><svg className="path-lines" viewBox="0 0 1000 540" preserveAspectRatio="none"><path d="M145 112 C250 110 320 195 460 205 S305 395 250 385 S550 330 700 370"/><path d="M700 370 C805 380 790 450 880 468" className="faint"/></svg>{nodes.map(n=><button key={n.id} className={`path-node ${n.active?"node-active":""} ${n.locked?"node-locked":""}`} style={{left:n.x,top:n.y}}><span className="node-ring" style={{"--progress":`${n.progress*3.6}deg`} as React.CSSProperties}>{n.progress===100?<Check size={22}/>:n.locked?<Lock size={17}/>:<b>{n.progress}%</b>}</span><span className="node-label"><b>{n.name}</b><small>{n.sub}</small></span>{n.active&&<span className="active-tag">You are here</span>}</button>)}<div className="destination">NEXT HORIZON <span>↗</span></div></div>}
+
+const COLUMNS = 4;
+const ROW_HEIGHT = 190;
+
+type Node = { id: string; name: string; sub: string; url?: string; done: boolean; active: boolean; locked: boolean; x: number; y: number };
+
+/** Lays every milestone out on a serpentine grid. It used to draw only the first five of them while
+ *  the header counted all of them, so more than half a long path was unreachable. */
+function layout(count: number, index: number) {
+  const columns = Math.min(COLUMNS, Math.max(count, 1));
+  const rows = Math.ceil(count / columns);
+  const row = Math.floor(index / columns);
+  const raw = index % columns;
+  const column = row % 2 ? columns - 1 - raw : raw;      // snake back on every other row
+  return { x: ((column + 0.5) / columns) * 100, y: ((row + 0.5) / rows) * 100, rows };
+}
+
+export default function RoadmapGraph({ view, path, completed, loading }: { view: "roadmap" | "outline"; path?: PathData["path"]; completed: string[]; loading: boolean }) {
+  const modules = path?.phases.flatMap((phase) => phase.modules) ?? [];
+  const done = new Set(completed);
+  const activeIndex = modules.findIndex((module) => !done.has(module.skill));
+  const rows = Math.ceil(modules.length / Math.min(COLUMNS, Math.max(modules.length, 1))) || 1;
+
+  const nodes: Node[] = modules.map((module, index) => ({
+    id: module.skill,
+    name: module.name,
+    sub: module.resource?.title ?? "No course for this yet",
+    url: module.resource?.url,
+    done: done.has(module.skill),
+    active: index === activeIndex,
+    locked: activeIndex !== -1 && index > activeIndex,
+    ...layout(modules.length, index),
+  }));
+
+  if (loading && !path) return <div className="graph-loading"><LoaderCircle className="spin"/> Loading your real path…</div>;
+  if (!modules.length) return <div className="graph-loading">Tell ALMA your goal to see a route here.</div>;
+
+  if (view === "outline") return <div className="milestone-list">{nodes.map((node, index) =>
+    <a className={`milestone-row ${node.active ? "milestone-active" : ""}`} key={node.id}
+       href={node.url} target="_blank" rel="noreferrer" title={node.url ? `Open ${node.sub}` : undefined}>
+      <span className="milestone-number">{String(index + 1).padStart(2, "0")}</span>
+      <div className="mini-ring" style={{ "--progress": `${node.done ? 360 : 0}deg` } as React.CSSProperties}>
+        {node.done ? <Check size={14}/> : node.locked ? <Lock size={13}/> : "→"}
+      </div>
+      <div><b>{node.name}</b><small>{node.sub}</small></div>
+      <span className="milestone-status">{node.done ? "Complete" : node.active ? "In progress" : "Locked"}</span>
+      <ArrowUpRight size={17}/>
+    </a>)}</div>;
+
+  return <div className="graph-wrap" style={{ height: Math.max(508, rows * ROW_HEIGHT) }}>
+    <div className="graph-glow"/>
+    <svg className="path-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <polyline points={nodes.map((node) => `${node.x},${node.y}`).join(" ")} vectorEffect="non-scaling-stroke"/>
+    </svg>
+    {nodes.map((node) =>
+      <a key={node.id} className={`path-node ${node.active ? "node-active" : ""} ${node.locked ? "node-locked" : ""}`}
+         style={{ left: `${node.x}%`, top: `${node.y}%` }} href={node.url} target="_blank" rel="noreferrer"
+         title={node.url ? `Open ${node.sub}` : "No course for this yet"}>
+        <span className="node-ring" style={{ "--progress": `${node.done ? 360 : 0}deg` } as React.CSSProperties}>
+          {node.done ? <Check size={22}/> : node.locked ? <Lock size={17}/> : <b>Now</b>}
+        </span>
+        <span className="node-label"><b>{node.name}</b><small>{node.sub}</small></span>
+        {node.active && <span className="active-tag">You are here</span>}
+      </a>)}
+    <div className="destination">{modules.length} MILESTONES <span>↗</span></div>
+  </div>;
+}

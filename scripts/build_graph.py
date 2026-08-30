@@ -140,7 +140,9 @@ def main(apply=False):
     (ROOT / "data/skills.json").write_text(json.dumps(skills, indent=1))
 
     old = json.loads((ROOT / "data/catalog.json").read_text())
-    handmade = [c for c in old if c["kind"] != "course"]        # our projects and assessments stay
+    # Anything we added by hand survives a rebuild. Projects and assessments, plus the few real
+    # courses covering skills the Coursera top 400 does not reach at all.
+    handmade = [c for c in old if c.get("handmade")]
     catalog = [{"id": c["id"], "title": c["title"], "provider": c["provider"], "url": c["url"],
                 "hours": c["hours"], "level": c["level"], "kind": "course",
                 "teaches": labels[c["id"]]["teaches"], "assumes": labels[c["id"]]["assumes"]}

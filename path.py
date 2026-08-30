@@ -6,6 +6,11 @@ from pathlib import Path
 
 DATA = Path(__file__).resolve().parent / "data"
 W = {"relevance": 0.40, "level": 0.25, "style": 0.20, "effort": 0.15}
+# A course longer than this many weeks of the learner's time is only offered when nothing shorter
+# teaches the skill. Ranking alone could not express it: a small semantic edge becomes the whole
+# relevance term once scores are normalised, which was enough to send someone into a 173 hour
+# specialisation to learn Git rather than a 16 hour course on it.
+MAX_WEEKS_PER_COURSE = 8
 PREF = {"project first": "project", "theory first": "course"}
 
 
@@ -25,12 +30,19 @@ def _terms(c, p, rel):
             "effort": 1.0 if c["hours"] <= (p.get("weekly_hours") or 1) * 2 else 0.6}
 
 
+def _affordable(cands, p):
+    """Prefer courses that fit inside a couple of months. Fall back only if that leaves nothing."""
+    cap = (p.get("weekly_hours") or 1) * MAX_WEEKS_PER_COURSE
+    return [c for c in cands if c["hours"] <= cap] or cands
+
+
 def _best(cands, p, relevance):
     """Relevance is normalised across the candidates for one skill. Absolute cosine clusters too
     tightly to matter, and every candidate here teaches the same skill, so only the ranking does.
     Ties break on id, so regenerating the catalog cannot quietly reshuffle recommendations."""
     if not cands:
         return None, None
+    cands = _affordable(cands, p)
     raw = [relevance(c) for c in cands]
     lo, hi = min(raw), max(raw)
     scored = [(_terms(c, p, (r - lo) / (hi - lo) if hi > lo else 0.5), c) for c, r in zip(cands, raw)]

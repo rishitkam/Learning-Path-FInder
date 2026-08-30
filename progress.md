@@ -114,6 +114,62 @@ adversarial input or checking a figure against the raw source.
 Rebuilt after the fixes: 72 skills, 65 edges, 370 catalog items. Verified end to end, all seven roles
 produce paths with no ordering violations.
 
+**Commit 11, connecting the two halves properly.** The frontend existed and looked good, but three
+things between it and the engine were broken.
+
+Feedback lost most of what it changed, because the API rebuilt from the request rather than from the
+state it had just updated. Already knowing a skill did nothing and too hard never moved the level.
+Relevance was never passed in, so the strongest ranking signal sat inert and the goal text we collect
+was unused. And progress carried the same double count we had fixed in the builder, reporting 587 hours
+against 520 and a weeks left that disagreed with the roadmap on screen.
+
+On the interface: every page held its own copy of the path, so building one in the co-pilot and clicking
+to My path showed nothing. Only completed was wired of the five reactions. And the roadmap drew five
+milestones while the header counted fourteen.
+
+Two content gaps turned up as well. Nothing in the 400 courses mentions backpropagation and only one
+mentions Git, so both now carry real courses we added by hand and flagged to survive rebuilds.
+
+The last one was the most interesting. Ranking normalises relevance across the candidates for a skill,
+so the best match takes the whole term no matter how small the real gap. A 0.09 edge became a 0.40
+advantage, enough to pick a 173 hour data science specialisation to teach Git over a 16 hour Git course.
+A course now has to fit inside eight weeks of the learner's time unless nothing shorter teaches the
+skill. That took a route from 81 weeks to 49.
+
+Verified in the browser end to end: chat builds a path, it survives navigation and refresh, all five
+reactions change the plan, questions get answered, and the API being down reads as a sentence.
+
+**Commit 12, the conversation itself.** Three bugs sat on the first thing anyone will try.
+
+Saying "machine learning" produced no skills, so the assistant asked the same question forever. Saying
+"8 hours a week" was answered as though it were a question, so the time never reached the profile, and
+with no hours the schedule divided by one and reported 138 weeks for four skills. And the validation
+error from sending our own profile back rendered as "[object Object]" on screen.
+
+The chat endpoint now re-reads the learner on every message and decides for itself whether anything
+changed, rather than asking the model whether the message was a change request. Same conversation now
+ends in a 10 week path.
+
+**Commit 13, the conversation has a memory.** Answering a question with a bare "15" did nothing,
+because only the newest message ever reached extraction. The interface now sends what has been said so
+far, which is what we designed extraction around in the first place and lost when the interface was
+built. Short answers and corrections both work again with no special handling.
+
+**Commit 14, it asks what you already know.** We only ever required a goal and weekly hours, so nobody
+was asked about their existing skills unless they happened to mention them. That is the setting that
+changes a path the most. The first path now comes back with one question naming the steps it starts
+with, and answering it collapses the roadmap in front of you.
+
+**Commit 15, everything on screen is real.** Eleven controls did nothing when clicked, and the streak
+and activity chart were invented on a product that stores nothing.
+
+Roadmap nodes and milestone rows open the real course now. New focus clears the route. The sidebar and
+the header show real progress. The chart is hours per phase. The per module explanation, which existed
+and was tested but was never called by anything, has an endpoint and appears under the current step.
+
+Dead code out: four unused dependencies, an unused helper, a dead component, four dead style rules and
+an unused import.
+
 ## Roughly where we stand
 
 Engine done, nothing to look at yet.
@@ -125,16 +181,16 @@ Engine done, nothing to look at yet.
 | Skill gap and ordering | done |
 | Scheduling into phases | done |
 | Explanations and learner questions | done |
-| Interface and dashboard | not started |
+| Interface and dashboard | done |
 | Progress tracking and feedback | done |
 | Real catalog with embeddings | done |
 
-Seven of eight. Everything except the interface is done and running on real data.
+Eight of eight. The whole thing runs end to end, engine and interface, on real data.
 
 ## Next
 
-The interface, which waits until the whole team is on it since that is the part we should build
-together. HANDOFF.md has the full detail.
+Polish and the submission itself: the demo video, the solution document, and a deployed URL. The engine
+and the interface are both working, so what is left is presentation rather than building.
 
 ## Known gaps we are carrying on purpose
 

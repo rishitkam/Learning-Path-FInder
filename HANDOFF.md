@@ -51,6 +51,9 @@ course can be invented, and the prerequisite order is provably correct rather th
 | `data/vectors.npy` | Frozen course embeddings, same order as catalog.json. |
 | `embed.py` | Goal text to course relevance, normalised across the candidates for one skill. |
 | `scripts/build_graph.py` | Labels to the real graph. Report by default, `--apply` to write. |
+| `api.py` | FastAPI adapter. `/health`, `/path`, `/path/feedback`, `/chat`. |
+| `test_core.py` | 41 tests, no API calls, under half a second. |
+| `learning-path-finder/` | Next.js interface. `lib/store.ts` holds the one shared path. |
 | `scripts/fetch.py` | Downloads the Coursera CSV from Hugging Face. |
 | `scripts/normalise.py` | Cleans, parses hours and level, filters to our domain, keeps 400. |
 | `scripts/label.py` | Labels each course with teaches and assumes, growing the taxonomy. |
@@ -61,12 +64,20 @@ Scripts are offline. They run once and never at demo time.
 ## 4. Running it
 
 ```
-pip install groq python-dotenv networkx model2vec pandas numpy
+pip install -r requirements.txt
 echo "GROQ_API_KEY=..." > .env
-python3 scripts/fetch.py && python3 scripts/normalise.py && python3 scripts/label.py
+python3 -m uvicorn api:app --port 8000          # engine
+cd learning-path-finder && npm install && npm run dev   # interface on :3000
 ```
 
-There is no interface yet. Everything is exercised from the terminal.
+The interface needs the API. If it says "Awaiting you" forever, the API is not running.
+
+Rebuilding the catalog from scratch, which needs about half an hour of free tier calls:
+
+```
+python3 scripts/fetch.py && python3 scripts/normalise.py
+python3 scripts/label.py && python3 scripts/build_graph.py --apply
+```
 
 ## 5. Things that cost us time, so you do not repeat them
 
@@ -84,6 +95,9 @@ point in labelling.
 
 **Reasoning tokens count against max_tokens.** Set reasoning effort to low or completions come back
 empty, and the amount varies run to run so a generous cap is not a fix.
+
+**Extraction reads the whole conversation, not one message.** It is what makes "15" and "actually make
+it 20" work with no code for either. The interface must keep sending the history.
 
 **Check the data, not the summary counts.** Our first labelling run reported healthy totals while 13
 percent of courses taught and assumed the same skill, which would have been a cycle. Later, three review

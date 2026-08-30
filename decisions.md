@@ -424,3 +424,152 @@ strings are handed to the model as fact.
 ## 53. Switched from Streamlit to Next.js for the frontend.
 
 Streamlit was sufficient for the engine but had a low aesthetic ceiling. To maximize the Innovation (15%) and UI/UX (10%) scores, we moved to Next.js. This allows for smooth Framer Motion animations, custom SVG path rendering for the roadmap, and a professional "habit-forming" interface that Streamlit cannot replicate.
+
+## 53. One path, shared by every page and saved
+
+Each route held its own useState, so building a path in the co-pilot and clicking through to My path
+showed an empty dashboard. There was no context, no store, nothing.
+
+A small module level store now holds the one path and writes it to the browser, so it survives moving
+between pages and a refresh. Reading happens after mount so the server and client first render agree.
+
+## 54. All five reactions are on screen, not just finishing something
+
+The interface could only send "completed". Too hard, too easy, already know this and not for me were
+unreachable, which is most of the adaptation story we lead with.
+
+They sit under the main action as a row of small buttons. Every one of them rebuilds the path, so the
+roadmap visibly reacts.
+
+## 55. The roadmap draws every milestone
+
+It drew the first five on a hardcoded set of positions while the header counted all fourteen, so more
+than half the plan was unreachable and the two numbers disagreed on screen.
+
+Milestones now lay out on a serpentine grid that grows with the count, and the numbering pads properly,
+which it did not past nine.
+
+## 56. Feedback has to carry the whole profile back
+
+The API rebuilt from the request it was given, so everything state.apply changed was thrown away except
+the two lists. Already knowing a skill did nothing at all, and too hard blocked a course without ever
+moving the level.
+
+## 57. Relevance was never switched on in the API
+
+path.build was called without it, so the strongest signal sat inert and the goal text we collected was
+never used. Wired now, and the same role gives different courses for different goals.
+
+## 58. A course must fit the learner, not just match the words
+
+Ranking normalises relevance across the candidates for a skill, which makes the best one worth the whole
+term however small the real gap is. A 0.09 edge became 1.00 against 0.00, worth 0.40, enough to send
+someone into a 173 hour data science specialisation to learn Git instead of a 16 hour course on Git.
+
+Weights could not express this, so it is a rule instead: a course longer than eight weeks of their time
+is only offered when nothing shorter teaches the skill. That one line took a route from 81 weeks to 49.
+
+## 59. Hand added catalog entries survive a rebuild
+
+Two skills are not covered by the 400 most enrolled Coursera courses. Nothing in them mentions
+backpropagation at all, and only one mentions Git. Both had real courses in our original seed catalog
+and lost them when the scraped catalog replaced it.
+
+Anything flagged as ours is now kept when the catalog is rebuilt, so those two carry real courses again.
+We add real ones by hand, we do not invent them.
+
+## 60. The engine being down should read like a sentence
+
+fetch rejects rather than returning a response when nothing is listening, so the raw browser error
+reached the screen as "Failed to fetch". Every call goes through one helper now and both failures say
+something a person can act on.
+
+## 61. Read the learner every turn, then answer or rebuild
+
+The chat endpoint only re-read the profile when the explainer flagged a message as a change request.
+It said no to "8 hours a week", so we answered a question they had not asked and left their weekly time
+unset. With no hours the schedule divided by one and reported 138 weeks for four skills.
+
+Extraction now runs on every message. If anything about them changed we rebuild and say so, otherwise
+we answer their question. Whether the profile changed is a comparison we do ourselves rather than
+something we ask the model to judge.
+
+## 62. Never emit a profile we would reject
+
+The interface sends our own profile back on the next turn. We returned weekly_hours as null before the
+learner had said, then refused it, and the validation error surfaced as "[object Object]" because
+FastAPI answers with a list of objects and JavaScript stringifies that.
+
+The field is nullable now, missing hours is refused with a sentence, and error lists get joined into
+readable text. Both directions are covered by tests that call the API rather than the functions.
+
+## 63. A bare topic is a goal
+
+"machine learning" produced no skills at all, so the assistant asked the same question forever. The
+extraction prompt told it not to guess, and it read a two word answer as not stating anything.
+
+Goals are now the stated exception: name any subject and we map it. Never guessing still applies to what
+they already know, which is the part that would quietly corrupt a path.
+
+A role named in the same turn still wins over loose skills, because the table covers the whole job
+rather than the one or two ideas the model picked out.
+
+## 64. The chat sends the conversation, not the last message
+
+Answering "15" to "how many hours a week" did nothing, because the endpoint only ever passed the newest
+message to extraction. On its own that is a number with no meaning, so the same question came back
+again and again.
+
+This was a decision we made early and then quietly lost when the interface was built. Extraction was
+designed to re-read the whole conversation every turn, which is what makes short answers and later
+corrections work without any special handling.
+
+The interface now sends what has been said so far, capped at the last twelve turns. "deep learning",
+then "5 hours", then "actually make it 20" goes from 108 weeks to 32 with no code for corrections.
+
+## 65. We ask what they already know, but only after showing the path
+
+Decision 27 said only two fields are required, goal and hours, so we never asked about anything else.
+That is still right for getting someone to a path quickly, but it left the strongest lever untouched.
+Known skills prune whole branches off the graph, so a learner who never volunteers them gets a route
+that starts from nothing.
+
+So the first path now comes back with one question attached, naming the skills it actually starts with:
+"It starts with Version Control with Git, Calculus, Linear Algebra. Do you already know any of those?"
+
+Asking after building rather than before means they see something first, and we can name their real
+first steps instead of asking in the abstract. Answering it visibly collapses the roadmap, 16 steps to
+14 and 35 weeks to 32 in our test, which is also the best thing this product does.
+
+Level and style stay inferred. The too hard and too easy buttons already correct level from what
+someone actually does, which beats asking them to rate themselves.
+
+## 66. Nothing on screen pretends to work
+
+The interface had eleven controls that did nothing when clicked: a search icon, a bell, a profile chip,
+an upsell button, an arrow on a card, and every node on the roadmap. It also showed an eighteen day
+streak and a weekly activity chart, both invented, on a product that stores nothing.
+
+Anything that looks clickable now does something real, and anything that could not be made real is gone.
+
+Roadmap nodes and milestone rows open the actual course. New focus clears the route and disables itself
+when there is nothing to clear. The profile chip shows real completion. The sidebar card counts real
+steps and real weeks left, one bar per phase, filled as phases finish. The activity chart is hours per
+phase from the actual plan.
+
+A fabricated streak is the kind of detail a judge notices, and it would put every real number next to it
+in doubt.
+
+## 67. The per module explanation is on screen
+
+explain_module existed, was tested, and nothing ever called it. The one thing the brief asks for by name,
+saying why a recommendation was made, was reachable only through a general question.
+
+It has its own endpoint because it costs a model call, so the interface asks only when the step actually
+changes, and the answer is stored against the step it describes so a stale one can never sit under the
+wrong course.
+
+## 68. Four dependencies removed
+
+framer-motion and reactflow were never imported at all. clsx and tailwind-merge existed only for a helper
+used by one dead component. Runtime dependencies went from eight to four.

@@ -8,7 +8,8 @@ from groq import Groq
 
 MODEL = "openai/gpt-oss-20b"
 STYLES = ["balanced", "project first", "theory first"]
-QUESTIONS = {"goal_skills": "What do you want to be able to do at the end? A role or a project is fine.",
+QUESTIONS = {"goal_skills": "What do you want to be able to do at the end? A role works, like data analyst "
+                            "or machine learning engineer, or just the thing you want to build.",
              "weekly_hours": "How many hours a week can you realistically give this?"}
 
 
@@ -42,16 +43,17 @@ def _num(v, lo, hi, default=None):
         return default
 
 
-def _clean(g, p):
+def _clean(g, p, role_is_new=False):
     """Drop what the model got wrong instead of raising. A slightly thinner profile beats a crash."""
     for k in ("goal_skills", "known_skills"):
         v = p.get(k)
         p[k] = [s for s in v if s in g.skills] if isinstance(v, list) else []
     if not isinstance(p.get("role"), str) or p["role"] not in g.roles:
         p.pop("role", None)
-    elif not p["goal_skills"]:
-        # The table only fills a gap. If the conversation named skills, those are more current than
-        # a role we recorded several turns ago.
+    elif role_is_new or not p["goal_skills"]:
+        # A role named this turn is the better answer, since the table covers the whole job rather
+        # than the one or two skills the model happened to pick out. A role we recorded several turns
+        # ago only fills a gap, so it cannot overwrite skills the learner just stated.
         p["goal_skills"] = list(g.role_skills(p["role"]))
     hours = _num(p.get("weekly_hours"), 1, 60)
     p["weekly_hours"] = None if hours is None else (int(hours) if hours == int(hours) else round(hours, 1))
@@ -68,7 +70,9 @@ def extract(g, transcript, prior=None):
     p = dict(prior or {})
     system = (f"Extract the learner profile. Skill ids ONLY from: {', '.join(sorted(g.skills))}. "
               f"Roles ONLY from: {', '.join(sorted(g.roles))}. "
-              "Null any field the conversation does not state. Do not guess.")
+              "Null any field the conversation does not state, and never guess what they already know. "
+              "Goals are the exception: if they name any subject, field or role at all, even as a bare "
+              "phrase like 'machine learning', treat it as their goal and map it to the closest skills.")
     user = f"KNOWN SO FAR:\n{json.dumps(p)}\n\nCONVERSATION:\n{transcript}"
 
     for _ in range(2):  # one retry, then give up and let the caller ask a plain question
@@ -79,7 +83,8 @@ def extract(g, transcript, prior=None):
                 messages=[{"role": "system", "content": system}, {"role": "user", "content": user}])
             new = json.loads(r.choices[0].message.tool_calls[0].function.arguments)
             # Merge into a copy. A failed attempt must not leave half its answer in the profile.
-            return _clean(g, {**p, **{k: v for k, v in new.items() if v not in (None, [])}})
+            return _clean(g, {**p, **{k: v for k, v in new.items() if v not in (None, [])}},
+                          role_is_new=bool(new.get("role")))
         except Exception:
             continue
     return _clean(g, p)

@@ -1,7 +1,5 @@
 """Learner state and what feedback does to it. The path is always rebuilt, never edited."""
 
-from math import ceil
-
 FIELDS = ("goal_text", "goal_skills", "known_skills", "weekly_hours", "horizon_weeks", "level", "style")
 
 
@@ -42,17 +40,38 @@ def apply(state, event, skill=None, resource_id=None):
 
 
 def progress(state, path):
-    """Read off state and path every time. A stored counter would drift the moment the plan changes."""
+    """Read off state and path every time. A stored counter would drift the moment the plan changes.
+
+    Hours are counted per distinct resource, the same way the schedule counts them, so one course
+    serving two skills is not two lots of work. Milestones count with the phase they belong to."""
     done = set(state["completed"])
+    counted, total, finished, left = set(), 0, 0, []
+    for ph in path["phases"]:
+        whole_phase = all(m["skill"] in done for m in ph["modules"])
+        for m in ph["modules"]:
+            r = m["resource"]
+            hours = r["hours"] if r and r["id"] not in counted else 0
+            if r:
+                counted.add(r["id"])
+            total += hours
+            if m["skill"] in done:
+                finished += hours
+            else:
+                left.append(m)
+        for extra in (ph.get("milestone"), ph.get("assessment")):
+            if extra:
+                total += extra["hours"]
+                finished += extra["hours"] if whole_phase else 0
     mods = [m for ph in path["phases"] for m in ph["modules"]]
-    hours = lambda ms: sum(m["resource"]["hours"] for m in ms if m["resource"])
-    left = [m for m in mods if m["skill"] not in done]
-    total_h, left_h = hours(mods), hours(left)
     phase = next((ph for ph in path["phases"] if any(m["skill"] not in done for m in ph["modules"])), None)
+    total_weeks = path.get("total_weeks", 0)
+    done_to = phase["weeks"][0] if phase else total_weeks
 
     return {"skills_done": len(mods) - len(left), "skills_total": len(mods),
             "percent": round(100 * (len(mods) - len(left)) / len(mods)) if mods else 0,
-            "hours_done": total_h - left_h, "hours_total": total_h,
-            "weeks_left": ceil(left_h / state["weekly_hours"]) if state["weekly_hours"] else None,
+            "hours_done": finished, "hours_total": total,
+            # Read off the schedule, not recomputed from hours. Dividing again gave a number that
+            # disagreed with the roadmap on screen, because the schedule rounds each phase up.
+            "weeks_left": total_weeks - done_to,
             "current_phase": phase["title"] if phase else None,
             "next_action": left[0] if left else None}

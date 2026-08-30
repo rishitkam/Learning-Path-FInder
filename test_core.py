@@ -101,6 +101,20 @@ def test_milestone_is_never_also_a_module(g, cat):
         assert not mods & extras, role
 
 
+def test_a_long_course_loses_to_a_short_one_that_teaches_the_skill(g, cat):
+    """A small semantic edge used to win the whole relevance term, which sent people into a 173 hour
+    specialisation to learn Git. Over the cap is allowed only when nothing shorter teaches it."""
+    from path import MAX_WEEKS_PER_COURSE
+    cap = PROFILE["weekly_hours"] * MAX_WEEKS_PER_COURSE
+    r = build(g, g.gap(g.role_skills("machine-learning-engineer")), PROFILE, cat)
+    for phase in r["phases"]:
+        for module in phase["modules"]:
+            if module["resource"] and module["resource"]["hours"] > cap:
+                shorter = [c for c in cat if module["skill"] in c["teaches"]
+                           and c["kind"] != "assessment" and c["hours"] <= cap]
+                assert not shorter, f"{module['skill']} took a long course over {shorter}"
+
+
 def test_picks_do_not_depend_on_catalog_order(g, cat):
     pick = lambda c: [(m["skill"], (m["resource"] or {}).get("id"))
                       for ph in build(g, g.gap(g.role_skills("nlp-engineer")), PROFILE, c)["phases"]
@@ -157,7 +171,24 @@ def test_already_know_shortens_the_path_but_completed_does_not(g, cat):
 
 
 def test_progress_handles_an_empty_path():
-    assert st.progress(st.new({}), {"phases": []})["percent"] == 0
+    assert st.progress(st.new({}), {"phases": [], "total_weeks": 0})["percent"] == 0
+
+
+def test_progress_agrees_with_the_schedule(g, cat):
+    """The dashboard must not say 74 weeks left beside a roadmap that ends at week 76."""
+    for role in g.roles:
+        r = build(g, g.gap(g.role_skills(role)), PROFILE, cat)
+        s = st.new({**PROFILE, "goal_skills": g.role_skills(role)})
+        assert st.progress(s, r)["weeks_left"] == r["total_weeks"], role
+        every = [m["skill"] for ph in r["phases"] for m in ph["modules"]]
+        assert st.progress({**s, "completed": every}, r)["weeks_left"] == 0, role
+
+
+def test_a_shared_course_is_not_counted_as_work_twice(g, cat):
+    """progress had the same double count that build did, and reported 587 hours against 520."""
+    r = build(g, g.gap(g.role_skills("genai-engineer"), ["prog.python"]), PROFILE, cat, ["prog.python"])
+    s = st.new({**PROFILE, "goal_skills": g.role_skills("genai-engineer")})
+    assert st.progress(s, r)["hours_total"] == sum(ph["hours"] for ph in r["phases"])
 
 
 # --- the profile cleaner never raises -----------------------------------------------------------
@@ -198,10 +229,58 @@ def test_catalog_and_vectors_line_up(cat):
 
 
 def test_every_catalog_skill_exists_and_every_skill_is_teachable(g, cat):
+    """Teachable means a course or a project. An assessment is a check, not a way to learn something,
+    and build() will not offer one as a module, so counting them hid a real gap."""
     assert not {s for c in cat for s in c["teaches"] + c["assumes"]} - set(g.skills)
-    assert not [s for s in g.skills if not any(s in c["teaches"] for c in cat)]
+    assert not [s for s in g.skills
+                if not any(s in c["teaches"] and c["kind"] != "assessment" for c in cat)]
+
+
+def test_hand_added_catalog_items_survive_a_rebuild(cat):
+    """They cover skills the scraped catalog does not reach, so losing them reopens those gaps."""
+    handmade = [c for c in cat if c.get("handmade")]
+    assert {"eng.git", "dl.backprop"} <= {s for c in handmade for s in c["teaches"]}
 
 
 def test_the_frozen_seed_is_still_the_hand_written_one():
     """If this grows, someone let the build read its own output back in as hand written truth."""
     assert len(json.load(open("data/seed_skills.json"))) == 29
+
+
+# --- the HTTP contract, no model calls ----------------------------------------------------------
+
+@pytest.fixture(scope="module")
+def client():
+    from fastapi.testclient import TestClient
+    import api
+    return TestClient(api.app)
+
+
+def test_the_profile_the_api_returns_is_one_it_will_accept_back(client):
+    """The interface echoes the profile on the next turn. When a field was missing from the response
+    the model default silently refilled it, and when weekly_hours came back null we rejected our own
+    output with a 422 that reached the screen as [object Object]."""
+    body = {"profile": {"goal_text": "ml engineer", "role": "machine-learning-engineer",
+                        "known_skills": ["prog.python"], "weekly_hours": 10}}
+    first = client.post("/path", json=body)
+    assert first.status_code == 200
+    again = client.post("/path", json={"profile": first.json()["profile"], "completed": [], "blocked": []})
+    assert again.status_code == 200, again.text
+    assert again.json()["profile"]["role"] == "machine-learning-engineer"
+
+
+def test_a_path_is_refused_rather_than_invented(client):
+    assert client.post("/path", json={"profile": {}}).status_code == 422
+    assert client.post("/path", json={"profile": {"role": "data-analyst"}}).status_code == 422
+
+
+def test_feedback_carries_back_everything_it_changed(client):
+    body = {"profile": {"role": "machine-learning-engineer", "known_skills": ["prog.python"],
+                        "weekly_hours": 10, "level": 3}, "completed": [], "blocked": []}
+    path = client.post("/path", json=body).json()
+    resource = path["progress"]["next_action"]["resource"]["id"]
+    harder = client.post("/path/feedback", json={**body, "event": "too_hard", "resource_id": resource}).json()
+    assert harder["profile"]["level"] == 2 and resource in harder["state"]["blocked"]
+    known = client.post("/path/feedback", json={**body, "event": "already_know", "skill": "math.stats"}).json()
+    assert "math.stats" in known["profile"]["known_skills"]
+    assert known["progress"]["skills_total"] < path["progress"]["skills_total"]
