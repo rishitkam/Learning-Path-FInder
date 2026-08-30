@@ -1,0 +1,107 @@
+[
+ {
+  "said": "learner: i want to be a data analyst, 10 hours a week",
+  "expect": {
+   "role": "data-analyst",
+   "weekly_hours": 10
+  }
+ },
+ {
+  "said": "learner: i want to become an ML engineer",
+  "expect": {
+   "role": "machine-learning-engineer"
+  }
+ },
+ {
+  "said": "learner: machine learning",
+  "expect": {
+   "goal_skills": [
+    "ml.concepts"
+   ]
+  }
+ },
+ {
+  "said": "learner: deep learning",
+  "expect": {
+   "goal_skills": [
+    "dl.neuralnets"
+   ]
+  }
+ },
+ {
+  "said": "learner: i know python and pandas already, want to do NLP, 8 hours a week",
+  "expect": {
+   "known_skills": [
+    "prog.python",
+    "data.pandas"
+   ],
+   "weekly_hours": 8
+  }
+ },
+ {
+  "said": "learner: i learn best by building things",
+  "expect": {
+   "style": "project first"
+  }
+ },
+ {
+  "said": "learner: i prefer lectures and theory first",
+  "expect": {
+   "style": "theory first"
+  }
+ },
+ {
+  "said": "learner: i can do about 15 hrs/week",
+  "expect": {
+   "weekly_hours": 15
+  }
+ },
+ {
+  "said": "assistant: How many hours a week can you realistically give this?\nlearner: 20",
+  "expect": {
+   "weekly_hours": 20
+  }
+ },
+ {
+  "said": "learner: i want to build LLM chatbots\nlearner: actually 6 hours a week not 20",
+  "expect": {
+   "weekly_hours": 6
+  }
+ },
+ {
+  "said": "learner: i already know sql and statistics",
+  "expect": {
+   "known_skills": [
+    "data.sql",
+    "math.stats"
+   ]
+  }
+ },
+ {
+  "said": "learner: hi",
+  "expect": {
+   "goal_skills": [],
+   "known_skills": []
+  }
+ },
+ {
+  "said": "learner: i want to get into devops and cloud",
+  "expect": {
+   "goal_skills": [
+    "ops.cloud"
+   ]
+  }
+ },
+ {
+  "said": "learner: i want to be a data engineer building pipelines, 25 hours a week",
+  "expect": {
+   "weekly_hours": 25
+  }
+ },
+ {
+  "said": "learner: idk something with computers",
+  "expect": {
+   "known_skills": []
+  }
+ }
+]

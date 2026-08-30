@@ -702,3 +702,85 @@ compress action, because hitting a date by dropping modules is fabricating a cur
 End to end, an impossible ask now lands somewhere true: asked for four weeks, told it needs 58 hours a
 week, offered 40, route drops 12 weeks to 6, mentions knowing Python and statistics, and lands at 4 weeks
 and feasible. Every number in that exchange is checkable against the plan.
+
+## 84. One database connection needs a lock
+
+FastAPI answers on a thread pool, and we shared one sqlite connection across those threads without
+serialising. Under sixty concurrent requests it raised "bad parameter or other API misuse" six times.
+
+SQLite serialises writes anyway and every call we make takes microseconds, so a lock costs nothing and
+removes the whole class of bug. Sixty concurrent writers now, zero errors.
+
+## 85. lru_cache does not stop two threads running the loader
+
+Two first requests arriving together both entered the embedding model loader, and tqdm raised inside
+it. It reached the browser as a 500 that looked like a CORS failure, which is what sent us looking in
+the wrong place for a while.
+
+The loader is behind a lock now, and the model, graph and catalog load at startup rather than on
+whoever arrives first. The Docker image also downloads the model at build time, so a cold container
+does not pay for it, and several requests cannot race on a download.
+
+## 86. Refuse a goal we do not recognise
+
+A goal of made up skill ids used to return 200 and an empty plan, which on screen looks the same as
+never having given a goal. It is refused now.
+
+Ids that no longer exist are dropped rather than fatal, because saved learners outlive catalog
+rebuilds, and we only refuse when nothing they asked for is left.
+
+## 87. Free text from a learner is bounded
+
+goal_text had no limit, so a hundred thousand characters were embedded and written to the database.
+Capped at two thousand, the same as a chat message.
+
+## 88. Courses are chosen as a set, not one per skill
+
+Picking the best course for each skill on its own ignored that one course often teaches several things
+the learner needs. Measured across seven roles and three profiles, that left about 40 percent of the
+study time redundant.
+
+It is minimum cost set cover, solved greedily, where each step takes the best coverage per hour
+multiplied by how well the course suits the learner. Median study hours went from 295 to 180 and median
+weeks from 27 to 17, with prerequisite violations still zero and coverage still complete.
+
+Greedy is within a log factor of optimal. We say that rather than claiming optimal.
+
+## 89. Relevance is normalised across the whole gap, not per skill
+
+Set cover has no per skill candidate list, so it forced a fix we needed anyway. Normalising within a
+skill made the better of two candidates worth the entire relevance term however small the real
+difference, which is what drowned out the other three signals.
+
+## 90. We measure distance from optimal, not distance from another heuristic
+
+Comparing our greedy answer to a different greedy answer proves nothing. We solve the linear relaxation
+of the same set cover with scipy: fractional courses allowed, every skill covered, total hours
+minimised. That can only be cheaper than the true integer optimum, so our hours over it is an honest
+upper bound on how far from optimal we are.
+
+Median 1.27 times the bound, and 1.04 to 1.11 on the larger plans where the relaxation is tight. The
+worst case of 4.00 is a two skill plan where the bound is loose rather than the plan bad, since a tenth
+of a course is not something a person can enrol in. Saying that is better than quoting the median alone.
+
+## 91. Slot filling is scored by F1, because subset scoring was recall only
+
+Set valued fields were checked by subset, so a model returning every skill in the taxonomy would have
+scored a hundred percent. Precision is the half that matters, because an invented known skill silently
+deletes steps from someone's plan.
+
+## 92. Groundedness rather than a metric we invented
+
+The share of explanations where every claim traces to the facts we supplied is the standard RAG measure,
+usually judged by a second model. Ours is a deterministic proxy: every number in the text must appear in
+the facts, and no phrase may promise an action we cannot take. Cheaper, reproducible, and unlike a model
+judge it cannot hallucinate.
+
+## 93. Catalog coverage is reported even though it is bad
+
+Across every role and profile we recommend 26 distinct courses out of 366, so the effective catalog is a
+fraction of what we loaded. Seven roles, and set cover concentrating on courses that cover several skills
+at once.
+
+Publishing a number that makes us look worse is the point of measuring. It is also the clearest argument
+for the cheapest improvement we have: more roles.

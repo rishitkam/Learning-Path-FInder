@@ -85,12 +85,14 @@ def test_every_role_orders_prerequisites_correctly(g, cat):
 
 
 def test_one_course_is_counted_once(g, cat):
-    """A course teaching two skills is the module for both, but it is only that much work once."""
-    r = build(g, g.gap(g.role_skills("data-analyst")), PROFILE, cat)
-    mods = [m for ph in r["phases"] for m in ph["modules"] if m["resource"]]
-    distinct = {m["resource"]["id"]: m["resource"]["hours"] for m in mods}
-    assert sum(ph["hours"] for ph in r["phases"]) >= sum(distinct.values())
-    assert sum(ph["hours"] for ph in r["phases"]) < sum(m["resource"]["hours"] for m in mods) + 1
+    """A course teaching two skills is the module for both, but it is only that much work once.
+    Scheduled hours are exactly the distinct courses plus the milestones and checks attached."""
+    for role in g.roles:
+        r = build(g, g.gap(g.role_skills(role)), PROFILE, cat)
+        mods = [m for ph in r["phases"] for m in ph["modules"] if m["resource"]]
+        distinct = {m["resource"]["id"]: m["resource"]["hours"] for m in mods}
+        extras = sum(ph[k]["hours"] for ph in r["phases"] for k in ("milestone", "assessment") if ph[k])
+        assert sum(ph["hours"] for ph in r["phases"]) == sum(distinct.values()) + extras, role
 
 
 def test_milestone_is_never_also_a_module(g, cat):
@@ -410,3 +412,51 @@ def test_the_explainer_is_told_it_cannot_promise_changes():
     import explain
     for banned in ["never say or imply that you have", "we will", "promises a change"]:
         assert banned in explain.SYS_ASK
+
+
+# --- holding up under load and abuse --------------------------------------------------------------
+
+def test_the_database_survives_concurrent_writers():
+    """FastAPI answers on a thread pool. One sqlite connection shared across threads without
+    serialising raises "bad parameter or other API misuse", which it did, six times in eighty."""
+    from concurrent.futures import ThreadPoolExecutor
+    import db
+    db.forget("crowd")
+    def write(i):
+        db.save("crowd", {"weekly_hours": i}, [{"role": "user", "content": str(i)}])
+        return db.load("crowd")
+    with ThreadPoolExecutor(max_workers=16) as pool:
+        results = list(pool.map(write, range(60)))
+    assert all(state is not None for state, _ in results)
+    assert len(db.load("crowd")[1]) <= db.TURNS_KEPT
+    db.forget("crowd")
+
+
+def test_a_goal_we_do_not_recognise_is_refused_not_answered_with_nothing(client):
+    """It used to return 200 and an empty plan, which reads on screen as though no goal was given."""
+    made_up = {"profile": {"role": None, "goal_skills": ["not.a.skill"], "weekly_hours": 10}}
+    assert client.post("/path", json=made_up).status_code == 422
+
+
+def test_a_skill_id_that_vanished_in_a_rebuild_does_not_lock_someone_out(client):
+    """Saved learners outlive catalog rebuilds, so a stale id is dropped rather than fatal."""
+    body = {"profile": {"role": None, "goal_skills": ["gone.away", "ml.supervised"], "weekly_hours": 10}}
+    assert client.post("/path", json=body).status_code == 200
+
+
+def test_free_text_from_a_learner_is_bounded(client):
+    assert client.post("/path", json={"profile": {"role": "data-analyst", "weekly_hours": 10,
+                                                  "goal_text": "a" * 100_000}}).status_code == 422
+
+
+def test_the_embedding_model_loads_once_under_a_stampede():
+    """lru_cache remembers a result, it does not stop two threads running the loader at once. Two
+    concurrent first requests both entered it and tqdm raised inside, surfacing as a 500."""
+    from concurrent.futures import ThreadPoolExecutor
+    import embed
+    embed._load_model.cache_clear()
+    embed._load_vectors.cache_clear()
+    with ThreadPoolExecutor(max_workers=12) as pool:
+        models = list(pool.map(lambda _: embed._model(), range(12)))
+    assert all(model is models[0] for model in models)
+    assert embed._load_model.cache_info().misses == 1

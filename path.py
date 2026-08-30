@@ -54,18 +54,61 @@ def _best(cands, p, relevance, weights=W):
     return best, why
 
 
+def _cover(gap, catalog, p, relevance, weights, blocked):
+    """Choose the cheapest set of courses covering the gap, weighted by how well they suit the learner.
+
+    Picking the best course for each skill on its own left about 40 percent of the study time
+    redundant, because one course often teaches several things the learner needs and we were only
+    noticing after the fact. This is the textbook greedy set cover, whose value per step is coverage
+    per hour, multiplied by our fit score so a cheap course they will hate cannot win. Greedy is
+    within a log factor of optimal, which is worth saying plainly rather than claiming it is optimal.
+    """
+    gap = set(gap)
+    pool = [c for c in catalog if c["kind"] != "assessment" and c["id"] not in blocked
+            and set(c["teaches"]) & gap]
+    # Relevance is normalised once across every candidate for the whole gap. Doing it per skill made
+    # the best of two candidates worth the entire term however small the real difference was.
+    raw = {c["id"]: relevance(c) for c in pool}
+    lo, hi = (min(raw.values()), max(raw.values())) if raw else (0, 0)
+    spread = hi > lo
+
+    def terms(c):
+        t = _terms(c, p, (raw[c["id"]] - lo) / (hi - lo) if spread else 0.5)
+        if not spread:
+            t["flat_relevance"] = True
+        return t
+
+    fit = lambda c: sum(weights[k] * v for k, v in terms(c).items() if k in weights)
+
+    uncovered, chosen = set(gap), []
+    while uncovered:
+        reachable = [c for c in pool if set(c["teaches"]) & uncovered]
+        if not reachable:
+            break
+        best = max(_affordable(reachable, p),
+                   key=lambda c: (fit(c) * len(set(c["teaches"]) & uncovered) / max(c["hours"], 1), c["id"]))
+        chosen.append(best)
+        uncovered -= set(best["teaches"])
+    return chosen, terms, fit
+
+
 def build(g, gap, profile, catalog, known=(), blocked=(), relevance=lambda c: 0.5, weights=None):
     blocked, weights = set(blocked), weights or profile.get("weights") or W
     per_week = profile.get("weekly_hours") or 1
     groups = g.phases(gap)                       # one topological sort, reused for the ordering below
 
-    # One resource per skill. A skill with no match keeps its slot with nothing attached, because
-    # dropping it would break the chain and hiding it would be a lie.
+    # One resource per skill, drawn from a set chosen to cover the whole gap. A skill with no match
+    # keeps its slot with nothing attached, because dropping it would break the chain.
+    ordered = [s for grp in groups for s in grp]
+    chosen, terms, fit = _cover(ordered, catalog, profile, relevance, weights, blocked)
     mods = {}
-    for s in (s for grp in groups for s in grp):
-        best, why = _best([c for c in catalog if s in c["teaches"] and c["kind"] != "assessment"
-                           and c["id"] not in blocked], profile, relevance, weights)
-        mods[s] = {"skill": s, "name": g.name(s), "resource": best, "why": why}
+    for s in ordered:
+        covering = [c for c in chosen if s in c["teaches"]]
+        best = max(covering, key=lambda c: (fit(c), c["id"])) if covering else None
+        mods[s] = {"skill": s, "name": g.name(s), "resource": best,
+                   "why": terms(best) if best else None,
+                   # What else this one course covers, so the explainer can say so.
+                   "also_covers": sorted(set(best["teaches"]) & set(ordered) - {s}) if best else []}
     module_ids = {m["resource"]["id"] for m in mods.values() if m["resource"]}
 
     # One course can teach several skills in the path. It is the module for each of them, but its

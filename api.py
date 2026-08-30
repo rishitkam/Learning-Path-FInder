@@ -1,6 +1,7 @@
 """HTTP adapter for the deterministic learning-path engine."""
 
 import os
+from contextlib import asynccontextmanager
 from functools import lru_cache
 from typing import Literal
 
@@ -14,7 +15,7 @@ import path
 import state
 import profile as learner_profile
 import explain
-from embed import relevance
+from embed import relevance, warm
 
 # In production, FRONTEND_URL is set as a Fly.io secret so the deployed
 # Vercel URL is whitelisted. Locally it falls back to the dev ports.
@@ -23,7 +24,15 @@ _origins = ["http://localhost:3000", "http://localhost:3001"]
 if _frontend:
     _origins.append(_frontend.rstrip("/"))
 
-app = FastAPI(title="Learning Path Finder API", version="1.0.0")
+@asynccontextmanager
+async def lifespan(_):
+    """Graph, catalog and embedding model loaded before the first request rather than during it."""
+    engine()
+    warm()
+    yield
+
+
+app = FastAPI(title="Learning Path Finder API", version="1.0.0", lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=_origins,
@@ -53,9 +62,10 @@ def engine():
     return learning_graph, path.load_catalog(learning_graph)
 
 
+
 class LearnerProfile(BaseModel):
     # Neutral defaults on purpose. A missing field must not quietly invent a goal for someone.
-    goal_text: str = ""
+    goal_text: str = Field(default="", max_length=2_000)
     role: str | None = None
     goal_skills: list[str] = Field(default_factory=list)
     known_skills: list[str] = Field(default_factory=list)
@@ -102,6 +112,9 @@ def build_response(profile: dict, completed=(), blocked=(), weights=None):
     changed. Passing the request through meant a level drop or a newly known skill was thrown away."""
     learning_graph, catalog = engine()
     goal_skills = profile.get("goal_skills") or learning_graph.role_skills(profile.get("role") or "")
+    # Drop ids the graph no longer has rather than failing, so a learner saved before a catalog
+    # rebuild still loads. Only refuse when nothing they asked for is left.
+    goal_skills = [skill for skill in (goal_skills or []) if skill in learning_graph.skills]
     if not goal_skills:
         raise HTTPException(status_code=422, detail="Choose a supported role or at least one goal skill.")
     if not profile.get("weekly_hours"):

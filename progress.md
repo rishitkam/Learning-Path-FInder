@@ -204,6 +204,32 @@ Now the deadline gap is arithmetic instead of a label: "12 weeks against your 4 
 hours a week would make it, rather than 20." An impossible ask walks to a real answer, and the planner
 stays deadline blind on purpose.
 
+**Commit 19, an audit under load.** A teammate added the Docker and deployment config, so we stress
+tested the whole thing rather than only reading it.
+
+Two real concurrency bugs, both invisible in normal use. One sqlite connection shared across FastAPI's
+thread pool failed six times in eighty concurrent requests. And two first requests arriving together
+both entered the embedding model loader, which raised inside tqdm and reached the browser as a 500 that
+looked like a CORS failure, which sent us looking in the wrong place for a while.
+
+Both fixed and tested. Sixty concurrent requests, zero errors. The model, graph and catalog now load at
+startup, and the image downloads the model at build time so a cold container never races on it.
+
+Also: a made up goal returned 200 and an empty plan, goal_text had no length limit, and .DS_Store was
+committed.
+
+**Commit 20, evals first, then the change they justified.** Built `evals.py` and `EVALS.md`: standard
+recommender, slot filling and grounding measures rather than numbers we invented, plus a linear
+programming lower bound so optimisation quality is distance from optimal instead of distance from
+another heuristic.
+
+The evals said course selection was leaving 40 percent of study time redundant, so selection became a
+weighted set cover. Median study hours 295 to 180, median weeks 27 to 17, violations still zero,
+coverage still complete, and we sit a median 1.27 times the lower bound.
+
+They also surfaced two things we had not seen: 43 of 72 skills are unreachable from any role, and only
+26 of 366 courses are ever recommended. Both point at the same cheap fix, more roles.
+
 ## Roughly where we stand
 
 Engine done, nothing to look at yet.
