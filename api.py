@@ -3,10 +3,11 @@
 from functools import lru_cache
 from typing import Literal
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
+import db
 import graph
 import path
 import state
@@ -22,6 +23,21 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+# Named learner_id, not learner: several endpoints already use `learner` for the state dict.
+LearnerId = Header(default=None, alias="X-Learner-Id")
+
+
+def stored(learner_id):
+    """Weights and completion belong to the learner, not to the request, so they come from us."""
+    saved, _ = db.load(learner_id)
+    return saved or {}
+
+
+def remember(learner_id, response, turns=()):
+    """Save on the way out. The endpoints already receive and return the whole state, so persistence
+    is one line each rather than a set of endpoints of its own."""
+    db.save(learner_id, response["state"], turns)
+    return response
 
 
 @lru_cache(maxsize=1)
@@ -74,7 +90,7 @@ class ChatRequest(BaseModel):
 PROFILE_KEYS = ("role", "goal_skills", "known_skills", "weekly_hours", "horizon_weeks", "level", "style")
 
 
-def build_response(profile: dict, completed=(), blocked=()):
+def build_response(profile: dict, completed=(), blocked=(), weights=None):
     """Takes a plain profile dict rather than the request, so feedback can hand back the profile it
     changed. Passing the request through meant a level drop or a newly known skill was thrown away."""
     learning_graph, catalog = engine()
@@ -83,7 +99,7 @@ def build_response(profile: dict, completed=(), blocked=()):
         raise HTTPException(status_code=422, detail="Choose a supported role or at least one goal skill.")
     if not profile.get("weekly_hours"):
         raise HTTPException(status_code=422, detail="Tell us how many hours a week you can give this.")
-    learner = state.new({**profile, "goal_skills": goal_skills})
+    learner = state.new({**profile, "goal_skills": goal_skills, "weights": weights})
     learner["completed"], learner["blocked"] = list(completed), list(blocked)
     roadmap = path.build(
         learning_graph,
@@ -93,11 +109,31 @@ def build_response(profile: dict, completed=(), blocked=()):
         known=learner["known_skills"],
         blocked=learner["blocked"],
         relevance=relevance(learner.get("goal_text"), catalog),
+        weights=learner["weights"],
     )
     # Carry the whole profile back, not only the fields state tracks, or role goes missing from the
     # response and the next request rebuilds it from the model default.
     return {"profile": {**profile, **{k: learner[k] for k in LearnerProfile.model_fields if k in learner}},
             "path": roadmap, "progress": state.progress(learner, roadmap), "state": learner}
+
+
+@app.get("/state")
+def read_state(learner_id: str | None = LearnerId):
+    """What we know about them, rebuilt into a path. Unknown ids are new people, not errors."""
+    state, turns = db.load(learner_id)
+    if not state:
+        return {"data": None, "turns": turns}
+    try:
+        return {"data": build_response(state, state.get("completed", []), state.get("blocked", []),
+                                       state.get("weights")), "turns": turns}
+    except HTTPException:
+        return {"data": None, "turns": turns}      # they never finished telling us enough
+
+
+@app.delete("/state")
+def forget_state(learner_id: str | None = LearnerId):
+    db.forget(learner_id)
+    return {"ok": True}
 
 
 @app.get("/health")
@@ -107,19 +143,25 @@ def health():
 
 
 @app.post("/path")
-def generate_path(request: PathRequest):
-    return build_response(request.profile.model_dump(), request.completed, request.blocked)
+def generate_path(request: PathRequest, learner_id: str | None = LearnerId):
+    return remember(learner_id, build_response(request.profile.model_dump(), request.completed,
+                                               request.blocked, stored(learner_id).get("weights")))
 
 
 @app.post("/path/feedback")
-def apply_feedback(request: FeedbackRequest):
+def apply_feedback(request: FeedbackRequest, learner_id: str | None = LearnerId):
     profile = request.profile.model_dump()
-    learner = state.new(profile)
-    learner["completed"], learner["blocked"] = list(request.completed), list(request.blocked)
-    after = state.apply(learner, request.event, request.skill, request.resource_id)
+    before = build_response(profile, request.completed, request.blocked, stored(learner_id).get("weights"))
+    learner = before["state"]
+    # The module they reacted to, so a rejection can tell length apart from difficulty.
+    module = next((m for phase in before["path"]["phases"] for m in phase["modules"]
+                   if m["skill"] == request.skill
+                   or (m["resource"] or {}).get("id") == request.resource_id), None)
+    after = state.apply(learner, request.event, request.skill, request.resource_id, module)
     # Every field feedback can change has to travel back, not just the two lists.
-    return build_response({**profile, "level": after["level"], "known_skills": after["known_skills"]},
-                          after["completed"], after["blocked"])
+    return remember(learner_id, build_response(
+        {**profile, "level": after["level"], "known_skills": after["known_skills"]},
+        after["completed"], after["blocked"], after["weights"]))
 
 
 def _reply(learning_graph, prior, current):
@@ -156,7 +198,7 @@ def explain_current(request: PathRequest):
 
 
 @app.post("/chat")
-def chat(request: ChatRequest):
+def chat(request: ChatRequest, learner_id: str | None = LearnerId):
     """Read the learner every turn, then either answer or rebuild.
 
     We used to ask the explainer whether a message was a change request and only re-read the profile
@@ -171,14 +213,24 @@ def chat(request: ChatRequest):
     extracted = learner_profile.extract(learning_graph, transcript, prior)
 
     question = learner_profile.next_question(extracted)
+    said = [{"role": "user", "content": request.message}]
     if question:
+        # Save the half finished profile too, so coming back resumes the conversation rather than
+        # starting it again.
+        db.save(learner_id, {**state.new(extracted), "completed": request.completed,
+                          "blocked": request.blocked}, said + [{"role": "assistant", "content": question}])
         return {"reply": question, "profile": extracted}
 
-    current = build_response(extracted, request.completed, request.blocked)
+    saved = stored(learner_id)
+    weights = saved.get("weights")
+    # A new goal makes the old relevance and style signals stale. What we learned about their level
+    # and their appetite for long courses is still true.
+    if weights and saved.get("goal_skills") and set(saved["goal_skills"]) != set(extracted["goal_skills"]):
+        weights = state.refocus(weights)
+    current = build_response(extracted, request.completed, request.blocked, weights)
     told_us_something_new = prior is None or any(
         extracted.get(field) != prior.get(field) for field in PROFILE_KEYS)
-    if told_us_something_new:
-        return {"reply": _reply(learning_graph, prior, current), "data": current}
-
-    answer = explain.ask(learning_graph, request.message, current["path"], current["profile"])
-    return {"reply": answer["answer"], "data": current}
+    reply = (_reply(learning_graph, prior, current) if told_us_something_new
+             else explain.ask(learning_graph, request.message, current["path"], current["profile"])["answer"])
+    remember(learner_id, current, said + [{"role": "assistant", "content": reply}])
+    return {"reply": reply, "data": current}

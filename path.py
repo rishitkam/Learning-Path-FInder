@@ -36,7 +36,7 @@ def _affordable(cands, p):
     return [c for c in cands if c["hours"] <= cap] or cands
 
 
-def _best(cands, p, relevance):
+def _best(cands, p, relevance, weights=W):
     """Relevance is normalised across the candidates for one skill. Absolute cosine clusters too
     tightly to matter, and every candidate here teaches the same skill, so only the ranking does.
     Ties break on id, so regenerating the catalog cannot quietly reshuffle recommendations."""
@@ -46,7 +46,7 @@ def _best(cands, p, relevance):
     raw = [relevance(c) for c in cands]
     lo, hi = min(raw), max(raw)
     scored = [(_terms(c, p, (r - lo) / (hi - lo) if hi > lo else 0.5), c) for c, r in zip(cands, raw)]
-    why, best = max(scored, key=lambda x: (sum(W[k] * v for k, v in x[0].items()), x[1]["id"]))
+    why, best = max(scored, key=lambda x: (sum(weights[k] * v for k, v in x[0].items()), x[1]["id"]))
     if len(cands) == 1:
         why["only_option"] = True      # nothing was chosen, so do not let the explainer claim it was
     elif hi <= lo:
@@ -54,8 +54,8 @@ def _best(cands, p, relevance):
     return best, why
 
 
-def build(g, gap, profile, catalog, known=(), blocked=(), relevance=lambda c: 0.5):
-    blocked = set(blocked)
+def build(g, gap, profile, catalog, known=(), blocked=(), relevance=lambda c: 0.5, weights=None):
+    blocked, weights = set(blocked), weights or profile.get("weights") or W
     per_week = profile.get("weekly_hours") or 1
     groups = g.phases(gap)                       # one topological sort, reused for the ordering below
 
@@ -64,7 +64,7 @@ def build(g, gap, profile, catalog, known=(), blocked=(), relevance=lambda c: 0.
     mods = {}
     for s in (s for grp in groups for s in grp):
         best, why = _best([c for c in catalog if s in c["teaches"] and c["kind"] != "assessment"
-                           and c["id"] not in blocked], profile, relevance)
+                           and c["id"] not in blocked], profile, relevance, weights)
         mods[s] = {"skill": s, "name": g.name(s), "resource": best, "why": why}
     module_ids = {m["resource"]["id"] for m in mods.values() if m["resource"]}
 
@@ -92,7 +92,7 @@ def build(g, gap, profile, catalog, known=(), blocked=(), relevance=lambda c: 0.
         extra = lambda kind: _best(
             [c for c in catalog if c["kind"] == kind and c["id"] not in used | blocked | module_ids
              and set(c["assumes"]) <= covered and set(c["teaches"]) & set(skills)],
-            profile, relevance)[0]
+            profile, relevance, weights)[0]
         milestone, assessment = extra("project"), extra("assessment")
         used |= {x["id"] for x in (milestone, assessment) if x}
 

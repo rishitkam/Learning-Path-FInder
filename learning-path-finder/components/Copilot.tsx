@@ -2,11 +2,53 @@
 import { FormEvent, useState } from "react";
 import { Bot, Send, Sparkles } from "lucide-react";
 import { chat, defaultProfile, type PathData, type Profile } from "@/lib/api";
+import { useTurns } from "@/lib/store";
 
-type Message = { role: "assistant" | "user"; content: string };
+const GREETING = "Tell me what you want to learn and how many hours you have each week. I’ll build your route from real prerequisites and courses.";
+
 export default function Copilot({ data, onPath }: { data: PathData | null; onPath: (data: PathData) => void }) {
-  const [messages, setMessages] = useState<Message[]>([{ role: "assistant", content: "Tell me what you want to learn and how many hours you have each week. I’ll build your route from real prerequisites and courses." }]);
-  const [input, setInput] = useState(""); const [profile, setProfile] = useState<Profile | null>(null); const [busy, setBusy] = useState(false);
-  async function send(event: FormEvent | { preventDefault: () => void }) { event.preventDefault(); const message = input.trim(); if (!message || busy) return; setInput(""); setMessages((current) => [...current, { role: "user", content: message }]); setBusy(true); try { const activeProfile = data?.profile ?? profile; const result = await chat(message, activeProfile, data?.state.completed ?? [], data?.state.blocked ?? [], messages); if (result.profile) setProfile({ ...defaultProfile, ...result.profile }); if (result.data) { setProfile(result.data.profile); onPath(result.data); } setMessages((current) => [...current, { role: "assistant", content: result.reply }]); } catch (reason) { setMessages((current) => [...current, { role: "assistant", content: reason instanceof Error ? reason.message : "I couldn’t reach the co-pilot." }]); } finally { setBusy(false); } }
-  return <aside className="copilot"><div className="copilot-head"><div className="copilot-icon"><Bot size={17}/></div><div><p>ALMA CO-PILOT</p><small><i/> LLM connected</small></div></div><div className="chat-thread">{messages.map((message, index) => <div className={`chat-message ${message.role}`} key={index}>{message.role === "assistant" && <Sparkles size={13}/>}<span>{message.content}</span></div>)}{busy && <div className="chat-typing"><i/><i/><i/></div>}</div><form className="chat-form" onSubmit={send}><input value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") { event.preventDefault(); send(event); } }} placeholder="Tell ALMA your goal…"/><button aria-label="Send message" disabled={busy || !input.trim()}><Send size={15}/></button></form></aside>;
+  // The thread lives in the shared session, so both pages show one conversation and it survives a reload.
+  const [turns, setTurns] = useTurns();
+  const [input, setInput] = useState("");
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [busy, setBusy] = useState(false);
+  const shown = turns.length ? turns : [{ role: "assistant" as const, content: GREETING }];
+
+  async function send(event: FormEvent | { preventDefault: () => void }) {
+    event.preventDefault();
+    const message = input.trim();
+    if (!message || busy) return;
+    setInput("");
+    const asked = [...turns, { role: "user" as const, content: message }];
+    setTurns(asked);
+    setBusy(true);
+    try {
+      const activeProfile = data?.profile ?? profile;
+      const result = await chat(message, activeProfile, data?.state.completed ?? [], data?.state.blocked ?? [], turns);
+      if (result.profile) setProfile({ ...defaultProfile, ...result.profile });
+      if (result.data) { setProfile(result.data.profile); onPath(result.data); }
+      setTurns([...asked, { role: "assistant", content: result.reply }]);
+    } catch (reason) {
+      setTurns([...asked, { role: "assistant", content: reason instanceof Error ? reason.message : "I couldn’t reach the co-pilot." }]);
+    } finally { setBusy(false); }
+  }
+
+  return <aside className="copilot">
+    <div className="copilot-head">
+      <div className="copilot-icon"><Bot size={17}/></div>
+      <div><p>ALMA CO-PILOT</p><small><i/> LLM connected</small></div>
+    </div>
+    <div className="chat-thread">
+      {shown.map((turn, index) => <div className={`chat-message ${turn.role}`} key={index}>
+        {turn.role === "assistant" && <Sparkles size={13}/>}<span>{turn.content}</span>
+      </div>)}
+      {busy && <div className="chat-typing"><i/><i/><i/></div>}
+    </div>
+    <form className="chat-form" onSubmit={send}>
+      <input value={input} onChange={(event) => setInput(event.target.value)}
+             onKeyDown={(event) => { if (event.key === "Enter") { event.preventDefault(); send(event); } }}
+             placeholder="Tell ALMA your goal…"/>
+      <button aria-label="Send message" disabled={busy || !input.trim()}><Send size={15}/></button>
+    </form>
+  </aside>;
 }

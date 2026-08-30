@@ -284,3 +284,93 @@ def test_feedback_carries_back_everything_it_changed(client):
     known = client.post("/path/feedback", json={**body, "event": "already_know", "skill": "math.stats"}).json()
     assert "math.stats" in known["profile"]["known_skills"]
     assert known["progress"]["skills_total"] < path["progress"]["skills_total"]
+
+
+# --- persistence ---------------------------------------------------------------------------------
+
+def test_a_learner_is_remembered_and_two_learners_do_not_mix(client):
+    import db
+    for who in ("alice", "bob"):
+        client.delete("/state", headers={"X-Learner-Id": who})
+    body = {"profile": {"role": "data-analyst", "known_skills": ["prog.python"], "weekly_hours": 10}}
+    built = client.post("/path", json=body, headers={"X-Learner-Id": "alice"}).json()
+
+    back = client.get("/state", headers={"X-Learner-Id": "alice"}).json()
+    assert back["data"]["path"]["total_weeks"] == built["path"]["total_weeks"]
+    assert client.get("/state", headers={"X-Learner-Id": "bob"}).json()["data"] is None
+    assert client.get("/state").json()["data"] is None          # no id at all is not an error
+
+    client.post("/path/feedback", headers={"X-Learner-Id": "alice"},
+                json={"profile": back["data"]["profile"], "completed": [], "blocked": [],
+                      "event": "already_know", "skill": "math.stats"})
+    after = client.get("/state", headers={"X-Learner-Id": "alice"}).json()
+    assert "math.stats" in after["data"]["profile"]["known_skills"]
+    assert after["data"]["progress"]["skills_total"] < built["progress"]["skills_total"]
+
+    client.delete("/state", headers={"X-Learner-Id": "alice"})
+    assert client.get("/state", headers={"X-Learner-Id": "alice"}).json()["data"] is None
+
+
+def test_the_transcript_is_capped_rather_than_archived():
+    import db
+    db.forget("chatty")
+    for i in range(30):
+        db.save("chatty", {"weekly_hours": 5}, [{"role": "user", "content": str(i)}])
+    assert len(db.load("chatty")[1]) == db.TURNS_KEPT
+    db.forget("chatty")
+
+
+# --- per learner weights -------------------------------------------------------------------------
+
+def test_weights_start_at_the_defaults_and_always_sum_to_one():
+    from path import W
+    weights = st.new({})["weights"]
+    assert weights == W
+    for _ in range(30):
+        weights = st._reweigh(weights, "level", st.STEP)
+    assert abs(sum(weights.values()) - 1) < 0.01
+    assert max(weights.values()) <= st.CEILING and min(weights.values()) >= st.FLOOR - 0.01
+
+
+def test_each_reaction_blames_the_right_signal():
+    base = st.new({"weekly_hours": 10, "level": 3})
+    short, long = {"resource": {"hours": 12}}, {"resource": {"hours": 200}}
+    rose = lambda before, after, term: after["weights"][term] > before["weights"][term]
+    assert rose(base, st.apply(base, "too_hard", resource_id="a", module=short), "level")
+    assert rose(base, st.apply(base, "too_easy", resource_id="b", module=short), "level")
+    assert rose(base, st.apply(base, "not_interested", resource_id="c", module=short), "relevance")
+    # Only the vague reaction gets second guessed. Too hard already told us why.
+    assert rose(base, st.apply(base, "not_interested", resource_id="d", module=long), "effort")
+    assert rose(base, st.apply(base, "too_hard", resource_id="e", module=long), "level")
+
+
+def test_already_know_says_nothing_about_ranking():
+    base = st.new({"weekly_hours": 10})
+    assert st.apply(base, "already_know", skill="math.stats")["weights"] == base["weights"]
+
+
+def test_a_repeated_click_moves_the_weights_once():
+    state = st.new({"weekly_hours": 10, "level": 3})
+    once = st.apply(state, "too_hard", resource_id="same", module={"resource": {"hours": 12}})
+    twice = st.apply(once, "too_hard", resource_id="same", module={"resource": {"hours": 12}})
+    assert once["weights"] == twice["weights"]
+
+
+def test_a_new_goal_resets_what_was_about_the_goal(g):
+    weights = st.new({})["weights"]
+    for _ in range(6):
+        weights = st._reweigh(weights, "level", st.STEP)
+    for _ in range(4):
+        weights = st._reweigh(weights, "relevance", st.STEP)
+    after = st.refocus(weights)
+    assert after["relevance"] != weights["relevance"]      # was about the old goal
+    assert after["level"] > st.new({})["weights"]["level"]  # is about the person
+    assert abs(sum(after.values()) - 1) < 0.01
+
+
+def test_weights_actually_change_which_course_wins(g, cat):
+    gap = g.gap(g.role_skills("machine-learning-engineer"))
+    picks = lambda w: [(m["skill"], (m["resource"] or {}).get("id"))
+                       for ph in build(g, gap, PROFILE, cat, weights=w)["phases"] for m in ph["modules"]]
+    lengthy = {"relevance": 0.05, "level": 0.05, "style": 0.05, "effort": 0.85}
+    assert picks(None) != picks(lengthy)

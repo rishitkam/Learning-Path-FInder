@@ -52,7 +52,8 @@ course can be invented, and the prerequisite order is provably correct rather th
 | `embed.py` | Goal text to course relevance, normalised across the candidates for one skill. |
 | `scripts/build_graph.py` | Labels to the real graph. Report by default, `--apply` to write. |
 | `api.py` | FastAPI adapter. `/health`, `/path`, `/path/feedback`, `/chat`. |
-| `test_core.py` | 41 tests, no API calls, under half a second. |
+| `db.py` | Anonymous learner storage. SQLite, state as JSON, path never stored. |
+| `test_core.py` | 46 tests, most with no API calls, about a second. |
 | `learning-path-finder/` | Next.js interface. `lib/store.ts` holds the one shared path. |
 | `scripts/fetch.py` | Downloads the Coursera CSV from Hugging Face. |
 | `scripts/normalise.py` | Cleans, parses hours and level, filters to our domain, keeps 400. |

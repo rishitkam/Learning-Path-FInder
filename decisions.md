@@ -573,3 +573,86 @@ wrong course.
 
 framer-motion and reactflow were never imported at all. clsx and tailwind-merge existed only for a helper
 used by one dead component. Runtime dependencies went from eight to four.
+
+## 69. Learners are anonymous, identified by an id the browser mints
+
+A uuid made on first visit and sent as a header. No signup screen between a judge and the product,
+which is worth more here than working across devices.
+
+The honest limit: clear your browser storage and you are a new person. A shareable resume link carrying
+the id would fix that, at the price of anyone with the link being you. Fine for this, not fine if it
+ever held anything private.
+
+## 70. We store state and the conversation, never the path
+
+The path stays derived. It is already a pure function of state and catalog, takes microseconds to
+rebuild, and storing it would mean every catalog rebuild quietly invalidates every saved plan.
+
+The transcript is the one genuinely new thing. Without it someone comes back to their roadmap and an
+empty chat, which reads as amnesia. We keep the last twelve turns, because it is context for the next
+answer rather than an archive.
+
+## 71. Saving happens inside the endpoints that already handle state
+
+/chat, /path and /path/feedback all receive the whole state and return the new one, so each of them
+saves on the way out. One line each, no separate save endpoint, and no way to change something without
+it being written down.
+
+## 72. The browser copy is a paint, the server is the truth
+
+We keep the session in browser storage as well so a returning page is not blank while the server
+answers. On arrival we read from the server and overwrite. Same reason the path is never stored: two
+copies are fine as long as one of them is clearly in charge.
+
+## 73. One conversation, not one per page
+
+The co-pilot page and the dashboard each kept their own chat in component state, so the same learner
+had two separate threads that could not see each other. The thread now lives in the session with the
+path, which also means it survives a reload and comes back on another tab.
+
+## 74. Each learner carries their own four weights
+
+Not one set fitted from a crowd. Fitting four weights properly needs a few hundred events across many
+people, and we will have a handful. A model fitted on forty clicks would be worse than the numbers we
+picked by hand, and confidently so.
+
+So the weights are per person, nudged by their own reactions, starting from our defaults. It needs no
+dataset, it works from the first click, and it is visibly about them. We should not call it learning in
+the statistical sense, because it is not. Saying that plainly is stronger than dressing it up.
+
+## 75. Which signal a reaction blames
+
+Too hard and too easy raise how much difficulty matters. Not for me raises how much the subject match
+matters. Already knowing something moves nothing, because it changes the path rather than telling us
+anything about how to rank it.
+
+The one inference: "not for me" on a course far longer than a month of their time is read as being about
+length, not subject. That is the only reaction that does not say why. Too hard already told us the
+reason and we believe it, which is a correction from our first attempt where a long course marked too
+hard was blamed on length.
+
+Finishing something reinforces the signal that won that pick, at half a step. Rejecting a course is
+strong evidence we ranked wrong, finishing one is weak evidence we ranked right.
+
+## 76. Nudges are small, bounded and renormalised
+
+A step of 0.04, every weight held between 0.05 and 0.60, and the four renormalised to sum to one after
+every change.
+
+Renormalising is the part that matters. Raising one weight has to lower the others or nothing changes in
+the ranking, only the scale. It also keeps scores comparable between learners, so "closest match" means
+the same thing for everyone. The bounds are the same reasoning as clamping level: three consistent
+clicks are real, thirty are a mood.
+
+## 77. A new goal resets what was about the goal
+
+Change from data analyst to ML engineer and we keep what we learned about your appetite for difficulty
+and for long courses, and reset the subject and style signals. Those were about the old goal.
+
+## 78. The learner can see their own weights
+
+Four bars on the dashboard, labelled in human words rather than our field names: goal match, difficulty,
+how you learn, course length. Three "too hard" clicks visibly move difficulty from 25 to 31 percent.
+
+This is the best answer we have to "how does it personalise", and it would have been a shame to compute
+it and keep it to ourselves.

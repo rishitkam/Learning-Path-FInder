@@ -6,3 +6,4 @@ data/raw/coursera.csv
 venv/
 node_modules/
 .next/
+data/learners.db*

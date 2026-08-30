@@ -5,6 +5,9 @@ import { explainCurrent, type FeedbackEvent, type PathData } from "@/lib/api";
 
 // Every one of these rebuilds the path from the learner state, so the roadmap reacts to all of them,
 // not just to finishing something.
+// What the four ranking signals are called for a person rather than for the scorer.
+const SIGNALS = [["relevance", "Goal match"], ["level", "Difficulty"], ["style", "How you learn"], ["effort", "Course length"]] as const;
+
 const REACTIONS: { event: FeedbackEvent; label: string; icon: typeof Check }[] = [
   { event: "already_know", label: "Already know this", icon: Check },
   { event: "too_hard", label: "Too hard", icon: TrendingDown },
@@ -63,6 +66,16 @@ export default function TelemetryCards({ data, loading, onFeedback }: { data: Pa
            className={index === currentPhase ? "today" : ""} title={`Phase ${index + 1}: ${phase.hours}h`}/>)}</div>
       <div className="week-days">{phases.map((_, index) => <span key={index}>P{index + 1}</span>)}</div>
     </section>
+    {data && <section className="stats-card">
+      <div className="stats-header"><p className="section-kicker">WHAT MATTERS TO YOU</p></div>
+      <div className="signal-list">{SIGNALS.map(([key, label]) =>
+        <div className="signal-row" key={key}>
+          <span>{label}</span>
+          <i><b style={{ width: `${(data.state.weights?.[key] ?? 0) * 160}%` }}/></i>
+          <small>{Math.round((data.state.weights?.[key] ?? 0) * 100)}%</small>
+        </div>)}</div>
+      <p className="signal-note">Learned from what you skip and finish. Starts even, moves as you react.</p>
+    </section>}
     <section className="nudge-card">
       <span className="nudge-star">✦</span>
       <div>

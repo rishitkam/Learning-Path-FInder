@@ -170,6 +170,28 @@ and was tested but was never called by anything, has an endpoint and appears und
 Dead code out: four unused dependencies, an unused helper, a dead component, four dead style rules and
 an unused import.
 
+**Commit 16, learners are remembered.** Anonymous id minted by the browser, one SQLite row per learner
+holding their state and the last twelve chat turns. The path is never stored, only rebuilt.
+
+Saving happens inside the endpoints that already pass state around, so there is no way to change
+something without it being written down. Wiping the browser cache and keeping only the id brings back
+both the roadmap and the conversation.
+
+The chat thread moved into the shared session too, so the co-pilot page and the dashboard are one
+conversation instead of two that could not see each other.
+
+**Commit 17, the ranking learns per person.** Each learner carries their own four ranking weights,
+nudged by their own reactions and stored with the rest of their state. Too hard raises how much
+difficulty matters, not for me raises subject match, and a vague rejection of a very long course is read
+as being about length. Finishing something reinforces at half a step, because rejecting says more than
+finishing.
+
+Nudges are small, bounded and renormalised so the four always sum to one. A new goal resets the subject
+and style signals and keeps what we learned about the person.
+
+The four bars are on the dashboard in plain words. Three too hard clicks move difficulty from 25 to 31
+percent in front of you.
+
 ## Roughly where we stand
 
 Engine done, nothing to look at yet.
