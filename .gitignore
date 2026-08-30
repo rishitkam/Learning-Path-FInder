@@ -8,3 +8,4 @@ node_modules/
 .next/
 data/learners.db*
 .DS_Store
+brag-output/

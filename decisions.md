@@ -866,3 +866,53 @@ known skills precision and recall both 1.00, goal skills recall 1.00, groundedne
 
 Style was 50 percent until we noticed we constrain skill ids and role names in the prompt and had never
 said anything about how to read how someone likes to learn.
+
+## 102. The shortest course was winning by being short
+
+A four hour networking course beat a sixteen hour Git course on the Git step. Both claimed one skill,
+and one skill in four hours costs less per hour than one skill in sixteen, so the shorter one won.
+
+We only believe a course teaches a skill properly per six hours of its length, but we had written in a
+floor that let every course keep one claim however short it was. Long courses got the rule, short ones
+got a free pass, and the free pass made them look like the best value in the catalog.
+
+Dropped the floor. Too short to teach one skill properly now means teaches none. 106 courses, 8 percent,
+now teach nothing, and not one skill lost its coverage.
+
+The alternative was to name the bad courses and exclude them. We said no. This gets run on catalogs we
+have never seen, and a rule that lists specific courses is not a rule.
+
+## 103. We got further from optimal and kept the change
+
+Distance from the linear programming bound went from 1.22x to 1.41x when we removed the floor. That
+looks like a loss and is not. The old number was flattering because courses claiming more skills than
+their length supports are cheap multi skill bargains that greedy loves, and they were not real.
+
+Both the plan and the bound are computed on the same catalog, so the comparison stays fair. We would
+rather be 1.41x against an honest catalog than 1.22x against a fictional one.
+
+## 104. A test that could not fail the thing it tested
+
+The test asserting that a learner's ranking weights change which course wins started passing only by
+luck. It built a plan for a learner with no goal written in their own words and no relevance scores, so
+relevance was constant across every course and style matched nothing. Half the ranking was switched off,
+and the test was really checking whether the other half wandered.
+
+This is the same blind spot we had already found and fixed in the evals and never carried across. Fixed
+now, with a comment saying why the profile has to be a real one.
+
+## 105. We measured a good idea and it was not one
+
+To stop the short course winning the Git step, we tried scoring how much a course's own text looks like
+the skill it claims to teach, using the embeddings we already had.
+
+Measured against pairings we know are correct, it was unusable. It scored "Sequence Models teaches
+Recurrent Networks" at 0.25 and "Hugging Face NLP Course teaches Transformers" at 0.001, both below the
+0.403 it gave the bad pairing it was supposed to catch. A static embedding compares short titles more or
+less lexically, and those are the same idea in different words.
+
+Doing it properly needs a real sentence encoder, which means torch, which we kept out to fit the memory
+we deploy into. So we left the function in place unused with the evidence in its docstring.
+
+Now deleted, because decision 102 fixed the Git step at the source and the function has no reason left
+to exist. The evidence lives here instead, so nobody rediscovers it as a good idea.

@@ -219,9 +219,16 @@ def test_relevance_is_flat_without_a_usable_goal(cat, empty):
     assert relevance(empty, cat)(cat[0]) == 0.5
 
 
-def test_relevance_refuses_a_catalog_it_was_not_built_for(cat):
-    with pytest.raises(ValueError, match="vectors"):
-        relevance("data engineering", cat[:10])
+def test_relevance_survives_a_reordered_catalog_and_refuses_an_unknown_one(cat):
+    """Vectors used to be matched by position, so reversing the catalog silently scored every course
+    against the wrong vector. They are looked up by id now, and a course we have no vector for is a
+    loud error rather than a wrong number."""
+    goal = "i want to build machine learning systems"
+    forward, backward = relevance(goal, cat), relevance(goal, list(reversed(cat)))
+    assert all(abs(forward(c) - backward(c)) < 1e-9 for c in cat[:40])
+    assert relevance(goal, cat[:10])(cat[0])                      # a subset is fine
+    with pytest.raises(ValueError, match="no vector"):
+        relevance(goal, cat + [{**cat[0], "id": "ghost.course"}])
 
 
 # --- the data on disk ---------------------------------------------------------------------------
@@ -371,9 +378,16 @@ def test_a_new_goal_resets_what_was_about_the_goal(g):
 
 
 def test_weights_actually_change_which_course_wins(g, cat):
+    """Needs a learner with a goal in their own words. Without one, relevance is constant for every
+    course and style matches nothing, so half the ranking is switched off and the test proves nothing.
+    We believed the weights were dead for a while because the evals had this same blind spot."""
+    from embed import relevance
+    profile = {**PROFILE, "goal_text": "i want to build machine learning systems in production"}
     gap = g.gap(g.role_skills("machine-learning-engineer"))
+    rel = relevance(profile["goal_text"], cat)
     picks = lambda w: [(m["skill"], (m["resource"] or {}).get("id"))
-                       for ph in build(g, gap, PROFILE, cat, weights=w)["phases"] for m in ph["modules"]]
+                       for ph in build(g, gap, profile, cat, weights=w, relevance=rel)["phases"]
+                       for m in ph["modules"]]
     lengthy = {"relevance": 0.05, "level": 0.05, "style": 0.05, "effort": 0.85}
     assert picks(None) != picks(lengthy)
 

@@ -14,7 +14,11 @@ from model2vec import StaticModel
 
 ROOT = Path(__file__).resolve().parents[1]
 SIM = 0.80          # below this a pair is not even a merge candidate
-MIN_SUPPORT = 2     # courses that must claim an edge for it to stand
+# How many courses must claim an edge before we believe it. Two agreeing among four hundred is
+# evidence; among twelve hundred it is coincidence, and at two we ended up asserting that HTML needs
+# Java and that cloud needs IT support. So it scales with the corpus rather than being a constant.
+def min_support(courses):
+    return max(2, round(len(courses) / 300))
 # A course may not claim to teach more skills than its length supports. The dataset ships marketing
 # tags, so a four hour module arrives tagged with programming, HTML, machine learning and JavaScript,
 # and the labeller believes them. Set cover then loves it, because it divides coverage by hours.
@@ -101,9 +105,15 @@ def trim(course, teaches, model, skill_names):
     Ranking by similarity rather than by list order means the skill we keep is the one the course
     actually reads like, instead of whichever the labeller happened to mention first.
     """
-    allowed = max(1, int(course["hours"] // HOURS_PER_SKILL))
+    # No floor. A course too short to teach one skill properly teaches none, which is the same rule
+    # applied consistently rather than a free pass for the shortest entries. Giving every course at
+    # least one claim is what let a four hour networking course win the Git step over a sixteen hour
+    # course about Git: one skill in four hours simply scores better per hour than one in sixteen.
+    allowed = int(course["hours"] // HOURS_PER_SKILL)
     if len(teaches) <= allowed:
         return teaches
+    if not allowed:
+        return []
     text = model.encode([course["title"] + ". " + course["description"][:300]])[0]
     names = model.encode([skill_names[s] for s in teaches])
     norm = lambda v: v / (np.linalg.norm(v, axis=-1, keepdims=True) + 1e-9)
@@ -125,7 +135,8 @@ def main(apply=False):
     # that appear together, not real prerequisites, and one bad edge (cloud before supervised
     # learning) dragged JavaScript and networking into a generative AI path. Our 29 already have
     # correct prerequisites; the corpus is here to connect the skills it discovered.
-    corpus = {k: v for k, v in e.items() if v >= MIN_SUPPORT and k[1] not in seed_names}
+    floor = min_support(labels)
+    corpus = {k: v for k, v in e.items() if v >= floor and k[1] not in seed_names}
     kept = {**corpus, **seed}
     broken = []
     kept = acyclic(kept, broken)
@@ -138,7 +149,7 @@ def main(apply=False):
     taught = Counter(s for l in labels.values() for s in l["teaches"])
 
     print(f"skills {len(tax)} | corpus edges {len(e)} raw, {len(corpus)} kept at support "
-          f"{MIN_SUPPORT} and not aimed at a hand written skill, plus {len(seed)} hand written -> {len(kept)} "
+          f"{floor} and not aimed at a hand written skill, plus {len(seed)} hand written -> {len(kept)} "
           f"-> {g.number_of_edges()} after transitive reduction")
     print(f"merge candidates surviving structural blocks: {len(cand)} (blocked {len(block)})")
     print(f"max depth {max(depth.values())} | roots {sum(1 for n in g if g.in_degree(n) == 0)} "
@@ -177,6 +188,8 @@ def main(apply=False):
     text = [c["title"] + ". " + courses.get(c["id"], {}).get("description", "")[:300] for c in catalog]
     v = model.encode(text, show_progress_bar=False)
     np.save(ROOT / "data/vectors.npy", (v / np.linalg.norm(v, axis=1, keepdims=True)).astype("float32"))
+    # Ids beside the vectors, so a reordered catalog cannot silently map courses to the wrong row.
+    (ROOT / "data/vector_ids.json").write_text(json.dumps([c["id"] for c in catalog]))
     print(f"\nwrote {len(skills)} skills, {len(catalog)} catalog items, vectors {v.shape}")
 
 

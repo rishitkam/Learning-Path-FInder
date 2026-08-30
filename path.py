@@ -59,7 +59,7 @@ def _best(cands, p, relevance, weights=W):
     return best, why
 
 
-def _cover(gap, catalog, p, relevance, weights, blocked):
+def _cover(gap, catalog, p, relevance, weights, blocked, teaches=lambda c, s: 1.0):
     """Choose the cheapest set of courses covering the gap, weighted by how well they suit the learner.
 
     Picking the best course for each skill on its own left about 40 percent of the study time
@@ -91,14 +91,16 @@ def _cover(gap, catalog, p, relevance, weights, blocked):
         if not reachable:
             break
         best = max(_affordable(reachable, p),
-                   key=lambda c: (fit(c) ** FIT_POWER * len(set(c["teaches"]) & uncovered)
+                   key=lambda c: (fit(c) ** FIT_POWER
+                                  * sum(teaches(c, s) for s in set(c["teaches"]) & uncovered)
                                   / max(c["hours"], 1), c["id"]))
         chosen.append(best)
         uncovered -= set(best["teaches"])
     return chosen, terms, fit
 
 
-def build(g, gap, profile, catalog, known=(), blocked=(), relevance=lambda c: 0.5, weights=None):
+def build(g, gap, profile, catalog, known=(), blocked=(), relevance=lambda c: 0.5, weights=None,
+          teaches=lambda c, s: 1.0):
     blocked, weights = set(blocked), weights or profile.get("weights") or W
     per_week = profile.get("weekly_hours") or 1
     groups = g.phases(gap)                       # one topological sort, reused for the ordering below
@@ -106,7 +108,7 @@ def build(g, gap, profile, catalog, known=(), blocked=(), relevance=lambda c: 0.
     # One resource per skill, drawn from a set chosen to cover the whole gap. A skill with no match
     # keeps its slot with nothing attached, because dropping it would break the chain.
     ordered = [s for grp in groups for s in grp]
-    chosen, terms, fit = _cover(ordered, catalog, profile, relevance, weights, blocked)
+    chosen, terms, fit = _cover(ordered, catalog, profile, relevance, weights, blocked, teaches)
     mods = {}
     for s in ordered:
         covering = [c for c in chosen if s in c["teaches"]]

@@ -30,39 +30,50 @@ cheaper than the true integer optimum, so our hours divided by it is an honest u
 from optimal we are.
 
 ```
-approximation ratio     median 1.22x     mean 1.28x
+approximation ratio     median 1.41x     worst 2.00x     best 1.03x
 ```
 
-The worst case, 4.00x, is a two skill plan where the bound is loose rather than the plan bad: a
-fractional tenth of a course is not something a person can enrol in. On the larger plans, where the
-relaxation is tight, we sit between 1.04x and 1.11x.
+The worst cases are the smallest plans, where the bound is loose rather than the plan bad: a fractional
+tenth of a course is not something a person can enrol in.
+
+This got worse on purpose. It was 1.22x when courses were allowed to claim more skills than their
+length could support, because a four hour course claiming five skills is a bargain greedy loves and a
+lie. Both our plan and the lower bound are computed on the same trimmed catalog, so the comparison is
+still fair. We are further from optimal against an honest catalog, which we prefer to being close to
+optimal against a fictional one.
 
 For context, greedy set cover is provably within a log factor of optimal. We do not claim optimal.
 
-## Path quality, 16 roles by 3 learner profiles, 48 plans
+## Path quality, 18 roles by 3 learner profiles, 54 plans
 
 ```
 prerequisite violations        0 / 0 / 0        worst / median / best
 skills covered by a course     100% everywhere
-study hours                    209 / 80 / 16
-weeks                          20 / 8 / 2
-modules per distinct course    2.00 / 1.40 / 1.00
+study hours                    241 / 93 / 24
+weeks                          22 / 8 / 2
+modules per distinct course    2.00 / 1.20 / 1.00
 ```
 
 Prerequisite violations is a hard constraint, not a score. Any number other than zero is a bug, and it
-is checked on all 21 plans on every run.
+is checked on all 54 plans on every run.
 
 ## Personalisation
 
 ```
-different people, same goal      34%    of picks differ
-weights changed the picks        22%
-three "too hard" clicks changed  69%
+different people, same goal      29%    of picks differ
+weights changed the picks        69%
+three "too hard" clicks changed  76%
 ```
 
 The weights figure was 6% until we measured it. Set cover values coverage per hour, a ratio that varies
 far more than a fit score, so the learner's own weights barely moved a pick. Sweeping the exponent on
-fit from 1 to 6 showed 4 raises it to 22% at the same distance from optimal and slightly fewer hours.
+fit from 1 to 6 showed 4 was the right setting.
+
+It then sat at 22% for a while because of a flaw in this file, not in the code. Our test learner had no
+goal in their own words and a learning style nothing matched, so relevance and style were constant for
+every course and two of the four signals were switched off in every measurement. Giving the test
+learner a real goal took it from 22% to 69%. We had spent five experiments redesigning the ranker for a
+problem that lived in the harness.
 
 One minus mean pairwise Jaccard similarity between recommendation lists, the usual recommender
 definition. Two people asking for the same job get materially different plans, and reacting to the plan
@@ -71,23 +82,32 @@ changes it.
 ## Reach and speed
 
 ```
-catalog coverage      12%  (43 of 371 courses ever recommended)
-path build            1 ms p50 and p95
+reachable by some goal      91%   (1102 of 1208 courses)
+surfaced by our test goals  8%    (95 courses, over 54 role plans and 60 random goals)
+path build                  2 ms p50, 6 ms p95
 ```
 
-Catalog coverage is deliberately reported even though it is bad. Across every role and profile we
-recommend 26 distinct courses, so the effective catalog is far smaller than the 372 we loaded. Two
-causes: a limited set of roles, and set cover deliberately concentrating on courses that cover several
-skills at once. Going from 7 roles to 16 moved it from 7% to 12%, and took skills no role can reach from
-43 down to 24.
+These are two different questions and we report both because only one of them is a problem.
+
+Reachable asks whether a course can ever be recommended to anybody. At 91% it is fine, and the missing
+9% are courses that teach nothing in our taxonomy.
+
+Surfaced asks how many we actually hand out across our own test goals. It is low by design: set cover
+concentrates on courses covering several skills at once, so out of eleven options for a skill it picks
+the same strong one every time. That is the algorithm working. Raising this number means asking for
+more different things, not writing a better recommender.
 
 ## Determinism
 
 ```
-identical across repeated runs and reversed catalog order    7 of 7 roles
+identical across repeated runs and reversed catalog order    18 of 18 roles
 ```
 
 The same learner gets the same plan every time. This is why ranking ties break on course id.
+
+Reversing the catalog is the half that earns its keep. It caught us scoring courses against embedding
+vectors by list position instead of by id, so shuffling the catalog silently compared every course to
+the wrong vector. Repeated runs alone would never have seen it.
 
 ## A note on running these
 

@@ -253,6 +253,23 @@ someone describes learning, which we had simply never written.
 One bug worth remembering: --apply originally re-ran the proposal and overwrote the file we had just
 edited, applying its own five instead of our two. A review step that discards the review.
 
+**Commit 23, one rule for every course.** A four hour course about networking was beating a sixteen
+hour course about Git on the Git step. The four hour one claimed one skill, the sixteen hour one
+claimed one skill, and one skill in four hours is cheaper per hour than one skill in sixteen. The
+course was not better, it was shorter.
+
+The cause was a free pass we had written ourselves. We only trust a course to teach a skill properly
+per six hours of its length, but we let every course keep at least one claim no matter how short it
+was. So the rule applied to long courses and not to short ones, and the shortest entries in the catalog
+came out looking like the best value in it.
+
+Removed the exception. A course too short to teach one skill properly now teaches none. That drops 106
+courses, 8 percent of the catalog, and leaves every single skill still covered. Git now resolves to a
+course about version control, and calculus and linear algebra to one maths course that covers both.
+
+We considered special casing the offending courses and threw that idea out. The system has to hold up
+on a catalog we have never seen, and a fix that names courses is a fix that only works on ours.
+
 ## Roughly where we stand
 
 Engine done, nothing to look at yet.
@@ -277,8 +294,15 @@ and the interface are both working, so what is left is presentation rather than 
 
 ## Known gaps we are carrying on purpose
 
-Relevance scoring is flat until embeddings land, so ranking currently runs on three signals instead of
-four. Ranking weights are hard coded because we have no feedback data yet. The catalog is hand written,
-though the file shape is final so the real one drops straight in.
+Hosting on Hugging Face Spaces wipes the disk on restart, so remembered learners survive the session
+and not the week. Fine for judging, wrong for real use, and the fix is a hosted database rather than a
+code change.
+
+Eight percent of the catalog can never be recommended because it teaches nothing our taxonomy knows
+about. The taxonomy grows from the catalog, so this shrinks as the catalog grows, and we would rather
+carry it than invent skills to absorb the leftovers.
+
+The share of the catalog we actually hand out is low, but that is set cover doing its job rather than a
+defect. See EVALS.md, which explains why the two coverage numbers disagree.
 
 **Commit 11, the UI layer.** Implemented the Next.js frontend. Replaced the initial Streamlit plan with a custom React architecture to achieve the "Cockpit" aesthetic. Built the three-column layout: navigation sidebar with daily streak tracking, a cinematic hero section, and a dynamic SVG-based roadmap graph. Integrated the industrial color palette (Iron Core, Aqua, Rust).

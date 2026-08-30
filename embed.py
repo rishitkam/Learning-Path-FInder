@@ -23,7 +23,9 @@ def _load_model():
 
 @lru_cache(maxsize=1)
 def _load_vectors():
-    return np.load(DATA / "vectors.npy")
+    import json
+    ids = json.loads((DATA / "vector_ids.json").read_text())
+    return np.load(DATA / "vectors.npy"), {course: row for row, course in enumerate(ids)}
 
 
 def _model():
@@ -45,14 +47,15 @@ def relevance(goal_text, catalog):
     """Returns the scoring function build() takes. Flat if we have no goal text to compare against."""
     if not goal_text or not goal_text.strip():
         return lambda c: 0.5
-    vecs = _vectors()
-    if len(vecs) != len(catalog):
-        raise ValueError(f"vectors.npy has {len(vecs)} rows but the catalog has {len(catalog)}. "
+    vecs, row = _vectors()
+    missing = [c["id"] for c in catalog if c["id"] not in row]
+    if missing:
+        raise ValueError(f"{len(missing)} catalog items have no vector, first is {missing[0]}. "
                          "Rerun scripts/build_graph.py --apply, they are written together.")
     v = _model().encode([goal_text])[0]
     norm = np.linalg.norm(v)
     if not norm:
         return lambda c: 0.5                               # nothing the model recognised, so no signal
     sims = vecs @ (v / norm)
-    at = {c["id"]: i for i, c in enumerate(catalog)}
-    return lambda c: float(sims[at[c["id"]]] + 1) / 2      # cosine runs -1 to 1, the score wants 0 to 1
+    # Looked up by id, not by position, so catalog order never has to match the vector file.
+    return lambda c: float(sims[row[c["id"]]] + 1) / 2     # cosine runs -1 to 1, the score wants 0 to 1

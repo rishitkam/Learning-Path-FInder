@@ -1,15 +1,21 @@
 {
  "ai.ethics": {
   "name": "AI Ethics and Responsible AI",
-  "prereqs": []
+  "prereqs": [
+   "ml.supervised"
+  ]
  },
  "blockchain.fundamentals": {
   "name": "Blockchain Fundamentals",
-  "prereqs": []
+  "prereqs": [
+   "prog.fundamentals"
+  ]
  },
  "blockchain.smartcontracts": {
   "name": "Smart Contracts & Solidity",
-  "prereqs": []
+  "prereqs": [
+   "prog.fundamentals"
+  ]
  },
  "cs.algorithms": {
   "name": "Algorithms & Data Structures",
@@ -19,14 +25,16 @@
  },
  "cs.architecture": {
   "name": "Computer Architecture & Microprocessors",
-  "prereqs": []
+  "prereqs": [
+   "prog.fundamentals"
+  ]
  },
  "cv.imageprocessing": {
   "name": "Image Processing",
   "prereqs": [
    "math.linalg",
    "ml.concepts",
-   "prog.fundamentals"
+   "prog.matlab"
   ]
  },
  "data.etl": {
@@ -34,6 +42,10 @@
   "prereqs": [
    "ops.cloud"
   ]
+ },
+ "data.gis": {
+  "name": "Geospatial Information Systems",
+  "prereqs": []
  },
  "data.pandas": {
   "name": "Data Wrangling with Pandas",
@@ -66,8 +78,8 @@
  "db.nosql": {
   "name": "NoSQL Databases",
   "prereqs": [
-   "db.relational",
-   "prog.python"
+   "data.sql",
+   "prog.fundamentals"
   ]
  },
  "db.relational": {
@@ -117,6 +129,12 @@
   "name": "Fourier Analysis and Spectral Methods",
   "prereqs": []
  },
+ "dsp.kalman": {
+  "name": "Kalman Filtering and State Estimation",
+  "prereqs": [
+   "math.linalg"
+  ]
+ },
  "eng.agile": {
   "name": "Agile & Software Process Management",
   "prereqs": [
@@ -155,22 +173,19 @@
  "game.development": {
   "name": "Game Development",
   "prereqs": [
-   "prog.csharp",
-   "prog.oop"
+   "prog.fundamentals"
   ]
  },
  "iot.embedded": {
   "name": "IoT & Embedded Systems",
   "prereqs": [
-   "os.concepts",
-   "prog.c"
+   "prog.c",
+   "prog.python"
   ]
  },
  "it.mainframe": {
   "name": "Mainframe Systems (z/OS, Linux on Z)",
-  "prereqs": [
-   "os.concepts"
-  ]
+  "prereqs": []
  },
  "it.support": {
   "name": "IT Support & Troubleshooting",
@@ -187,10 +202,7 @@
  "math.optimization": {
   "name": "Mathematical Optimization",
   "prereqs": [
-   "math.calculus",
-   "math.linalg",
-   "math.stats",
-   "prog.python"
+   "math.stats"
   ]
  },
  "math.stats": {
@@ -242,6 +254,10 @@
    "os.concepts"
   ]
  },
+ "net.wireless": {
+  "name": "Wireless Communication",
+  "prereqs": []
+ },
  "nlp.embeddings": {
   "name": "Word and Sentence Embeddings",
   "prereqs": [
@@ -284,10 +300,10 @@
   "name": "Cloud Infrastructure & Services",
   "prereqs": [
    "data.sql",
-   "eng.api",
    "ml.concepts",
    "net.fundamentals",
-   "ops.docker"
+   "ops.docker",
+   "prog.shell"
   ]
  },
  "ops.deploy": {
@@ -312,13 +328,19 @@
  },
  "ops.storage": {
   "name": "Storage Administration",
-  "prereqs": []
+  "prereqs": [
+   "ops.cloud"
+  ]
  },
  "os.concepts": {
   "name": "Operating System Concepts",
   "prereqs": [
    "prog.fundamentals"
   ]
+ },
+ "prog.assembly": {
+  "name": "Assembly Language",
+  "prereqs": []
  },
  "prog.c": {
   "name": "C Programming",
@@ -360,7 +382,9 @@
  },
  "prog.distributed": {
   "name": "Distributed Programming",
-  "prereqs": []
+  "prereqs": [
+   "prog.fundamentals"
+  ]
  },
  "prog.functional": {
   "name": "Functional Programming",
@@ -370,15 +394,20 @@
   "name": "Programming Fundamentals",
   "prereqs": []
  },
+ "prog.go": {
+  "name": "Go (Golang)",
+  "prereqs": []
+ },
  "prog.hdl": {
   "name": "Hardware Description Languages (VHDL/Verilog)",
-  "prereqs": []
+  "prereqs": [
+   "prog.fundamentals"
+  ]
  },
  "prog.java": {
   "name": "Java Programming",
   "prereqs": [
-   "prog.fundamentals",
-   "prog.oop"
+   "prog.fundamentals"
   ]
  },
  "prog.javascript": {
@@ -418,11 +447,19 @@
   "name": "React / React Native",
   "prereqs": []
  },
+ "prog.ruby": {
+  "name": "Ruby Programming",
+  "prereqs": []
+ },
  "prog.rust": {
   "name": "Rust Programming",
   "prereqs": [
    "prog.fundamentals"
   ]
+ },
+ "prog.sas": {
+  "name": "SAS Programming",
+  "prereqs": []
  },
  "prog.scala": {
   "name": "Scala Programming",
@@ -440,6 +477,10 @@
    "prog.fundamentals"
   ]
  },
+ "quantum.fundamentals": {
+  "name": "Quantum Computing Fundamentals",
+  "prereqs": []
+ },
  "research.methodology": {
   "name": "Research Methodology",
   "prereqs": []
@@ -453,27 +494,24 @@
  "sec.cryptography": {
   "name": "Applied Cryptography",
   "prereqs": [
-   "prog.fundamentals"
+   "sec.fundamentals"
   ]
  },
  "sec.forensics": {
   "name": "Digital/Computer Forensics",
-  "prereqs": [
-   "os.concepts"
-  ]
+  "prereqs": []
  },
  "sec.fundamentals": {
   "name": "Security Fundamentals",
   "prereqs": [
-   "net.fundamentals",
-   "prog.shell"
+   "it.support",
+   "ops.cloud"
   ]
  },
  "web.frontend": {
   "name": "Web Frontend (HTML/CSS)",
   "prereqs": [
-   "prog.fundamentals",
-   "prog.python"
+   "prog.javascript"
   ]
  }
 }

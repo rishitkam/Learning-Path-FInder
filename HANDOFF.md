@@ -122,34 +122,42 @@ Commits are small and describe the reasoning, not the diff.
 
 ## 7. Where we are
 
-Done: everything except the interface. Skill graph, path builder, profile extractor, explainer, feedback
-handling, the full catalog pipeline, the real graph, and semantic relevance.
+Everything is built. Skill graph, path builder, profile extractor, explainer, feedback handling, the
+catalog pipeline, semantic relevance, persistence, per learner ranking weights, the API and the
+interface.
 
-72 skills, 65 edges, 370 catalog items. Runs end to end in the terminal.
+91 skills, 86 edges, 1214 catalog items, 18 roles. 63 tests pass. `python3 evals.py` prints the full
+measurement report in about a second without touching a model.
 
-Done: the interface.
+What is left is submission work rather than building: the demo video, the solution document, and a
+deployed URL that stays up.
 
-## 8. Next step, in detail
+## 8. How the two halves connect
 
-**Connecting the Python Engine to the Next.js Frontend.** The next task is wrapping the existing Python logic in a FastAPI/Flask wrapper so the React components can fetch real path data.
+`api.py` is FastAPI and is the only thing the frontend talks to. Endpoints: `/health`, `/state` for GET
+and DELETE, `/path`, `/path/feedback`, `/explain`, `/chat`.
 
-One file, `app.py`, three regions.
-Left, the chat. Each turn calls `profile.extract` then `profile.next_question`. Once the profile has a
-goal and weekly hours, the path builds automatically. The profile card fills in live as they talk.
-Middle, the roadmap. Phases as blocks, each with weeks, modules, milestone and check. A module can show
-the four ranking bars behind its pick, and `explain.explain_module` for the sentence.
-Right, the dashboard. Skills done against remaining, weeks left, the feasible flag, next action.
+Every request carries an `X-Learner-Id` header minted by the browser. No login, no personal data. That
+id is the SQLite key, one row per learner holding their profile, their four ranking weights and their
+last twelve conversation turns.
 
-Rules that keep it simple. Graph, catalog and embedding model behind `@st.cache_resource`, since
-Streamlit reruns the whole script on every interaction. Only the transcript and the learner state live
-in `st.session_state`. The path is never stored, it is rebuilt from state on every run, which costs
-microseconds and guarantees what is on screen matches the profile. Feedback buttons call `state.apply`
-and the page reruns.
+The path is never stored. It is rebuilt from the learner's state on every request, which takes about two
+milliseconds and means what is on screen always matches the profile that produced it. Feedback posts an
+event, the state changes, the next build reflects it.
+
+The frontend is Next.js in `learning-path-finder/`. `lib/store.ts` holds the session, `lib/api.ts` wraps
+the fetch calls, and the components are the sidebar, the chat, the roadmap graph and the telemetry
+cards.
+
+To run both: `uvicorn api:app --port 8000` and `npm run dev` in the frontend folder. The API needs
+`GROQ_API_KEY` in `.env`. Extra keys named `GROQ_API_KEY2` and so on are picked up automatically and
+rotated when one runs out of quota.
 
 ## 9. Known gaps we are carrying on purpose
 
-Relevance scoring is flat until step 6, so ranking runs on three signals instead of four.
-Ranking weights are hard coded because we have no feedback data yet.
-Every skill now has at least one resource, so the "no resource" case is unreached but still handled.
+Hugging Face Spaces wipes its disk on restart, so remembered learners last the session and not the
+week. The fix is a hosted database, not a code change.
+Eight percent of the catalog teaches nothing our taxonomy knows about and can never be recommended.
+Every skill has at least one course, so the "no resource" case is unreached but still handled.
 Some new skills, game development and blockchain among them, sit outside what our roles target. They
 are harmless and widen what the tool can answer.
