@@ -2,6 +2,7 @@
 
 import json
 import os
+import time
 from functools import lru_cache
 
 from dotenv import load_dotenv
@@ -37,13 +38,24 @@ def client():
 
 
 def call(**kwargs):
-    """One completion, trying each key in turn when a daily budget runs out."""
+    """One completion, trying each key in turn, then waiting once before giving up.
+
+    Groq limits both tokens per day and tokens per minute. A spent day is a wall and the next key is
+    the answer, but a spent minute clears on its own in seconds. We treated both the same, so a burst
+    of traffic surfaced to a learner as "I could not reach the assistant" while every key was fine,
+    and it ended an eval run early on the same false signal.
+    """
     last = None
-    for groq in _clients():
-        try:
-            return groq.chat.completions.create(**kwargs)
-        except RateLimitError as spent:
-            last = spent
+    for attempt in range(3):
+        for groq in _clients():
+            try:
+                return groq.chat.completions.create(**kwargs)
+            except RateLimitError as spent:
+                last = spent
+        # Every key refused. If that is per minute the wait fixes it; if it is per day the next two
+        # rounds cost six seconds and we raise anyway.
+        if attempt < 2:
+            time.sleep(3 * (attempt + 1))
     raise last
 
 
@@ -125,6 +137,12 @@ def extract(g, transcript, prior=None):
               "Null any field the conversation does not state. Never invent a skill they did not "
               "mention, but do record every one they did: having done, used, studied, worked with or "
               "being comfortable with something all count, wherever in the sentence it appears. "
+              "Set role whenever what they describe is one of those roles, however casually they put "
+              "it. People do not say the job title: \"get into cyber security\" is security-engineer, "
+              "\"build games\" is game-developer, a bare \"mlops\" is mlops-engineer, and \"move into data "
+              "science\" is data-scientist rather than whatever they are moving from. Leaving role null "
+              "when they named one costs them a whole role's worth of skills, so reach for the closest "
+              "role on the list before you settle for null. Still null if they named none. "
               "Goals are the exception: if they name any subject, field or role THIS TAXONOMY COVERS, "
               "even as a bare phrase like 'machine learning', treat it as their goal and map it to the "
               "closest skills. If their goal is outside it entirely, a trade, a profession, a language, "

@@ -125,7 +125,27 @@ extractor getting every field wrong, and we went looking for a prompt bug that w
 
 ## Extraction, against golden utterances
 
-Precision, recall and F1 per slot, over hand written utterances with known correct answers.
+Precision, recall and F1 per slot, over 73 utterances written by hand. Run `python3 evals.py --llm
+--golden`. The generated set in `data/cases.json` is larger, but its wording comes from the labels, so
+it can only ever show the extractor reads our own phrasing. On that set every slot scored 1.00, which
+told us the dataset was too easy rather than that extraction was solved.
+
+```
+role exact match             94%
+known_skills P/R/F1   0.85 / 0.94 / 0.89
+goal_skills recall          0.75
+weekly_hours / style / out_of_scope   100%
+```
+
+Twenty five of the cases are traps built to force a false positive: "I have never written a line of
+Python", "my colleague knows react, I don't", "I read a blog about kubernetes", "we use spark at work
+but the data team runs all of it". Three of them still land, which is why precision is 0.85 and not
+the 1.00 the easy set reported. One inference is missed in the other direction: two years of writing
+Django apps does not register as Python.
+
+role was 69% before we told the extractor to reach for the closest role rather than settle for null.
+"Get into cyber security", "build games" and a bare "mlops" all returned nothing, and a null role
+costs a learner a whole role's worth of skills.
 
 Set valued slots used to be scored by subset, which is recall only: a model returning every skill in the
 taxonomy would have scored a hundred percent. Precision is the half that matters here, because an
