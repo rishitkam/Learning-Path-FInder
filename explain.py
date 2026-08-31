@@ -116,3 +116,94 @@ def ask(g, question, path, profile):
     except Exception:
         return {"answer": "I could not reach the model just now. The plan itself is unchanged.",
                 "is_change_request": False}
+
+
+# What we can actually plan, said once so the refusal and the scope answer cannot drift apart.
+COVERS = "software, data and AI: programming, machine learning, cloud, data engineering, security"
+
+# Used when the model is unreachable or its line fails the checks below. Indexed by how many turns
+# have been spoken, so a learner who sends three greetings does not get the same sentence three times.
+FALLBACKS = {
+    "out_of_scope": [
+        f"That one is outside my shelf. I only have courses in {COVERS}. Name something in there and "
+        "I will build you a route.",
+        f"I cannot help with that one, I am afraid. My catalog stops at {COVERS}. What would you like "
+        "to learn inside that?",
+        f"Not something I have courses for. I stick to {COVERS}. Tell me a goal in that space and I "
+        "will map it out.",
+        f"Outside what I can teach. Everything I have is {COVERS}. What are you aiming at in there?",
+    ],
+    "greeting": [
+        "Hello. What would you like to be able to do at the end?",
+        "Hi there. Tell me what you want to learn and I will work out the route.",
+        "Hey. What are you aiming at? A role works, or just the thing you want to build.",
+    ],
+    "thanks": [
+        "Any time. Say the word if you want the plan changed.",
+        "Glad it helps. I am here if you want to adjust anything.",
+        "You are welcome. Come back whenever you want to shift the plan.",
+    ],
+    "about_service": [
+        f"I build learning routes. You tell me a goal and the hours you have, I work out the order "
+        f"from a prerequisite graph and pick real courses for each step. I cover {COVERS}.",
+        f"I turn a goal into an ordered plan through real courses, working out what has to come "
+        f"first. I only cover {COVERS}.",
+    ],
+    "unclear": [
+        "I did not follow that. What do you want to be able to do at the end?",
+        "Not sure I caught that. Tell me the thing you want to learn.",
+    ],
+}
+
+SYS_NUDGE = (
+    "You are ALMA, a learning path planner. Write ONE short reply, two sentences at most, warm and "
+    "plain, no emoji, no exclamation marks, no lists.\n"
+    f"You can only plan: {COVERS}.\n"
+    "NEVER name a course, a provider, a duration or a number of weeks. You have no plan in front of "
+    "you and inventing one is the only thing you must not do.\n"
+    "NEVER promise to change or shorten anything.\n"
+    "If ASK is given, your reply must end by asking exactly that, in your own words."
+)
+
+
+def _acceptable(text, must_ask):
+    """The refusal and the nudge are the two places we generate prose with no plan to check against,
+    so the checks are about what must be absent: any figure could only have been invented."""
+    if not text or len(text) > 320:
+        return False
+    low = text.lower()
+    if any(ch.isdigit() for ch in text):
+        return False
+    if any(w in low for w in ("course", "week", "hour", "module", "coursera", "udemy", "i will trim",
+                              "i will shorten", "i have changed", "i've changed")):
+        return False
+    return not must_ask or "?" in text
+
+
+def nudge(kind, ask=None, said=None, turn=0):
+    """A varied line for the turns where there is no plan to talk about yet: a goal we cannot teach,
+    a greeting, a thank you, a question about what this is, or something we could not read.
+
+    One repeated sentence reads like a wall. This asks the model for the same content in its own
+    words each time and checks what comes back, falling back to a rotating set when the model is
+    unreachable or writes something it should not.
+    """
+    pool = FALLBACKS.get(kind) or FALLBACKS["unclear"]
+    spare = pool[turn % len(pool)]
+    try:
+        told = f"THE LEARNER SAID:\n{said}\n\n" if said else ""
+        want = f"ASK:\n{ask}\n\n" if ask else ""
+        why = {"out_of_scope": "Their goal is outside what you can plan. Say so plainly, without "
+                               "apologising twice, and invite them to name something you do cover.",
+               "greeting": "They greeted you. Greet them back in one clause and get to the point.",
+               "thanks": "They thanked you or said goodbye. Acknowledge it briefly. Do not ask "
+                         "anything unless ASK is given.",
+               "about_service": "They asked what you do. Say it in one or two sentences.",
+               "unclear": "You could not read their message. Say so lightly and ask again."}
+        r = call(model=MODEL, temperature=0.7, reasoning_effort="low", max_tokens=120,
+                 messages=[{"role": "system", "content": SYS_NUDGE},
+                           {"role": "user", "content": f"{told}{want}SITUATION:\n{why.get(kind, why['unclear'])}"}])
+        text = (r.choices[0].message.content or "").strip()
+        return text if _acceptable(text, must_ask=bool(ask)) else spare
+    except Exception:
+        return spare

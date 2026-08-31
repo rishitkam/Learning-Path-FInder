@@ -539,9 +539,13 @@ def test_out_of_scope_refuses_even_when_the_model_still_named_skills(client, mon
         "goal_text": "i want to design buildings", "out_of_scope": True,
         "role": None, "goal_skills": ["cs.architecture"], "known_skills": [],
         "weekly_hours": 10, "horizon_weeks": 8, "level": 2, "style": "balanced"})
+    # The wording is generated and varies on purpose, so assert the branch, not the sentence.
+    seen = {}
+    monkeypatch.setattr(api.explain, "nudge",
+                        lambda kind, **kw: seen.setdefault("kind", kind) and "" or "refused")
     body = client.post("/chat", json={"message": "i want to design buildings", "profile": None,
                                       "completed": [], "blocked": [], "history": []}).json()
-    assert "outside what i have courses for" in body["reply"].lower()
+    assert seen["kind"] == "out_of_scope"
     assert body.get("data") is None          # and no path was built anyway
 
 

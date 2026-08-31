@@ -56,8 +56,20 @@ def _tool(g):
         "parameters": {"type": "object", "properties": {
             "goal_text": nullable("string", description="What they want, in their own words, verbatim."),
             "out_of_scope": nullable("boolean", description=
-                "True only if they named a goal this taxonomy cannot express at all, like becoming a "
-                "chef, a nurse or learning a spoken language. Not for a vague message."),
+                "True only if THE LATEST learner message asks to learn something this taxonomy cannot "
+                "express at all, like becoming a chef, a nurse or learning a spoken language. Judge "
+                "the latest message alone. A greeting, a thank you or a question about what you do is "
+                "never out of scope, even when an earlier message in the conversation was."),
+            "message_kind": nullable("string", enum=[
+                "goal",          # naming or changing what they want to learn
+                "answer",        # supplying hours, level, style, what they already know
+                "greeting",      # hi, hello, good morning
+                "thanks",        # thanks, bye, that is great
+                "about_service", # what can you do, how does this work, who are you
+                "unclear",       # empty, gibberish, or nothing we can act on
+                "other", None], description=
+                "What the LATEST learner message is doing. This decides whether we answer them or "
+                "ask them something, so judge the last message, not the conversation."),
             "role": nullable("string", enum=roles + [None]),
             "goal_skills": {"type": "array", "items": {"type": "string", "enum": ids}},
             "known_skills": {"type": "array", "items": {"type": "string", "enum": ids}},
@@ -67,8 +79,9 @@ def _tool(g):
             "retracted_skills": {"type": "array", "items": {"type": "string", "enum": ids}},
             "weekly_hours": nullable("number"), "horizon_weeks": nullable("number"),
             "level": nullable("integer"), "style": nullable("string", enum=STYLES + [None])},
-            "required": ["goal_text", "out_of_scope", "role", "goal_skills", "known_skills",
-                         "retracted_skills", "weekly_hours", "horizon_weeks", "level", "style"]}}}
+            "required": ["goal_text", "out_of_scope", "message_kind", "role", "goal_skills",
+                         "known_skills", "retracted_skills", "weekly_hours", "horizon_weeks",
+                         "level", "style"]}}}
 
 
 def _num(v, lo, hi, default=None):
@@ -98,6 +111,10 @@ def _clean(g, p, role_is_new=False):
         p["style"] = "balanced"
     if not isinstance(p.get("goal_text"), str) or not p["goal_text"].strip():
         p.pop("goal_text", None)
+    # Per turn signals, never state. They ride back on the same call to save a round trip, and the
+    # caller pops them; anything that reaches storage would make the next turn act on the last one.
+    p.pop("message_kind", None)
+    p.pop("out_of_scope", None)
     return p
 
 
@@ -120,6 +137,8 @@ def extract(g, transcript, prior=None):
               "If they take back a skill, saying they do not actually know it, have never used it or "
               "were wrong about it, put it in retracted_skills. That is the only way to remove one, "
               "and it matters: a skill we wrongly think they have is a step deleted from their plan. "
+              "out_of_scope and message_kind describe THE LAST MESSAGE ONLY. Someone who asked for an "
+              "impossible goal and then says hello is greeting you, not asking again. "
               "Style follows from how they describe learning: building, projects or hands on means "
               "project first, lectures, theory or fundamentals means theory first.")
     user = f"KNOWN SO FAR:\n{json.dumps(p)}\n\nCONVERSATION:\n{transcript}"
@@ -141,14 +160,17 @@ def extract(g, transcript, prior=None):
                 cleared = _clean(g, {**p, "role": None, "goal_skills": []})
                 cleared["goal_text"] = new.get("goal_text") or p.get("goal_text")
                 cleared["out_of_scope"] = True
+                cleared["message_kind"] = new.get("message_kind") or "goal"
                 return cleared
             # Merge into a copy. A failed attempt must not leave half its answer in the profile.
+            kind = new.pop("message_kind", None)
             retracted = [x for x in (new.pop("retracted_skills", None) or []) if x in g.skills]
             merged = _clean(g, {**p, **{k: v for k, v in new.items() if v not in (None, [])}},
                             role_is_new=bool(new.get("role")))
             if retracted:
                 # Subtract after the merge, so it wins over anything the prior profile carried in.
                 merged["known_skills"] = [x for x in merged["known_skills"] if x not in retracted]
+            merged["message_kind"] = kind
             return merged
         except BadRequestError as refused:
             problem = refused

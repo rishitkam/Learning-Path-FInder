@@ -260,6 +260,18 @@ def chat(request: ChatRequest, learner_id: str | None = LearnerId):
                          "nothing you have told me is lost.", "profile": prior}
 
     said = [{"role": "user", "content": request.message}]
+    kind = extracted.pop("message_kind", None)
+    turn = len(request.history)
+
+    def answered(reply):
+        # Save the half finished profile too, so coming back resumes the conversation rather than
+        # starting it again.
+        db.save(learner_id, {**state.new(extracted), "completed": request.completed,
+                             "blocked": request.blocked}, said + [{"role": "assistant", "content": reply}])
+        return {"reply": reply, "profile": extracted}
+
+    question = learner_profile.next_question(extracted)
+
     if extracted.pop("out_of_scope", False):
         # Say we cannot rather than asking the same question again. The taxonomy is software, data
         # and AI, and pretending otherwise would be the one thing this whole design refuses to do.
@@ -268,19 +280,18 @@ def chat(request: ChatRequest, learner_id: str | None = LearnerId):
         # extractor is told to map any goal to the closest skills, so the list is almost never empty.
         # Someone who said they wanted to design buildings got Computer Architecture and a confident
         # explanation of why an architect needs Programming Fundamentals.
-        reply = ("I can only plan software, data and AI: programming, machine learning, cloud, "
-                 "security, that sort of thing. That one is outside what I have courses for.")
-        db.save(learner_id, {**state.new(extracted), "completed": request.completed,
-                             "blocked": request.blocked}, said + [{"role": "assistant", "content": reply}])
-        return {"reply": reply, "profile": extracted}
+        #
+        # It is scoped to the last message now. Judged over the whole conversation it fired again on
+        # every turn after the first refusal, so saying hello got the same wall of text back.
+        return answered(explain.nudge("out_of_scope", ask=question, said=request.message, turn=turn))
 
-    question = learner_profile.next_question(extracted)
     if question:
-        # Save the half finished profile too, so coming back resumes the conversation rather than
-        # starting it again.
-        db.save(learner_id, {**state.new(extracted), "completed": request.completed,
-                          "blocked": request.blocked}, said + [{"role": "assistant", "content": question}])
-        return {"reply": question, "profile": extracted}
+        # Nothing to plan yet. A greeting deserves a greeting, and a bare question repeated at someone
+        # who just said hello reads like a form, not a conversation.
+        if kind in ("greeting", "thanks", "about_service", "unclear"):
+            return answered(explain.nudge(kind, ask=question if kind != "thanks" else None,
+                                          said=request.message, turn=turn))
+        return answered(question)
 
     saved = stored(learner_id)
     weights = saved.get("weights")

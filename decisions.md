@@ -1047,3 +1047,33 @@ Still outstanding, and it is a real gap. The UI cannot reach the toggle. The but
 step's skill, and marking a skill known removes it from the gap, so the step disappears and the button
 retargets. Chat retraction is the only route a learner has today. Fixing that needs the interface to
 list known skills with a way to remove one, which is frontend work we have not done.
+
+## 114. The refusal was a wall, and it fired at people saying hello
+
+out_of_scope was judged over the whole conversation, so once someone had asked for something we
+cannot teach it stayed true on every later turn. Saying "HI" got the same block of text back, word
+for word, and the reply named what we cannot do without ever inviting them to try something else.
+Stating a new goal did recover, but nothing in the reply said so, and it read as broken.
+
+Three changes. out_of_scope and a new message_kind now describe THE LAST MESSAGE ONLY, so a greeting
+after a refused goal is a greeting. message_kind rides back on the extraction call we already make
+each turn, so knowing what someone is doing costs no extra request.
+
+And the prose is written rather than pasted. explain.nudge asks the model for the same content in its
+own words at temperature 0.7, then checks what comes back: anything containing a digit, a course, a
+provider, a duration or a promise to change the plan is thrown away for a rotating hand written line.
+Those are the two places we generate prose with no plan to check against, so the test is what must be
+absent, since any figure could only have been invented.
+
+Verified live across the conversation that produced the bug and ten further edge cases: empty (422
+before the model), whitespace, a bare number, half in scope, hostile, a 60 fold repeated message,
+prompt injection, a plan question with no plan, emoji, and two goals at once. Nothing invented a
+course, including the injection that asked for one by name.
+
+Also swapped the live Groq key into first position. Rotation tries keys in sorted name order and the
+three spent ones sorted first, so every request paid three 429 round trips before reaching a key with
+budget.
+
+Known gap: hostile messages, prompt injection and plan questions asked before a plan exists all land
+on the plain goal question rather than a warm nudge, because the model reads them as "other". Correct,
+just colder than the greeting path.
