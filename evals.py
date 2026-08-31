@@ -215,13 +215,21 @@ def extraction():
     RECALL_ONLY = {"goal_skills"}
     import profile as pf
     import random
-    split = "dev" if "--dev" in sys.argv else "test"
-    pool = json.loads(open("data/cases.json").read())[split]
-    # One extraction costs about 1800 tokens against a 200k daily budget, so we sample rather than run
-    # all 135. Seeded, so the same cases every run and a change in score is a change in the extractor.
-    random.Random(11).shuffle(pool)
-    size = int(next((a.split("=")[1] for a in sys.argv if a.startswith("--cases=")), 40))
-    cases = pool[:size]
+    # data/golden.json is fifteen utterances written by hand, the way someone actually types. The
+    # generated set is larger but its wording comes from the labels, so it can only ever show that the
+    # extractor reads our own phrasing. This file was sitting unused while the docs claimed we scored
+    # against it, which is the sort of gap that makes a good number worthless.
+    if "--golden" in sys.argv:
+        cases, split = json.loads(open("data/golden.json").read()), "hand written"
+    else:
+        split = "dev" if "--dev" in sys.argv else "test"
+        pool = json.loads(open("data/cases.json").read())[split]
+        # One extraction costs about 1800 tokens against a 200k daily budget, so we sample rather than
+        # run all 135. Seeded, so the same cases every run and a change in score is a change in the
+        # extractor rather than a change in which cases we happened to draw.
+        random.Random(11).shuffle(pool)
+        size = int(next((a.split("=")[1] for a in sys.argv if a.startswith("--cases=")), 40))
+        cases = pool[:size]
     tp, fp, fn, exact, total = Counter(), Counter(), Counter(), Counter(), Counter()
     misses = []
     ran, failed, streak, stopped = 0, 0, 0, None
@@ -255,7 +263,8 @@ def extraction():
             if not ok:
                 misses.append(f"{case['said'][:32]!r} {field}: wanted {want}, got {got.get(field)}")
     print("\r" + " " * 34 + "\r", end="")
-    out = {"cases run": f"{ran} of {len(pool)} {'held out' if split == 'test' else 'dev'}"
+    where = {"test": "held out", "dev": "dev", "hand written": "hand written"}[split]
+    out = {"cases run": f"{ran} of {len(cases)} {where}"
                         + (f", {failed} the model could not answer" if failed else "")
                         + (f", stopped early: {stopped}" if stopped else "")}
     for field in total:
@@ -326,7 +335,8 @@ if __name__ == "__main__":
         print(f"  {k:<30} {v}")
 
     if "--llm" in sys.argv:
-        print("\nEXTRACTION  (generated cases, labels correct by construction)")
+        print("\nEXTRACTION  " + ("(hand written utterances)" if "--golden" in sys.argv
+                            else "(generated cases, labels correct by construction)"))
         scores, misses = extraction()
         for k, v in scores.items():
             print(f"  {k:<30} {v:>7}")
