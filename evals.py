@@ -89,9 +89,16 @@ def paths():
             at = {s: i for i, ph in enumerate(r["phases"]) for s in ph["skills"]}
             violations = [(p, s) for s in at for p in G.g.pred[s] if p in at and at[p] > at[s]]
             hours = sum(ph["hours"] for ph in r["phases"])
+            # The bound prices covering the gap and nothing else, so the ratio has to compare against
+            # the hours that cover the gap. Milestones and assessments are a teaching choice we made
+            # on top, and charging them to greedy made us look 13 percent further from optimal than
+            # we are. Reported separately below rather than quietly dropped.
+            extras = sum((ph.get("milestone") or {}).get("hours", 0)
+                         + (ph.get("assessment") or {}).get("hours", 0) for ph in r["phases"])
             rows.append({
                 "role": role, "persona": persona, "skills": len(gap), "weeks": r["total_weeks"],
-                "hours": hours, "bound": optimal_hours(gap),
+                "hours": hours, "cover_hours": hours - extras, "extras": extras,
+                "bound": optimal_hours(gap),
                 "violations": len(violations),
                 "covered": pct(sum(1 for m in mods if m["resource"]), len(mods)),
                 "reuse": len(mods) / max(len({m["resource"]["id"] for m in mods if m["resource"]}), 1),
@@ -287,7 +294,7 @@ def groundedness():
 if __name__ == "__main__":
     CAT = load_catalog(G)
     rows = paths()
-    ratio = mean(r["hours"] / r["bound"] for r in rows if r["bound"])
+    ratio = mean(r["cover_hours"] / r["bound"] for r in rows if r["bound"])
 
     print("\nSTRUCTURE")
     for k, v in structure().items():
@@ -301,9 +308,12 @@ if __name__ == "__main__":
                             ("modules per distinct course", "reuse", "{:.2f}")]:
         vals = sorted(r[key] for r in rows)
         print(f"  {label:<30} {fmt.format(vals[-1]):>8} {fmt.format(vals[len(vals)//2]):>8} {fmt.format(vals[0]):>8}")
-    ratios = sorted(r["hours"] / r["bound"] for r in rows if r["bound"])
+    ratios = sorted(r["cover_hours"] / r["bound"] for r in rows if r["bound"])
     print(f"  {'approximation ratio':<30} {ratios[-1]:>8.2f} {ratios[len(ratios)//2]:>8.2f} {ratios[0]:>8.2f}")
     print(f"       mean {ratio:.2f}x the linear programming lower bound on the cheapest possible cover")
+    extras = sum(r["extras"] for r in rows)
+    print(f"       ratio covers gap work only. Milestones and assessments are another "
+          f"{100 * extras / sum(r['hours'] for r in rows):.0f}% of study hours, which the bound does not price.")
 
     print("\nPERSONALISATION  (% of picks that differ)")
     for k, v in personalisation().items():

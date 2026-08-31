@@ -33,17 +33,19 @@ cheaper than the true integer optimum, so our hours divided by it is an honest u
 from optimal we are.
 
 ```
-approximation ratio     median 1.41x     worst 2.00x     best 1.03x
+approximation ratio     median 1.25x     worst 1.54x     best 1.00x     mean 1.24x
 ```
 
 The worst cases are the smallest plans, where the bound is loose rather than the plan bad: a fractional
 tenth of a course is not something a person can enrol in.
 
-This got worse on purpose. It was 1.22x when courses were allowed to claim more skills than their
-length could support, because a four hour course claiming five skills is a bargain greedy loves and a
-lie. Both our plan and the lower bound are computed on the same trimmed catalog, so the comparison is
-still fair. We are further from optimal against an honest catalog, which we prefer to being close to
-optimal against a fictional one.
+The ratio compares the hours that cover the skill gap, because that is the only thing the bound is
+allowed to buy. Milestone projects and assessments are a teaching choice we add on top, and they are
+another 12 percent of study hours that the bound never prices. We charged them to greedy for a while
+and it made us look 13 percent further from optimal than we are. They are reported next to the ratio
+rather than quietly dropped.
+
+Both our plan and the bound are computed on the same catalog, so the comparison is like for like.
 
 For context, greedy set cover is provably within a log factor of optimal. We do not claim optimal.
 

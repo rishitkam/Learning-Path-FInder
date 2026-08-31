@@ -17,7 +17,7 @@ import profile as learner_profile
 import explain
 from embed import relevance, warm
 
-# In production, FRONTEND_URL is set as a Fly.io secret so the deployed
+# In production, FRONTEND_URL is set in the Render dashboard so the deployed
 # Vercel URL is whitelisted. Locally it falls back to the dev ports.
 _frontend = os.getenv("FRONTEND_URL", "")
 _origins = ["http://localhost:3000", "http://localhost:3001"]

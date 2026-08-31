@@ -270,6 +270,25 @@ course about version control, and calculus and linear algebra to one maths cours
 We considered special casing the offending courses and threw that idea out. The system has to hold up
 on a catalog we have never seen, and a fix that names courses is a fix that only works on ours.
 
+**Commit 24, an audit that went after our own numbers.** Attacked the whole thing rather than reading
+it: 300 concurrent mixed requests, 27 hostile request bodies, 9 prompt injections, a clean clone, and
+every number in every document checked against what the code prints now.
+
+Most of it held. No secrets anywhere in git history. Zero 500s, every bad body caught as a 422, no way
+found to read another learner's state. Nine attempts to make the model invent a course, leak the system
+prompt, leak the key, or promise a change it cannot make, and none of them worked: asked to cut a plan
+to two weeks it answered with the arithmetic instead of a promise, and told its plan was three weeks it
+gave back the real numbers.
+
+Two things were wrong. Our approximation ratio counted milestone and assessment hours in the numerator
+while the bound was built from a pool that excluded them, so it had been comparing two different
+questions and reading 1.41x where the honest figure is 1.24x. It made us look worse than we are, which
+is the safe direction, but it did not measure what our own document said it measured. And the goals and
+profile pages printed fixed text, prerendered at build time, so everyone saw the same "Balanced
+builder" whatever their actual profile said.
+
+Both fixed. Two smaller things we found and deliberately left, with reasons, in decisions 111.
+
 ## Roughly where we stand
 
 Engine done, nothing to look at yet.

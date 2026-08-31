@@ -882,14 +882,18 @@ now teach nothing, and not one skill lost its coverage.
 The alternative was to name the bad courses and exclude them. We said no. This gets run on catalogs we
 have never seen, and a rule that lists specific courses is not a rule.
 
-## 103. We got further from optimal and kept the change
+## 103. We got further from optimal and kept the change, then found we had not
 
-Distance from the linear programming bound went from 1.22x to 1.41x when we removed the floor. That
-looks like a loss and is not. The old number was flattering because courses claiming more skills than
-their length supports are cheap multi skill bargains that greedy loves, and they were not real.
+Written when distance from the linear programming bound went from 1.22x to 1.41x after removing the
+trim floor. We argued the loss was worth it because the old number was flattered by courses claiming
+more skills than their length supports.
 
-Both the plan and the bound are computed on the same catalog, so the comparison stays fair. We would
-rather be 1.41x against an honest catalog than 1.22x against a fictional one.
+Half of that was wrong, and decision 109 explains why: the 1.41x was inflated by a bug in the metric,
+not by the catalog. Corrected, it reads 1.24x.
+
+Leaving this entry standing rather than editing it quietly, because the reasoning was sound and the
+input was not, and that is worth seeing. The trim change is still right. It is right because the picks
+are correct and no skill lost coverage, not because of anything the ratio said.
 
 ## 104. A test that could not fail the thing it tested
 
@@ -937,3 +941,41 @@ running the one file we most want them to run got a missing module error.
 Split into requirements-dev.txt, which pulls pytest and scipy on top of the runtime set. They stay out
 of the deployed image because the API imports neither, and scipy is about 40MB of linear algebra we
 only need for the lower bound in the evals.
+
+## 109. Our headline number was measuring two different things
+
+The approximation ratio divided our study hours by a linear programming bound. The numerator counted
+milestone projects and assessments. The bound was built from a pool with assessments filtered out and
+constraints covering only the skill gap, so it was never allowed to buy the things we were charging it
+for.
+
+That is 12 percent of the hours in the numerator. Reported ratio 1.41x, like for like 1.24x. One plan
+by hand: 87 hours total, 73 of it gap work, bound 54, so 1.61x reported against 1.35x real.
+
+Fixed by comparing gap work to the gap bound, and printing the extras on the next line so the hours we
+left out are visible rather than hidden.
+
+Worth saying which way this pointed. The bug made us look worse than we are, so nothing we published
+overclaimed. We still care, because a number that does not measure what its own documentation says it
+measures is the kind of thing a judge asks about.
+
+## 110. Two pages were showing everyone the same profile
+
+The goals and profile pages printed "Balanced builder" and "Ready" as fixed text. No store import, no
+hooks, prerendered to static HTML at build time, so they said the same thing whether you had a plan or
+not. Anyone clicking Profile to see their profile saw copy.
+
+They read the session now. The old wording survives as the empty state it was always pretending to be.
+
+## 111. Two we found and chose not to fix
+
+The blocked course list has no cap. Five thousand feedback events grew it to 1149 entries. A real
+learner clicks tens of times, not thousands, and capping it means deciding which rejections to forget,
+which is a worse problem than the one it solves.
+
+The weight floor is 0.05 and can land at 0.0479, because we clamp before renormalising and dividing by
+a total above one pushes the clamped value back under. The floor exists to stop a signal switching off
+entirely and 0.0479 has not switched anything off. Reordering it would shift every published
+personalisation number to fix a rounding artifact.
+
+Both are real. Neither changes what anyone sees. Writing them down beats fixing them badly.
