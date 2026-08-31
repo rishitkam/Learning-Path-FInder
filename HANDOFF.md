@@ -3,7 +3,7 @@
 Read this first if you are picking up this project cold. It says what we are building, why it is built
 this way, where everything is, and what happens next.
 
-Companion files: `decisions.md` is every choice and why, `progress.md` is where we are per commit.
+Companion files: `README.md` is the short version for someone seeing this for the first time, `decisions.md` is every choice and why, `progress.md` is where we are per commit.
 Keep all three current. Every commit updates progress.md, and any commit that involves a judgement
 call updates decisions.md too.
 
@@ -78,7 +78,7 @@ the API never imports and which we keep out of the deployed image:
 
 ```
 pip install -r requirements-dev.txt
-python3 -m pytest -q      # 63 tests
+python3 -m pytest -q      # 69 tests
 python3 evals.py          # full measurement report, about a second, no model calls
 ```
 
@@ -135,7 +135,7 @@ Everything is built. Skill graph, path builder, profile extractor, explainer, fe
 catalog pipeline, semantic relevance, persistence, per learner ranking weights, the API and the
 interface.
 
-91 skills, 86 edges, 1214 catalog items, 18 roles. 63 tests pass. `python3 evals.py` prints the full
+91 skills, 86 edges, 1214 catalog items, 18 roles. 69 tests pass. `python3 evals.py` prints the full
 measurement report in about a second without touching a model.
 
 What is left is submission work rather than building: the demo video, the solution document, and a

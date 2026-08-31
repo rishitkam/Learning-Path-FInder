@@ -3,7 +3,6 @@
 import json
 import os
 from functools import lru_cache
-from itertools import cycle
 
 from dotenv import load_dotenv
 from groq import BadRequestError, Groq, RateLimitError

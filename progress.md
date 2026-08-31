@@ -289,6 +289,22 @@ builder" whatever their actual profile said.
 
 Both fixed. Two smaller things we found and deliberately left, with reasons, in decisions 111.
 
+**Commit 27, the submission pass.** Clicked every control in the interface with a real path loaded
+rather than reading the code and assuming: four nav links, the view switch, all five feedback buttons,
+mark complete, new focus, the chat, and fifteen roadmap links. Every one has a real effect and the
+empty state disables the six that need a plan.
+
+Two ghosts found. "Engine linked" and "LLM connected" were literals next to a green dot, claiming a
+working backend whatever was happening; they read real reachability now and go red when you kill the
+API. And a CSS rule was styling a button that had been removed from the markup.
+
+Probed what the API trusts from the client: garbage known skills, fifty duplicate goal skills, a
+learner claiming to know all ninety one skills, garbage completed ids and a horizon of ninety nine
+thousand weeks are all absorbed without corruption, and an unrecognised goal skill is refused with a
+422 rather than silently dropped. One gap found and left, in decision 117.
+
+Deleted main.py, two unused imports and the dead CSS. Wrote README.md, which we had never had.
+
 ## Roughly where we stand
 
 Engine done, nothing to look at yet.

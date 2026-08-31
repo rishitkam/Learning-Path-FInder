@@ -20,7 +20,7 @@ from scipy.optimize import linprog
 import state as st
 from embed import relevance
 from graph import load
-from path import W, build, load_catalog
+from path import build, load_catalog
 
 # Personas carry a goal in their own words and a real learning style. Without those, relevance and
 # style are constant for every course, so half the ranking is switched off and any measurement of

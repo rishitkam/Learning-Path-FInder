@@ -1077,3 +1077,39 @@ budget.
 Known gap: hostile messages, prompt injection and plan questions asked before a plan exists all land
 on the plain goal question rather than a warm nudge, because the model reads them as "other". Correct,
 just colder than the greeting path.
+
+## 115. Two status lights that could not go out
+
+"Engine linked" and "LLM connected" were string literals rendered next to a green pulsing dot on
+every load. The interface claimed a working backend while every request failed.
+
+Both read real state now. The co-pilot tracks whether its last call reached the server. The engine
+pill reads the error page.tsx was already keeping and had never been handed, and separates
+not-connected from nothing-asked-yet, so with no goal it says it is waiting rather than claiming a
+link it has not used.
+
+Verified by killing the API mid session: both go red and name the problem, the plan already on screen
+stays rather than vanishing, and both recover on the next successful call.
+
+## 116. Legacy we removed
+
+main.py was three lines re-exporting app from api.py. Nothing ran it: render.yaml starts api:app and
+so does the handoff. One line of the frontend README kept it alive, which is the only reason it
+survived. Standardised on api:app and deleted the file.
+
+Also an unused W import in evals.py, an unused itertools.cycle in profile.py, and a CSS rule styling
+a .nudge-card button that is not in the markup.
+
+We checked for more and found none. What the scan flags as unused is almost all false positives:
+FastAPI route handlers are referenced by their decorator and pytest tests by collection, so neither
+appears at a call site.
+
+## 117. Blocking the entire catalog reports a feasible empty plan
+
+Sending every course id as blocked returns sixteen modules with no resource attached, zero hours, and
+feasible true. It could not source a single course and says the plan fits.
+
+Left alone deliberately. Reaching it needs about twelve hundred "not for me" clicks, and the honest
+fix is a cap on the blocked list, which decision 111 already declined for a better reason: capping
+means choosing which of someone's rejections to forget. Recorded here so nobody finds it and thinks
+it was missed.

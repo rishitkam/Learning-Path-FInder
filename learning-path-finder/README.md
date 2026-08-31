@@ -8,7 +8,7 @@ Start the Python API from the repository root. The current `py --list` output on
 py -3.12 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
-python -m uvicorn main:app --reload --port 8000
+python -m uvicorn api:app --reload --port 8000
 ```
 
 Verify the backend before opening the frontend:
