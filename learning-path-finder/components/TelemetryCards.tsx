@@ -15,7 +15,7 @@ const REACTIONS: { event: FeedbackEvent; label: string; icon: typeof Check }[] =
   { event: "not_interested", label: "Not for me", icon: X },
 ];
 
-export default function TelemetryCards({ data, loading, onFeedback }: { data: PathData | null; loading: boolean; onFeedback: (event: FeedbackEvent) => void }) {
+export default function TelemetryCards({ data, loading, error, onFeedback }: { data: PathData | null; loading: boolean; error?: string | null; onFeedback: (event: FeedbackEvent) => void }) {
   const action = data?.progress.next_action;
   const phases = data?.path.phases ?? [];
   const tallest = Math.max(1, ...phases.map((phase) => phase.hours));
@@ -34,7 +34,8 @@ export default function TelemetryCards({ data, loading, onFeedback }: { data: Pa
   }, [step]);   // eslint-disable-line react-hooks/exhaustive-deps
   return <>
     <section className="focus-card">
-      <div className="focus-top"><p className="section-kicker">CURRENT FOCUS</p><span className="live-pill"><i/> Engine linked</span></div>
+      <div className="focus-top"><p className="section-kicker">CURRENT FOCUS</p><span className={`live-pill ${error ? "pill-down" : ""}`}><i/> {
+        error ? "Engine unreachable" : data ? "Engine linked" : "Waiting for your goal"}</span></div>
       <div className="focus-course">
         <div className="course-icon"><BrainCircuit size={23}/></div>
         <div><h3>{action?.name ?? "Building your path"}</h3><p>{action?.resource?.provider ?? "Finding the best resource"}</p></div>

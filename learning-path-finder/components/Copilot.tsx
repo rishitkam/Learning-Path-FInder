@@ -12,6 +12,9 @@ export default function Copilot({ data, onPath }: { data: PathData | null; onPat
   const [input, setInput] = useState("");
   const [profile, setProfile] = useState<Profile | null>(null);
   const [busy, setBusy] = useState(false);
+  // The header used to say "LLM connected" unconditionally, next to a green dot, even when every
+  // request was failing. A status light that cannot go out is decoration, not status.
+  const [reachable, setReachable] = useState(true);
   const shown = turns.length ? turns : [{ role: "assistant" as const, content: GREETING }];
 
   async function send(event: FormEvent | { preventDefault: () => void }) {
@@ -28,7 +31,9 @@ export default function Copilot({ data, onPath }: { data: PathData | null; onPat
       if (result.profile) setProfile({ ...defaultProfile, ...result.profile });
       if (result.data) { setProfile(result.data.profile); onPath(result.data); }
       setTurns([...asked, { role: "assistant", content: result.reply }]);
+      setReachable(true);
     } catch (reason) {
+      setReachable(false);
       setTurns([...asked, { role: "assistant", content: reason instanceof Error ? reason.message : "I couldn’t reach the co-pilot." }]);
     } finally { setBusy(false); }
   }
@@ -36,7 +41,7 @@ export default function Copilot({ data, onPath }: { data: PathData | null; onPat
   return <aside className="copilot">
     <div className="copilot-head">
       <div className="copilot-icon"><Bot size={17}/></div>
-      <div><p>ALMA CO-PILOT</p><small><i/> LLM connected</small></div>
+      <div><p>ALMA CO-PILOT</p><small className={reachable ? "" : "pill-down"}><i/> {reachable ? "LLM connected" : "Cannot reach ALMA"}</small></div>
     </div>
     <div className="chat-thread">
       {shown.map((turn, index) => <div className={`chat-message ${turn.role}`} key={index}>
