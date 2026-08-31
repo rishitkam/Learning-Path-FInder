@@ -61,10 +61,14 @@ def _tool(g):
             "role": nullable("string", enum=roles + [None]),
             "goal_skills": {"type": "array", "items": {"type": "string", "enum": ids}},
             "known_skills": {"type": "array", "items": {"type": "string", "enum": ids}},
+            # Retraction needs its own field. An empty known_skills cannot mean "forget what I said",
+            # because the merge below deliberately ignores empty lists so that a quiet turn like "ok"
+            # does not wipe everything we already know about them.
+            "retracted_skills": {"type": "array", "items": {"type": "string", "enum": ids}},
             "weekly_hours": nullable("number"), "horizon_weeks": nullable("number"),
             "level": nullable("integer"), "style": nullable("string", enum=STYLES + [None])},
             "required": ["goal_text", "out_of_scope", "role", "goal_skills", "known_skills",
-                         "weekly_hours", "horizon_weeks", "level", "style"]}}}
+                         "retracted_skills", "weekly_hours", "horizon_weeks", "level", "style"]}}}
 
 
 def _num(v, lo, hi, default=None):
@@ -113,6 +117,9 @@ def extract(g, transcript, prior=None):
               "not be: a building architect is not cs.architecture. "
               "Later messages win. When they correct an earlier goal, extract the correction, not the "
               "thing they are correcting. "
+              "If they take back a skill, saying they do not actually know it, have never used it or "
+              "were wrong about it, put it in retracted_skills. That is the only way to remove one, "
+              "and it matters: a skill we wrongly think they have is a step deleted from their plan. "
               "Style follows from how they describe learning: building, projects or hands on means "
               "project first, lectures, theory or fundamentals means theory first.")
     user = f"KNOWN SO FAR:\n{json.dumps(p)}\n\nCONVERSATION:\n{transcript}"
@@ -136,8 +143,13 @@ def extract(g, transcript, prior=None):
                 cleared["out_of_scope"] = True
                 return cleared
             # Merge into a copy. A failed attempt must not leave half its answer in the profile.
-            return _clean(g, {**p, **{k: v for k, v in new.items() if v not in (None, [])}},
-                          role_is_new=bool(new.get("role")))
+            retracted = [x for x in (new.pop("retracted_skills", None) or []) if x in g.skills]
+            merged = _clean(g, {**p, **{k: v for k, v in new.items() if v not in (None, [])}},
+                            role_is_new=bool(new.get("role")))
+            if retracted:
+                # Subtract after the merge, so it wins over anything the prior profile carried in.
+                merged["known_skills"] = [x for x in merged["known_skills"] if x not in retracted]
+            return merged
         except BadRequestError as refused:
             problem = refused
         except Exception as failure:

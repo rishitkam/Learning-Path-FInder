@@ -46,6 +46,19 @@ def _add(state, key, value):
     return False
 
 
+def _toggle(state, key, value):
+    """Press again to unset. Both of these were one way doors: marking a skill known subtracts it
+    from the gap, so a mis-click silently deleted a prerequisite from the plan and nothing could put
+    it back short of throwing the whole route away. Returns True if the value was added."""
+    if not value:
+        return False
+    if value in state[key]:
+        state[key].remove(value)
+        return False
+    state[key].append(value)
+    return True
+
+
 def apply(state, event, skill=None, resource_id=None, module=None):
     """One click, one state change. Nothing here can remove a skill the path depends on."""
     s = {**state, "goal_skills": list(state["goal_skills"] or []),
@@ -55,9 +68,11 @@ def apply(state, event, skill=None, resource_id=None, module=None):
     why = (module or {}).get("why") or {}
 
     if event == "already_know":          # never needed it, so drop it from the plan
-        _add(s, "known_skills", skill)    # says nothing about ranking, so weights do not move
+        _toggle(s, "known_skills", skill)  # says nothing about ranking, so weights do not move
     elif event == "completed":           # did the work, so keep it visible and ticked
-        if _add(s, "completed", skill) and why:
+        # Un-ticking does not un-nudge the weights. We cannot know which way to move them back, and
+        # guessing would be worse than leaving one step of drift from a mis-click.
+        if _toggle(s, "completed", skill) and why:
             best = max(why, key=lambda k: s["weights"].get(k, 0) * why.get(k, 0))
             s["weights"] = _reweigh(s["weights"], best, STEP / 2)
     elif event in ("too_hard", "too_easy", "not_interested"):

@@ -543,3 +543,67 @@ def test_out_of_scope_refuses_even_when_the_model_still_named_skills(client, mon
                                       "completed": [], "blocked": [], "history": []}).json()
     assert "outside what i have courses for" in body["reply"].lower()
     assert body.get("data") is None          # and no path was built anyway
+
+
+def test_a_mis_clicked_known_skill_can_be_taken_back(g):
+    """Marking a skill known subtracts it from the gap, so a mis-click deleted a prerequisite from
+    the plan and nothing could put it back short of throwing the whole route away."""
+    import state as st
+    s = st.new({"role": "machine-learning-engineer", "goal_skills": [], "known_skills": [],
+                "weekly_hours": 10, "horizon_weeks": 20, "level": 2, "style": "project first",
+                "goal_text": "ml engineer"})
+    s = st.apply(s, "already_know", "prog.python")
+    assert s["known_skills"] == ["prog.python"]
+    s = st.apply(s, "already_know", "prog.python")
+    assert s["known_skills"] == []          # pressing again takes it back
+    s = st.apply(s, "completed", "ml.evaluation")
+    assert s["completed"] == ["ml.evaluation"]
+    s = st.apply(s, "completed", "ml.evaluation")
+    assert s["completed"] == []
+
+
+def test_taking_a_skill_back_puts_the_step_back_in_the_plan(g):
+    """The point of the undo: the prerequisite everything downstream assumes has to reappear."""
+    import state as st
+    from path import build, load_catalog
+    catalog = load_catalog(g)
+    profile = {"role": "machine-learning-engineer", "goal_skills": [], "weekly_hours": 10,
+               "horizon_weeks": 20, "level": 2, "style": "project first", "goal_text": "ml engineer"}
+    wanted = g.role_skills("machine-learning-engineer")
+    teaches = lambda known: any(
+        m["skill"] == "prog.python"
+        for phase in build(g, g.gap(wanted, known), profile, catalog, known)["phases"]
+        for m in phase["modules"])
+    assert not teaches(["prog.python"])     # while we think they know it, the step is gone
+    assert teaches([])                      # once taken back, it returns
+
+
+def test_a_retraction_in_chat_removes_the_skill(monkeypatch):
+    """An empty known_skills cannot mean "forget it", because the merge ignores empty lists so a
+    quiet turn cannot wipe the profile. Retraction needs its own field."""
+    import profile as pf
+    _stub_extraction(monkeypatch, {"goal_text": "ml engineer", "out_of_scope": False,
+                                   "role": None, "goal_skills": [], "known_skills": [],
+                                   "retracted_skills": ["prog.python"], "weekly_hours": None,
+                                   "horizon_weeks": None, "level": None, "style": None})
+    prior = {"goal_text": "ml engineer", "known_skills": ["prog.python", "math.stats"],
+             "goal_skills": ["ml.evaluation"], "weekly_hours": 10, "horizon_weeks": 20,
+             "level": 2, "style": "project first"}
+    out = pf.extract(load(), "learner: i never actually used python", prior)
+    assert out["known_skills"] == ["math.stats"]        # only the retracted one goes
+    assert "retracted_skills" not in out               # and it never reaches the profile
+
+
+def test_a_quiet_turn_still_cannot_wipe_what_we_know(monkeypatch):
+    """The protection the retraction field exists to preserve: "ok" must change nothing."""
+    import profile as pf
+    _stub_extraction(monkeypatch, {"goal_text": None, "out_of_scope": False, "role": None,
+                                   "goal_skills": [], "known_skills": [], "retracted_skills": [],
+                                   "weekly_hours": None, "horizon_weeks": None, "level": None,
+                                   "style": None})
+    prior = {"goal_text": "ml engineer", "known_skills": ["prog.python"],
+             "goal_skills": ["ml.evaluation"], "weekly_hours": 10, "horizon_weeks": 20,
+             "level": 2, "style": "project first"}
+    out = pf.extract(load(), "learner: ok", prior)
+    assert out["known_skills"] == ["prog.python"]
+    assert out["goal_skills"] == ["ml.evaluation"]

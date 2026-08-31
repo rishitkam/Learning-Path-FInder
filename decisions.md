@@ -1015,3 +1015,35 @@ miss list went from five to two, with role exact match at 100% and known_skills 
 The scope fix did not cost extraction quality. Two regression tests, both stubbing the model so they
 run offline: one that a correction clears a wrong guess, one that refusal fires even when the model
 still names skills.
+
+## 113. The same bug again, one field over, and this one deleted prerequisites
+
+Hunting for more of decision 112 found one. The merge in profile.py ignores empty lists so a quiet
+turn like "ok" cannot wipe a profile. Correct, and it also meant no list field could ever be cleared.
+For known_skills that is not a nuisance, it is a silent deletion: a known skill is subtracted from the
+gap, so anything we wrongly believe they know disappears from their plan.
+
+    "actually no, i have never written any python, i lied. remove that"
+    known_skills : ['prog.python']      unchanged
+
+    wrongly recorded as knowing Python   15 steps, teaches Python: False
+    truthfully knows nothing             16 steps, teaches Python: True
+
+Reachable two ways, both one way doors. Saying it in chat did nothing, and one mis-click on "Already
+know this" was permanent, because _add only ever appended and none of the five events removed
+anything. The only escape was New focus, which throws the whole route away. EVALS.md had already
+named this risk, "an invented known skill silently deletes steps from someone's plan"; nothing ever
+tested whether a learner could take it back.
+
+Two fixes rather than one, because they cover different routes. Retraction gets its own field in the
+extraction schema, since an empty known_skills cannot mean "forget it" without losing the protection
+that stops "ok" wiping everything. And _add gained an inverse: already_know and completed are toggles
+now, press again to unset. Un-ticking completed deliberately does not un-nudge the weights, because we
+cannot know which way to move them back and guessing beats nothing only when the guess is informed.
+
+Verified the protection still holds: after the change, "ok" still leaves known_skills untouched.
+
+Still outstanding, and it is a real gap. The UI cannot reach the toggle. The button sends the current
+step's skill, and marking a skill known removes it from the gap, so the step disappears and the button
+retargets. Chat retraction is the only route a learner has today. Fixing that needs the interface to
+list known skills with a way to remove one, which is frontend work we have not done.
