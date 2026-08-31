@@ -105,8 +105,14 @@ def extract(g, transcript, prior=None):
               "Null any field the conversation does not state. Never invent a skill they did not "
               "mention, but do record every one they did: having done, used, studied, worked with or "
               "being comfortable with something all count, wherever in the sentence it appears. "
-              "Goals are the exception: if they name any subject, field or role at all, even as a bare "
-              "phrase like 'machine learning', treat it as their goal and map it to the closest skills. "
+              "Goals are the exception: if they name any subject, field or role THIS TAXONOMY COVERS, "
+              "even as a bare phrase like 'machine learning', treat it as their goal and map it to the "
+              "closest skills. If their goal is outside it entirely, a trade, a profession, a language, "
+              "anything that is not software, data or AI, set out_of_scope true, leave goal_skills "
+              "empty and do not reach for the nearest thing you do have. A word can look like ours and "
+              "not be: a building architect is not cs.architecture. "
+              "Later messages win. When they correct an earlier goal, extract the correction, not the "
+              "thing they are correcting. "
               "Style follows from how they describe learning: building, projects or hands on means "
               "project first, lectures, theory or fundamentals means theory first.")
     user = f"KNOWN SO FAR:\n{json.dumps(p)}\n\nCONVERSATION:\n{transcript}"
@@ -119,6 +125,16 @@ def extract(g, transcript, prior=None):
                 tool_choice={"type": "function", "function": {"name": "set_profile"}},
                 messages=[{"role": "system", "content": system}, {"role": "user", "content": user}])
             new = json.loads(r.choices[0].message.tool_calls[0].function.arguments)
+            if new.get("out_of_scope"):
+                # Clear the goal rather than merging. The merge below drops empty lists so that a
+                # quiet turn cannot wipe what we already know, but that also meant a correction
+                # could not undo a wrong guess: told "architect" then "I meant BUILDINGS", the
+                # extractor kept cs.architecture from the first reading. An out of scope goal is
+                # exactly the case where the previous answer has to go.
+                cleared = _clean(g, {**p, "role": None, "goal_skills": []})
+                cleared["goal_text"] = new.get("goal_text") or p.get("goal_text")
+                cleared["out_of_scope"] = True
+                return cleared
             # Merge into a copy. A failed attempt must not leave half its answer in the profile.
             return _clean(g, {**p, **{k: v for k, v in new.items() if v not in (None, [])}},
                           role_is_new=bool(new.get("role")))

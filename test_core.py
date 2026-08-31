@@ -494,3 +494,52 @@ def test_the_chat_says_so_when_the_model_is_unreachable(client, monkeypatch):
     reply = client.post("/chat", json={"message": "hi", "profile": None, "completed": [],
                                        "blocked": [], "history": []}).json()["reply"]
     assert "could not reach" in reply.lower()
+
+
+def _stub_extraction(monkeypatch, payload):
+    """Make the model return exactly `payload` from its tool call, no network."""
+    import profile as pf, json as _json
+    class _Fn:
+        arguments = _json.dumps(payload)
+    class _Call:
+        function = _Fn()
+    class _Msg:
+        tool_calls = [_Call()]
+    class _Choice:
+        message = _Msg()
+    class _Resp:
+        choices = [_Choice()]
+    monkeypatch.setattr(pf, "call", lambda **_: _Resp())
+
+
+def test_an_out_of_scope_goal_clears_the_goal_we_guessed_before(monkeypatch):
+    """Told "architect" then "I meant BUILDINGS", the extractor kept cs.architecture from the first
+    reading, because the merge drops empty lists so a quiet turn cannot wipe what we know. That also
+    stopped a correction undoing a wrong guess, and the learner got Programming Fundamentals."""
+    import profile as pf
+    _stub_extraction(monkeypatch, {"goal_text": "I want to design buildings", "out_of_scope": True,
+                                   "role": None, "goal_skills": [], "known_skills": [],
+                                   "weekly_hours": None, "horizon_weeks": None, "level": None,
+                                   "style": None})
+    prior = {"goal_text": "i want to be an architect", "role": "solutions-architect",
+             "goal_skills": ["cs.architecture", "prog.fundamentals"], "known_skills": [],
+             "weekly_hours": 19, "horizon_weeks": 4, "level": 2, "style": "project first"}
+    out = pf.extract(load(), "learner: I want to design buildings", prior)
+    assert out["out_of_scope"] is True
+    assert out["goal_skills"] == []          # the guessed software skills are gone
+    assert out.get("role") is None           # and so is the role they never asked for
+    assert out["goal_text"] == "I want to design buildings"   # their correction, not the old text
+
+
+def test_out_of_scope_refuses_even_when_the_model_still_named_skills(client, monkeypatch):
+    """The guard used to require goal_skills to be empty as well, which meant it could never fire:
+    the extractor is told to map any goal to the closest skills, so the list is almost never empty."""
+    import api
+    monkeypatch.setattr(api.learner_profile, "extract", lambda *a, **k: {
+        "goal_text": "i want to design buildings", "out_of_scope": True,
+        "role": None, "goal_skills": ["cs.architecture"], "known_skills": [],
+        "weekly_hours": 10, "horizon_weeks": 8, "level": 2, "style": "balanced"})
+    body = client.post("/chat", json={"message": "i want to design buildings", "profile": None,
+                                      "completed": [], "blocked": [], "history": []}).json()
+    assert "outside what i have courses for" in body["reply"].lower()
+    assert body.get("data") is None          # and no path was built anyway

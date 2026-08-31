@@ -260,9 +260,14 @@ def chat(request: ChatRequest, learner_id: str | None = LearnerId):
                          "nothing you have told me is lost.", "profile": prior}
 
     said = [{"role": "user", "content": request.message}]
-    if extracted.pop("out_of_scope", False) and not extracted.get("goal_skills"):
+    if extracted.pop("out_of_scope", False):
         # Say we cannot rather than asking the same question again. The taxonomy is software, data
         # and AI, and pretending otherwise would be the one thing this whole design refuses to do.
+        #
+        # This used to also require goal_skills to be empty, which meant it could never fire: the
+        # extractor is told to map any goal to the closest skills, so the list is almost never empty.
+        # Someone who said they wanted to design buildings got Computer Architecture and a confident
+        # explanation of why an architect needs Programming Fundamentals.
         reply = ("I can only plan software, data and AI: programming, machine learning, cloud, "
                  "security, that sort of thing. That one is outside what I have courses for.")
         db.save(learner_id, {**state.new(extracted), "completed": request.completed,

@@ -979,3 +979,39 @@ entirely and 0.0479 has not switched anything off. Reordering it would shift eve
 personalisation number to fix a rounding artifact.
 
 Both are real. Neither changes what anyone sees. Writing them down beats fixing them badly.
+
+## 112. Someone asked to design buildings and we sent them to Computer Architecture
+
+They said "architect", we read it as a software architect, and built a route through Programming
+Fundamentals and Computer Architecture. They corrected us: "I WANNA BE A BUILDING ARCHITECHT WHO
+BUILD PLANS FOR BUILDINGS". We kept the plan and explained, confidently and at length, why an
+architect needs to understand how software interacts with hardware.
+
+This is the exact failure the whole edge-only design exists to prevent, and there were four causes
+stacked on top of each other.
+
+The guard in api.py required `out_of_scope AND not goal_skills`. The extractor is instructed to map
+any goal to the closest skills, so goal_skills is almost never empty, so the guard could never fire
+in the case it was written for.
+
+The prompt said "if they name any subject, field or role at all ... map it to the closest skills".
+At all. A word can look like ours and not be one: a building architect is not cs.architecture.
+
+The merge drops empty lists, so a quiet turn cannot wipe what we already know. That is right, and it
+also meant a correction could never undo a wrong guess. The model returned goal_skills [] and we
+merged the old software skills straight back over it.
+
+Worst of the four, goal_text stayed as "i want to be an architect". The learner's actual correction
+never entered the profile at all, though extract's own docstring promises it re-reads the whole
+conversation every turn so a later answer overwrites an earlier one.
+
+Fixed all four. Out of scope now decides on its own, clears the goal and the role, and keeps the
+words they actually typed. Refusal is plain: we say we only cover software, data and AI. We do not
+offer the nearest thing we have, because offering the nearest thing is how an architect gets sent to
+Computer Architecture in the first place, only more politely.
+
+Measured before and after on the same seeded 40 cases. goal_skills recall is 0.67 either way, and the
+miss list went from five to two, with role exact match at 100% and known_skills at 1.00/1.00/1.00.
+The scope fix did not cost extraction quality. Two regression tests, both stubbing the model so they
+run offline: one that a correction clears a wrong guess, one that refusal fires even when the model
+still names skills.
